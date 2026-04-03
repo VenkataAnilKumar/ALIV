@@ -1,0 +1,38 @@
+[
+  {
+    "id": "D001",
+    "title": "embedding_count always 0 in ingestion benchmark",
+    "severity": "critical",
+    "status": "closed",
+    "component": "benchmarks/run_ingestion_benchmark.py",
+    "description": "run_benchmark() passes hardcoded 0 to _record_run() for embeddings parameter. The embedding worker is not called during benchmarks.",
+    "fix": "Wire _embed_chunks() into the benchmark loop and pass actual count."
+  },
+  {
+    "id": "D002",
+    "title": "sqlite-vec migration 0008 skipped in Python benchmarks",
+    "severity": "high",
+    "status": "closed",
+    "component": "benchmarks/run_ingestion_benchmark.py",
+    "description": "_apply_migrations() skips 0008 because it requires the native sqlite-vec extension. Python benchmarks cannot load this extension.",
+    "fix": "Added _load_sqlite_vec() to load the sqlite-vec Python wheel (added to requirements.txt). Migration 0008 now runs when extension is available. _populate_vec_index() syncs embeddings table into embeddings_vec after ingestion."
+  },
+  {
+    "id": "D003",
+    "title": "Python worker has no retry on transient timeout",
+    "severity": "high",
+    "status": "closed",
+    "component": "src-tauri/src/infra/python_bridge.rs",
+    "description": "run_worker() has a single 30s timeout with no retry. Cold Python startup on some machines exceeds 30s on first call.",
+    "fix": "Add max 2 retries on timeout with exponential backoff."
+  },
+  {
+    "id": "D004",
+    "title": "FilesystemGuard only validates non-empty string",
+    "severity": "critical",
+    "status": "closed",
+    "component": "src-tauri/src/infra/fs_guard.rs",
+    "description": "validate_workspace_path() returns true for any non-empty string including paths outside the workspace or paths with traversal components.",
+    "fix": "Implement real canonicalization and workspace boundary check (Phase 3 Step 1.2)."
+  }
+]

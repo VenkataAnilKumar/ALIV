@@ -10,6 +10,7 @@ struct RegistryState {
     workspace_paths: Vec<String>,
     command_log: Vec<String>,
     preview_queue: Vec<String>,
+    action_approval_active: bool,
     benchmark_runs: Vec<String>,
     last_ingestion_target: Option<String>,
 }
@@ -61,12 +62,38 @@ impl AppState {
         self.registry.lock().expect("app state poisoned").preview_queue = queue;
     }
 
+    pub fn set_approved_preview_queue(&self, queue: Vec<String>) {
+        let mut registry = self.registry.lock().expect("app state poisoned");
+        registry.preview_queue = queue;
+        registry.action_approval_active = true;
+    }
+
+    pub fn clear_action_approval(&self) {
+        self.registry
+            .lock()
+            .expect("app state poisoned")
+            .action_approval_active = false;
+    }
+
+    pub fn is_action_approval_active(&self) -> bool {
+        self.registry
+            .lock()
+            .expect("app state poisoned")
+            .action_approval_active
+    }
+
     pub fn preview_queue_len(&self) -> usize {
         self.registry
             .lock()
             .expect("app state poisoned")
             .preview_queue
             .len()
+    }
+
+    pub fn drain_preview_queue(&self) -> Vec<String> {
+        let mut registry = self.registry.lock().expect("app state poisoned");
+        registry.action_approval_active = false;
+        std::mem::take(&mut registry.preview_queue)
     }
 
     pub fn record_benchmark_run(&self, run_id: &str) {

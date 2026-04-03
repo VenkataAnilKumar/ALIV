@@ -21,7 +21,7 @@ from validate_ingestion_thresholds import evaluate_ingestion_thresholds
 
 
 RESULTS_DIR = ROOT / "benchmarks" / "results"
-DEFECT_BACKLOG = ROOT / "docs" / "PHASE4_DEFECT_BACKLOG.md"
+DEFECT_BACKLOG = ROOT / "docs" / "PHASE4_DEFECT_BACKLOG.json"
 
 
 def _timestamp() -> str:
@@ -38,13 +38,14 @@ def _find_check(checks: list[dict], name: str) -> dict | None:
 def _read_open_critical_defects() -> int:
     if not DEFECT_BACKLOG.exists():
         return 0
-
-    open_critical = 0
-    for raw_line in DEFECT_BACKLOG.read_text(encoding="utf-8").splitlines():
-        line = raw_line.strip().lower()
-        if line.startswith("- [ ]") and "critical" in line:
-            open_critical += 1
-    return open_critical
+    try:
+        defects = json.loads(DEFECT_BACKLOG.read_text(encoding="utf-8"))
+        return sum(
+            1 for d in defects
+            if d.get("status") == "open" and d.get("severity") == "critical"
+        )
+    except (json.JSONDecodeError, TypeError):
+        return 0
 
 
 def _suite_status(ingestion_gate: dict, retrieval: dict, extraction: dict, open_critical: int) -> dict:

@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import json
 import sqlite3
+import subprocess
 import sys
 import time
 from hashlib import sha256
@@ -48,11 +49,23 @@ def _now() -> str:
 
 # ── DB helpers ────────────────────────────────────────────────────────────────
 
+def _load_sqlite_vec(conn: sqlite3.Connection) -> bool:
+    """Try to load sqlite-vec extension. Returns True if successful."""
+    try:
+        import sqlite_vec
+        conn.enable_load_extension(True)
+        sqlite_vec.load(conn)
+        conn.enable_load_extension(False)
+        return True
+    except (ImportError, AttributeError, sqlite3.OperationalError):
+        return False
+
+
 def _apply_migrations(conn: sqlite3.Connection) -> None:
-    # Skip the vec0 migration (0008) — requires native sqlite-vec extension
+    vec_available = _load_sqlite_vec(conn)
     for p in sorted(MIGRATIONS_DIR.glob("*.sql")):
-        if "0008" in p.name:
-            continue
+        if "0008" in p.name and not vec_available:
+            continue  # skip vec migration only when extension unavailable
         try:
             conn.executescript(p.read_text(encoding="utf-8"))
         except sqlite3.OperationalError:
@@ -134,6 +147,85 @@ def _record_run(conn: sqlite3.Connection, run_id: str, ws: str, mode: str,
     conn.commit()
 
 
+def _embed_chunks(conn: sqlite3.Connection, file_id: str, chunks: list[tuple[str, str]]) -> int:
+    """Call embedding worker via subprocess. Returns number of vectors stored."""
+    import json
+
+    python_root = ROOT / "python"
+    if not (python_root / "workers" / "embedding_worker.py").exists():
+        return 0
+
+    texts = [text for _, text in chunks]
+    request = {
+        "request_id": f"bench-embed-{file_id[:8]}",
+        "worker_type": "embed",
+        "payload": {"chunks": texts},
+        "timeout_ms": 60000,
+        "worker_version": "0.1.0",
+    }
+    result = subprocess.run(
+        [sys.executable, "-m", "workers.embedding_worker"],
+        input=json.dumps(request) + "\n",
+        capture_output=True,
+        text=True,
+        timeout=65,
+        cwd=str(python_root),
+    )
+    if result.returncode != 0:
+        return 0
+    try:
+        resp = json.loads(result.stdout.strip().splitlines()[-1])
+        vectors = resp.get("result", {}).get("vectors", [])
+        for (chunk_id, _), vec in zip(chunks, vectors):
+            embedding_id = _sha256_str(f"embedding:{chunk_id}:all-MiniLM-L6-v2")
+            conn.execute(
+                "INSERT OR REPLACE INTO embeddings(id, chunk_id, embedding_model, vector_dim, vector_json, created_at) "
+                "VALUES (?, ?, 'all-MiniLM-L6-v2', 384, ?, ?)",
+                (embedding_id, chunk_id, json.dumps(vec), str(int(__import__("time").time()))),
+            )
+        conn.commit()
+        return len(vectors)
+    except Exception:
+        return 0
+
+
+def _embed_chunk_batch(conn: sqlite3.Connection, run_id: str, chunks: list[tuple[str, str]]) -> int:
+    """Embed all run chunks in one worker invocation to avoid per-file model startup cost."""
+    if not chunks:
+        return 0
+    return _embed_chunks(conn, run_id, chunks)
+
+
+def _populate_vec_index(conn: sqlite3.Connection) -> int:
+    """Sync embeddings table → embeddings_vec ANN index. Returns count synced.
+    No-op if embeddings_vec table does not exist (sqlite-vec not loaded)."""
+    try:
+        conn.execute("SELECT 1 FROM embeddings_vec LIMIT 1")
+    except sqlite3.OperationalError:
+        return 0  # vec table not available — skip silently
+
+    rows = conn.execute(
+        "SELECT e.chunk_id, e.vector_json FROM embeddings e "
+        "LEFT JOIN embeddings_vec ev ON ev.chunk_id = e.chunk_id "
+        "WHERE ev.chunk_id IS NULL AND e.vector_json IS NOT NULL"
+    ).fetchall()
+
+    synced = 0
+    for chunk_id, vector_json in rows:
+        try:
+            import json as _json
+            vec = _json.loads(vector_json)
+            conn.execute(
+                "INSERT INTO embeddings_vec(embedding, chunk_id) VALUES (?, ?)",
+                (bytes(bytearray([int(x * 127 + 128) & 0xFF for x in vec])), chunk_id),
+            )
+            synced += 1
+        except Exception:
+            continue
+    conn.commit()
+    return synced
+
+
 # ── parse dispatch ────────────────────────────────────────────────────────────
 
 def _parse_file(path: Path) -> tuple[list[dict], str, float, list[str]]:
@@ -181,7 +273,9 @@ def run_benchmark(corpus_dir: Path, db_path: Path, incremental: bool = False) ->
     skipped = 0
     parsed = 0
     chunk_total = 0
+    embedding_total = 0
     failed = 0
+    pending_embedding_chunks: list[tuple[str, str]] = []
 
     t_start = time.perf_counter()
     for fpath in corpus_files:
@@ -204,9 +298,22 @@ def run_benchmark(corpus_dir: Path, db_path: Path, incremental: bool = False) ->
         parsed += 1
         chunk_total += len(chunks)
 
+        if chunks:
+            pending_embedding_chunks.extend(chunks)
+
+    # Attempt to embed all chunks once - non-fatal on failure
+    if pending_embedding_chunks:
+        try:
+            embedding_total = _embed_chunk_batch(conn, run_id, pending_embedding_chunks)
+        except Exception:
+            embedding_total = 0
+
+    # Sync embedded vectors into ANN index when sqlite-vec is available
+    _populate_vec_index(conn)
+
     elapsed = time.perf_counter() - t_start
     _record_run(conn, run_id, ws, mode, discovered, indexed, skipped,
-                parsed, chunk_total, 0, failed)
+                parsed, chunk_total, embedding_total, failed)
     conn.close()
 
     return {

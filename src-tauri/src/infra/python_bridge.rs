@@ -198,6 +198,33 @@ impl PythonBridge {
         worker_type: &str,
         payload: Value,
     ) -> Result<WorkerResponseEnvelope, AlivError> {
+        let max_attempts = 3u8;
+        let mut last_error = AlivError::PythonBridge("no attempt made".into());
+
+        for attempt in 1..=max_attempts {
+            match self.run_worker_once(module_name, worker_type, payload.clone()) {
+                Ok(envelope) => return Ok(envelope),
+                Err(err) => {
+                    let is_timeout = err.to_string().contains("timed out");
+                    last_error = err;
+                    if !is_timeout || attempt == max_attempts {
+                        break;
+                    }
+                    let delay_ms = 500u64 * u64::from(attempt);
+                    std::thread::sleep(std::time::Duration::from_millis(delay_ms));
+                }
+            }
+        }
+
+        Err(last_error)
+    }
+
+    fn run_worker_once(
+        &self,
+        module_name: &str,
+        worker_type: &str,
+        payload: Value,
+    ) -> Result<WorkerResponseEnvelope, AlivError> {
         let request = WorkerRequestEnvelope {
             request_id: format!("{}-{}", worker_type, current_unix_timestamp()),
             worker_type: worker_type.to_string(),

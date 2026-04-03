@@ -82,6 +82,69 @@ pub struct AuditLogRequest {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ActionRecommendationView {
+    pub id: String,
+    pub file_id: String,
+    pub recommendation_type: String,
+    pub source_path: String,
+    pub proposed_path: String,
+    pub confidence: f64,
+    pub evidence: Vec<String>,
+    pub risk_level: String,
+    pub risk_flags: Vec<String>,
+    pub created_at: String,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ActionPreviewList {
+    pub command: String,
+    pub status: String,
+    pub workspace_path: String,
+    pub total: usize,
+    pub items: Vec<ActionRecommendationView>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ActionExecutionResult {
+    pub command: String,
+    pub status: String,
+    pub batch_id: String,
+    pub total: usize,
+    pub succeeded: usize,
+    pub failed: usize,
+    pub errors: Vec<String>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct UndoResult {
+    pub command: String,
+    pub status: String,
+    pub batch_id: String,
+    pub reversed: usize,
+    pub errors: Vec<String>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AuditLogEntry {
+    pub execution_id: String,
+    pub recommendation_id: String,
+    pub batch_id: String,
+    pub source_path: String,
+    pub proposed_path: String,
+    pub recommendation_type: String,
+    pub status: String,
+    pub executed_at: String,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AuditLogResponse {
+    pub command: String,
+    pub status: String,
+    pub total: usize,
+    pub entries: Vec<AuditLogEntry>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BenchmarkRequest {
     pub corpus_manifest: String,
     pub labels_version: String,

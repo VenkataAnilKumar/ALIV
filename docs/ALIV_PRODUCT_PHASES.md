@@ -96,6 +96,17 @@ Answer benchmark queries with citations, high extraction precision, and persiste
 ### Estimated Duration
 1 to 2 weeks.
 
+### Gate Result (2026-04-02): PASS — COMPLETE
+- RRF hybrid retrieval implemented (55% lexical + 45% semantic).
+- Extraction templates for 5 fields: expiry_date, vendor_name, penalty_clause, amount, client_name.
+- Citation binding verified — all answers include source + page reference.
+- Memory system fully implemented (PRD-004):
+  - `db/migrations/0007_memory_context.sql` — conversations, conversation_turns, document_summaries, memory_facts tables.
+  - `src-tauri/src/core/memory.rs` — MemoryService, TokenBudget (8192→6912 usable), context assembler.
+  - `src-tauri/src/commands/memory.rs` — 8 Tauri commands wired.
+  - `python/workers/summarization_worker.py` — Ollama HTTP summarization (document + section granularity).
+- Token budget allocation: facts 10% / history 20% / chunks 60% / summaries 10%.
+
 ## Phase 3: Safe File Actions (PRD-003)
 ### Objective
 Provide preview-first file action automation with rollback and auditability.
@@ -119,6 +130,21 @@ Provide preview-first file action automation with rollback and auditability.
 ### Estimated Duration
 1 to 2 weeks.
 
+### Gate Result (2026-04-03): PASS — COMPLETE
+- `infra/fs_guard.rs` — real path validation: traversal detection, workspace boundary enforcement, symlink rejection, collision-safe suffix strategy (_001–_999), filename normalization ({DocType}_{Vendor}_{YYYY-MM-DD}.ext).
+- `core/actions.rs` — ActionService: evaluate_risk(), build_undo_record_json(), execute_rename() with collision-safe destination.
+- `commands/actions.rs` — all 7 handlers fully wired:
+  - generate_action_recommendations → DB query + risk evaluation + preview queue
+  - get_action_preview_queue → returns current queue count
+  - evaluate_action_risk → re-evaluates risk per recommendation ID
+  - approve_actions → sets approval gate in AppState
+  - execute_actions → enforces approval gate, renames files, writes undo records, partial failure safe
+  - undo_action_batch → reverses all executions in a batch via inverse_operation_json
+  - get_action_audit_log → returns full audit trail from action_executions + action_recommendations
+- `state.rs` — drain_preview_queue(), set_approved_preview_queue(), is_action_approval_active(), clear_action_approval() added.
+- DB methods added: save_recommendation, list_recommendations, save_execution, save_undo_record, get_undo_records_for_batch, list_audit_log, get_recommendation, update_execution_status, list_files_needing_rename.
+- Safety: execute_actions hard-errors if approve_actions not called first. Undo record failure triggers immediate rename reversal.
+
 ## Phase 4: End-to-End Hardening
 ### Objective
 Improve reliability, observability, and consistency for sustained usage.
@@ -140,6 +166,21 @@ Improve reliability, observability, and consistency for sustained usage.
 
 ### Estimated Duration
 1 week.
+
+### Gate Result (2026-04-03): PASS — COMPLETE
+Four defects identified and all resolved:
+
+| ID | Title | Severity | Resolution |
+|---|---|---|---|
+| D001 | embedding_count always 0 in ingestion benchmark | critical | _embed_chunk_batch() wired into run_benchmark(), actual count recorded |
+| D002 | sqlite-vec migration 0008 skipped in Python benchmarks | high | _load_sqlite_vec() loads Python wheel; migration 0008 runs when available; _populate_vec_index() syncs vectors into ANN index; sqlite-vec added to requirements.txt |
+| D003 | Python worker no retry on transient timeout | high | run_worker() wraps run_worker_once() with 3-attempt retry loop, 500ms/1000ms exponential backoff on timeout |
+| D004 | FilesystemGuard only validates non-empty string | critical | Replaced with real validate_and_canonicalize() (resolved in Phase 3) |
+
+- Defect backlog migrated from markdown to structured JSON (docs/PHASE4_DEFECT_BACKLOG.json).
+- All 4 defects closed. open_critical_count = 0.
+- Two consecutive full-suite benchmark runs passed: ingestion ✓, retrieval ✓, extraction ✓, no open critical defects ✓.
+- Phase 4 exit criteria met. Evidence: benchmarks/results/full_suite_latest.json.
 
 ## Phase 5: UX and Operator Experience
 ### Objective
@@ -215,8 +256,8 @@ Phase 1 checklist above was superseded by implemented benchmark automation and t
 | --- | --- | --- | --- | --- | --- |
 | Phase 0 | Completed | 2026-04-02 | 2026-04-02 | Pass | Foundation setup completed and baseline validation scripts in place |
 | Phase 1 | Completed | 2026-04-02 | 2026-04-02 | Pass | Ingestion and indexing validated with benchmark gates |
-| Phase 2 | Completed | 2026-04-02 | 2026-04-02 | Pass | Retrieval and extraction thresholds met |
-| Phase 3 | Completed | 2026-04-02 | 2026-04-02 | Pass | Preview-first action command surface and rollback scaffolding in place |
-| Phase 4 | Completed | 2026-04-03 | 2026-04-03 | Pass | Two consecutive full-suite benchmark runs passed; trend output generated |
+| Phase 2 | Completed | 2026-04-02 | 2026-04-02 | Pass | RRF hybrid retrieval, extraction templates, citation binding, full memory system (PRD-004) |
+| Phase 3 | Completed | 2026-04-02 | 2026-04-03 | Pass | All 7 action handlers wired, real FilesystemGuard, approval gate, undo reversal, audit log |
+| Phase 4 | Completed | 2026-04-03 | 2026-04-03 | Pass | All 4 defects closed (D001–D004), two consecutive benchmark suite passes, open_critical_count=0 |
 | Phase 5 | In Progress | 2026-04-03 |  | Pending | UX and operator experience improvements |
 | Phase 6 | Not Started |  |  |  | |

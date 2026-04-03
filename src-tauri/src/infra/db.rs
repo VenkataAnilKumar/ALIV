@@ -11,16 +11,7 @@ use rusqlite::{params, params_from_iter, Connection, OpenFlags, OptionalExtensio
 use serde_json::json;
 use sha2::{Digest, Sha256};
 use walkdir::WalkDir;
-
-extern "C" {
-    // Provided by the sqlite-vec crate's bundled C library.
-    // Called with null for pzErrMsg/pApi when loading as a statically-linked extension.
-    fn sqlite3_vec_init(
-        db: *mut rusqlite::ffi::sqlite3,
-        pz_err_msg: *mut *mut std::os::raw::c_char,
-        p_api: *mut std::os::raw::c_void,
-    ) -> std::os::raw::c_int;
-}
+use sqlite_vec::sqlite3_vec_init;
 
 use crate::core::retrieval::RetrievalService;
 use crate::infra::python_bridge::ParsedDocument;
@@ -107,6 +98,14 @@ impl Database {
 
     pub fn connect(path: impl AsRef<Path>) -> Result<Self, AlivError> {
         let path = path.as_ref().to_path_buf();
+
+        // Register sqlite-vec for all subsequent SQLite connections in this process.
+        unsafe {
+            rusqlite::ffi::sqlite3_auto_extension(Some(std::mem::transmute(
+                sqlite3_vec_init as *const (),
+            )));
+        }
+
         let connection = Connection::open_with_flags(
             &path,
             OpenFlags::SQLITE_OPEN_READ_WRITE
@@ -118,15 +117,6 @@ impl Database {
         connection
             .execute_batch("PRAGMA foreign_keys = ON; PRAGMA journal_mode = WAL;")
             .map_err(|err| AlivError::Database(err.to_string()))?;
-
-        // Load sqlite-vec extension before migrations so the vec0 virtual table can be created.
-        unsafe {
-            sqlite3_vec_init(
-                connection.handle(),
-                std::ptr::null_mut(),
-                std::ptr::null_mut(),
-            );
-        }
 
         let applied_migrations = Self::apply_migrations(&connection)?;
 
@@ -1133,6 +1123,257 @@ impl Database {
             .map_err(|err| AlivError::Database(err.to_string()))?;
 
         Ok(value)
+    }
+
+    // -- Action Recommendations ------------------------------------------------
+
+    pub fn save_recommendation(
+        &self,
+        id: &str,
+        file_id: &str,
+        recommendation_type: &str,
+        source_path: &str,
+        proposed_path: &str,
+        confidence: f64,
+        evidence_json: &str,
+    ) -> Result<(), AlivError> {
+        let now = Self::now_ts();
+        self.conn()?
+            .execute(
+                "INSERT OR REPLACE INTO action_recommendations
+         (id, file_id, recommendation_type, source_path, proposed_path, confidence, evidence_json, created_at)
+         VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)",
+                params![
+                    id,
+                    file_id,
+                    recommendation_type,
+                    source_path,
+                    proposed_path,
+                    confidence,
+                    evidence_json,
+                    now
+                ],
+            )
+            .map_err(|e| AlivError::Database(e.to_string()))?;
+        Ok(())
+    }
+
+    pub fn list_recommendations(
+        &self,
+        workspace_path: &str,
+        limit: usize,
+    ) -> Result<Vec<(String, String, String, String, String, f64, String)>, AlivError> {
+        // Returns: (id, file_id, rec_type, source_path, proposed_path, confidence, evidence_json)
+        let conn = self.conn()?;
+        let mut stmt = conn
+            .prepare(
+                "SELECT ar.id, ar.file_id, ar.recommendation_type, ar.source_path, ar.proposed_path,
+                ar.confidence, ar.evidence_json
+         FROM action_recommendations ar
+         JOIN files f ON f.id = ar.file_id
+         WHERE f.workspace_path = ?1
+         ORDER BY ar.created_at DESC
+         LIMIT ?2",
+            )
+            .map_err(|e| AlivError::Database(e.to_string()))?;
+
+        let rows = stmt
+            .query_map(params![workspace_path, limit as i64], |row| {
+                Ok((
+                    row.get::<_, String>(0)?,
+                    row.get::<_, String>(1)?,
+                    row.get::<_, String>(2)?,
+                    row.get::<_, String>(3)?,
+                    row.get::<_, String>(4)?,
+                    row.get::<_, f64>(5)?,
+                    row.get::<_, String>(6)?,
+                ))
+            })
+            .map_err(|e| AlivError::Database(e.to_string()))?;
+
+        rows.collect::<Result<Vec<_>, _>>()
+            .map_err(|e| AlivError::Database(e.to_string()))
+    }
+
+    pub fn save_execution(
+        &self,
+        id: &str,
+        recommendation_id: &str,
+        batch_id: &str,
+        status: &str,
+    ) -> Result<(), AlivError> {
+        let now = Self::now_ts();
+        self.conn()?
+            .execute(
+                "INSERT INTO action_executions (id, recommendation_id, batch_id, status, executed_at)
+         VALUES (?1, ?2, ?3, ?4, ?5)",
+                params![id, recommendation_id, batch_id, status, now],
+            )
+            .map_err(|e| AlivError::Database(e.to_string()))?;
+        Ok(())
+    }
+
+    pub fn save_undo_record(
+        &self,
+        id: &str,
+        execution_id: &str,
+        inverse_operation_json: &str,
+    ) -> Result<(), AlivError> {
+        let now = Self::now_ts();
+        self.conn()?
+            .execute(
+                "INSERT INTO undo_records (id, execution_id, inverse_operation_json, created_at)
+         VALUES (?1, ?2, ?3, ?4)",
+                params![id, execution_id, inverse_operation_json, now],
+            )
+            .map_err(|e| AlivError::Database(e.to_string()))?;
+        Ok(())
+    }
+
+    pub fn get_undo_records_for_batch(
+        &self,
+        batch_id: &str,
+    ) -> Result<Vec<(String, String, String)>, AlivError> {
+        // Returns: (undo_record_id, execution_id, inverse_operation_json)
+        let conn = self.conn()?;
+        let mut stmt = conn
+            .prepare(
+                "SELECT ur.id, ur.execution_id, ur.inverse_operation_json
+         FROM undo_records ur
+         JOIN action_executions ae ON ae.id = ur.execution_id
+         WHERE ae.batch_id = ?1",
+            )
+            .map_err(|e| AlivError::Database(e.to_string()))?;
+
+        let rows = stmt
+            .query_map(params![batch_id], |row| {
+                Ok((
+                    row.get::<_, String>(0)?,
+                    row.get::<_, String>(1)?,
+                    row.get::<_, String>(2)?,
+                ))
+            })
+            .map_err(|e| AlivError::Database(e.to_string()))?;
+
+        rows.collect::<Result<Vec<_>, _>>()
+            .map_err(|e| AlivError::Database(e.to_string()))
+    }
+
+    pub fn list_audit_log(
+        &self,
+        limit: usize,
+    ) -> Result<Vec<(String, String, String, String, String, String, String, String)>, AlivError>
+    {
+        // Returns: (execution_id, recommendation_id, batch_id, source_path, proposed_path, rec_type, status, executed_at)
+        let conn = self.conn()?;
+        let mut stmt = conn
+            .prepare(
+                "SELECT ae.id, ae.recommendation_id, ae.batch_id,
+                ar.source_path, ar.proposed_path, ar.recommendation_type,
+                ae.status, ae.executed_at
+         FROM action_executions ae
+         JOIN action_recommendations ar ON ar.id = ae.recommendation_id
+         ORDER BY ae.executed_at DESC
+         LIMIT ?1",
+            )
+            .map_err(|e| AlivError::Database(e.to_string()))?;
+
+        let rows = stmt
+            .query_map(params![limit as i64], |row| {
+                Ok((
+                    row.get::<_, String>(0)?,
+                    row.get::<_, String>(1)?,
+                    row.get::<_, String>(2)?,
+                    row.get::<_, String>(3)?,
+                    row.get::<_, String>(4)?,
+                    row.get::<_, String>(5)?,
+                    row.get::<_, String>(6)?,
+                    row.get::<_, String>(7)?,
+                ))
+            })
+            .map_err(|e| AlivError::Database(e.to_string()))?;
+
+        rows.collect::<Result<Vec<_>, _>>()
+            .map_err(|e| AlivError::Database(e.to_string()))
+    }
+
+    pub fn list_files_needing_rename(
+        &self,
+        workspace_path: &str,
+        limit: usize,
+    ) -> Result<Vec<(String, String, String, Option<f64>)>, AlivError> {
+        // Returns: (file_id, source_path, inferred_doc_type, parser_confidence)
+        let conn = self.conn()?;
+        let mut stmt = conn
+            .prepare(
+                "SELECT f.id, f.source_path, f.inferred_doc_type, pr.parser_confidence
+         FROM files f
+         LEFT JOIN parse_results pr ON pr.file_id = f.id
+         WHERE f.workspace_path = ?1
+         AND f.inferred_doc_type IS NOT NULL
+         ORDER BY pr.parser_confidence DESC
+         LIMIT ?2",
+            )
+            .map_err(|e| AlivError::Database(e.to_string()))?;
+
+        let rows = stmt
+            .query_map(params![workspace_path, limit as i64], |row| {
+                Ok((
+                    row.get::<_, String>(0)?,
+                    row.get::<_, String>(1)?,
+                    row.get::<_, String>(2)?,
+                    row.get::<_, Option<f64>>(3)?,
+                ))
+            })
+            .map_err(|e| AlivError::Database(e.to_string()))?;
+
+        rows.collect::<Result<Vec<_>, _>>()
+            .map_err(|e| AlivError::Database(e.to_string()))
+    }
+
+    pub fn get_recommendation(
+        &self,
+        id: &str,
+    ) -> Result<Option<(String, String, String, String, String, f64, String)>, AlivError> {
+        let conn = self.conn()?;
+        conn.query_row(
+            "SELECT id, file_id, recommendation_type, source_path, proposed_path, confidence, evidence_json
+         FROM action_recommendations WHERE id = ?1",
+            params![id],
+            |row| {
+                Ok((
+                    row.get::<_, String>(0)?,
+                    row.get::<_, String>(1)?,
+                    row.get::<_, String>(2)?,
+                    row.get::<_, String>(3)?,
+                    row.get::<_, String>(4)?,
+                    row.get::<_, f64>(5)?,
+                    row.get::<_, String>(6)?,
+                ))
+            },
+        )
+        .optional()
+        .map_err(|e| AlivError::Database(e.to_string()))
+    }
+
+    pub fn update_execution_status(&self, execution_id: &str, status: &str) -> Result<(), AlivError> {
+        self.conn()?
+            .execute(
+                "UPDATE action_executions SET status = ?1 WHERE id = ?2",
+                params![status, execution_id],
+            )
+            .map_err(|e| AlivError::Database(e.to_string()))?;
+        Ok(())
+    }
+
+    fn conn(&self) -> Result<std::sync::MutexGuard<'_, Connection>, AlivError> {
+        self.connection
+            .lock()
+            .map_err(|_| AlivError::Database("database mutex poisoned".into()))
+    }
+
+    fn now_ts() -> String {
+        current_timestamp_string().unwrap_or_else(|_| "0".into())
     }
 
     fn apply_migrations(connection: &Connection) -> Result<usize, AlivError> {
