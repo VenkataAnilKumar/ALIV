@@ -4,6 +4,8 @@ Autonomous Local Intelligence Vault is a local-first document intelligence workb
 
 [Customer One-Pager](docs/CUSTOMER_ONE_PAGER.md) | [Demo Walkthrough](DEMO.md) | [Release Notes](CHANGELOG.md) | [Release Checklist](docs/PHASE6_RELEASE_CHECKLIST.md)
 
+![ALIV Demo](docs/assets/aliv-demo.gif)
+
 ## The Problem We Solve
 
 Most AI document tools start by asking you to upload proprietary contracts, invoices, and legal artifacts to a vendor-controlled cloud.
