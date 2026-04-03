@@ -1,48 +1,109 @@
 # ALIV
 
-Autonomous Local Intelligence Vault (ALIV) is a local-first desktop document intelligence system for legal and finance workflows that need AI-powered document understanding without sending data to external cloud services.
+Autonomous Local Intelligence Vault is a local-first desktop intelligence workbench for legal and finance document operations.
 
-ALIV combines offline ingestion, retrieval, extraction, persistent memory, and preview-first file actions with citations, auditability, and rollback.
+[Release Candidate Changelog](CHANGELOG.md) | [Demo Walkthrough](DEMO.md) | [Phase 6 Release Checklist](docs/PHASE6_RELEASE_CHECKLIST.md)
 
-## What ALIV Does
-- Ingests mixed local document sets including PDFs, DOCX files, emails, and images
-- Retrieves evidence-backed answers with citation-aware ranking
-- Extracts structured facts from documents with benchmarked precision targets
-- Maintains persistent local memory for conversations, summaries, and pinned facts
-- Supports preview-first file actions with rollback and safety controls
+## Why ALIV
 
-## Product Positioning
-ALIV is designed as a desktop-first, privacy-preserving document intelligence product for sensitive workflows where local processing, reproducibility, and operator trust matter more than cloud convenience.
+Most AI document tools assume your files can be uploaded.
+ALIV is designed for teams that cannot do that.
 
-## Current Status
-This repository contains the active ALIV product build, benchmark tooling, architecture docs, PRDs, and implementation artifacts under [docs](docs).
+1. Runs locally on your machine.
+2. Keeps ingestion, retrieval, and memory in local storage.
+3. Provides operator-safe action previews before any rename or move.
+4. Preserves citations, audit logs, and rollback pathways.
 
-## Initial Structure
-- `src-tauri/` Rust and Tauri orchestration layer
-- `python/` parsing, OCR, extraction, and embedding workers
-- `db/` schema and migration scripts
-- `docs/` product, design, architecture, and implementation artifacts
-- `logs/` local runtime logs
+## Core Capabilities
 
-## Build Focus
-Current phase progression:
-1. Phase 1 complete: ingestion and indexing validation
-2. Phase 2 complete: retrieval and extraction thresholds met
-3. Phase 3 complete: preview-first file action command surface and rollback scaffolding
-4. Phase 4 complete: end-to-end hardening with two consecutive passing full-suite runs
-5. Active now: Phase 5 UX and operator experience improvements
+1. Ingestion: Indexes PDFs, DOCX, emails, images, and mixed folders.
+2. Retrieval: Returns evidence-backed hits with citation context.
+3. Extraction: Produces structured field outputs for downstream review.
+4. Memory: Stores conversation turns, summaries, and pinned facts.
+5. Safe Actions: Preview-first recommendations with execution audit and undo.
+6. Diagnostics: Exports runtime, database, and log-tail diagnostics as JSON.
 
-## Local Desktop Run
-- Install frontend dependencies from the repo root with `npm install`
-- Start the desktop app from `src-tauri/` with `cargo tauri dev`
+## Product Snapshot
 
-### Windows Note
-If `cargo tauri` is not found after installing `tauri-cli`, add Cargo's bin directory to the current shell first:
+1. Frontend: React, TypeScript, Vite
+2. Desktop shell and orchestration: Rust, Tauri 2
+3. Data layer: SQLite (WAL) with sqlite-vec
+4. Worker layer: Python subprocess pipeline for parsing and embedding workflows
+
+## Quick Start
+
+### Prerequisites
+
+1. Node.js 18+ and npm
+2. Rust toolchain and Cargo
+3. Tauri CLI 2.x
+4. Ollama running locally for model-backed flows
+
+### Run in Development
 
 ```powershell
-$env:PATH = "$HOME\.cargo\bin;" + $env:PATH
-Set-Location "V:/AI Engineer/GitHub/ALIV/src-tauri"
+npm install
+Set-Location "src-tauri"
 cargo tauri dev
 ```
 
-ALIV's Tauri crate also expects the desktop binary as the default run target, so launching through `cargo tauri dev` should resolve to `aliv-desktop` without extra `--bin` arguments.
+### Windows PATH fix for tauri-cli
+
+```powershell
+$env:PATH = "$HOME\.cargo\bin;" + $env:PATH
+Set-Location "src-tauri"
+cargo tauri dev
+```
+
+## Build and Package
+
+```powershell
+npm run build
+Set-Location "src-tauri"
+cargo build
+cargo tauri build
+```
+
+Expected installer outputs:
+
+1. src-tauri/target/release/bundle/msi/ALIV_0.1.0_x64_en-US.msi
+2. src-tauri/target/release/bundle/nsis/ALIV_0.1.0_x64-setup.exe
+
+## Demo
+
+Use the guided script in [DEMO.md](DEMO.md) for a structured 5-8 minute product demo.
+
+The demo walks through:
+
+1. Workspace setup and onboarding
+2. Ingestion and retrieval
+3. Extraction and safe actions
+4. Audit, memory, and diagnostics export
+
+## Repository Layout
+
+1. src: React desktop UI
+2. src-tauri: Rust and Tauri command/runtime layer
+3. python: parsing and embedding workers
+4. db: SQL schema and migrations
+5. benchmarks: benchmark corpus, scripts, and result snapshots
+6. docs: product, architecture, and implementation guides
+
+## Documentation Index
+
+1. [DEMO.md](DEMO.md): polished demo flow for internal and external walkthroughs
+2. [CHANGELOG.md](CHANGELOG.md): release notes and known limitations
+3. [docs/PHASE6_RELEASE_CHECKLIST.md](docs/PHASE6_RELEASE_CHECKLIST.md): critical-path release checks
+4. [PRODUCT_DOCUMENT.md](PRODUCT_DOCUMENT.md): product requirements and architecture narrative
+
+## Current Release Focus
+
+1. Bundle-ready desktop packaging
+2. Structured runtime logging
+3. Diagnostics report generation and export
+4. First-run onboarding
+5. Frontend crash containment via error boundary
+
+## License
+
+No explicit license file is currently included in this repository.
