@@ -4,8 +4,8 @@
   "version": "0.1.0",
   "identifier": "com.aliv.desktop",
   "build": {
-    "beforeDevCommand": "",
-    "beforeBuildCommand": "",
+    "beforeDevCommand": "npm run dev -- --host",
+    "beforeBuildCommand": "npm run build",
     "frontendDist": "../dist"
   },
   "app": {

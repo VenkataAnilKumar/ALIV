@@ -1377,13 +1377,63 @@ impl Database {
     }
 
     fn apply_migrations(connection: &Connection) -> Result<usize, AlivError> {
-        for migration in MIGRATIONS {
+        connection
+            .execute_batch(
+                "CREATE TABLE IF NOT EXISTS schema_migrations (\
+                    version INTEGER PRIMARY KEY,\
+                    applied_at TEXT NOT NULL\
+                );",
+            )
+            .map_err(|err| AlivError::Database(err.to_string()))?;
+
+        for (index, migration) in MIGRATIONS.iter().enumerate() {
+            let version = (index + 1) as i64;
+            let already_applied: i64 = connection
+                .query_row(
+                    "SELECT EXISTS(SELECT 1 FROM schema_migrations WHERE version = ?1)",
+                    [version],
+                    |row| row.get(0),
+                )
+                .map_err(|err| AlivError::Database(err.to_string()))?;
+
+            if already_applied == 1 {
+                continue;
+            }
+
+            match connection.execute_batch(migration) {
+                Ok(()) => {}
+                Err(_) if version == 8 && Self::has_embeddings_vec_schema(connection)? => {}
+                Err(err) => return Err(AlivError::Database(err.to_string())),
+            }
+
             connection
-                .execute_batch(migration)
+                .execute(
+                    "INSERT INTO schema_migrations (version, applied_at) VALUES (?1, ?2)",
+                    params![version, current_rfc3339_timestamp()],
+                )
                 .map_err(|err| AlivError::Database(err.to_string()))?;
         }
 
         Ok(MIGRATIONS.len())
+    }
+
+    fn has_embeddings_vec_schema(connection: &Connection) -> Result<bool, AlivError> {
+        let has_vec_rowid: i64 = connection
+            .query_row(
+                "SELECT EXISTS(SELECT 1 FROM pragma_table_info('embeddings') WHERE name = 'vec_rowid')",
+                [],
+                |row| row.get(0),
+            )
+            .map_err(|err| AlivError::Database(err.to_string()))?;
+        let has_vec_table: i64 = connection
+            .query_row(
+                "SELECT EXISTS(SELECT 1 FROM sqlite_master WHERE name = 'embeddings_vec')",
+                [],
+                |row| row.get(0),
+            )
+            .map_err(|err| AlivError::Database(err.to_string()))?;
+
+        Ok(has_vec_rowid == 1 && has_vec_table == 1)
     }
 }
 
@@ -1546,26 +1596,4 @@ fn f32_slice_to_blob(v: &[f32]) -> Vec<u8> {
         bytes.extend_from_slice(&f.to_le_bytes());
     }
     bytes
-}
-
-fn cosine_similarity(a: &[f32], b: &[f32]) -> f32 {
-    if a.is_empty() || b.is_empty() || a.len() != b.len() {
-        return 0.0;
-    }
-
-    let mut dot_product = 0.0_f32;
-    let mut norm_a = 0.0_f32;
-    let mut norm_b = 0.0_f32;
-
-    for (av, bv) in a.iter().zip(b.iter()) {
-        dot_product += av * bv;
-        norm_a += av * av;
-        norm_b += bv * bv;
-    }
-
-    if norm_a == 0.0 || norm_b == 0.0 {
-        return 0.0;
-    }
-
-    dot_product / (norm_a.sqrt() * norm_b.sqrt())
 }

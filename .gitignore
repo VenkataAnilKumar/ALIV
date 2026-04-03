@@ -6,6 +6,7 @@ venv/
 
 # Rust
 src-tauri/target/
+.cargo-install-target/
 
 # Node
 node_modules/

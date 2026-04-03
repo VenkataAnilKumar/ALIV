@@ -31,3 +31,18 @@ Current phase progression:
 3. Phase 3 complete: preview-first file action command surface and rollback scaffolding
 4. Phase 4 complete: end-to-end hardening with two consecutive passing full-suite runs
 5. Active now: Phase 5 UX and operator experience improvements
+
+## Local Desktop Run
+- Install frontend dependencies from the repo root with `npm install`
+- Start the desktop app from `src-tauri/` with `cargo tauri dev`
+
+### Windows Note
+If `cargo tauri` is not found after installing `tauri-cli`, add Cargo's bin directory to the current shell first:
+
+```powershell
+$env:PATH = "$HOME\.cargo\bin;" + $env:PATH
+Set-Location "V:/AI Engineer/GitHub/ALIV/src-tauri"
+cargo tauri dev
+```
+
+ALIV's Tauri crate also expects the desktop binary as the default run target, so launching through `cargo tauri dev` should resolve to `aliv-desktop` without extra `--bin` arguments.
