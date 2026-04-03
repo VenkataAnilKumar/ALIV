@@ -15,10 +15,17 @@ pub fn run_ingestion(
     python_bridge: State<'_, PythonBridge>,
     request: IngestionRequest,
 ) -> Result<CommandAck, String> {
+    log::info!(
+        "ingestion requested workspace={} incremental={}",
+        request.workspace_path,
+        request.incremental
+    );
+
     if !database
         .workspace_folder_exists(&request.workspace_path)
         .map_err(|err| err.to_string())?
     {
+        log::error!("ingestion blocked for unregistered workspace={}", request.workspace_path);
         return Err(format!(
             "workspace '{}' is not registered",
             request.workspace_path
@@ -32,7 +39,23 @@ pub fn run_ingestion(
     let service = IngestionService;
     let result = service
         .run(&database, &python_bridge, &request)
-        .map_err(|err| err.to_string())?;
+        .map_err(|err| {
+            log::error!(
+                "ingestion failed workspace={} error={}",
+                request.workspace_path,
+                err
+            );
+            err.to_string()
+        })?;
+
+    log::info!(
+        "ingestion finished workspace={} discovered={} indexed={} parsed={} chunks={}",
+        request.workspace_path,
+        result.discovered_files,
+        result.indexed_files,
+        result.parsed_files,
+        result.chunk_count
+    );
 
     Ok(CommandAck {
         command: "run_ingestion".into(),

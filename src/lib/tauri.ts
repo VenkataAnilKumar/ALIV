@@ -10,6 +10,9 @@ export const getRuntimeSnapshot = async () => {
   return parseRuntimeSnapshot(ack.detail)
 }
 
+export const getDiagnosticsReport = () => invoke<string>('get_diagnostics_report')
+export const openLogDirectory = () => invoke<string>('open_log_directory')
+
 export const runIngestion = (req: T.IngestionRequest) =>
   invoke<T.CommandAck>('run_ingestion', { request: req })
 

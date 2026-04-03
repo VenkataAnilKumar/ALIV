@@ -11,6 +11,7 @@ use commands::{
         undo_action_batch,
     },
     benchmark::{get_run_metrics, run_benchmark_suite},
+    diagnostics::{get_diagnostics_report, open_log_directory},
     extraction::run_extraction,
     ingestion::run_ingestion,
     memory::{
@@ -25,10 +26,22 @@ use infra::db::Database;
 use infra::python_bridge::PythonBridge;
 use state::AppState;
 use tauri::Manager;
+use tauri_plugin_log::{Target, TargetKind};
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
+        .plugin(
+            tauri_plugin_log::Builder::new()
+                .targets([
+                    Target::new(TargetKind::Stdout),
+                    Target::new(TargetKind::LogDir {
+                        file_name: Some("aliv".into()),
+                    }),
+                ])
+                .level(log::LevelFilter::Info)
+                .build(),
+        )
         .setup(|app| {
             let database = Database::connect_default().expect("failed to initialize ALIV database");
             let python_bridge = PythonBridge::new().expect("failed to initialize ALIV python bridge");
@@ -61,6 +74,8 @@ pub fn run() {
             get_run_metrics,
             get_runtime_status,
             get_ingestion_telemetry,
+            get_diagnostics_report,
+            open_log_directory,
         ])
         .run(tauri::generate_context!())
         .expect("failed to run ALIV desktop app");

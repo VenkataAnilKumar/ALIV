@@ -106,3 +106,15 @@ export const parseBenchmarkReport = (detail: string): T.BenchmarkSuiteReport | n
     return null
   }
 }
+
+export const parseDiagnosticsReport = (detail: string): T.DiagnosticsReport | null => {
+  try {
+    const parsed = JSON.parse(detail) as T.DiagnosticsReport
+    if (!parsed?.aliv_version || !parsed?.platform || !parsed?.db || !parsed?.runtime || !parsed?.logs) {
+      return null
+    }
+    return parsed
+  } catch {
+    return null
+  }
+}

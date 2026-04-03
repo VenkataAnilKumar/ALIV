@@ -3,6 +3,7 @@ import { Shell } from '@/components/layout/Shell'
 import { ActionsAuditPage } from '@/pages/ActionsAuditPage'
 import { ActionsPreviewPage } from '@/pages/ActionsPreviewPage'
 import { BenchmarksPage } from '@/pages/BenchmarksPage'
+import { DiagnosticsPage } from '@/pages/DiagnosticsPage'
 import { ExtractionPage } from '@/pages/ExtractionPage'
 import { IngestionPage } from '@/pages/IngestionPage'
 import { MemoryPage } from '@/pages/MemoryPage'
@@ -23,6 +24,7 @@ export const router = createHashRouter([
       { path: '/audit', element: <ActionsAuditPage /> },
       { path: '/memory', element: <MemoryPage /> },
       { path: '/benchmarks', element: <BenchmarksPage /> },
+      { path: '/diagnostics', element: <DiagnosticsPage /> },
     ],
   },
 ])

@@ -24,6 +24,11 @@ pub fn register_workspace_folder(
         .map_err(|err| err.to_string())?;
     state.register_workspace(normalized_path);
     state.record_command("register_workspace_folder");
+    log::info!(
+        "workspace registration {} for {}",
+        if inserted { "inserted" } else { "exists" },
+        normalized_path
+    );
 
     Ok(CommandAck {
         command: "register_workspace_folder".into(),

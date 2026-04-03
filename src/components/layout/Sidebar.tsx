@@ -1,5 +1,6 @@
 import {
   Activity,
+  ClipboardList,
   Database,
   FileSearch,
   FolderTree,
@@ -20,6 +21,7 @@ const items = [
   { to: '/audit', label: 'Actions Audit', icon: History },
   { to: '/memory', label: 'Memory', icon: Activity },
   { to: '/benchmarks', label: 'Benchmarks', icon: Gauge },
+  { to: '/diagnostics', label: 'Diagnostics', icon: ClipboardList },
 ]
 
 export function Sidebar() {

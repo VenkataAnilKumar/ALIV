@@ -65,7 +65,9 @@ export const useWorkspaceStore = create<WorkspaceState>((set, get) => ({
       const runtime = await getRuntimeSnapshot()
       set({ runtime, isSaving: false })
     } catch (error) {
-      set({ error: error instanceof Error ? error.message : String(error), isSaving: false })
+      const message = error instanceof Error ? error.message : String(error)
+      set({ error: message, isSaving: false })
+      throw new Error(message)
     }
   },
 }))

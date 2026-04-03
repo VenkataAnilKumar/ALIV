@@ -183,6 +183,7 @@ pub fn execute_actions(
     request: ActionExecutionRequest,
 ) -> Result<ActionExecutionResult, String> {
     state.record_command("execute_actions");
+    log::info!("executing action batch {}", request.batch_id);
 
     let service = ActionService::default();
 
@@ -209,8 +210,20 @@ pub fn execute_actions(
                     .unwrap_or_default();
                 match service.execute_rename(&source_path, &proposed_path, &workspace_root) {
                     Ok(actual_dest) => {
+                        log::info!(
+                            "rename executed batch={} from={} to={}",
+                            request.batch_id,
+                            source_path,
+                            actual_dest
+                        );
                         let exec_id = Uuid::new_v4().to_string();
                         if let Err(e) = db.save_execution(&exec_id, &id, &request.batch_id, "success") {
+                            log::error!(
+                                "failed to save successful execution batch={} source={} error={}",
+                                request.batch_id,
+                                source_path,
+                                e
+                            );
                             errors.push(format!("{}: {}", source_path, e));
                             failed += 1;
                             continue;
@@ -222,6 +235,12 @@ pub fn execute_actions(
                         if let Err(e) = db.save_undo_record(&undo_id, &exec_id, &undo_json) {
                             let _ = std::fs::rename(&actual_dest, &source_path);
                             let _ = db.update_execution_status(&exec_id, "failed");
+                            log::error!(
+                                "failed to persist undo record batch={} source={} error={}",
+                                request.batch_id,
+                                source_path,
+                                e
+                            );
                             errors.push(format!("{}: undo record failed: {}", source_path, e));
                             failed += 1;
                             continue;
@@ -232,12 +251,24 @@ pub fn execute_actions(
                     Err(err) => {
                         let exec_id = Uuid::new_v4().to_string();
                         let _ = db.save_execution(&exec_id, &id, &request.batch_id, "failed");
+                        log::error!(
+                            "rename failed batch={} source={} target={} error={}",
+                            request.batch_id,
+                            source_path,
+                            proposed_path,
+                            err
+                        );
                         errors.push(format!("{}: {}", source_path, err));
                         failed += 1;
                     }
                 }
             }
             _ => {
+                log::error!(
+                    "recommendation missing during execution batch={} recommendation_id={}",
+                    request.batch_id,
+                    rec_id
+                );
                 errors.push(format!("recommendation not found: {}", rec_id));
                 failed += 1;
             }
@@ -266,6 +297,7 @@ pub fn undo_action_batch(
     request: UndoBatchRequest,
 ) -> Result<UndoResult, String> {
     state.record_command("undo_action_batch");
+    log::info!("undo requested for batch {}", request.execution_batch_id);
 
     let undo_records = db
         .get_undo_records_for_batch(&request.execution_batch_id)
@@ -294,9 +326,22 @@ pub fn undo_action_batch(
         match std::fs::rename(from, to) {
             Ok(_) => {
                 let _ = db.update_execution_status(exec_id, "rolled_back");
+                log::info!(
+                    "undo succeeded batch={} from={} to={}",
+                    request.execution_batch_id,
+                    from,
+                    to
+                );
                 reversed += 1;
             }
             Err(e) => {
+                log::error!(
+                    "undo failed batch={} from={} to={} error={}",
+                    request.execution_batch_id,
+                    from,
+                    to,
+                    e
+                );
                 errors.push(format!("undo failed for exec {exec_id}: {e}"));
             }
         }

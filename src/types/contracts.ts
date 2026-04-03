@@ -143,6 +143,34 @@ export interface RuntimeSnapshot {
   last_ingestion_target?: string
 }
 
+export interface DiagnosticsReport {
+  aliv_version: string
+  platform: { os: string; arch: string }
+  ollama: { reachable: boolean; endpoint: string }
+  db: {
+    workspace_folders: number
+    files: number
+    chunks: number
+    embeddings: number
+    memory_facts: number
+    action_recommendations: number
+    benchmark_runs: number
+  }
+  runtime: {
+    workspace_count: number
+    command_count: number
+    preview_queue_count: number
+    benchmark_run_count: number
+    last_ingestion_target?: string
+  }
+  logs: {
+    directory: string
+    active_file?: string
+    tail: string
+  }
+  generated_at: string
+}
+
 export interface IngestionTelemetry {
   runs: number
   discovered_total: number

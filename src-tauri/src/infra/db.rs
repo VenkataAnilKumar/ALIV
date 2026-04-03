@@ -59,6 +59,17 @@ pub struct IngestionTelemetrySnapshot {
     pub last_created_at: Option<String>,
 }
 
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct DatabaseDiagnosticsSnapshot {
+    pub workspace_folders: usize,
+    pub files: usize,
+    pub chunks: usize,
+    pub embeddings: usize,
+    pub memory_facts: usize,
+    pub action_recommendations: usize,
+    pub benchmark_runs: usize,
+}
+
 #[derive(Debug, Clone)]
 pub struct IngestionFileRecord {
     pub id: String,
@@ -685,6 +696,45 @@ impl Database {
             last_workspace_path: last_run.as_ref().map(|value| value.1.clone()),
             last_mode: last_run.as_ref().map(|value| value.2.clone()),
             last_created_at: last_run.as_ref().map(|value| value.3.clone()),
+        })
+    }
+
+    pub fn diagnostics_snapshot(&self) -> Result<DatabaseDiagnosticsSnapshot, AlivError> {
+        let connection = self
+            .connection
+            .lock()
+            .map_err(|_| AlivError::Database("database mutex poisoned".into()))?;
+
+        let workspace_folders: i64 = connection
+            .query_row("SELECT COUNT(*) FROM workspace_folders", [], |row| row.get(0))
+            .map_err(|err| AlivError::Database(err.to_string()))?;
+        let files: i64 = connection
+            .query_row("SELECT COUNT(*) FROM files", [], |row| row.get(0))
+            .map_err(|err| AlivError::Database(err.to_string()))?;
+        let chunks: i64 = connection
+            .query_row("SELECT COUNT(*) FROM chunks", [], |row| row.get(0))
+            .map_err(|err| AlivError::Database(err.to_string()))?;
+        let embeddings: i64 = connection
+            .query_row("SELECT COUNT(*) FROM embeddings", [], |row| row.get(0))
+            .map_err(|err| AlivError::Database(err.to_string()))?;
+        let memory_facts: i64 = connection
+            .query_row("SELECT COUNT(*) FROM memory_facts", [], |row| row.get(0))
+            .map_err(|err| AlivError::Database(err.to_string()))?;
+        let action_recommendations: i64 = connection
+            .query_row("SELECT COUNT(*) FROM action_recommendations", [], |row| row.get(0))
+            .map_err(|err| AlivError::Database(err.to_string()))?;
+        let benchmark_runs: i64 = connection
+            .query_row("SELECT COUNT(*) FROM benchmark_runs", [], |row| row.get(0))
+            .map_err(|err| AlivError::Database(err.to_string()))?;
+
+        Ok(DatabaseDiagnosticsSnapshot {
+            workspace_folders: workspace_folders.max(0) as usize,
+            files: files.max(0) as usize,
+            chunks: chunks.max(0) as usize,
+            embeddings: embeddings.max(0) as usize,
+            memory_facts: memory_facts.max(0) as usize,
+            action_recommendations: action_recommendations.max(0) as usize,
+            benchmark_runs: benchmark_runs.max(0) as usize,
         })
     }
 

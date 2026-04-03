@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { OnboardingModal } from '@/components/OnboardingModal'
 import { Sidebar } from './Sidebar'
 import { TopBar } from './TopBar'
 import { Modal } from '@/components/ui/Modal'
@@ -14,6 +15,7 @@ const routes = [
   { path: '/audit', label: 'Actions Audit' },
   { path: '/memory', label: 'Memory' },
   { path: '/benchmarks', label: 'Benchmarks' },
+  { path: '/diagnostics', label: 'Diagnostics' },
 ]
 
 export function Shell() {
@@ -22,6 +24,7 @@ export function Shell() {
   const { activeWorkspace, runtime, refreshRuntime, ollamaUrl } = useWorkspaceStore()
   const [paletteOpen, setPaletteOpen] = useState(false)
   const [ollamaStatus, setOllamaStatus] = useState<'online' | 'offline' | 'checking'>('checking')
+  const [showOnboarding, setShowOnboarding] = useState(false)
 
   useEffect(() => {
     void refreshRuntime()
@@ -79,6 +82,15 @@ export function Shell() {
     setPaletteOpen(false)
   }, [location.pathname])
 
+  useEffect(() => {
+    const onboarded = window.localStorage.getItem('aliv_onboarded')
+    if (onboarded) {
+      setShowOnboarding(false)
+      return
+    }
+    setShowOnboarding(!activeWorkspace && (runtime?.workspace_count ?? -1) === 0)
+  }, [activeWorkspace, runtime?.workspace_count])
+
   const routeTitle = routes.find((route) => route.path === location.pathname)?.label ?? 'Workspace'
 
   return (
@@ -119,6 +131,17 @@ export function Shell() {
           ))}
         </div>
       </Modal>
+
+      {showOnboarding ? (
+        <OnboardingModal
+          ollamaStatus={ollamaStatus}
+          ollamaUrl={ollamaUrl}
+          onComplete={() => {
+            window.localStorage.setItem('aliv_onboarded', '1')
+            setShowOnboarding(false)
+          }}
+        />
+      ) : null}
     </div>
   )
 }

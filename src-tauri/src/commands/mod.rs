@@ -1,5 +1,6 @@
 pub mod actions;
 pub mod benchmark;
+pub mod diagnostics;
 pub mod extraction;
 pub mod ingestion;
 pub mod memory;
