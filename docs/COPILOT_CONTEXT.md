@@ -16,7 +16,7 @@ Built with: **Rust + Tauri 2** (backend), **React + TypeScript + Vite** (fronten
 ## Repository Structure
 
 ```
-DocumentIntelligent/
+ALIV/
 ├── src-tauri/src/
 │   ├── commands/       — Tauri command handlers (ingestion, retrieval, extraction, actions, memory, benchmark, telemetry, workspace)
 │   ├── core/           — Business logic (ingestion, retrieval, actions, memory, telemetry, workspace, index)

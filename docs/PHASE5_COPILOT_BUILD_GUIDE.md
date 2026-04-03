@@ -793,4 +793,197 @@ The product must feel **trustworthy, precise, and fast** — not colorful or pla
 
 ---
 
+---
+
+## Part 12: Web Search and Reference Code Policy
+
+**You are explicitly allowed and encouraged to search the web and copy
+reference code to build faster. Do not reinvent solved problems.**
+
+### When To Search
+
+Search before writing any of these from scratch:
+
+| Component | What To Search For |
+|---|---|
+| ProgressRing | "React SVG circular progress ring Tailwind TypeScript" |
+| Skeleton shimmer | "Tailwind CSS skeleton shimmer animation React component" |
+| Markdown renderer | "react-markdown tailwind prose dark theme code blocks" |
+| File path breadcrumb | "React breadcrumb component Tailwind dark UI" |
+| Diff view (before/after) | "React file diff before after component Tailwind" |
+| Modal with backdrop blur | "React modal backdrop blur Tailwind animation TypeScript" |
+| Zustand store pattern | "Zustand TypeScript store pattern async actions" |
+| Tauri invoke with error handling | "Tauri v2 invoke TypeScript error handling React" |
+| Poll with useEffect | "React useEffect polling interval cleanup TypeScript" |
+| Table with sort and filter | "React table component Tailwind dark sort filter TypeScript" |
+| Keyboard shortcut hook | "React useKeyboardShortcut hook TypeScript Cmd Ctrl" |
+| Toast / banner notification | "React toast notification slide animation Tailwind" |
+| Sidebar nav active state | "React Router v6 NavLink active style Tailwind sidebar" |
+
+### Trusted Reference Sources (search these first)
+
+```
+GitHub searches:
+  site:github.com "tauri" "react" "typescript" "invoke"
+  site:github.com "tailwind" "dark" "table" component
+  site:github.com "zustand" "react" typescript example
+
+Community resources:
+  https://ui.shadcn.com/         — copy component patterns (adapt to our tokens)
+  https://tailwindui.com/        — layout and component reference
+  https://headlessui.com/        — accessible modal, dropdown, transition patterns
+  https://www.radix-ui.com/      — unstyled primitives (Modal, Dialog, Select)
+  https://lucide.dev/icons/      — find correct Lucide icon names
+  https://tauri.app/v2/          — Tauri v2 invoke, events, file dialog API
+  https://zustand.docs.pmnd.rs/  — Zustand patterns, middleware, devtools
+```
+
+### Rules When Using Reference Code
+
+1. **Adapt to our design tokens** — change all colors to surface.*/accent.*/zinc-* tokens
+2. **Adapt to our type system** — use types from `src/types/contracts.ts`
+3. **Remove all mock/dummy data** — replace with real Tauri invoke() calls
+4. **Keep the font** — always apply `font-mono` (JetBrains Mono) to paths, IDs, timestamps
+5. **Match border-radius** — use `rounded` (4px) for small elements, `rounded-md` (6px) for inputs/buttons, `rounded-lg` (8px) for cards
+6. **Never copy license-incompatible code** — MIT and Apache-2.0 only
+7. **Cite the source** — add a comment with the URL when copying a non-trivial pattern:
+   ```typescript
+   // Adapted from: https://github.com/example/repo/blob/main/src/component.tsx
+   ```
+
+### Quick Copy Patterns (Use These Directly)
+
+**Tauri file dialog** (for FolderPicker in Screen 1):
+```typescript
+import { open } from '@tauri-apps/plugin-dialog'
+
+const pickFolder = async () => {
+  const selected = await open({ directory: true, multiple: false })
+  if (selected) setPath(selected as string)
+}
+```
+
+**Polling hook** (for Ingestion Dashboard live updates):
+```typescript
+function usePolling(fn: () => void, intervalMs: number, active: boolean) {
+  useEffect(() => {
+    if (!active) return
+    const id = setInterval(fn, intervalMs)
+    return () => clearInterval(id)
+  }, [fn, intervalMs, active])
+}
+```
+
+**Global keyboard shortcut hook**:
+```typescript
+function useKeyboardShortcut(key: string, meta: boolean, fn: () => void) {
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if ((meta ? e.metaKey || e.ctrlKey : true) && e.key === key) {
+        e.preventDefault()
+        fn()
+      }
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [key, meta, fn])
+}
+```
+
+**Error boundary for Tauri calls**:
+```typescript
+const safeInvoke = async <T>(fn: () => Promise<T>): Promise<[T | null, string | null]> => {
+  try {
+    const result = await fn()
+    return [result, null]
+  } catch (err) {
+    return [null, err instanceof Error ? err.message : String(err)]
+  }
+}
+// Usage: const [data, error] = await safeInvoke(() => listConversations(...))
+```
+
+**Zustand store boilerplate**:
+```typescript
+import { create } from 'zustand'
+
+interface QueryState {
+  query: string
+  isLoading: boolean
+  error: string | null
+  setQuery: (q: string) => void
+  setLoading: (v: boolean) => void
+  setError: (e: string | null) => void
+}
+
+export const useQueryStore = create<QueryState>((set) => ({
+  query: '',
+  isLoading: false,
+  error: null,
+  setQuery: (query) => set({ query }),
+  setLoading: (isLoading) => set({ isLoading }),
+  setError: (error) => set({ error }),
+}))
+```
+
+**Shadcn Badge pattern** (adapt colors to our tokens):
+```typescript
+// Copy the variant pattern from shadcn/ui Badge, replace colors with:
+// low/pass   → 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
+// medium     → 'bg-amber-500/10 text-amber-400 border-amber-500/20'
+// high/fail  → 'bg-red-500/10 text-red-400 border-red-500/20'
+// pending    → 'bg-zinc-800 text-zinc-400 border-zinc-700'
+```
+
+### Vite Config for Tauri
+
+```typescript
+// vite.config.ts
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  clearScreen: false,
+  server: {
+    strictPort: true,
+    port: 1420,
+  },
+  envPrefix: ['VITE_', 'TAURI_'],
+  build: {
+    target: ['es2021', 'chrome105', 'safari13'],
+    minify: !process.env.TAURI_DEBUG ? 'esbuild' : false,
+    sourcemap: !!process.env.TAURI_DEBUG,
+  },
+})
+```
+
+### tsconfig.json for Tauri + React
+
+```json
+{
+  "compilerOptions": {
+    "target": "ES2021",
+    "useDefineForClassFields": true,
+    "lib": ["ES2021", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "paths": { "@/*": ["./src/*"] }
+  },
+  "include": ["src"]
+}
+```
+
+---
+
 *Phase 5 is complete when all 8 screens are fully functional with real Tauri backend calls, the UI matches the design system above, and both `npm run build` and `cargo tauri dev` pass cleanly.*

@@ -139,7 +139,8 @@ impl MemoryService {
         if trimmed.len() <= 80 {
             trimmed.to_string()
         } else {
-            format!("{}…", &trimmed[..79])
+            let prefix: String = trimmed.chars().take(78).collect();
+            format!("{}…", prefix)
         }
     }
 
