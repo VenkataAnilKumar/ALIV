@@ -1,0 +1,402 @@
+[
+  {
+    "question": "Does scan_195.jpg contain a penalty clause? If so, what does it say?",
+    "expected_answer": "Service level breaches exceeding 99.0% uptime SLA incur a credit of 10% of monthly fees.",
+    "source_file": "scan_195.jpg",
+    "field": "penalty_clause",
+    "doc_type": "scanned_invoice",
+    "id": "Q001"
+  },
+  {
+    "question": "Who is the vendor named in email_138.eml?",
+    "expected_answer": "Axiom Legal LLP",
+    "source_file": "email_138.eml",
+    "field": "vendor_name",
+    "doc_type": "email_thread",
+    "id": "Q002"
+  },
+  {
+    "question": "Who is the client or counterparty in contract_002.pdf?",
+    "expected_answer": "Redstone Enterprises",
+    "source_file": "contract_002.pdf",
+    "field": "client_name",
+    "doc_type": "lease",
+    "id": "Q003"
+  },
+  {
+    "question": "What is the expiry date in scan_176.png?",
+    "expected_answer": "2026-06-02",
+    "source_file": "scan_176.png",
+    "field": "expiry_date",
+    "doc_type": "scanned_contract",
+    "id": "Q004"
+  },
+  {
+    "question": "Does scan_177.png contain a penalty clause? If so, what does it say?",
+    "expected_answer": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "source_file": "scan_177.png",
+    "field": "penalty_clause",
+    "doc_type": "scanned_contract",
+    "id": "Q005"
+  },
+  {
+    "question": "Who is the vendor named in email_160.eml?",
+    "expected_answer": "Sterling Document Services",
+    "source_file": "email_160.eml",
+    "field": "vendor_name",
+    "doc_type": "email_thread",
+    "id": "Q006"
+  },
+  {
+    "question": "What is the total contract value or amount due in scan_199.jpg?",
+    "expected_answer": "$246,231.00",
+    "source_file": "scan_199.jpg",
+    "field": "contract_value",
+    "doc_type": "scanned_invoice",
+    "id": "Q007"
+  },
+  {
+    "question": "Who is the vendor named in email_126.eml?",
+    "expected_answer": "Sterling Document Services",
+    "source_file": "email_126.eml",
+    "field": "vendor_name",
+    "doc_type": "email_thread",
+    "id": "Q008"
+  },
+  {
+    "question": "What is the expiry date in contract_035.pdf?",
+    "expected_answer": "2027-03-05",
+    "source_file": "contract_035.pdf",
+    "field": "expiry_date",
+    "doc_type": "service_agreement",
+    "id": "Q009"
+  },
+  {
+    "question": "Does contract_037.pdf contain a penalty clause? If so, what does it say?",
+    "expected_answer": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "source_file": "contract_037.pdf",
+    "field": "penalty_clause",
+    "doc_type": "service_agreement",
+    "id": "Q010"
+  },
+  {
+    "question": "Who is the vendor named in contract_023.pdf?",
+    "expected_answer": "Summit Audit Partners",
+    "source_file": "contract_023.pdf",
+    "field": "vendor_name",
+    "doc_type": "service_agreement",
+    "id": "Q011"
+  },
+  {
+    "question": "What is the total contract value or amount due in scan_174.png?",
+    "expected_answer": "$96,377.00",
+    "source_file": "scan_174.png",
+    "field": "contract_value",
+    "doc_type": "scanned_contract",
+    "id": "Q012"
+  },
+  {
+    "question": "What is the expiry date in contract_064.pdf?",
+    "expected_answer": "2026-10-11",
+    "source_file": "contract_064.pdf",
+    "field": "expiry_date",
+    "doc_type": "lease",
+    "id": "Q013"
+  },
+  {
+    "question": "What is the total contract value or amount due in contract_022.pdf?",
+    "expected_answer": "$12,235.00",
+    "source_file": "contract_022.pdf",
+    "field": "contract_value",
+    "doc_type": "invoice",
+    "id": "Q014"
+  },
+  {
+    "question": "Does contract_054.pdf contain a penalty clause? If so, what does it say?",
+    "expected_answer": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "source_file": "contract_054.pdf",
+    "field": "penalty_clause",
+    "doc_type": "nda",
+    "id": "Q015"
+  },
+  {
+    "question": "What is the total contract value or amount due in email_146.eml?",
+    "expected_answer": "$163,641.00",
+    "source_file": "email_146.eml",
+    "field": "contract_value",
+    "doc_type": "email_thread",
+    "id": "Q016"
+  },
+  {
+    "question": "What is the total contract value or amount due in contract_023.pdf?",
+    "expected_answer": "$139,066.00",
+    "source_file": "contract_023.pdf",
+    "field": "contract_value",
+    "doc_type": "service_agreement",
+    "id": "Q017"
+  },
+  {
+    "question": "Who is the client or counterparty in contract_011.pdf?",
+    "expected_answer": "NovaBio Systems",
+    "source_file": "contract_011.pdf",
+    "field": "client_name",
+    "doc_type": "service_agreement",
+    "id": "Q018"
+  },
+  {
+    "question": "What is the expiry date in contract_023.pdf?",
+    "expected_answer": "2027-07-26",
+    "source_file": "contract_023.pdf",
+    "field": "expiry_date",
+    "doc_type": "service_agreement",
+    "id": "Q019"
+  },
+  {
+    "question": "What is the expiry date in contract_046.pdf?",
+    "expected_answer": "2027-04-09",
+    "source_file": "contract_046.pdf",
+    "field": "expiry_date",
+    "doc_type": "service_agreement",
+    "id": "Q020"
+  },
+  {
+    "question": "Who is the client or counterparty in contract_069.pdf?",
+    "expected_answer": "Blue Ridge Partners",
+    "source_file": "contract_069.pdf",
+    "field": "client_name",
+    "doc_type": "settlement",
+    "id": "Q021"
+  },
+  {
+    "question": "Who is the vendor named in contract_052.pdf?",
+    "expected_answer": "Acme Legal LLC",
+    "source_file": "contract_052.pdf",
+    "field": "vendor_name",
+    "doc_type": "invoice",
+    "id": "Q022"
+  },
+  {
+    "question": "Who is the vendor named in email_151.eml?",
+    "expected_answer": "Summit Audit Partners",
+    "source_file": "email_151.eml",
+    "field": "vendor_name",
+    "doc_type": "email_thread",
+    "id": "Q023"
+  },
+  {
+    "question": "What is the expiry date in contract_052.pdf?",
+    "expected_answer": "2026-11-30",
+    "source_file": "contract_052.pdf",
+    "field": "expiry_date",
+    "doc_type": "invoice",
+    "id": "Q024"
+  },
+  {
+    "question": "What is the total contract value or amount due in document_087.docx?",
+    "expected_answer": "$41,061.00",
+    "source_file": "document_087.docx",
+    "field": "contract_value",
+    "doc_type": "invoice",
+    "id": "Q025"
+  },
+  {
+    "question": "Who is the vendor named in document_108.docx?",
+    "expected_answer": "Vexlar Consulting Group",
+    "source_file": "document_108.docx",
+    "field": "vendor_name",
+    "doc_type": "statement_of_work",
+    "id": "Q026"
+  },
+  {
+    "question": "Who is the vendor named in scan_180.png?",
+    "expected_answer": "Axiom Legal LLP",
+    "source_file": "scan_180.png",
+    "field": "vendor_name",
+    "doc_type": "scanned_contract",
+    "id": "Q027"
+  },
+  {
+    "question": "Who is the client or counterparty in document_104.docx?",
+    "expected_answer": "Blue Ridge Partners",
+    "source_file": "document_104.docx",
+    "field": "client_name",
+    "doc_type": "statement_of_work",
+    "id": "Q028"
+  },
+  {
+    "question": "What is the expiry date in document_104.docx?",
+    "expected_answer": "2027-01-07",
+    "source_file": "document_104.docx",
+    "field": "expiry_date",
+    "doc_type": "statement_of_work",
+    "id": "Q029"
+  },
+  {
+    "question": "What is the total contract value or amount due in email_136.eml?",
+    "expected_answer": "$133,009.00",
+    "source_file": "email_136.eml",
+    "field": "contract_value",
+    "doc_type": "email_thread",
+    "id": "Q030"
+  },
+  {
+    "question": "What is the expiry date in document_098.docx?",
+    "expected_answer": "2027-01-11",
+    "source_file": "document_098.docx",
+    "field": "expiry_date",
+    "doc_type": "invoice",
+    "id": "Q031"
+  },
+  {
+    "question": "What is the total contract value or amount due in email_121.eml?",
+    "expected_answer": "$196,178.00",
+    "source_file": "email_121.eml",
+    "field": "contract_value",
+    "doc_type": "email_thread",
+    "id": "Q032"
+  },
+  {
+    "question": "Does document_112.docx contain a penalty clause? If so, what does it say?",
+    "expected_answer": "Service level breaches exceeding 99.0% uptime SLA incur a credit of 10% of monthly fees.",
+    "source_file": "document_112.docx",
+    "field": "penalty_clause",
+    "doc_type": "statement_of_work",
+    "id": "Q033"
+  },
+  {
+    "question": "What is the expiry date in scan_187.jpg?",
+    "expected_answer": "2026-07-28",
+    "source_file": "scan_187.jpg",
+    "field": "expiry_date",
+    "doc_type": "scanned_invoice",
+    "id": "Q034"
+  },
+  {
+    "question": "Does document_088.docx contain a penalty clause? If so, what does it say?",
+    "expected_answer": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "source_file": "document_088.docx",
+    "field": "penalty_clause",
+    "doc_type": "statement_of_work",
+    "id": "Q035"
+  },
+  {
+    "question": "What is the expiry date in contract_065.pdf?",
+    "expected_answer": "2027-09-07",
+    "source_file": "contract_065.pdf",
+    "field": "expiry_date",
+    "doc_type": "lease",
+    "id": "Q036"
+  },
+  {
+    "question": "Who is the client or counterparty in email_143.eml?",
+    "expected_answer": "NovaBio Systems",
+    "source_file": "email_143.eml",
+    "field": "client_name",
+    "doc_type": "email_thread",
+    "id": "Q037"
+  },
+  {
+    "question": "What is the expiry date in scan_195.jpg?",
+    "expected_answer": "2027-04-18",
+    "source_file": "scan_195.jpg",
+    "field": "expiry_date",
+    "doc_type": "scanned_invoice",
+    "id": "Q038"
+  },
+  {
+    "question": "Who is the vendor named in scan_185.jpg?",
+    "expected_answer": "Pinnacle Finance Corp",
+    "source_file": "scan_185.jpg",
+    "field": "vendor_name",
+    "doc_type": "scanned_invoice",
+    "id": "Q039"
+  },
+  {
+    "question": "What is the expiry date in email_154.eml?",
+    "expected_answer": "2026-04-18",
+    "source_file": "email_154.eml",
+    "field": "expiry_date",
+    "doc_type": "email_thread",
+    "id": "Q040"
+  },
+  {
+    "question": "What is the total contract value or amount due in document_081.docx?",
+    "expected_answer": "$109,089.00",
+    "source_file": "document_081.docx",
+    "field": "contract_value",
+    "doc_type": "statement_of_work",
+    "id": "Q041"
+  },
+  {
+    "question": "What is the total contract value or amount due in scan_184.jpg?",
+    "expected_answer": "$176,831.00",
+    "source_file": "scan_184.jpg",
+    "field": "contract_value",
+    "doc_type": "scanned_invoice",
+    "id": "Q042"
+  },
+  {
+    "question": "What is the expiry date in document_099.docx?",
+    "expected_answer": "2027-05-14",
+    "source_file": "document_099.docx",
+    "field": "expiry_date",
+    "doc_type": "statement_of_work",
+    "id": "Q043"
+  },
+  {
+    "question": "Does scan_173.png contain a penalty clause? If so, what does it say?",
+    "expected_answer": "Service level breaches exceeding 99.0% uptime SLA incur a credit of 10% of monthly fees.",
+    "source_file": "scan_173.png",
+    "field": "penalty_clause",
+    "doc_type": "scanned_contract",
+    "id": "Q044"
+  },
+  {
+    "question": "Does document_090.docx contain a penalty clause? If so, what does it say?",
+    "expected_answer": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "source_file": "document_090.docx",
+    "field": "penalty_clause",
+    "doc_type": "invoice",
+    "id": "Q045"
+  },
+  {
+    "question": "What is the expiry date in contract_059.pdf?",
+    "expected_answer": "2026-12-21",
+    "source_file": "contract_059.pdf",
+    "field": "expiry_date",
+    "doc_type": "invoice",
+    "id": "Q046"
+  },
+  {
+    "question": "Does contract_041.pdf contain a penalty clause? If so, what does it say?",
+    "expected_answer": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "source_file": "contract_041.pdf",
+    "field": "penalty_clause",
+    "doc_type": "service_agreement",
+    "id": "Q047"
+  },
+  {
+    "question": "Who is the vendor named in email_157.eml?",
+    "expected_answer": "Pinnacle Finance Corp",
+    "source_file": "email_157.eml",
+    "field": "vendor_name",
+    "doc_type": "email_thread",
+    "id": "Q048"
+  },
+  {
+    "question": "What is the expiry date in email_136.eml?",
+    "expected_answer": "2026-08-26",
+    "source_file": "email_136.eml",
+    "field": "expiry_date",
+    "doc_type": "email_thread",
+    "id": "Q049"
+  },
+  {
+    "question": "Does scan_194.jpg contain a penalty clause? If so, what does it say?",
+    "expected_answer": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "source_file": "scan_194.jpg",
+    "field": "penalty_clause",
+    "doc_type": "scanned_invoice",
+    "id": "Q050"
+  }
+]

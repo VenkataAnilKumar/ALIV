@@ -1,0 +1,4010 @@
+[
+  {
+    "seed_id": 1,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0001",
+    "vendor": "Sterling Document Services",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0001",
+    "effective_date": "2025-05-19",
+    "expiry_date": "2027-01-25",
+    "amount": "$90,008.00",
+    "clauses": [
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "Neither party shall be liable for indirect or consequential damages."
+    ],
+    "penalty_clause": null,
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "contract_001.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 2,
+    "doc_type": "lease",
+    "title": "Commercial Lease Agreement #2",
+    "vendor": "Briarwood Associates",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0002",
+    "effective_date": "2025-10-15",
+    "expiry_date": "2027-01-19",
+    "amount": "$117,311.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "All intellectual property created under this contract vests solely in the Client."
+    ],
+    "penalty_clause": null,
+    "subject": "Urgent: Payment Overdue \u2014 Account 2",
+    "filename": "contract_002.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 3,
+    "doc_type": "service_agreement",
+    "title": "Master Service Agreement #3",
+    "vendor": "Acme Legal LLC",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0003",
+    "effective_date": "2025-03-23",
+    "expiry_date": "2027-07-07",
+    "amount": "$21,653.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "Either party may terminate this agreement with sixty (60) days written notice."
+    ],
+    "penalty_clause": null,
+    "subject": "Urgent: Payment Overdue \u2014 Account 3",
+    "filename": "contract_003.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 4,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0004",
+    "vendor": "Acme Legal LLC",
+    "client": "Blue Ridge Partners",
+    "invoice_no": "INV-0004",
+    "effective_date": "2025-12-16",
+    "expiry_date": "2027-05-16",
+    "amount": "$206,483.00",
+    "clauses": [
+      "All intellectual property created under this contract vests solely in the Client.",
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "Either party may terminate this agreement with sixty (60) days written notice."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Follow-up: Statement of Work #4",
+    "filename": "contract_004.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 5,
+    "doc_type": "nda",
+    "title": "Non-Disclosure Agreement #5",
+    "vendor": "Vexlar Consulting Group",
+    "client": "Ironwood Investments",
+    "invoice_no": "INV-0005",
+    "effective_date": "2025-09-17",
+    "expiry_date": "2026-09-01",
+    "amount": "$83,235.00",
+    "clauses": [
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "Neither party shall be liable for indirect or consequential damages."
+    ],
+    "penalty_clause": "Service level breaches exceeding 99.0% uptime SLA incur a credit of 10% of monthly fees.",
+    "subject": "Urgent: Payment Overdue \u2014 Account 5",
+    "filename": "contract_005.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 6,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0006",
+    "vendor": "Pinnacle Finance Corp",
+    "client": "Ironwood Investments",
+    "invoice_no": "INV-0006",
+    "effective_date": "2025-03-07",
+    "expiry_date": "2027-08-06",
+    "amount": "$48,287.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance."
+    ],
+    "penalty_clause": "Service level breaches exceeding 99.0% uptime SLA incur a credit of 10% of monthly fees.",
+    "subject": "Signed: Master Services Agreement v6",
+    "filename": "contract_006.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 7,
+    "doc_type": "service_agreement",
+    "title": "Master Service Agreement #7",
+    "vendor": "Vexlar Consulting Group",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0007",
+    "effective_date": "2025-11-29",
+    "expiry_date": "2027-02-26",
+    "amount": "$240,828.00",
+    "clauses": [
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "All intellectual property created under this contract vests solely in the Client."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Notice of Expiry \u2014 Agreement 7",
+    "filename": "contract_007.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 8,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0008",
+    "vendor": "Sterling Document Services",
+    "client": "Ironwood Investments",
+    "invoice_no": "INV-0008",
+    "effective_date": "2025-02-06",
+    "expiry_date": "2025-12-24",
+    "amount": "$22,668.00",
+    "clauses": [
+      "All intellectual property created under this contract vests solely in the Client.",
+      "The parties agree that all disputes shall be resolved through binding arbitration."
+    ],
+    "penalty_clause": null,
+    "subject": "Urgent: Payment Overdue \u2014 Account 8",
+    "filename": "contract_008.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 9,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0009",
+    "vendor": "Axiom Legal LLP",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0009",
+    "effective_date": "2025-10-20",
+    "expiry_date": "2027-02-28",
+    "amount": "$210,683.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "The parties agree that all disputes shall be resolved through binding arbitration."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Signed: Master Services Agreement v9",
+    "filename": "contract_009.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 10,
+    "doc_type": "nda",
+    "title": "Non-Disclosure Agreement #10",
+    "vendor": "Summit Audit Partners",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0010",
+    "effective_date": "2025-01-28",
+    "expiry_date": "2025-11-08",
+    "amount": "$110,544.00",
+    "clauses": [
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Neither party shall be liable for indirect or consequential damages.",
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A."
+    ],
+    "penalty_clause": null,
+    "subject": "Fwd: Invoice #INV-10 \u2014 Action Required",
+    "filename": "contract_010.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 11,
+    "doc_type": "service_agreement",
+    "title": "Master Service Agreement #11",
+    "vendor": "Axiom Legal LLP",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0011",
+    "effective_date": "2025-05-23",
+    "expiry_date": "2027-02-20",
+    "amount": "$234,241.00",
+    "clauses": [
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Neither party shall be liable for indirect or consequential damages."
+    ],
+    "penalty_clause": null,
+    "subject": "Urgent: Payment Overdue \u2014 Account 11",
+    "filename": "contract_011.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 12,
+    "doc_type": "settlement",
+    "title": "Settlement and Release Agreement #12",
+    "vendor": "Acme Legal LLC",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0012",
+    "effective_date": "2025-05-02",
+    "expiry_date": "2026-07-13",
+    "amount": "$132,307.00",
+    "clauses": [
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "Neither party shall be liable for indirect or consequential damages.",
+      "This agreement shall be governed by the laws of the State of Delaware."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Fwd: Invoice #INV-12 \u2014 Action Required",
+    "filename": "contract_012.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 13,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0013",
+    "vendor": "Summit Audit Partners",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0013",
+    "effective_date": "2025-08-21",
+    "expiry_date": "2026-11-20",
+    "amount": "$187,607.00",
+    "clauses": [
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Client shall pay invoices within thirty (30) days of receipt."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "contract_013.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 14,
+    "doc_type": "nda",
+    "title": "Non-Disclosure Agreement #14",
+    "vendor": "Pinnacle Finance Corp",
+    "client": "Ironwood Investments",
+    "invoice_no": "INV-0014",
+    "effective_date": "2025-05-01",
+    "expiry_date": "2026-10-17",
+    "amount": "$238,383.00",
+    "clauses": [
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "Neither party shall be liable for indirect or consequential damages.",
+      "The parties agree that all disputes shall be resolved through binding arbitration."
+    ],
+    "penalty_clause": null,
+    "subject": "Urgent: Payment Overdue \u2014 Account 14",
+    "filename": "contract_014.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 15,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0015",
+    "vendor": "Meridian Capital Ltd",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0015",
+    "effective_date": "2025-06-10",
+    "expiry_date": "2026-07-14",
+    "amount": "$108,752.00",
+    "clauses": [
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "Either party may terminate this agreement with sixty (60) days written notice."
+    ],
+    "penalty_clause": null,
+    "subject": "Notice of Expiry \u2014 Agreement 15",
+    "filename": "contract_015.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 16,
+    "doc_type": "lease",
+    "title": "Commercial Lease Agreement #16",
+    "vendor": "Sterling Document Services",
+    "client": "Ironwood Investments",
+    "invoice_no": "INV-0016",
+    "effective_date": "2025-06-28",
+    "expiry_date": "2026-01-11",
+    "amount": "$101,869.00",
+    "clauses": [
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance."
+    ],
+    "penalty_clause": null,
+    "subject": "Signed: Master Services Agreement v16",
+    "filename": "contract_016.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 17,
+    "doc_type": "nda",
+    "title": "Non-Disclosure Agreement #17",
+    "vendor": "Acme Legal LLC",
+    "client": "Blue Ridge Partners",
+    "invoice_no": "INV-0017",
+    "effective_date": "2025-06-03",
+    "expiry_date": "2025-12-21",
+    "amount": "$74,328.00",
+    "clauses": [
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "All intellectual property created under this contract vests solely in the Client."
+    ],
+    "penalty_clause": "Service level breaches exceeding 99.0% uptime SLA incur a credit of 10% of monthly fees.",
+    "subject": "Fwd: Invoice #INV-17 \u2014 Action Required",
+    "filename": "contract_017.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 18,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0018",
+    "vendor": "Sterling Document Services",
+    "client": "Blue Ridge Partners",
+    "invoice_no": "INV-0018",
+    "effective_date": "2025-12-18",
+    "expiry_date": "2026-12-10",
+    "amount": "$133,065.00",
+    "clauses": [
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "All intellectual property created under this contract vests solely in the Client."
+    ],
+    "penalty_clause": null,
+    "subject": "Follow-up: Statement of Work #18",
+    "filename": "contract_018.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 19,
+    "doc_type": "settlement",
+    "title": "Settlement and Release Agreement #19",
+    "vendor": "Briarwood Associates",
+    "client": "Blue Ridge Partners",
+    "invoice_no": "INV-0019",
+    "effective_date": "2025-12-28",
+    "expiry_date": "2027-06-24",
+    "amount": "$7,534.00",
+    "clauses": [
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "All intellectual property created under this contract vests solely in the Client."
+    ],
+    "penalty_clause": null,
+    "subject": "Fwd: Invoice #INV-19 \u2014 Action Required",
+    "filename": "contract_019.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 20,
+    "doc_type": "service_agreement",
+    "title": "Master Service Agreement #20",
+    "vendor": "Meridian Capital Ltd",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0020",
+    "effective_date": "2025-12-08",
+    "expiry_date": "2026-04-12",
+    "amount": "$209,502.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Fwd: Invoice #INV-20 \u2014 Action Required",
+    "filename": "contract_020.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 21,
+    "doc_type": "settlement",
+    "title": "Settlement and Release Agreement #21",
+    "vendor": "Sterling Document Services",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0021",
+    "effective_date": "2025-12-26",
+    "expiry_date": "2026-05-01",
+    "amount": "$233,633.00",
+    "clauses": [
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A."
+    ],
+    "penalty_clause": null,
+    "subject": "Fwd: Invoice #INV-21 \u2014 Action Required",
+    "filename": "contract_021.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 22,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0022",
+    "vendor": "Vexlar Consulting Group",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0022",
+    "effective_date": "2025-07-24",
+    "expiry_date": "2027-06-18",
+    "amount": "$12,235.00",
+    "clauses": [
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A."
+    ],
+    "penalty_clause": "Service level breaches exceeding 99.0% uptime SLA incur a credit of 10% of monthly fees.",
+    "subject": "Notice of Expiry \u2014 Agreement 22",
+    "filename": "contract_022.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 23,
+    "doc_type": "service_agreement",
+    "title": "Master Service Agreement #23",
+    "vendor": "Summit Audit Partners",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0023",
+    "effective_date": "2025-06-10",
+    "expiry_date": "2027-07-26",
+    "amount": "$139,066.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Notice of Expiry \u2014 Agreement 23",
+    "filename": "contract_023.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 24,
+    "doc_type": "lease",
+    "title": "Commercial Lease Agreement #24",
+    "vendor": "Summit Audit Partners",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0024",
+    "effective_date": "2025-10-03",
+    "expiry_date": "2026-07-22",
+    "amount": "$118,062.00",
+    "clauses": [
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Signed: Master Services Agreement v24",
+    "filename": "contract_024.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 25,
+    "doc_type": "service_agreement",
+    "title": "Master Service Agreement #25",
+    "vendor": "Sterling Document Services",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0025",
+    "effective_date": "2025-07-14",
+    "expiry_date": "2026-11-05",
+    "amount": "$154,187.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "The parties agree that all disputes shall be resolved through binding arbitration."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Notice of Expiry \u2014 Agreement 25",
+    "filename": "contract_025.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 26,
+    "doc_type": "service_agreement",
+    "title": "Master Service Agreement #26",
+    "vendor": "Meridian Capital Ltd",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0026",
+    "effective_date": "2025-12-12",
+    "expiry_date": "2026-10-22",
+    "amount": "$129,042.00",
+    "clauses": [
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "All intellectual property created under this contract vests solely in the Client.",
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "This agreement shall be governed by the laws of the State of Delaware."
+    ],
+    "penalty_clause": null,
+    "subject": "Urgent: Payment Overdue \u2014 Account 26",
+    "filename": "contract_026.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 27,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0027",
+    "vendor": "Pinnacle Finance Corp",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0027",
+    "effective_date": "2025-11-19",
+    "expiry_date": "2027-01-06",
+    "amount": "$105,657.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "This agreement shall be governed by the laws of the State of Delaware."
+    ],
+    "penalty_clause": null,
+    "subject": "Signed: Master Services Agreement v27",
+    "filename": "contract_027.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 28,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0028",
+    "vendor": "Axiom Legal LLP",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0028",
+    "effective_date": "2025-03-04",
+    "expiry_date": "2026-12-17",
+    "amount": "$215,086.00",
+    "clauses": [
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Either party may terminate this agreement with sixty (60) days written notice."
+    ],
+    "penalty_clause": "Service level breaches exceeding 99.0% uptime SLA incur a credit of 10% of monthly fees.",
+    "subject": "Signed: Master Services Agreement v28",
+    "filename": "contract_028.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 29,
+    "doc_type": "nda",
+    "title": "Non-Disclosure Agreement #29",
+    "vendor": "Vexlar Consulting Group",
+    "client": "Ironwood Investments",
+    "invoice_no": "INV-0029",
+    "effective_date": "2025-05-03",
+    "expiry_date": "2026-11-18",
+    "amount": "$25,311.00",
+    "clauses": [
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "All intellectual property created under this contract vests solely in the Client."
+    ],
+    "penalty_clause": null,
+    "subject": "Notice of Expiry \u2014 Agreement 29",
+    "filename": "contract_029.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 30,
+    "doc_type": "lease",
+    "title": "Commercial Lease Agreement #30",
+    "vendor": "Sterling Document Services",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0030",
+    "effective_date": "2025-06-19",
+    "expiry_date": "2027-05-20",
+    "amount": "$21,322.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Either party may terminate this agreement with sixty (60) days written notice."
+    ],
+    "penalty_clause": null,
+    "subject": "Urgent: Payment Overdue \u2014 Account 30",
+    "filename": "contract_030.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 31,
+    "doc_type": "nda",
+    "title": "Non-Disclosure Agreement #31",
+    "vendor": "Vexlar Consulting Group",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0031",
+    "effective_date": "2025-08-03",
+    "expiry_date": "2026-10-17",
+    "amount": "$62,520.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "The parties agree that all disputes shall be resolved through binding arbitration."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Notice of Expiry \u2014 Agreement 31",
+    "filename": "contract_031.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 32,
+    "doc_type": "service_agreement",
+    "title": "Master Service Agreement #32",
+    "vendor": "Acme Legal LLC",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0032",
+    "effective_date": "2025-03-11",
+    "expiry_date": "2027-01-16",
+    "amount": "$18,181.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Notice of Expiry \u2014 Agreement 32",
+    "filename": "contract_032.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 33,
+    "doc_type": "lease",
+    "title": "Commercial Lease Agreement #33",
+    "vendor": "Summit Audit Partners",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0033",
+    "effective_date": "2025-08-04",
+    "expiry_date": "2026-04-25",
+    "amount": "$128,288.00",
+    "clauses": [
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Client shall pay invoices within thirty (30) days of receipt."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Signed: Master Services Agreement v33",
+    "filename": "contract_033.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 34,
+    "doc_type": "service_agreement",
+    "title": "Master Service Agreement #34",
+    "vendor": "Acme Legal LLC",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0034",
+    "effective_date": "2025-04-13",
+    "expiry_date": "2026-06-03",
+    "amount": "$44,946.00",
+    "clauses": [
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "Either party may terminate this agreement with sixty (60) days written notice."
+    ],
+    "penalty_clause": "Service level breaches exceeding 99.0% uptime SLA incur a credit of 10% of monthly fees.",
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "contract_034.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 35,
+    "doc_type": "service_agreement",
+    "title": "Master Service Agreement #35",
+    "vendor": "Briarwood Associates",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0035",
+    "effective_date": "2025-01-14",
+    "expiry_date": "2027-03-05",
+    "amount": "$182,562.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A."
+    ],
+    "penalty_clause": null,
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "contract_035.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 36,
+    "doc_type": "nda",
+    "title": "Non-Disclosure Agreement #36",
+    "vendor": "Acme Legal LLC",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0036",
+    "effective_date": "2025-12-05",
+    "expiry_date": "2026-08-18",
+    "amount": "$137,634.00",
+    "clauses": [
+      "All intellectual property created under this contract vests solely in the Client.",
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "This agreement shall be governed by the laws of the State of Delaware."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Follow-up: Statement of Work #36",
+    "filename": "contract_036.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 37,
+    "doc_type": "service_agreement",
+    "title": "Master Service Agreement #37",
+    "vendor": "Axiom Legal LLP",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0037",
+    "effective_date": "2025-10-31",
+    "expiry_date": "2026-09-12",
+    "amount": "$228,271.00",
+    "clauses": [
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "Client shall pay invoices within thirty (30) days of receipt."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Fwd: Invoice #INV-37 \u2014 Action Required",
+    "filename": "contract_037.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 38,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0038",
+    "vendor": "Meridian Capital Ltd",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0038",
+    "effective_date": "2025-12-26",
+    "expiry_date": "2027-01-17",
+    "amount": "$7,661.00",
+    "clauses": [
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "This agreement shall be governed by the laws of the State of Delaware."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Urgent: Payment Overdue \u2014 Account 38",
+    "filename": "contract_038.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 39,
+    "doc_type": "service_agreement",
+    "title": "Master Service Agreement #39",
+    "vendor": "Vexlar Consulting Group",
+    "client": "Blue Ridge Partners",
+    "invoice_no": "INV-0039",
+    "effective_date": "2025-08-31",
+    "expiry_date": "2027-06-19",
+    "amount": "$116,543.00",
+    "clauses": [
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Either party may terminate this agreement with sixty (60) days written notice."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Notice of Expiry \u2014 Agreement 39",
+    "filename": "contract_039.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 40,
+    "doc_type": "service_agreement",
+    "title": "Master Service Agreement #40",
+    "vendor": "Pinnacle Finance Corp",
+    "client": "Blue Ridge Partners",
+    "invoice_no": "INV-0040",
+    "effective_date": "2025-03-03",
+    "expiry_date": "2027-12-18",
+    "amount": "$53,535.00",
+    "clauses": [
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "All intellectual property created under this contract vests solely in the Client."
+    ],
+    "penalty_clause": null,
+    "subject": "Follow-up: Statement of Work #40",
+    "filename": "contract_040.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 41,
+    "doc_type": "service_agreement",
+    "title": "Master Service Agreement #41",
+    "vendor": "Vexlar Consulting Group",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0041",
+    "effective_date": "2025-06-01",
+    "expiry_date": "2026-08-20",
+    "amount": "$52,039.00",
+    "clauses": [
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Notice of Expiry \u2014 Agreement 41",
+    "filename": "contract_041.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 42,
+    "doc_type": "lease",
+    "title": "Commercial Lease Agreement #42",
+    "vendor": "Acme Legal LLC",
+    "client": "Ironwood Investments",
+    "invoice_no": "INV-0042",
+    "effective_date": "2025-03-06",
+    "expiry_date": "2027-01-05",
+    "amount": "$233,778.00",
+    "clauses": [
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "Either party may terminate this agreement with sixty (60) days written notice."
+    ],
+    "penalty_clause": null,
+    "subject": "Follow-up: Statement of Work #42",
+    "filename": "contract_042.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 43,
+    "doc_type": "settlement",
+    "title": "Settlement and Release Agreement #43",
+    "vendor": "Briarwood Associates",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0043",
+    "effective_date": "2025-09-02",
+    "expiry_date": "2025-11-26",
+    "amount": "$110,043.00",
+    "clauses": [
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "All intellectual property created under this contract vests solely in the Client."
+    ],
+    "penalty_clause": null,
+    "subject": "Signed: Master Services Agreement v43",
+    "filename": "contract_043.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 44,
+    "doc_type": "service_agreement",
+    "title": "Master Service Agreement #44",
+    "vendor": "Briarwood Associates",
+    "client": "Ironwood Investments",
+    "invoice_no": "INV-0044",
+    "effective_date": "2025-02-13",
+    "expiry_date": "2026-05-10",
+    "amount": "$151,295.00",
+    "clauses": [
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Follow-up: Statement of Work #44",
+    "filename": "contract_044.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 45,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0045",
+    "vendor": "Sterling Document Services",
+    "client": "Blue Ridge Partners",
+    "invoice_no": "INV-0045",
+    "effective_date": "2025-12-05",
+    "expiry_date": "2025-12-10",
+    "amount": "$67,879.00",
+    "clauses": [
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "This agreement shall be governed by the laws of the State of Delaware."
+    ],
+    "penalty_clause": null,
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "contract_045.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 46,
+    "doc_type": "service_agreement",
+    "title": "Master Service Agreement #46",
+    "vendor": "Axiom Legal LLP",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0046",
+    "effective_date": "2025-05-28",
+    "expiry_date": "2027-04-09",
+    "amount": "$230,340.00",
+    "clauses": [
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "All intellectual property created under this contract vests solely in the Client.",
+      "This agreement shall be governed by the laws of the State of Delaware."
+    ],
+    "penalty_clause": null,
+    "subject": "Notice of Expiry \u2014 Agreement 46",
+    "filename": "contract_046.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 47,
+    "doc_type": "lease",
+    "title": "Commercial Lease Agreement #47",
+    "vendor": "Vexlar Consulting Group",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0047",
+    "effective_date": "2025-12-19",
+    "expiry_date": "2027-04-30",
+    "amount": "$110,515.00",
+    "clauses": [
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "The parties agree that all disputes shall be resolved through binding arbitration."
+    ],
+    "penalty_clause": null,
+    "subject": "Urgent: Payment Overdue \u2014 Account 47",
+    "filename": "contract_047.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 48,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0048",
+    "vendor": "Summit Audit Partners",
+    "client": "Blue Ridge Partners",
+    "invoice_no": "INV-0048",
+    "effective_date": "2025-05-09",
+    "expiry_date": "2025-09-10",
+    "amount": "$65,011.00",
+    "clauses": [
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Neither party shall be liable for indirect or consequential damages.",
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Client shall pay invoices within thirty (30) days of receipt."
+    ],
+    "penalty_clause": null,
+    "subject": "Urgent: Payment Overdue \u2014 Account 48",
+    "filename": "contract_048.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 49,
+    "doc_type": "service_agreement",
+    "title": "Master Service Agreement #49",
+    "vendor": "Briarwood Associates",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0049",
+    "effective_date": "2025-08-15",
+    "expiry_date": "2026-07-11",
+    "amount": "$158,440.00",
+    "clauses": [
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Either party may terminate this agreement with sixty (60) days written notice."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Follow-up: Statement of Work #49",
+    "filename": "contract_049.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 50,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0050",
+    "vendor": "Pinnacle Finance Corp",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0050",
+    "effective_date": "2025-12-22",
+    "expiry_date": "2027-04-15",
+    "amount": "$178,692.00",
+    "clauses": [
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "This agreement shall be governed by the laws of the State of Delaware."
+    ],
+    "penalty_clause": null,
+    "subject": "Notice of Expiry \u2014 Agreement 50",
+    "filename": "contract_050.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 51,
+    "doc_type": "service_agreement",
+    "title": "Master Service Agreement #51",
+    "vendor": "Pinnacle Finance Corp",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0051",
+    "effective_date": "2025-01-01",
+    "expiry_date": "2027-05-15",
+    "amount": "$19,209.00",
+    "clauses": [
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Signed: Master Services Agreement v51",
+    "filename": "contract_051.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 52,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0052",
+    "vendor": "Acme Legal LLC",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0052",
+    "effective_date": "2025-03-09",
+    "expiry_date": "2026-11-30",
+    "amount": "$235,908.00",
+    "clauses": [
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance."
+    ],
+    "penalty_clause": null,
+    "subject": "Fwd: Invoice #INV-52 \u2014 Action Required",
+    "filename": "contract_052.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 53,
+    "doc_type": "settlement",
+    "title": "Settlement and Release Agreement #53",
+    "vendor": "Briarwood Associates",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0053",
+    "effective_date": "2025-05-30",
+    "expiry_date": "2027-11-29",
+    "amount": "$76,676.00",
+    "clauses": [
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Urgent: Payment Overdue \u2014 Account 53",
+    "filename": "contract_053.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 54,
+    "doc_type": "nda",
+    "title": "Non-Disclosure Agreement #54",
+    "vendor": "Sterling Document Services",
+    "client": "Ironwood Investments",
+    "invoice_no": "INV-0054",
+    "effective_date": "2025-03-11",
+    "expiry_date": "2026-01-28",
+    "amount": "$207,552.00",
+    "clauses": [
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "contract_054.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 55,
+    "doc_type": "settlement",
+    "title": "Settlement and Release Agreement #55",
+    "vendor": "Vexlar Consulting Group",
+    "client": "Ironwood Investments",
+    "invoice_no": "INV-0055",
+    "effective_date": "2025-12-04",
+    "expiry_date": "2027-01-28",
+    "amount": "$122,059.00",
+    "clauses": [
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance."
+    ],
+    "penalty_clause": "Service level breaches exceeding 99.0% uptime SLA incur a credit of 10% of monthly fees.",
+    "subject": "Follow-up: Statement of Work #55",
+    "filename": "contract_055.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 56,
+    "doc_type": "settlement",
+    "title": "Settlement and Release Agreement #56",
+    "vendor": "Meridian Capital Ltd",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0056",
+    "effective_date": "2025-05-03",
+    "expiry_date": "2026-11-23",
+    "amount": "$229,398.00",
+    "clauses": [
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "All intellectual property created under this contract vests solely in the Client."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Signed: Master Services Agreement v56",
+    "filename": "contract_056.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 57,
+    "doc_type": "nda",
+    "title": "Non-Disclosure Agreement #57",
+    "vendor": "Axiom Legal LLP",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0057",
+    "effective_date": "2025-08-22",
+    "expiry_date": "2025-09-26",
+    "amount": "$112,473.00",
+    "clauses": [
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "This agreement shall be governed by the laws of the State of Delaware."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Urgent: Payment Overdue \u2014 Account 57",
+    "filename": "contract_057.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 58,
+    "doc_type": "nda",
+    "title": "Non-Disclosure Agreement #58",
+    "vendor": "Summit Audit Partners",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0058",
+    "effective_date": "2025-09-07",
+    "expiry_date": "2026-06-17",
+    "amount": "$22,936.00",
+    "clauses": [
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A."
+    ],
+    "penalty_clause": "Service level breaches exceeding 99.0% uptime SLA incur a credit of 10% of monthly fees.",
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "contract_058.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 59,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0059",
+    "vendor": "Pinnacle Finance Corp",
+    "client": "Blue Ridge Partners",
+    "invoice_no": "INV-0059",
+    "effective_date": "2025-02-21",
+    "expiry_date": "2026-12-21",
+    "amount": "$186,928.00",
+    "clauses": [
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Client shall pay invoices within thirty (30) days of receipt."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Notice of Expiry \u2014 Agreement 59",
+    "filename": "contract_059.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 60,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0060",
+    "vendor": "Summit Audit Partners",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0060",
+    "effective_date": "2025-07-30",
+    "expiry_date": "2026-03-28",
+    "amount": "$50,893.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance."
+    ],
+    "penalty_clause": null,
+    "subject": "Signed: Master Services Agreement v60",
+    "filename": "contract_060.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 61,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0061",
+    "vendor": "Briarwood Associates",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0061",
+    "effective_date": "2025-05-11",
+    "expiry_date": "2027-02-20",
+    "amount": "$179,808.00",
+    "clauses": [
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Client shall pay invoices within thirty (30) days of receipt."
+    ],
+    "penalty_clause": null,
+    "subject": "Signed: Master Services Agreement v61",
+    "filename": "contract_061.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 62,
+    "doc_type": "service_agreement",
+    "title": "Master Service Agreement #62",
+    "vendor": "Vexlar Consulting Group",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0062",
+    "effective_date": "2025-04-12",
+    "expiry_date": "2027-04-01",
+    "amount": "$32,958.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Urgent: Payment Overdue \u2014 Account 62",
+    "filename": "contract_062.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 63,
+    "doc_type": "settlement",
+    "title": "Settlement and Release Agreement #63",
+    "vendor": "Vexlar Consulting Group",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0063",
+    "effective_date": "2025-12-04",
+    "expiry_date": "2026-12-27",
+    "amount": "$7,122.00",
+    "clauses": [
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Either party may terminate this agreement with sixty (60) days written notice."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Fwd: Invoice #INV-63 \u2014 Action Required",
+    "filename": "contract_063.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 64,
+    "doc_type": "lease",
+    "title": "Commercial Lease Agreement #64",
+    "vendor": "Pinnacle Finance Corp",
+    "client": "Blue Ridge Partners",
+    "invoice_no": "INV-0064",
+    "effective_date": "2025-06-08",
+    "expiry_date": "2026-10-11",
+    "amount": "$156,931.00",
+    "clauses": [
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "This agreement shall be governed by the laws of the State of Delaware."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Signed: Master Services Agreement v64",
+    "filename": "contract_064.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 65,
+    "doc_type": "lease",
+    "title": "Commercial Lease Agreement #65",
+    "vendor": "Sterling Document Services",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0065",
+    "effective_date": "2025-07-07",
+    "expiry_date": "2027-09-07",
+    "amount": "$244,465.00",
+    "clauses": [
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Either party may terminate this agreement with sixty (60) days written notice."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Signed: Master Services Agreement v65",
+    "filename": "contract_065.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 66,
+    "doc_type": "nda",
+    "title": "Non-Disclosure Agreement #66",
+    "vendor": "Summit Audit Partners",
+    "client": "Ironwood Investments",
+    "invoice_no": "INV-0066",
+    "effective_date": "2025-07-22",
+    "expiry_date": "2025-11-26",
+    "amount": "$145,659.00",
+    "clauses": [
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Client shall pay invoices within thirty (30) days of receipt."
+    ],
+    "penalty_clause": null,
+    "subject": "Signed: Master Services Agreement v66",
+    "filename": "contract_066.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 67,
+    "doc_type": "nda",
+    "title": "Non-Disclosure Agreement #67",
+    "vendor": "Meridian Capital Ltd",
+    "client": "Ironwood Investments",
+    "invoice_no": "INV-0067",
+    "effective_date": "2025-02-02",
+    "expiry_date": "2027-10-11",
+    "amount": "$84,217.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "This agreement shall be governed by the laws of the State of Delaware."
+    ],
+    "penalty_clause": null,
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "contract_067.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 68,
+    "doc_type": "settlement",
+    "title": "Settlement and Release Agreement #68",
+    "vendor": "Axiom Legal LLP",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0068",
+    "effective_date": "2025-10-03",
+    "expiry_date": "2026-06-01",
+    "amount": "$123,919.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "All intellectual property created under this contract vests solely in the Client."
+    ],
+    "penalty_clause": null,
+    "subject": "Signed: Master Services Agreement v68",
+    "filename": "contract_068.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 69,
+    "doc_type": "settlement",
+    "title": "Settlement and Release Agreement #69",
+    "vendor": "Summit Audit Partners",
+    "client": "Blue Ridge Partners",
+    "invoice_no": "INV-0069",
+    "effective_date": "2025-09-08",
+    "expiry_date": "2027-01-11",
+    "amount": "$13,576.00",
+    "clauses": [
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "This agreement shall be governed by the laws of the State of Delaware."
+    ],
+    "penalty_clause": null,
+    "subject": "Fwd: Invoice #INV-69 \u2014 Action Required",
+    "filename": "contract_069.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 70,
+    "doc_type": "service_agreement",
+    "title": "Master Service Agreement #70",
+    "vendor": "Summit Audit Partners",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0070",
+    "effective_date": "2025-03-04",
+    "expiry_date": "2026-11-23",
+    "amount": "$178,740.00",
+    "clauses": [
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "This agreement shall be governed by the laws of the State of Delaware."
+    ],
+    "penalty_clause": null,
+    "subject": "Notice of Expiry \u2014 Agreement 70",
+    "filename": "contract_070.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 71,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0071",
+    "vendor": "Briarwood Associates",
+    "client": "Ironwood Investments",
+    "invoice_no": "INV-0071",
+    "effective_date": "2025-10-11",
+    "expiry_date": "2026-11-24",
+    "amount": "$61,610.00",
+    "clauses": [
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Neither party shall be liable for indirect or consequential damages."
+    ],
+    "penalty_clause": null,
+    "subject": "Fwd: Invoice #INV-71 \u2014 Action Required",
+    "filename": "contract_071.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 72,
+    "doc_type": "service_agreement",
+    "title": "Master Service Agreement #72",
+    "vendor": "Meridian Capital Ltd",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0072",
+    "effective_date": "2025-01-09",
+    "expiry_date": "2026-05-09",
+    "amount": "$18,736.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Signed: Master Services Agreement v72",
+    "filename": "contract_072.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 73,
+    "doc_type": "lease",
+    "title": "Commercial Lease Agreement #73",
+    "vendor": "Axiom Legal LLP",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0073",
+    "effective_date": "2025-02-25",
+    "expiry_date": "2027-06-19",
+    "amount": "$63,077.00",
+    "clauses": [
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Follow-up: Statement of Work #73",
+    "filename": "contract_073.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 74,
+    "doc_type": "service_agreement",
+    "title": "Master Service Agreement #74",
+    "vendor": "Pinnacle Finance Corp",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0074",
+    "effective_date": "2025-08-16",
+    "expiry_date": "2025-10-24",
+    "amount": "$89,439.00",
+    "clauses": [
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "This agreement shall be governed by the laws of the State of Delaware."
+    ],
+    "penalty_clause": "Service level breaches exceeding 99.0% uptime SLA incur a credit of 10% of monthly fees.",
+    "subject": "Signed: Master Services Agreement v74",
+    "filename": "contract_074.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 75,
+    "doc_type": "service_agreement",
+    "title": "Master Service Agreement #75",
+    "vendor": "Pinnacle Finance Corp",
+    "client": "Blue Ridge Partners",
+    "invoice_no": "INV-0075",
+    "effective_date": "2025-10-10",
+    "expiry_date": "2026-09-13",
+    "amount": "$123,372.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Client shall pay invoices within thirty (30) days of receipt."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Follow-up: Statement of Work #75",
+    "filename": "contract_075.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 76,
+    "doc_type": "nda",
+    "title": "Non-Disclosure Agreement #76",
+    "vendor": "Pinnacle Finance Corp",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0076",
+    "effective_date": "2025-12-07",
+    "expiry_date": "2026-09-25",
+    "amount": "$45,013.00",
+    "clauses": [
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Neither party shall be liable for indirect or consequential damages.",
+      "All intellectual property created under this contract vests solely in the Client."
+    ],
+    "penalty_clause": null,
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "contract_076.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 77,
+    "doc_type": "nda",
+    "title": "Non-Disclosure Agreement #77",
+    "vendor": "Meridian Capital Ltd",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0077",
+    "effective_date": "2025-10-28",
+    "expiry_date": "2027-05-11",
+    "amount": "$37,042.00",
+    "clauses": [
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Neither party shall be liable for indirect or consequential damages.",
+      "This agreement shall be governed by the laws of the State of Delaware."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Signed: Master Services Agreement v77",
+    "filename": "contract_077.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 78,
+    "doc_type": "nda",
+    "title": "Non-Disclosure Agreement #78",
+    "vendor": "Vexlar Consulting Group",
+    "client": "Ironwood Investments",
+    "invoice_no": "INV-0078",
+    "effective_date": "2025-02-23",
+    "expiry_date": "2027-03-19",
+    "amount": "$45,561.00",
+    "clauses": [
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Client shall pay invoices within thirty (30) days of receipt."
+    ],
+    "penalty_clause": null,
+    "subject": "Urgent: Payment Overdue \u2014 Account 78",
+    "filename": "contract_078.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 79,
+    "doc_type": "service_agreement",
+    "title": "Master Service Agreement #79",
+    "vendor": "Vexlar Consulting Group",
+    "client": "Ironwood Investments",
+    "invoice_no": "INV-0079",
+    "effective_date": "2025-08-08",
+    "expiry_date": "2026-06-02",
+    "amount": "$248,553.00",
+    "clauses": [
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "Client shall pay invoices within thirty (30) days of receipt."
+    ],
+    "penalty_clause": null,
+    "subject": "Signed: Master Services Agreement v79",
+    "filename": "contract_079.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 80,
+    "doc_type": "service_agreement",
+    "title": "Master Service Agreement #80",
+    "vendor": "Acme Legal LLC",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0080",
+    "effective_date": "2025-04-21",
+    "expiry_date": "2027-02-19",
+    "amount": "$123,920.00",
+    "clauses": [
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Neither party shall be liable for indirect or consequential damages."
+    ],
+    "penalty_clause": "Service level breaches exceeding 99.0% uptime SLA incur a credit of 10% of monthly fees.",
+    "subject": "Notice of Expiry \u2014 Agreement 80",
+    "filename": "contract_080.pdf",
+    "ext": "pdf"
+  },
+  {
+    "seed_id": 81,
+    "doc_type": "statement_of_work",
+    "title": "Statement of Work #81",
+    "vendor": "Sterling Document Services",
+    "client": "Ironwood Investments",
+    "invoice_no": "INV-0081",
+    "effective_date": "2025-12-09",
+    "expiry_date": "2026-08-02",
+    "amount": "$109,089.00",
+    "clauses": [
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Neither party shall be liable for indirect or consequential damages."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Notice of Expiry \u2014 Agreement 81",
+    "filename": "document_081.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 82,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0082",
+    "vendor": "Sterling Document Services",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0082",
+    "effective_date": "2025-09-26",
+    "expiry_date": "2026-04-08",
+    "amount": "$233,202.00",
+    "clauses": [
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "Client shall pay invoices within thirty (30) days of receipt."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "document_082.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 83,
+    "doc_type": "statement_of_work",
+    "title": "Statement of Work #83",
+    "vendor": "Sterling Document Services",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0083",
+    "effective_date": "2025-04-12",
+    "expiry_date": "2026-10-28",
+    "amount": "$45,073.00",
+    "clauses": [
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Either party may terminate this agreement with sixty (60) days written notice."
+    ],
+    "penalty_clause": null,
+    "subject": "Follow-up: Statement of Work #83",
+    "filename": "document_083.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 84,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0084",
+    "vendor": "Pinnacle Finance Corp",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0084",
+    "effective_date": "2025-01-20",
+    "expiry_date": "2026-03-03",
+    "amount": "$223,024.00",
+    "clauses": [
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "All intellectual property created under this contract vests solely in the Client.",
+      "The parties agree that all disputes shall be resolved through binding arbitration."
+    ],
+    "penalty_clause": null,
+    "subject": "Urgent: Payment Overdue \u2014 Account 84",
+    "filename": "document_084.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 85,
+    "doc_type": "statement_of_work",
+    "title": "Statement of Work #85",
+    "vendor": "Pinnacle Finance Corp",
+    "client": "Ironwood Investments",
+    "invoice_no": "INV-0085",
+    "effective_date": "2025-01-21",
+    "expiry_date": "2027-03-07",
+    "amount": "$119,755.00",
+    "clauses": [
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Neither party shall be liable for indirect or consequential damages."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Follow-up: Statement of Work #85",
+    "filename": "document_085.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 86,
+    "doc_type": "statement_of_work",
+    "title": "Statement of Work #86",
+    "vendor": "Briarwood Associates",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0086",
+    "effective_date": "2025-12-02",
+    "expiry_date": "2026-10-10",
+    "amount": "$160,986.00",
+    "clauses": [
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "Either party may terminate this agreement with sixty (60) days written notice."
+    ],
+    "penalty_clause": null,
+    "subject": "Signed: Master Services Agreement v86",
+    "filename": "document_086.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 87,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0087",
+    "vendor": "Sterling Document Services",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0087",
+    "effective_date": "2025-09-06",
+    "expiry_date": "2026-05-07",
+    "amount": "$41,061.00",
+    "clauses": [
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "Client shall pay invoices within thirty (30) days of receipt."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Urgent: Payment Overdue \u2014 Account 87",
+    "filename": "document_087.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 88,
+    "doc_type": "statement_of_work",
+    "title": "Statement of Work #88",
+    "vendor": "Briarwood Associates",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0088",
+    "effective_date": "2025-11-16",
+    "expiry_date": "2026-07-28",
+    "amount": "$16,453.00",
+    "clauses": [
+      "All intellectual property created under this contract vests solely in the Client.",
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Neither party shall be liable for indirect or consequential damages."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Follow-up: Statement of Work #88",
+    "filename": "document_088.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 89,
+    "doc_type": "statement_of_work",
+    "title": "Statement of Work #89",
+    "vendor": "Summit Audit Partners",
+    "client": "Ironwood Investments",
+    "invoice_no": "INV-0089",
+    "effective_date": "2025-03-24",
+    "expiry_date": "2026-11-25",
+    "amount": "$41,280.00",
+    "clauses": [
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Either party may terminate this agreement with sixty (60) days written notice."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Urgent: Payment Overdue \u2014 Account 89",
+    "filename": "document_089.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 90,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0090",
+    "vendor": "Vexlar Consulting Group",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0090",
+    "effective_date": "2025-03-17",
+    "expiry_date": "2026-11-05",
+    "amount": "$243,683.00",
+    "clauses": [
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Client shall pay invoices within thirty (30) days of receipt."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Follow-up: Statement of Work #90",
+    "filename": "document_090.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 91,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0091",
+    "vendor": "Meridian Capital Ltd",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0091",
+    "effective_date": "2025-02-20",
+    "expiry_date": "2026-08-21",
+    "amount": "$41,070.00",
+    "clauses": [
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "Neither party shall be liable for indirect or consequential damages."
+    ],
+    "penalty_clause": null,
+    "subject": "Follow-up: Statement of Work #91",
+    "filename": "document_091.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 92,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0092",
+    "vendor": "Summit Audit Partners",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0092",
+    "effective_date": "2025-05-02",
+    "expiry_date": "2026-07-05",
+    "amount": "$17,517.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "All intellectual property created under this contract vests solely in the Client."
+    ],
+    "penalty_clause": "Service level breaches exceeding 99.0% uptime SLA incur a credit of 10% of monthly fees.",
+    "subject": "Follow-up: Statement of Work #92",
+    "filename": "document_092.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 93,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0093",
+    "vendor": "Sterling Document Services",
+    "client": "Blue Ridge Partners",
+    "invoice_no": "INV-0093",
+    "effective_date": "2025-08-08",
+    "expiry_date": "2026-05-11",
+    "amount": "$97,488.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A."
+    ],
+    "penalty_clause": null,
+    "subject": "Signed: Master Services Agreement v93",
+    "filename": "document_093.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 94,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0094",
+    "vendor": "Acme Legal LLC",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0094",
+    "effective_date": "2025-01-23",
+    "expiry_date": "2027-02-07",
+    "amount": "$71,492.00",
+    "clauses": [
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Neither party shall be liable for indirect or consequential damages."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Signed: Master Services Agreement v94",
+    "filename": "document_094.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 95,
+    "doc_type": "statement_of_work",
+    "title": "Statement of Work #95",
+    "vendor": "Meridian Capital Ltd",
+    "client": "Blue Ridge Partners",
+    "invoice_no": "INV-0095",
+    "effective_date": "2025-12-17",
+    "expiry_date": "2027-10-09",
+    "amount": "$130,444.00",
+    "clauses": [
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "The parties agree that all disputes shall be resolved through binding arbitration."
+    ],
+    "penalty_clause": null,
+    "subject": "Signed: Master Services Agreement v95",
+    "filename": "document_095.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 96,
+    "doc_type": "statement_of_work",
+    "title": "Statement of Work #96",
+    "vendor": "Sterling Document Services",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0096",
+    "effective_date": "2025-01-25",
+    "expiry_date": "2026-10-21",
+    "amount": "$37,630.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "All intellectual property created under this contract vests solely in the Client."
+    ],
+    "penalty_clause": null,
+    "subject": "Follow-up: Statement of Work #96",
+    "filename": "document_096.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 97,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0097",
+    "vendor": "Vexlar Consulting Group",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0097",
+    "effective_date": "2025-06-17",
+    "expiry_date": "2026-10-01",
+    "amount": "$121,894.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Either party may terminate this agreement with sixty (60) days written notice."
+    ],
+    "penalty_clause": null,
+    "subject": "Notice of Expiry \u2014 Agreement 97",
+    "filename": "document_097.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 98,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0098",
+    "vendor": "Acme Legal LLC",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0098",
+    "effective_date": "2025-11-27",
+    "expiry_date": "2027-01-11",
+    "amount": "$105,362.00",
+    "clauses": [
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "Either party may terminate this agreement with sixty (60) days written notice."
+    ],
+    "penalty_clause": null,
+    "subject": "Notice of Expiry \u2014 Agreement 98",
+    "filename": "document_098.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 99,
+    "doc_type": "statement_of_work",
+    "title": "Statement of Work #99",
+    "vendor": "Acme Legal LLC",
+    "client": "Blue Ridge Partners",
+    "invoice_no": "INV-0099",
+    "effective_date": "2025-09-23",
+    "expiry_date": "2027-05-14",
+    "amount": "$35,870.00",
+    "clauses": [
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Either party may terminate this agreement with sixty (60) days written notice."
+    ],
+    "penalty_clause": null,
+    "subject": "Fwd: Invoice #INV-99 \u2014 Action Required",
+    "filename": "document_099.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 100,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0100",
+    "vendor": "Meridian Capital Ltd",
+    "client": "Blue Ridge Partners",
+    "invoice_no": "INV-0100",
+    "effective_date": "2025-10-05",
+    "expiry_date": "2026-09-23",
+    "amount": "$228,179.00",
+    "clauses": [
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "Neither party shall be liable for indirect or consequential damages."
+    ],
+    "penalty_clause": null,
+    "subject": "Notice of Expiry \u2014 Agreement 100",
+    "filename": "document_100.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 101,
+    "doc_type": "statement_of_work",
+    "title": "Statement of Work #101",
+    "vendor": "Meridian Capital Ltd",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0101",
+    "effective_date": "2025-10-10",
+    "expiry_date": "2026-09-18",
+    "amount": "$236,799.00",
+    "clauses": [
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "Client shall pay invoices within thirty (30) days of receipt."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Signed: Master Services Agreement v101",
+    "filename": "document_101.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 102,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0102",
+    "vendor": "Briarwood Associates",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0102",
+    "effective_date": "2025-01-29",
+    "expiry_date": "2026-07-27",
+    "amount": "$45,112.00",
+    "clauses": [
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "This agreement shall be governed by the laws of the State of Delaware."
+    ],
+    "penalty_clause": null,
+    "subject": "Signed: Master Services Agreement v102",
+    "filename": "document_102.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 103,
+    "doc_type": "statement_of_work",
+    "title": "Statement of Work #103",
+    "vendor": "Vexlar Consulting Group",
+    "client": "Ironwood Investments",
+    "invoice_no": "INV-0103",
+    "effective_date": "2025-09-15",
+    "expiry_date": "2026-10-18",
+    "amount": "$157,212.00",
+    "clauses": [
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "All intellectual property created under this contract vests solely in the Client."
+    ],
+    "penalty_clause": "Service level breaches exceeding 99.0% uptime SLA incur a credit of 10% of monthly fees.",
+    "subject": "Signed: Master Services Agreement v103",
+    "filename": "document_103.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 104,
+    "doc_type": "statement_of_work",
+    "title": "Statement of Work #104",
+    "vendor": "Axiom Legal LLP",
+    "client": "Blue Ridge Partners",
+    "invoice_no": "INV-0104",
+    "effective_date": "2025-11-25",
+    "expiry_date": "2027-01-07",
+    "amount": "$69,193.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "The parties agree that all disputes shall be resolved through binding arbitration."
+    ],
+    "penalty_clause": "Service level breaches exceeding 99.0% uptime SLA incur a credit of 10% of monthly fees.",
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "document_104.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 105,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0105",
+    "vendor": "Meridian Capital Ltd",
+    "client": "Blue Ridge Partners",
+    "invoice_no": "INV-0105",
+    "effective_date": "2025-06-26",
+    "expiry_date": "2026-10-17",
+    "amount": "$204,403.00",
+    "clauses": [
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "This agreement shall be governed by the laws of the State of Delaware."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "document_105.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 106,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0106",
+    "vendor": "Meridian Capital Ltd",
+    "client": "Ironwood Investments",
+    "invoice_no": "INV-0106",
+    "effective_date": "2025-04-08",
+    "expiry_date": "2026-08-22",
+    "amount": "$139,932.00",
+    "clauses": [
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "Either party may terminate this agreement with sixty (60) days written notice."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "document_106.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 107,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0107",
+    "vendor": "Pinnacle Finance Corp",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0107",
+    "effective_date": "2025-05-16",
+    "expiry_date": "2027-01-31",
+    "amount": "$100,928.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "The parties agree that all disputes shall be resolved through binding arbitration."
+    ],
+    "penalty_clause": null,
+    "subject": "Urgent: Payment Overdue \u2014 Account 107",
+    "filename": "document_107.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 108,
+    "doc_type": "statement_of_work",
+    "title": "Statement of Work #108",
+    "vendor": "Vexlar Consulting Group",
+    "client": "Ironwood Investments",
+    "invoice_no": "INV-0108",
+    "effective_date": "2025-03-02",
+    "expiry_date": "2025-12-27",
+    "amount": "$108,259.00",
+    "clauses": [
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "Client shall pay invoices within thirty (30) days of receipt."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Fwd: Invoice #INV-108 \u2014 Action Required",
+    "filename": "document_108.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 109,
+    "doc_type": "statement_of_work",
+    "title": "Statement of Work #109",
+    "vendor": "Briarwood Associates",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0109",
+    "effective_date": "2025-06-03",
+    "expiry_date": "2027-02-23",
+    "amount": "$222,131.00",
+    "clauses": [
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "Client shall pay invoices within thirty (30) days of receipt."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "document_109.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 110,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0110",
+    "vendor": "Sterling Document Services",
+    "client": "Blue Ridge Partners",
+    "invoice_no": "INV-0110",
+    "effective_date": "2025-09-03",
+    "expiry_date": "2026-09-15",
+    "amount": "$169,895.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "All intellectual property created under this contract vests solely in the Client.",
+      "This agreement shall be governed by the laws of the State of Delaware."
+    ],
+    "penalty_clause": null,
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "document_110.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 111,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0111",
+    "vendor": "Summit Audit Partners",
+    "client": "Blue Ridge Partners",
+    "invoice_no": "INV-0111",
+    "effective_date": "2025-09-14",
+    "expiry_date": "2026-11-25",
+    "amount": "$190,014.00",
+    "clauses": [
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance."
+    ],
+    "penalty_clause": null,
+    "subject": "Notice of Expiry \u2014 Agreement 111",
+    "filename": "document_111.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 112,
+    "doc_type": "statement_of_work",
+    "title": "Statement of Work #112",
+    "vendor": "Vexlar Consulting Group",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0112",
+    "effective_date": "2025-06-02",
+    "expiry_date": "2027-04-16",
+    "amount": "$59,336.00",
+    "clauses": [
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "Neither party shall be liable for indirect or consequential damages."
+    ],
+    "penalty_clause": "Service level breaches exceeding 99.0% uptime SLA incur a credit of 10% of monthly fees.",
+    "subject": "Signed: Master Services Agreement v112",
+    "filename": "document_112.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 113,
+    "doc_type": "statement_of_work",
+    "title": "Statement of Work #113",
+    "vendor": "Pinnacle Finance Corp",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0113",
+    "effective_date": "2025-12-02",
+    "expiry_date": "2026-11-19",
+    "amount": "$61,095.00",
+    "clauses": [
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "This agreement shall be governed by the laws of the State of Delaware."
+    ],
+    "penalty_clause": "Service level breaches exceeding 99.0% uptime SLA incur a credit of 10% of monthly fees.",
+    "subject": "Notice of Expiry \u2014 Agreement 113",
+    "filename": "document_113.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 114,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0114",
+    "vendor": "Acme Legal LLC",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0114",
+    "effective_date": "2025-08-30",
+    "expiry_date": "2026-09-23",
+    "amount": "$207,051.00",
+    "clauses": [
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance."
+    ],
+    "penalty_clause": null,
+    "subject": "Fwd: Invoice #INV-114 \u2014 Action Required",
+    "filename": "document_114.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 115,
+    "doc_type": "statement_of_work",
+    "title": "Statement of Work #115",
+    "vendor": "Briarwood Associates",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0115",
+    "effective_date": "2025-07-23",
+    "expiry_date": "2027-02-22",
+    "amount": "$201,346.00",
+    "clauses": [
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Client shall pay invoices within thirty (30) days of receipt."
+    ],
+    "penalty_clause": "Service level breaches exceeding 99.0% uptime SLA incur a credit of 10% of monthly fees.",
+    "subject": "Urgent: Payment Overdue \u2014 Account 115",
+    "filename": "document_115.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 116,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0116",
+    "vendor": "Briarwood Associates",
+    "client": "Ironwood Investments",
+    "invoice_no": "INV-0116",
+    "effective_date": "2025-04-09",
+    "expiry_date": "2026-04-10",
+    "amount": "$47,596.00",
+    "clauses": [
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A."
+    ],
+    "penalty_clause": null,
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "document_116.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 117,
+    "doc_type": "invoice",
+    "title": "Invoice #INV-0117",
+    "vendor": "Briarwood Associates",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0117",
+    "effective_date": "2025-05-08",
+    "expiry_date": "2025-11-16",
+    "amount": "$105,551.00",
+    "clauses": [
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Neither party shall be liable for indirect or consequential damages."
+    ],
+    "penalty_clause": null,
+    "subject": "Notice of Expiry \u2014 Agreement 117",
+    "filename": "document_117.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 118,
+    "doc_type": "statement_of_work",
+    "title": "Statement of Work #118",
+    "vendor": "Summit Audit Partners",
+    "client": "Blue Ridge Partners",
+    "invoice_no": "INV-0118",
+    "effective_date": "2025-12-27",
+    "expiry_date": "2027-05-02",
+    "amount": "$35,779.00",
+    "clauses": [
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Fwd: Invoice #INV-118 \u2014 Action Required",
+    "filename": "document_118.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 119,
+    "doc_type": "statement_of_work",
+    "title": "Statement of Work #119",
+    "vendor": "Axiom Legal LLP",
+    "client": "Ironwood Investments",
+    "invoice_no": "INV-0119",
+    "effective_date": "2025-02-09",
+    "expiry_date": "2025-11-22",
+    "amount": "$222,258.00",
+    "clauses": [
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Notice of Expiry \u2014 Agreement 119",
+    "filename": "document_119.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 120,
+    "doc_type": "statement_of_work",
+    "title": "Statement of Work #120",
+    "vendor": "Acme Legal LLC",
+    "client": "Ironwood Investments",
+    "invoice_no": "INV-0120",
+    "effective_date": "2025-06-07",
+    "expiry_date": "2026-02-09",
+    "amount": "$71,704.00",
+    "clauses": [
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance."
+    ],
+    "penalty_clause": null,
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "document_120.docx",
+    "ext": "docx"
+  },
+  {
+    "seed_id": 121,
+    "doc_type": "email_thread",
+    "title": "Email Thread #121",
+    "vendor": "Axiom Legal LLP",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0121",
+    "effective_date": "2025-04-03",
+    "expiry_date": "2026-10-09",
+    "amount": "$196,178.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "All intellectual property created under this contract vests solely in the Client."
+    ],
+    "penalty_clause": null,
+    "subject": "Follow-up: Statement of Work #121",
+    "filename": "email_121.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 122,
+    "doc_type": "email_thread",
+    "title": "Email Thread #122",
+    "vendor": "Summit Audit Partners",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0122",
+    "effective_date": "2025-12-05",
+    "expiry_date": "2026-10-13",
+    "amount": "$230,518.00",
+    "clauses": [
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Urgent: Payment Overdue \u2014 Account 122",
+    "filename": "email_122.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 123,
+    "doc_type": "email_thread",
+    "title": "Email Thread #123",
+    "vendor": "Briarwood Associates",
+    "client": "Blue Ridge Partners",
+    "invoice_no": "INV-0123",
+    "effective_date": "2025-01-02",
+    "expiry_date": "2025-12-22",
+    "amount": "$126,373.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Follow-up: Statement of Work #123",
+    "filename": "email_123.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 124,
+    "doc_type": "email_thread",
+    "title": "Email Thread #124",
+    "vendor": "Meridian Capital Ltd",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0124",
+    "effective_date": "2025-02-27",
+    "expiry_date": "2026-07-05",
+    "amount": "$114,901.00",
+    "clauses": [
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "Neither party shall be liable for indirect or consequential damages.",
+      "This agreement shall be governed by the laws of the State of Delaware."
+    ],
+    "penalty_clause": null,
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "email_124.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 125,
+    "doc_type": "email_thread",
+    "title": "Email Thread #125",
+    "vendor": "Acme Legal LLC",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0125",
+    "effective_date": "2025-12-27",
+    "expiry_date": "2025-12-21",
+    "amount": "$199,128.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Either party may terminate this agreement with sixty (60) days written notice."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Urgent: Payment Overdue \u2014 Account 125",
+    "filename": "email_125.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 126,
+    "doc_type": "email_thread",
+    "title": "Email Thread #126",
+    "vendor": "Sterling Document Services",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0126",
+    "effective_date": "2025-05-29",
+    "expiry_date": "2026-12-15",
+    "amount": "$88,598.00",
+    "clauses": [
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "Neither party shall be liable for indirect or consequential damages."
+    ],
+    "penalty_clause": null,
+    "subject": "Signed: Master Services Agreement v126",
+    "filename": "email_126.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 127,
+    "doc_type": "email_thread",
+    "title": "Email Thread #127",
+    "vendor": "Sterling Document Services",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0127",
+    "effective_date": "2025-02-01",
+    "expiry_date": "2026-11-11",
+    "amount": "$182,930.00",
+    "clauses": [
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Client shall pay invoices within thirty (30) days of receipt."
+    ],
+    "penalty_clause": null,
+    "subject": "Signed: Master Services Agreement v127",
+    "filename": "email_127.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 128,
+    "doc_type": "email_thread",
+    "title": "Email Thread #128",
+    "vendor": "Summit Audit Partners",
+    "client": "Ironwood Investments",
+    "invoice_no": "INV-0128",
+    "effective_date": "2025-08-02",
+    "expiry_date": "2026-11-06",
+    "amount": "$83,613.00",
+    "clauses": [
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance."
+    ],
+    "penalty_clause": null,
+    "subject": "Follow-up: Statement of Work #128",
+    "filename": "email_128.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 129,
+    "doc_type": "email_thread",
+    "title": "Email Thread #129",
+    "vendor": "Sterling Document Services",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0129",
+    "effective_date": "2025-12-29",
+    "expiry_date": "2026-07-19",
+    "amount": "$244,793.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Either party may terminate this agreement with sixty (60) days written notice."
+    ],
+    "penalty_clause": null,
+    "subject": "Urgent: Payment Overdue \u2014 Account 129",
+    "filename": "email_129.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 130,
+    "doc_type": "email_thread",
+    "title": "Email Thread #130",
+    "vendor": "Briarwood Associates",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0130",
+    "effective_date": "2025-04-15",
+    "expiry_date": "2027-04-30",
+    "amount": "$25,727.00",
+    "clauses": [
+      "All intellectual property created under this contract vests solely in the Client.",
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance."
+    ],
+    "penalty_clause": null,
+    "subject": "Signed: Master Services Agreement v130",
+    "filename": "email_130.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 131,
+    "doc_type": "email_thread",
+    "title": "Email Thread #131",
+    "vendor": "Sterling Document Services",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0131",
+    "effective_date": "2025-12-11",
+    "expiry_date": "2025-09-15",
+    "amount": "$54,325.00",
+    "clauses": [
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "Client shall pay invoices within thirty (30) days of receipt."
+    ],
+    "penalty_clause": null,
+    "subject": "Notice of Expiry \u2014 Agreement 131",
+    "filename": "email_131.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 132,
+    "doc_type": "email_thread",
+    "title": "Email Thread #132",
+    "vendor": "Acme Legal LLC",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0132",
+    "effective_date": "2025-03-02",
+    "expiry_date": "2027-03-06",
+    "amount": "$187,354.00",
+    "clauses": [
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Notice of Expiry \u2014 Agreement 132",
+    "filename": "email_132.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 133,
+    "doc_type": "email_thread",
+    "title": "Email Thread #133",
+    "vendor": "Summit Audit Partners",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0133",
+    "effective_date": "2025-07-03",
+    "expiry_date": "2026-09-21",
+    "amount": "$99,278.00",
+    "clauses": [
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Neither party shall be liable for indirect or consequential damages."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Fwd: Invoice #INV-133 \u2014 Action Required",
+    "filename": "email_133.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 134,
+    "doc_type": "email_thread",
+    "title": "Email Thread #134",
+    "vendor": "Meridian Capital Ltd",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0134",
+    "effective_date": "2025-10-16",
+    "expiry_date": "2026-04-26",
+    "amount": "$9,251.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A."
+    ],
+    "penalty_clause": null,
+    "subject": "Fwd: Invoice #INV-134 \u2014 Action Required",
+    "filename": "email_134.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 135,
+    "doc_type": "email_thread",
+    "title": "Email Thread #135",
+    "vendor": "Meridian Capital Ltd",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0135",
+    "effective_date": "2025-05-06",
+    "expiry_date": "2027-08-31",
+    "amount": "$176,601.00",
+    "clauses": [
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "This agreement shall be governed by the laws of the State of Delaware."
+    ],
+    "penalty_clause": null,
+    "subject": "Follow-up: Statement of Work #135",
+    "filename": "email_135.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 136,
+    "doc_type": "email_thread",
+    "title": "Email Thread #136",
+    "vendor": "Briarwood Associates",
+    "client": "Blue Ridge Partners",
+    "invoice_no": "INV-0136",
+    "effective_date": "2025-03-28",
+    "expiry_date": "2026-08-26",
+    "amount": "$133,009.00",
+    "clauses": [
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "email_136.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 137,
+    "doc_type": "email_thread",
+    "title": "Email Thread #137",
+    "vendor": "Acme Legal LLC",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0137",
+    "effective_date": "2025-11-19",
+    "expiry_date": "2026-03-27",
+    "amount": "$190,380.00",
+    "clauses": [
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A."
+    ],
+    "penalty_clause": null,
+    "subject": "Urgent: Payment Overdue \u2014 Account 137",
+    "filename": "email_137.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 138,
+    "doc_type": "email_thread",
+    "title": "Email Thread #138",
+    "vendor": "Axiom Legal LLP",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0138",
+    "effective_date": "2025-11-23",
+    "expiry_date": "2027-10-09",
+    "amount": "$132,888.00",
+    "clauses": [
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance."
+    ],
+    "penalty_clause": null,
+    "subject": "Urgent: Payment Overdue \u2014 Account 138",
+    "filename": "email_138.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 139,
+    "doc_type": "email_thread",
+    "title": "Email Thread #139",
+    "vendor": "Summit Audit Partners",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0139",
+    "effective_date": "2025-05-21",
+    "expiry_date": "2027-05-25",
+    "amount": "$9,493.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "The parties agree that all disputes shall be resolved through binding arbitration."
+    ],
+    "penalty_clause": null,
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "email_139.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 140,
+    "doc_type": "email_thread",
+    "title": "Email Thread #140",
+    "vendor": "Briarwood Associates",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0140",
+    "effective_date": "2025-09-27",
+    "expiry_date": "2026-09-12",
+    "amount": "$75,077.00",
+    "clauses": [
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "Either party may terminate this agreement with sixty (60) days written notice."
+    ],
+    "penalty_clause": null,
+    "subject": "Follow-up: Statement of Work #140",
+    "filename": "email_140.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 141,
+    "doc_type": "email_thread",
+    "title": "Email Thread #141",
+    "vendor": "Sterling Document Services",
+    "client": "Blue Ridge Partners",
+    "invoice_no": "INV-0141",
+    "effective_date": "2025-12-17",
+    "expiry_date": "2026-08-20",
+    "amount": "$229,977.00",
+    "clauses": [
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "All intellectual property created under this contract vests solely in the Client."
+    ],
+    "penalty_clause": null,
+    "subject": "Follow-up: Statement of Work #141",
+    "filename": "email_141.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 142,
+    "doc_type": "email_thread",
+    "title": "Email Thread #142",
+    "vendor": "Axiom Legal LLP",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0142",
+    "effective_date": "2025-12-26",
+    "expiry_date": "2026-02-02",
+    "amount": "$136,034.00",
+    "clauses": [
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "The parties agree that all disputes shall be resolved through binding arbitration."
+    ],
+    "penalty_clause": "Service level breaches exceeding 99.0% uptime SLA incur a credit of 10% of monthly fees.",
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "email_142.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 143,
+    "doc_type": "email_thread",
+    "title": "Email Thread #143",
+    "vendor": "Sterling Document Services",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0143",
+    "effective_date": "2025-12-21",
+    "expiry_date": "2027-03-16",
+    "amount": "$17,205.00",
+    "clauses": [
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "This agreement shall be governed by the laws of the State of Delaware."
+    ],
+    "penalty_clause": "Service level breaches exceeding 99.0% uptime SLA incur a credit of 10% of monthly fees.",
+    "subject": "Signed: Master Services Agreement v143",
+    "filename": "email_143.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 144,
+    "doc_type": "email_thread",
+    "title": "Email Thread #144",
+    "vendor": "Acme Legal LLC",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0144",
+    "effective_date": "2025-06-11",
+    "expiry_date": "2025-10-30",
+    "amount": "$158,887.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "The parties agree that all disputes shall be resolved through binding arbitration."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Fwd: Invoice #INV-144 \u2014 Action Required",
+    "filename": "email_144.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 145,
+    "doc_type": "email_thread",
+    "title": "Email Thread #145",
+    "vendor": "Sterling Document Services",
+    "client": "Ironwood Investments",
+    "invoice_no": "INV-0145",
+    "effective_date": "2025-07-19",
+    "expiry_date": "2026-12-17",
+    "amount": "$203,078.00",
+    "clauses": [
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "Neither party shall be liable for indirect or consequential damages.",
+      "All intellectual property created under this contract vests solely in the Client.",
+      "The parties agree that all disputes shall be resolved through binding arbitration."
+    ],
+    "penalty_clause": "Service level breaches exceeding 99.0% uptime SLA incur a credit of 10% of monthly fees.",
+    "subject": "Signed: Master Services Agreement v145",
+    "filename": "email_145.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 146,
+    "doc_type": "email_thread",
+    "title": "Email Thread #146",
+    "vendor": "Meridian Capital Ltd",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0146",
+    "effective_date": "2025-04-29",
+    "expiry_date": "2026-03-08",
+    "amount": "$163,641.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "The parties agree that all disputes shall be resolved through binding arbitration."
+    ],
+    "penalty_clause": null,
+    "subject": "Signed: Master Services Agreement v146",
+    "filename": "email_146.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 147,
+    "doc_type": "email_thread",
+    "title": "Email Thread #147",
+    "vendor": "Vexlar Consulting Group",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0147",
+    "effective_date": "2025-07-02",
+    "expiry_date": "2027-02-25",
+    "amount": "$53,690.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "Client shall pay invoices within thirty (30) days of receipt."
+    ],
+    "penalty_clause": null,
+    "subject": "Fwd: Invoice #INV-147 \u2014 Action Required",
+    "filename": "email_147.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 148,
+    "doc_type": "email_thread",
+    "title": "Email Thread #148",
+    "vendor": "Pinnacle Finance Corp",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0148",
+    "effective_date": "2025-07-14",
+    "expiry_date": "2026-06-21",
+    "amount": "$88,015.00",
+    "clauses": [
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Neither party shall be liable for indirect or consequential damages."
+    ],
+    "penalty_clause": null,
+    "subject": "Notice of Expiry \u2014 Agreement 148",
+    "filename": "email_148.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 149,
+    "doc_type": "email_thread",
+    "title": "Email Thread #149",
+    "vendor": "Axiom Legal LLP",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0149",
+    "effective_date": "2025-02-22",
+    "expiry_date": "2025-12-26",
+    "amount": "$54,123.00",
+    "clauses": [
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "Neither party shall be liable for indirect or consequential damages."
+    ],
+    "penalty_clause": "Service level breaches exceeding 99.0% uptime SLA incur a credit of 10% of monthly fees.",
+    "subject": "Follow-up: Statement of Work #149",
+    "filename": "email_149.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 150,
+    "doc_type": "email_thread",
+    "title": "Email Thread #150",
+    "vendor": "Pinnacle Finance Corp",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0150",
+    "effective_date": "2025-10-11",
+    "expiry_date": "2026-08-04",
+    "amount": "$161,773.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Client shall pay invoices within thirty (30) days of receipt."
+    ],
+    "penalty_clause": null,
+    "subject": "Follow-up: Statement of Work #150",
+    "filename": "email_150.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 151,
+    "doc_type": "email_thread",
+    "title": "Email Thread #151",
+    "vendor": "Summit Audit Partners",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0151",
+    "effective_date": "2025-10-14",
+    "expiry_date": "2026-12-22",
+    "amount": "$141,604.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Notice of Expiry \u2014 Agreement 151",
+    "filename": "email_151.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 152,
+    "doc_type": "email_thread",
+    "title": "Email Thread #152",
+    "vendor": "Vexlar Consulting Group",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0152",
+    "effective_date": "2025-02-02",
+    "expiry_date": "2026-07-28",
+    "amount": "$77,341.00",
+    "clauses": [
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "The parties agree that all disputes shall be resolved through binding arbitration."
+    ],
+    "penalty_clause": null,
+    "subject": "Notice of Expiry \u2014 Agreement 152",
+    "filename": "email_152.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 153,
+    "doc_type": "email_thread",
+    "title": "Email Thread #153",
+    "vendor": "Vexlar Consulting Group",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0153",
+    "effective_date": "2025-09-11",
+    "expiry_date": "2026-09-07",
+    "amount": "$33,042.00",
+    "clauses": [
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "The parties agree that all disputes shall be resolved through binding arbitration."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Notice of Expiry \u2014 Agreement 153",
+    "filename": "email_153.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 154,
+    "doc_type": "email_thread",
+    "title": "Email Thread #154",
+    "vendor": "Summit Audit Partners",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0154",
+    "effective_date": "2025-08-09",
+    "expiry_date": "2026-04-18",
+    "amount": "$89,060.00",
+    "clauses": [
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A."
+    ],
+    "penalty_clause": null,
+    "subject": "Follow-up: Statement of Work #154",
+    "filename": "email_154.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 155,
+    "doc_type": "email_thread",
+    "title": "Email Thread #155",
+    "vendor": "Meridian Capital Ltd",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0155",
+    "effective_date": "2025-11-21",
+    "expiry_date": "2027-09-04",
+    "amount": "$209,989.00",
+    "clauses": [
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Either party may terminate this agreement with sixty (60) days written notice."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Follow-up: Statement of Work #155",
+    "filename": "email_155.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 156,
+    "doc_type": "email_thread",
+    "title": "Email Thread #156",
+    "vendor": "Meridian Capital Ltd",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0156",
+    "effective_date": "2025-04-13",
+    "expiry_date": "2026-12-15",
+    "amount": "$206,226.00",
+    "clauses": [
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Notice of Expiry \u2014 Agreement 156",
+    "filename": "email_156.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 157,
+    "doc_type": "email_thread",
+    "title": "Email Thread #157",
+    "vendor": "Pinnacle Finance Corp",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0157",
+    "effective_date": "2025-03-13",
+    "expiry_date": "2026-09-06",
+    "amount": "$71,238.00",
+    "clauses": [
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "Neither party shall be liable for indirect or consequential damages."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Follow-up: Statement of Work #157",
+    "filename": "email_157.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 158,
+    "doc_type": "email_thread",
+    "title": "Email Thread #158",
+    "vendor": "Axiom Legal LLP",
+    "client": "Ironwood Investments",
+    "invoice_no": "INV-0158",
+    "effective_date": "2025-09-17",
+    "expiry_date": "2027-06-06",
+    "amount": "$14,637.00",
+    "clauses": [
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "This agreement shall be governed by the laws of the State of Delaware."
+    ],
+    "penalty_clause": null,
+    "subject": "Signed: Master Services Agreement v158",
+    "filename": "email_158.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 159,
+    "doc_type": "email_thread",
+    "title": "Email Thread #159",
+    "vendor": "Meridian Capital Ltd",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0159",
+    "effective_date": "2025-01-23",
+    "expiry_date": "2027-01-29",
+    "amount": "$213,727.00",
+    "clauses": [
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Neither party shall be liable for indirect or consequential damages."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Fwd: Invoice #INV-159 \u2014 Action Required",
+    "filename": "email_159.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 160,
+    "doc_type": "email_thread",
+    "title": "Email Thread #160",
+    "vendor": "Sterling Document Services",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0160",
+    "effective_date": "2025-08-26",
+    "expiry_date": "2027-02-09",
+    "amount": "$95,431.00",
+    "clauses": [
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "The parties agree that all disputes shall be resolved through binding arbitration."
+    ],
+    "penalty_clause": null,
+    "subject": "Notice of Expiry \u2014 Agreement 160",
+    "filename": "email_160.eml",
+    "ext": "eml"
+  },
+  {
+    "seed_id": 161,
+    "doc_type": "scanned_contract",
+    "title": "Scanned Contract #161",
+    "vendor": "Summit Audit Partners",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0161",
+    "effective_date": "2025-03-14",
+    "expiry_date": "2026-11-27",
+    "amount": "$94,932.00",
+    "clauses": [
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "This agreement shall be governed by the laws of the State of Delaware."
+    ],
+    "penalty_clause": null,
+    "subject": "Notice of Expiry \u2014 Agreement 161",
+    "filename": "scan_161.png",
+    "ext": "png"
+  },
+  {
+    "seed_id": 162,
+    "doc_type": "scanned_contract",
+    "title": "Scanned Contract #162",
+    "vendor": "Axiom Legal LLP",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0162",
+    "effective_date": "2025-12-23",
+    "expiry_date": "2027-03-18",
+    "amount": "$22,609.00",
+    "clauses": [
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Neither party shall be liable for indirect or consequential damages.",
+      "All intellectual property created under this contract vests solely in the Client."
+    ],
+    "penalty_clause": null,
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "scan_162.png",
+    "ext": "png"
+  },
+  {
+    "seed_id": 163,
+    "doc_type": "scanned_contract",
+    "title": "Scanned Contract #163",
+    "vendor": "Acme Legal LLC",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0163",
+    "effective_date": "2025-12-13",
+    "expiry_date": "2026-04-18",
+    "amount": "$140,264.00",
+    "clauses": [
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "This agreement shall be governed by the laws of the State of Delaware."
+    ],
+    "penalty_clause": "Service level breaches exceeding 99.0% uptime SLA incur a credit of 10% of monthly fees.",
+    "subject": "Follow-up: Statement of Work #163",
+    "filename": "scan_163.png",
+    "ext": "png"
+  },
+  {
+    "seed_id": 164,
+    "doc_type": "scanned_contract",
+    "title": "Scanned Contract #164",
+    "vendor": "Axiom Legal LLP",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0164",
+    "effective_date": "2025-11-19",
+    "expiry_date": "2026-04-09",
+    "amount": "$172,897.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Follow-up: Statement of Work #164",
+    "filename": "scan_164.png",
+    "ext": "png"
+  },
+  {
+    "seed_id": 165,
+    "doc_type": "scanned_contract",
+    "title": "Scanned Contract #165",
+    "vendor": "Summit Audit Partners",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0165",
+    "effective_date": "2025-04-20",
+    "expiry_date": "2026-06-17",
+    "amount": "$202,217.00",
+    "clauses": [
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Neither party shall be liable for indirect or consequential damages."
+    ],
+    "penalty_clause": null,
+    "subject": "Fwd: Invoice #INV-165 \u2014 Action Required",
+    "filename": "scan_165.png",
+    "ext": "png"
+  },
+  {
+    "seed_id": 166,
+    "doc_type": "scanned_contract",
+    "title": "Scanned Contract #166",
+    "vendor": "Meridian Capital Ltd",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0166",
+    "effective_date": "2025-02-28",
+    "expiry_date": "2027-03-03",
+    "amount": "$231,134.00",
+    "clauses": [
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "Either party may terminate this agreement with sixty (60) days written notice."
+    ],
+    "penalty_clause": null,
+    "subject": "Urgent: Payment Overdue \u2014 Account 166",
+    "filename": "scan_166.png",
+    "ext": "png"
+  },
+  {
+    "seed_id": 167,
+    "doc_type": "scanned_contract",
+    "title": "Scanned Contract #167",
+    "vendor": "Summit Audit Partners",
+    "client": "Ironwood Investments",
+    "invoice_no": "INV-0167",
+    "effective_date": "2025-06-30",
+    "expiry_date": "2027-08-23",
+    "amount": "$50,227.00",
+    "clauses": [
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Neither party shall be liable for indirect or consequential damages.",
+      "The parties agree that all disputes shall be resolved through binding arbitration."
+    ],
+    "penalty_clause": null,
+    "subject": "Signed: Master Services Agreement v167",
+    "filename": "scan_167.png",
+    "ext": "png"
+  },
+  {
+    "seed_id": 168,
+    "doc_type": "scanned_contract",
+    "title": "Scanned Contract #168",
+    "vendor": "Briarwood Associates",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0168",
+    "effective_date": "2025-06-06",
+    "expiry_date": "2026-01-28",
+    "amount": "$102,859.00",
+    "clauses": [
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "All intellectual property created under this contract vests solely in the Client."
+    ],
+    "penalty_clause": null,
+    "subject": "Urgent: Payment Overdue \u2014 Account 168",
+    "filename": "scan_168.png",
+    "ext": "png"
+  },
+  {
+    "seed_id": 169,
+    "doc_type": "scanned_contract",
+    "title": "Scanned Contract #169",
+    "vendor": "Briarwood Associates",
+    "client": "Ironwood Investments",
+    "invoice_no": "INV-0169",
+    "effective_date": "2025-04-06",
+    "expiry_date": "2027-10-01",
+    "amount": "$145,870.00",
+    "clauses": [
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "Either party may terminate this agreement with sixty (60) days written notice."
+    ],
+    "penalty_clause": null,
+    "subject": "Notice of Expiry \u2014 Agreement 169",
+    "filename": "scan_169.png",
+    "ext": "png"
+  },
+  {
+    "seed_id": 170,
+    "doc_type": "scanned_contract",
+    "title": "Scanned Contract #170",
+    "vendor": "Briarwood Associates",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0170",
+    "effective_date": "2025-08-19",
+    "expiry_date": "2026-02-22",
+    "amount": "$7,512.00",
+    "clauses": [
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "Either party may terminate this agreement with sixty (60) days written notice."
+    ],
+    "penalty_clause": null,
+    "subject": "Urgent: Payment Overdue \u2014 Account 170",
+    "filename": "scan_170.png",
+    "ext": "png"
+  },
+  {
+    "seed_id": 171,
+    "doc_type": "scanned_contract",
+    "title": "Scanned Contract #171",
+    "vendor": "Axiom Legal LLP",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0171",
+    "effective_date": "2025-08-01",
+    "expiry_date": "2027-06-04",
+    "amount": "$48,844.00",
+    "clauses": [
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Neither party shall be liable for indirect or consequential damages."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Notice of Expiry \u2014 Agreement 171",
+    "filename": "scan_171.png",
+    "ext": "png"
+  },
+  {
+    "seed_id": 172,
+    "doc_type": "scanned_contract",
+    "title": "Scanned Contract #172",
+    "vendor": "Acme Legal LLC",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0172",
+    "effective_date": "2025-05-28",
+    "expiry_date": "2026-08-10",
+    "amount": "$153,281.00",
+    "clauses": [
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "Neither party shall be liable for indirect or consequential damages.",
+      "The parties agree that all disputes shall be resolved through binding arbitration."
+    ],
+    "penalty_clause": null,
+    "subject": "Urgent: Payment Overdue \u2014 Account 172",
+    "filename": "scan_172.png",
+    "ext": "png"
+  },
+  {
+    "seed_id": 173,
+    "doc_type": "scanned_contract",
+    "title": "Scanned Contract #173",
+    "vendor": "Pinnacle Finance Corp",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0173",
+    "effective_date": "2025-07-07",
+    "expiry_date": "2026-03-24",
+    "amount": "$148,223.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "The parties agree that all disputes shall be resolved through binding arbitration."
+    ],
+    "penalty_clause": "Service level breaches exceeding 99.0% uptime SLA incur a credit of 10% of monthly fees.",
+    "subject": "Signed: Master Services Agreement v173",
+    "filename": "scan_173.png",
+    "ext": "png"
+  },
+  {
+    "seed_id": 174,
+    "doc_type": "scanned_contract",
+    "title": "Scanned Contract #174",
+    "vendor": "Sterling Document Services",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0174",
+    "effective_date": "2025-01-17",
+    "expiry_date": "2027-02-14",
+    "amount": "$96,377.00",
+    "clauses": [
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Neither party shall be liable for indirect or consequential damages."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Fwd: Invoice #INV-174 \u2014 Action Required",
+    "filename": "scan_174.png",
+    "ext": "png"
+  },
+  {
+    "seed_id": 175,
+    "doc_type": "scanned_contract",
+    "title": "Scanned Contract #175",
+    "vendor": "Sterling Document Services",
+    "client": "Blue Ridge Partners",
+    "invoice_no": "INV-0175",
+    "effective_date": "2025-06-29",
+    "expiry_date": "2026-12-04",
+    "amount": "$166,520.00",
+    "clauses": [
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "Neither party shall be liable for indirect or consequential damages."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "scan_175.png",
+    "ext": "png"
+  },
+  {
+    "seed_id": 176,
+    "doc_type": "scanned_contract",
+    "title": "Scanned Contract #176",
+    "vendor": "Meridian Capital Ltd",
+    "client": "Ironwood Investments",
+    "invoice_no": "INV-0176",
+    "effective_date": "2025-10-03",
+    "expiry_date": "2026-06-02",
+    "amount": "$189,563.00",
+    "clauses": [
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "Client shall pay invoices within thirty (30) days of receipt."
+    ],
+    "penalty_clause": null,
+    "subject": "Urgent: Payment Overdue \u2014 Account 176",
+    "filename": "scan_176.png",
+    "ext": "png"
+  },
+  {
+    "seed_id": 177,
+    "doc_type": "scanned_contract",
+    "title": "Scanned Contract #177",
+    "vendor": "Pinnacle Finance Corp",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0177",
+    "effective_date": "2025-07-30",
+    "expiry_date": "2026-01-17",
+    "amount": "$232,291.00",
+    "clauses": [
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "Neither party shall be liable for indirect or consequential damages."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Signed: Master Services Agreement v177",
+    "filename": "scan_177.png",
+    "ext": "png"
+  },
+  {
+    "seed_id": 178,
+    "doc_type": "scanned_contract",
+    "title": "Scanned Contract #178",
+    "vendor": "Meridian Capital Ltd",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0178",
+    "effective_date": "2025-12-13",
+    "expiry_date": "2027-04-13",
+    "amount": "$42,269.00",
+    "clauses": [
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "Neither party shall be liable for indirect or consequential damages."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "scan_178.png",
+    "ext": "png"
+  },
+  {
+    "seed_id": 179,
+    "doc_type": "scanned_contract",
+    "title": "Scanned Contract #179",
+    "vendor": "Pinnacle Finance Corp",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0179",
+    "effective_date": "2025-05-23",
+    "expiry_date": "2027-03-01",
+    "amount": "$132,937.00",
+    "clauses": [
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Neither party shall be liable for indirect or consequential damages.",
+      "All intellectual property created under this contract vests solely in the Client."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Signed: Master Services Agreement v179",
+    "filename": "scan_179.png",
+    "ext": "png"
+  },
+  {
+    "seed_id": 180,
+    "doc_type": "scanned_contract",
+    "title": "Scanned Contract #180",
+    "vendor": "Axiom Legal LLP",
+    "client": "Blue Ridge Partners",
+    "invoice_no": "INV-0180",
+    "effective_date": "2025-07-03",
+    "expiry_date": "2026-06-02",
+    "amount": "$109,258.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "This agreement shall be governed by the laws of the State of Delaware."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Follow-up: Statement of Work #180",
+    "filename": "scan_180.png",
+    "ext": "png"
+  },
+  {
+    "seed_id": 181,
+    "doc_type": "scanned_invoice",
+    "title": "Scanned Invoice #181",
+    "vendor": "Vexlar Consulting Group",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0181",
+    "effective_date": "2025-06-22",
+    "expiry_date": "2026-08-26",
+    "amount": "$228,457.00",
+    "clauses": [
+      "All intellectual property created under this contract vests solely in the Client.",
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "The parties agree that all disputes shall be resolved through binding arbitration."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "scan_181.jpg",
+    "ext": "jpg"
+  },
+  {
+    "seed_id": 182,
+    "doc_type": "scanned_invoice",
+    "title": "Scanned Invoice #182",
+    "vendor": "Axiom Legal LLP",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0182",
+    "effective_date": "2025-03-22",
+    "expiry_date": "2027-05-15",
+    "amount": "$5,177.00",
+    "clauses": [
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A."
+    ],
+    "penalty_clause": null,
+    "subject": "Signed: Master Services Agreement v182",
+    "filename": "scan_182.jpg",
+    "ext": "jpg"
+  },
+  {
+    "seed_id": 183,
+    "doc_type": "scanned_invoice",
+    "title": "Scanned Invoice #183",
+    "vendor": "Vexlar Consulting Group",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0183",
+    "effective_date": "2025-05-21",
+    "expiry_date": "2026-09-03",
+    "amount": "$99,485.00",
+    "clauses": [
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "All intellectual property created under this contract vests solely in the Client."
+    ],
+    "penalty_clause": "Service level breaches exceeding 99.0% uptime SLA incur a credit of 10% of monthly fees.",
+    "subject": "Fwd: Invoice #INV-183 \u2014 Action Required",
+    "filename": "scan_183.jpg",
+    "ext": "jpg"
+  },
+  {
+    "seed_id": 184,
+    "doc_type": "scanned_invoice",
+    "title": "Scanned Invoice #184",
+    "vendor": "Acme Legal LLC",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0184",
+    "effective_date": "2025-12-25",
+    "expiry_date": "2026-10-01",
+    "amount": "$176,831.00",
+    "clauses": [
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "The parties agree that all disputes shall be resolved through binding arbitration."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Follow-up: Statement of Work #184",
+    "filename": "scan_184.jpg",
+    "ext": "jpg"
+  },
+  {
+    "seed_id": 185,
+    "doc_type": "scanned_invoice",
+    "title": "Scanned Invoice #185",
+    "vendor": "Pinnacle Finance Corp",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0185",
+    "effective_date": "2025-09-23",
+    "expiry_date": "2026-10-02",
+    "amount": "$7,113.00",
+    "clauses": [
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Neither party shall be liable for indirect or consequential damages.",
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Either party may terminate this agreement with sixty (60) days written notice."
+    ],
+    "penalty_clause": "Service level breaches exceeding 99.0% uptime SLA incur a credit of 10% of monthly fees.",
+    "subject": "Fwd: Invoice #INV-185 \u2014 Action Required",
+    "filename": "scan_185.jpg",
+    "ext": "jpg"
+  },
+  {
+    "seed_id": 186,
+    "doc_type": "scanned_invoice",
+    "title": "Scanned Invoice #186",
+    "vendor": "Axiom Legal LLP",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0186",
+    "effective_date": "2025-02-15",
+    "expiry_date": "2025-12-03",
+    "amount": "$87,143.00",
+    "clauses": [
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "Either party may terminate this agreement with sixty (60) days written notice."
+    ],
+    "penalty_clause": null,
+    "subject": "Fwd: Invoice #INV-186 \u2014 Action Required",
+    "filename": "scan_186.jpg",
+    "ext": "jpg"
+  },
+  {
+    "seed_id": 187,
+    "doc_type": "scanned_invoice",
+    "title": "Scanned Invoice #187",
+    "vendor": "Briarwood Associates",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0187",
+    "effective_date": "2025-01-05",
+    "expiry_date": "2026-07-28",
+    "amount": "$97,061.00",
+    "clauses": [
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Urgent: Payment Overdue \u2014 Account 187",
+    "filename": "scan_187.jpg",
+    "ext": "jpg"
+  },
+  {
+    "seed_id": 188,
+    "doc_type": "scanned_invoice",
+    "title": "Scanned Invoice #188",
+    "vendor": "Axiom Legal LLP",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0188",
+    "effective_date": "2025-02-21",
+    "expiry_date": "2026-01-22",
+    "amount": "$159,553.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "This agreement shall be governed by the laws of the State of Delaware."
+    ],
+    "penalty_clause": null,
+    "subject": "Fwd: Invoice #INV-188 \u2014 Action Required",
+    "filename": "scan_188.jpg",
+    "ext": "jpg"
+  },
+  {
+    "seed_id": 189,
+    "doc_type": "scanned_invoice",
+    "title": "Scanned Invoice #189",
+    "vendor": "Sterling Document Services",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0189",
+    "effective_date": "2025-05-08",
+    "expiry_date": "2027-04-05",
+    "amount": "$12,031.00",
+    "clauses": [
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "All intellectual property created under this contract vests solely in the Client."
+    ],
+    "penalty_clause": "Service level breaches exceeding 99.0% uptime SLA incur a credit of 10% of monthly fees.",
+    "subject": "Fwd: Invoice #INV-189 \u2014 Action Required",
+    "filename": "scan_189.jpg",
+    "ext": "jpg"
+  },
+  {
+    "seed_id": 190,
+    "doc_type": "scanned_invoice",
+    "title": "Scanned Invoice #190",
+    "vendor": "Summit Audit Partners",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0190",
+    "effective_date": "2025-05-03",
+    "expiry_date": "2027-06-03",
+    "amount": "$34,555.00",
+    "clauses": [
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "All intellectual property created under this contract vests solely in the Client."
+    ],
+    "penalty_clause": "Service level breaches exceeding 99.0% uptime SLA incur a credit of 10% of monthly fees.",
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "scan_190.jpg",
+    "ext": "jpg"
+  },
+  {
+    "seed_id": 191,
+    "doc_type": "scanned_invoice",
+    "title": "Scanned Invoice #191",
+    "vendor": "Acme Legal LLC",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0191",
+    "effective_date": "2025-03-09",
+    "expiry_date": "2027-05-18",
+    "amount": "$115,326.00",
+    "clauses": [
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Either party may terminate this agreement with sixty (60) days written notice."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "scan_191.jpg",
+    "ext": "jpg"
+  },
+  {
+    "seed_id": 192,
+    "doc_type": "scanned_invoice",
+    "title": "Scanned Invoice #192",
+    "vendor": "Pinnacle Finance Corp",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0192",
+    "effective_date": "2025-01-21",
+    "expiry_date": "2026-03-21",
+    "amount": "$137,804.00",
+    "clauses": [
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "All intellectual property created under this contract vests solely in the Client."
+    ],
+    "penalty_clause": null,
+    "subject": "Follow-up: Statement of Work #192",
+    "filename": "scan_192.jpg",
+    "ext": "jpg"
+  },
+  {
+    "seed_id": 193,
+    "doc_type": "scanned_invoice",
+    "title": "Scanned Invoice #193",
+    "vendor": "Pinnacle Finance Corp",
+    "client": "Blue Ridge Partners",
+    "invoice_no": "INV-0193",
+    "effective_date": "2025-11-12",
+    "expiry_date": "2026-04-24",
+    "amount": "$26,914.00",
+    "clauses": [
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance.",
+      "This agreement shall be governed by the laws of the State of Delaware."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Urgent: Payment Overdue \u2014 Account 193",
+    "filename": "scan_193.jpg",
+    "ext": "jpg"
+  },
+  {
+    "seed_id": 194,
+    "doc_type": "scanned_invoice",
+    "title": "Scanned Invoice #194",
+    "vendor": "Meridian Capital Ltd",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0194",
+    "effective_date": "2025-11-29",
+    "expiry_date": "2026-02-10",
+    "amount": "$188,153.00",
+    "clauses": [
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A."
+    ],
+    "penalty_clause": "A penalty of $5,000 per day shall apply for delivery delays exceeding five business days.",
+    "subject": "Follow-up: Statement of Work #194",
+    "filename": "scan_194.jpg",
+    "ext": "jpg"
+  },
+  {
+    "seed_id": 195,
+    "doc_type": "scanned_invoice",
+    "title": "Scanned Invoice #195",
+    "vendor": "Pinnacle Finance Corp",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0195",
+    "effective_date": "2025-01-29",
+    "expiry_date": "2027-04-18",
+    "amount": "$199,430.00",
+    "clauses": [
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "The parties agree that all disputes shall be resolved through binding arbitration.",
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Vendor warrants that deliverables conform to the specifications in Schedule A."
+    ],
+    "penalty_clause": "Service level breaches exceeding 99.0% uptime SLA incur a credit of 10% of monthly fees.",
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "scan_195.jpg",
+    "ext": "jpg"
+  },
+  {
+    "seed_id": 196,
+    "doc_type": "scanned_invoice",
+    "title": "Scanned Invoice #196",
+    "vendor": "Briarwood Associates",
+    "client": "ClearPath Holdings",
+    "invoice_no": "INV-0196",
+    "effective_date": "2025-09-25",
+    "expiry_date": "2027-04-22",
+    "amount": "$48,768.00",
+    "clauses": [
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "All intellectual property created under this contract vests solely in the Client.",
+      "This agreement shall be governed by the laws of the State of Delaware."
+    ],
+    "penalty_clause": "Service level breaches exceeding 99.0% uptime SLA incur a credit of 10% of monthly fees.",
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "scan_196.jpg",
+    "ext": "jpg"
+  },
+  {
+    "seed_id": 197,
+    "doc_type": "scanned_invoice",
+    "title": "Scanned Invoice #197",
+    "vendor": "Acme Legal LLC",
+    "client": "Redstone Enterprises",
+    "invoice_no": "INV-0197",
+    "effective_date": "2025-05-20",
+    "expiry_date": "2027-01-19",
+    "amount": "$73,930.00",
+    "clauses": [
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "Either party may terminate this agreement with sixty (60) days written notice.",
+      "Neither party shall be liable for indirect or consequential damages.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance."
+    ],
+    "penalty_clause": "Failure to comply with data security requirements results in a $25,000 penalty.",
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "scan_197.jpg",
+    "ext": "jpg"
+  },
+  {
+    "seed_id": 198,
+    "doc_type": "scanned_invoice",
+    "title": "Scanned Invoice #198",
+    "vendor": "Axiom Legal LLP",
+    "client": "Ironwood Investments",
+    "invoice_no": "INV-0198",
+    "effective_date": "2025-03-22",
+    "expiry_date": "2026-05-09",
+    "amount": "$239,427.00",
+    "clauses": [
+      "Vendor warrants that deliverables conform to the specifications in Schedule A.",
+      "This agreement shall be governed by the laws of the State of Delaware.",
+      "All intellectual property created under this contract vests solely in the Client.",
+      "Late payments shall accrue interest at 1.5% per month on the outstanding balance."
+    ],
+    "penalty_clause": null,
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "scan_198.jpg",
+    "ext": "jpg"
+  },
+  {
+    "seed_id": 199,
+    "doc_type": "scanned_invoice",
+    "title": "Scanned Invoice #199",
+    "vendor": "Acme Legal LLC",
+    "client": "GlobalTech Inc.",
+    "invoice_no": "INV-0199",
+    "effective_date": "2025-08-30",
+    "expiry_date": "2027-01-19",
+    "amount": "$246,231.00",
+    "clauses": [
+      "Client shall pay invoices within thirty (30) days of receipt.",
+      "Neither party shall be liable for indirect or consequential damages."
+    ],
+    "penalty_clause": null,
+    "subject": "Re: Contract Renewal - Q2 2026",
+    "filename": "scan_199.jpg",
+    "ext": "jpg"
+  },
+  {
+    "seed_id": 200,
+    "doc_type": "scanned_invoice",
+    "title": "Scanned Invoice #200",
+    "vendor": "Summit Audit Partners",
+    "client": "NovaBio Systems",
+    "invoice_no": "INV-0200",
+    "effective_date": "2025-08-02",
+    "expiry_date": "2026-10-08",
+    "amount": "$221,530.00",
+    "clauses": [
+      "All intellectual property created under this contract vests solely in the Client.",
+      "The parties agree that all disputes shall be resolved through binding arbitration."
+    ],
+    "penalty_clause": null,
+    "subject": "Urgent: Payment Overdue \u2014 Account 200",
+    "filename": "scan_200.jpg",
+    "ext": "jpg"
+  }
+]

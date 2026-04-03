@@ -1,0 +1,16 @@
+[project]
+name = "aliv-workers"
+version = "0.1.0"
+description = "ALIV local parsing, OCR, extraction, and embedding workers"
+requires-python = ">=3.11"
+dependencies = [
+	"pymupdf>=1.24.0",
+	"python-docx>=1.1.0",
+	"sentence-transformers>=3.0.0",
+	"pytesseract>=0.3.10",
+	"Pillow>=10.0.0",
+]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"

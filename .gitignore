@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Rust
+src-tauri/target/
+
+# Node
+node_modules/
+dist/
+
+# Local app data
+.aliv/
+.aliv-bench/
+logs/*.json
+logs/*.log
+benchmarks/results/full_suite_*.json
+benchmarks/runs/*
+!benchmarks/runs/.gitkeep
+benchmarks/reports/*
+!benchmarks/reports/.gitkeep
+
+# Editors
+.vscode/
+.DS_Store
+Thumbs.db
