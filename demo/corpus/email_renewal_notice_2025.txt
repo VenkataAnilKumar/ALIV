@@ -1,0 +1,33 @@
+FROM: contracts@acme-commercial.example.com
+TO: legal@redstone-enterprises.example.com
+DATE: 2025-11-15
+SUBJECT: Renewal Notice — Commercial Lease Agreement — 400 Harbor Blvd Suite 12
+
+Dear Redstone Enterprises Legal Team,
+
+This is a formal renewal notice regarding your current lease at 400 Harbor Boulevard,
+Suite 12, San Francisco, CA 94105 under our Lease Agreement effective March 1, 2025.
+
+Your current lease expires on March 1, 2026. As per Section 3 of the Agreement,
+your renewal option must be exercised in writing no later than January 1, 2026.
+
+If we do not receive written confirmation of renewal by January 1, 2026, we will
+begin marketing the premises for new tenants. Holdover occupancy after March 1, 2026
+will trigger the penalty provisions in Section 5 of your Agreement ($2,800/day).
+
+To exercise your renewal option, please respond in writing to this email or send
+a signed renewal addendum to our legal department at:
+  Acme Commercial Properties LLC
+  Legal Department
+  888 Market Street, Floor 22
+  San Francisco, CA 94102
+
+We value our relationship with Redstone Enterprises and look forward to continuing
+our tenancy arrangement.
+
+Best regards,
+Claire Donovan
+Director of Leasing
+Acme Commercial Properties LLC
+contracts@acme-commercial.example.com
++1 (415) 555-0192

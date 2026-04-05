@@ -1,0 +1,46 @@
+MUTUAL NON-DISCLOSURE AGREEMENT
+
+Document Type: NDA
+Vendor / Disclosing Party: Axiom Legal LLP
+Client / Receiving Party: Meridian Capital Partners
+Effective Date: 2025-07-15
+Expiry Date: 2026-07-15
+
+--- TERMS ---
+
+1. PURPOSE
+   This Mutual Non-Disclosure Agreement ("Agreement") is entered into between
+   Axiom Legal LLP ("Disclosing Party") and Meridian Capital Partners ("Receiving Party")
+   for the purpose of evaluating a potential business engagement related to
+   financial due diligence services.
+
+2. CONFIDENTIAL INFORMATION
+   "Confidential Information" includes all non-public financial data, client lists,
+   deal structures, strategic plans, proprietary methodologies, and legal analyses
+   shared between the parties during the evaluation period.
+
+3. OBLIGATIONS
+   The Receiving Party agrees to:
+   a) Hold all Confidential Information in strict confidence.
+   b) Not disclose any Confidential Information to third parties without prior written consent.
+   c) Use Confidential Information solely for the stated purpose of this Agreement.
+
+4. TERM
+   This Agreement is effective from July 15, 2025 and shall remain in effect until July 15, 2026,
+   unless terminated earlier by mutual written agreement.
+
+5. PENALTY CLAUSE
+   Unauthorized disclosure of Confidential Information shall entitle the Disclosing Party to
+   seek injunctive relief and liquidated damages of $50,000 per breach, in addition to any
+   actual damages proven in a court of competent jurisdiction.
+
+6. GOVERNING LAW
+   This Agreement is governed by the laws of the State of New York.
+
+7. RETURN OF INFORMATION
+   Upon termination, all Confidential Information and copies must be returned or destroyed
+   within 10 business days. Receiving Party must certify destruction in writing.
+
+Signed:
+  Axiom Legal LLP:            ____________________   Date: 2025-07-14
+  Meridian Capital Partners:  ____________________   Date: 2025-07-14

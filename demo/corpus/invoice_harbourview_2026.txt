@@ -1,0 +1,38 @@
+INVOICE
+
+Document Type: Invoice
+Vendor: Harbourview IT Services Ltd.
+Client: Redstone Enterprises Inc.
+Invoice Number: INV-2026-00341
+Invoice Date: 2026-02-01
+Due Date: 2026-03-01
+Amount Due: $14,750.00 USD
+
+--- LINE ITEMS ---
+
+1. Cloud infrastructure audit and remediation report     $6,500.00
+2. Security penetration testing (Q4 2025 scope)          $5,250.00
+3. Staff training — data handling compliance (4 sessions) $3,000.00
+                                             Subtotal:   $14,750.00
+                                             Tax (0%):       $0.00
+                                             TOTAL DUE:  $14,750.00
+
+--- PAYMENT TERMS ---
+
+Payment is due within 30 days of invoice date (by March 1, 2026).
+Late payments accrue interest at 2% per month on the outstanding balance.
+
+A service level breach on any remediation deliverable exceeding the agreed 99.0% uptime SLA
+shall entitle Redstone Enterprises to a credit of 10% of the monthly service fee for the
+affected month.
+
+Payment methods accepted: Bank transfer (see attached banking details), ACH, wire transfer.
+Please reference Invoice Number INV-2026-00341 on all remittances.
+
+--- NOTES ---
+
+This invoice covers services rendered under the Master Services Agreement dated 2025-09-01
+between Harbourview IT Services Ltd. and Redstone Enterprises Inc.
+
+Vendor Contact: billing@harbourview-it.example.com
+Client PO Reference: PO-2026-RES-0088

@@ -1,0 +1,41 @@
+COMMERCIAL LEASE AGREEMENT
+
+Document Type: Lease Agreement
+Vendor / Landlord: Acme Commercial Properties LLC
+Client / Tenant: Redstone Enterprises Inc.
+Effective Date: 2025-03-01
+Expiry Date: 2026-03-01
+
+--- TERMS ---
+
+1. PREMISES
+   Acme Commercial Properties LLC ("Landlord") hereby leases to Redstone Enterprises Inc.
+   ("Tenant") the premises located at 400 Harbor Boulevard, Suite 12, San Francisco, CA 94105.
+
+2. TERM
+   The lease term commences on March 1, 2025 and expires on March 1, 2026.
+   Tenant must provide written notice of renewal no later than 60 days prior to expiry.
+
+3. RENEWAL
+   Tenant has one option to renew for an additional 12-month term at the then-current market rate,
+   subject to Landlord approval. Renewal notice must be delivered in writing by January 1, 2026.
+
+4. RENT
+   Monthly base rent: $8,400 USD, payable on the first of each month.
+   Late payment fee: 1.5% of outstanding balance per month.
+
+5. PENALTY CLAUSE
+   Failure to vacate the premises within 5 business days after lease expiry shall result in a
+   holdover penalty of $2,800 per day until the premises are fully vacated and keys returned.
+
+6. TERMINATION
+   Either party may terminate with 60 days written notice. Early termination by Tenant triggers
+   a fee equal to 2 months' base rent ($16,800).
+
+7. CONFIDENTIALITY
+   The financial terms of this agreement are confidential and shall not be disclosed to any
+   third party without written consent of both parties.
+
+Signed:
+  Landlord: ____________________   Date: 2025-02-28
+  Tenant:   ____________________   Date: 2025-02-28

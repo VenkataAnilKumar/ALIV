@@ -1,0 +1,48 @@
+MASTER SERVICES AGREEMENT
+
+Document Type: Service Agreement
+Vendor: Delta Advisory Group
+Client / Counterparty: Pinnacle Fund Management LLC
+Effective Date: 2025-01-10
+Expiry Date: 2025-12-31
+
+--- TERMS ---
+
+1. SERVICES
+   Delta Advisory Group ("Advisor") agrees to provide fund performance analytics,
+   regulatory compliance reporting, and investor relations support to Pinnacle Fund
+   Management LLC ("Client") throughout the term of this Agreement.
+
+2. TERM
+   This Agreement commences January 10, 2025 and expires December 31, 2025.
+   Either party must provide 90 days written notice to renew for a subsequent term.
+
+3. FEES
+   Monthly retainer: $22,000 USD. Billed on the 1st of each month.
+   Ad hoc advisory work billed at $450/hour, pre-approved in writing by Client.
+
+4. PENALTY CLAUSE
+   A penalty of $5,000 per day shall apply for delivery delays on quarterly compliance
+   reports exceeding five business days beyond the agreed submission deadline.
+   Cumulative penalties shall not exceed $60,000 per calendar quarter.
+
+5. INTELLECTUAL PROPERTY
+   All deliverables produced under this Agreement are work-for-hire and become the
+   exclusive property of Pinnacle Fund Management LLC upon full payment.
+
+6. LIMITATION OF LIABILITY
+   Advisor's total liability under this Agreement shall not exceed the fees paid in the
+   three months immediately preceding the event giving rise to the claim.
+
+7. DISPUTE RESOLUTION
+   Disputes shall be resolved by binding arbitration in the State of Delaware under
+   the rules of the American Arbitration Association.
+
+8. CONFIDENTIALITY
+   All fund performance data, investor information, and portfolio strategies shared
+   under this Agreement are strictly confidential and subject to the separate NDA
+   executed between the parties on December 15, 2024.
+
+Signed:
+  Delta Advisory Group:             ____________________   Date: 2025-01-09
+  Pinnacle Fund Management LLC:     ____________________   Date: 2025-01-09
