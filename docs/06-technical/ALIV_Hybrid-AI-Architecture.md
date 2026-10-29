@@ -209,6 +209,17 @@ The full schema is in the [Data Model](ALIV_Data-Model.md).
 | Keys are protected | OS keychain; never serialised to the web layer |
 | No side door out of a matter | Web search, MCP tools and skill scripts pass the same policy, redaction and audit as model calls (§7b) |
 
+## 9b. Observability, injection defence and provider controls
+
+- **Tracing:** the gateway emits OpenTelemetry spans for every model and tool call (route, model, tokens, latency, outcome, never content), following the GenAI semantic conventions. Those conventions are still in *Development* status in 2026, so ALIV pins one version and maps attributes in one place. Export is opt-in (OTLP), as in the base app.
+- **Prompt-injection defence:**
+  - document text is always passed as quoted data, never as instructions;
+  - tool calls are checked against the step's allowed tools;
+  - side-effecting tools need approval;
+  - a local classifier flags likely injected instructions in retrieved passages and shows them in the run log.
+- **Provider controls:** a matter (or firm) can require **zero-data-retention** providers only and pin a **region** (EU / US endpoints); calls that can't meet the requirement are refused and logged.
+- **Durable runs:** agent runs are event-sourced (each step's inputs, route and output appended), so a run can resume, replay for evaluation, or be audited step by step.
+
 ## 10. Testing
 
 - **Gateway policy matrix:** every step type × policy × route, asserting refusal or allowance and the audit entry.

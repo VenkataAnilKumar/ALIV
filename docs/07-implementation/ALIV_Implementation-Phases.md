@@ -42,6 +42,7 @@
 
 | # | Work | Feature IDs | Exit criteria |
 |---|---|---|---|
+| 1.0 | **Workspace:** root Cargo workspace; `crates/aliv-gateway`; move the vault to `crates/aliv-vault`; generated TS types; eval harness with retrieval and redaction sets | EVAL-01/02/04 | Builds and tests unchanged after the move; eval gate runs in CI |
 | 1.1 | **Gateway core:** `ModelRequest`, provider adapters (llama.cpp, OpenAI-compatible, Anthropic), streaming over IPC, reusing the core's provider proxy and keychain storage | GW-01/03/04 | Ask runs end to end through the gateway; no provider call or key left in the web layer (CI check) |
 | 1.2 | **Policy and audit in the gateway:** refusal, `model_calls` table, audit entry per call | GW-02/05, AUD-06 | Policy-matrix test passes for every step type |
 | 1.3 | **Router:** step types, default routing, matter overrides, route shown in Ask | RTR-01/02/04 | Local only never routes to cloud; Hybrid routes per the table in the Hybrid AI Architecture |
@@ -73,6 +74,7 @@
 | 2.8 | **Ingestion at scale:** .pst/.mbox archives; 10k-document matters with pause and resume | ING-06/07 | Enron-style public mailbox sample ingests with thread metadata |
 | 2.9 | **Artifacts:** store, versions, diff, Artifacts tab, sandboxed HTML, export, output folder | ART-01–07, WS-04 | Every workflow output is an artifact with citations, run, skills and route |
 | 2.10 | **Global search and skill packs:** ⌘K across matters and types; starter legal and finance skills | SRCH-09/11/12, SKL-06 | Search < 300 ms on the demo corpus; each starter skill has a golden-output test |
+| 2.11 | **Document-AI upgrade:** layout-aware parsing, structure-aware chunks with context lines, local reranker, schema-constrained extraction, ANN decision | ING-10/11, SRCH-13/14, REG-09, EVAL-03/05 | Retrieval recall@10 and field accuracy improve on the eval sets vs R0 |
 
 **Phase exit:** a pilot firm runs a due-diligence matter end to end (ingest → review table → issues list → memo) without leaving ALIV.
 

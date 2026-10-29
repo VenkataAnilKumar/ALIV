@@ -16,8 +16,8 @@
 
 | Sprint | PRs | Demo |
 |---|---|---|
-| **S1** | 1.1a Gateway module skeleton (on the existing `core/server/proxy.rs`): `ModelRequest`, `Route`, llama.cpp adapter, IPC streaming · 1.1b Ask uses the gateway for local models | Ask runs through the gateway locally |
-| **S2** | 1.1c OpenAI-compatible and Anthropic adapters using the existing keychain storage · 1.1d CI check: no provider URLs or keys in `web-app` · 1.2 `model_calls` table, policy check moved into the gateway, audit per call | Hybrid matter asks a cloud model via the gateway; Local only refused |
+| **S1** | 1.0a Root Cargo workspace · 1.1a Gateway crate `crates/aliv-gateway` (on the existing `core/server/proxy.rs`): `ModelRequest`, `Route`, llama.cpp adapter, IPC streaming · 1.1b Ask uses the gateway for local models | Ask runs through the gateway locally |
+| **S2** | 1.0b Move the vault to `crates/aliv-vault` (plugin becomes a wrapper) · 1.0c Generated TS types · 1.0d Eval harness with retrieval and redaction sets in CI · 1.1c OpenAI-compatible and Anthropic adapters using the existing keychain storage · 1.1d CI check: no provider URLs or keys in `web-app` · 1.2 `model_calls` table, policy check moved into the gateway, audit per call | Hybrid matter asks a cloud model via the gateway; Local only refused |
 | **S3** | 1.3a Step types and default routes · 1.3b Matter settings UI (W-12), RoutePill · 1.4a Entity store from the register, regex detectors | Route shown before and after each call |
 | **S4** | 1.4b Local NER, placeholders and restore · 1.4c RedactionPreview (W-8) · 1.4d Redaction recall benchmark in CI (≥ 98%) · 1.5 Spend limits, fallback, hardware-aware model choice | Preview shows exactly what leaves; recall gate green |
 | **S5** | 1.6 Matter workspace: matter chats, instructions, linked folders, convert chat projects · 1.7 Web search and MCP through the gateway, trust levels, allow-lists, tool approvals · 1.8 Skills per matter, review dialog, sandboxed scripts, audit · desktop Admin › AI policy (W-13) · `security.md` update | No side doors: policy-matrix test covers chat, web search, MCP and skill scripts |
@@ -33,7 +33,7 @@
 | **S10** | 2.4a Workflows library UI and RunLog · 2.4b Summarise, chronology, compare (CMP-01) · 2.4c DOCX writer · 2.9 Artifacts store, versions and tab (outputs saved as artifacts) | Chronology saved as a versioned artifact |
 | **S11** | 2.4d Memo, NDA triage, DD issues list, lease abstract · optional steps · golden-output tests | DD issues list from a table |
 | **S12** | 2.5 Playbooks: editor, single and batch runs, tracked-changes DOCX, starter playbooks · 2.6 Clause library and drafting | NDA playbook with redlines opened in Word |
-| **S13** | 2.7 Ask upgrades (@-mentions, suggestions, save, follow-ups, uncited marks) · 2.8 PST/MBOX, 10k-document ingestion with resume · 2.10 Global search and starter skill packs · pilot hardening | Pilot DD matter end to end |
+| **S13** | 2.7 Ask upgrades (@-mentions, suggestions, save, follow-ups, uncited marks) · 2.8 PST/MBOX, 10k-document ingestion with resume · 2.10 Global search and starter skill packs · 2.11 Document-AI upgrade (layout parsing, structure-aware chunks, reranker, constrained extraction) · pilot hardening | Pilot DD matter end to end |
 
 ## Phase 3: Agents (R3), sprints 14–19
 

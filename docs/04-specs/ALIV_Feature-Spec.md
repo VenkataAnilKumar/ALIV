@@ -50,6 +50,7 @@ Nothing calls a provider directly.
 | [FS-26] Automation | AUTO | R3 | Planned |
 | [FS-27] Matter Workspace | WS | R1 → R3 | Planned |
 | [FS-28] Skills & Plugins | SKL | R1 → R4 | Partly in base app |
+| [FS-29] Evaluation | EVAL | R1 → R2 | Planned |
 
 ---
 
@@ -86,6 +87,8 @@ Nothing calls a provider directly.
 | ING-07 | Large-matter ingestion: 10,000+ documents with progress, pause and resume (cf. CoCounsel bulk review) | P1 | R2 |
 | ING-08 | Watch folders: new or changed files are ingested automatically (feeds FS-17) | P1 | R3 |
 | ING-09 | Duplicate and near-duplicate detection across a matter | P2 | R3 |
+| ING-10 | **Layout-aware parsing** with a local document model (headings, clauses, tables, signatures, scanned forms); Tesseract stays the fallback. Candidates: Docling / Granite-Docling, olmOCR, chosen by benchmark | P1 | R2 |
+| ING-11 | **Structure-aware chunking:** passages follow clauses, sections and schedules, each with a short context line (document, section, parties) added before embedding | P1 | R2 |
 
 **Edge cases:**
 - **Password-protected files:** skipped with "protected".
@@ -114,6 +117,8 @@ Nothing calls a provider directly.
 | SRCH-10 | **Web search** (existing `tauri-plugin-websearch`) runs only through the gateway: blocked on Local only matters; on Hybrid, the query is shown, redacted and audited before it is sent | P0 | R1 |
 | SRCH-11 | Search tiers are always labelled: *this matter* (local), *firm knowledge* (FS-18), *web / research* (FS-22) | P1 | R2 |
 | SRCH-12 | Web results used in an answer are cited with their URL and fetch date, and never written into the matter's index unless the user saves them | P1 | R2 |
+| SRCH-13 | **Local reranker** over the fused candidates (via llama.cpp rerank; candidates: Qwen3-Reranker, bge-reranker-v2-m3), chosen by the eval harness | P1 | R2 |
+| SRCH-14 | Embedded **ANN index** when exact search exceeds the latency budget; LanceDB and sqlite-vec benchmarked before choosing (sqlite-vec is pre-v1) | P2 | R2 (decision) |
 
 ---
 
@@ -131,6 +136,7 @@ Nothing calls a provider directly.
 | REG-06 | Users correct a value; the correction is kept across re-ingestion and audited | P1 | R2 |
 | REG-07 | Model-assisted second pass for fields the rules left empty, always cited | P1 | R2 (as Review Table columns) |
 | REG-08 | XLSX export | P1 | R2 |
+| REG-09 | **Schema-constrained output** (JSON schema / grammar decoding) for every model-extracted field and review-table cell, so values always parse and carry a citation slot | P0 | R2 |
 
 ---
 
@@ -503,6 +509,21 @@ FS-17 Monitors become built-in automation templates.
 | SKL-09 | Shared through Firm Server or a firm git repository (plugins); optional signing of firm skills | P1 | R4 |
 
 **Relation to other modules:** a *skill* is how to do something; a *playbook* (FS-13) is structured positions to check against; a *workflow* or *agent* (FS-12, FS-16) is ordered steps; a *knowledge base* (FS-18) is documents to cite.
+
+---
+
+## [FS-29] Evaluation (R1 → R2)
+
+**Purpose:** measure quality continuously, so model, prompt, skill and retrieval changes can't silently make answers worse.
+
+| ID | Requirement | Priority | Release |
+|---|---|---|---|
+| EVAL-01 | Labelled sets in `evals/`: retrieval (question → right passages), extraction (fields), review-table cells, redaction (entities), workflow golden outputs | P0 | R1 |
+| EVAL-02 | Metrics: retrieval recall@k and MRR; field accuracy; citation faithfulness (does the cited passage support the statement); redaction recall | P0 | R1 |
+| EVAL-03 | LLM-as-judge for open-ended outputs, calibrated against human labels; judge model and prompt versioned | P1 | R2 |
+| EVAL-04 | CI gate: a change that lowers a tracked metric beyond its threshold fails the build | P0 | R1 (redaction, retrieval) · R2 (all) |
+| EVAL-05 | Eval reports per model and hardware tier, used by the router's defaults (RTR-05) | P1 | R2 |
+| EVAL-06 | Firms can run the harness on their own anonymised documents, locally | P2 | R3 |
 
 ---
 

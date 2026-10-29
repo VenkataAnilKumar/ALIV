@@ -32,7 +32,10 @@
 
 ## Phase 1: Hybrid foundation (R1)
 
-- [ ] Gateway crate; llama.cpp, OpenAI-compatible and Anthropic adapters; streaming (GW-01/03/04)
+- [ ] Root Cargo workspace; vault moved to `crates/aliv-vault`; generated TS types
+- [ ] Eval harness with retrieval and redaction sets; CI gate (EVAL-01/02/04)
+- [ ] OpenTelemetry GenAI spans from the gateway (pinned version); prompt-injection checks; ZDR-only and region-pinning options
+- [ ] Gateway crate (`crates/aliv-gateway`); llama.cpp, OpenAI-compatible and Anthropic adapters; streaming (GW-01/03/04)
 - [ ] Provider keys used only by the gateway (they are already stored in the OS keychain by `provider_secrets.rs`)
 - [ ] CI check: no provider URLs or keys in `web-app`
 - [ ] Policy check and audit in the gateway; `model_calls` table (GW-02/05, AUD-06)
@@ -67,6 +70,9 @@
 - [ ] Audit trail export, PDF and JSON (AUD-05)
 - [ ] Artifacts: store, versions, diff, tab, sandboxed HTML, export, output folder (ART-01–07, WS-04)
 - [ ] Global search across matters and types (SRCH-09/11/12)
+- [ ] Layout-aware parsing and structure-aware chunks (ING-10/11)
+- [ ] Local reranker; ANN index decision by benchmark (SRCH-13/14)
+- [ ] Schema-constrained extraction (REG-09); LLM-as-judge calibrated (EVAL-03/05)
 - [ ] Starter legal and finance skill packs with golden-output tests (SKL-06)
 - [ ] **Exit:** a pilot DD matter end to end inside ALIV
 

@@ -83,22 +83,61 @@ docs/
 └─ archive/                  History: superseded docs and the legacy app
 ```
 
-## 4. Where new code goes (R1–R4)
+## 4. Target structure (from Sprint 1)
+
+The current layout works for one desktop app. Before R4 adds a server, an admin console and a Word add-in, shared code moves out of `apps/desktop` so every app can use it:
+
+```
+ALIV/
+├─ Cargo.toml                 Rust workspace: all crates and app shells, shared dependency versions
+├─ package.json               Yarn workspace: all apps and packages
+├─ crates/                    shared Rust domain, used by desktop and server
+│  ├─ aliv-vault/             store, ingest, search, register, audit       (moved from the plugin, S2)
+│  ├─ aliv-gateway/           policy, routing, redaction, adapters, tool governance   (new, S1)
+│  ├─ aliv-agents/            runtime, tables, workflows, automation        (R2–R3)
+│  ├─ aliv-docgen/            DOCX, XLSX, PDF                               (R2)
+│  ├─ aliv-mcp/               trust levels, allow-lists, ALIV MCP server    (R1 / R4)
+│  └─ aliv-connectors/        DMS, SharePoint, mail                         (R3)
+├─ apps/
+│  ├─ desktop/                Tauri shell + web-app; plugins are thin wrappers over crates/
+│  ├─ server/                 Firm Server (R4, axum)
+│  ├─ admin-console/          web admin (R4)
+│  └─ word-addin/             Office.js (R4)
+├─ packages/
+│  ├─ ui/                     design system: tokens, pills, ReviewGrid…    (R2)
+│  └─ types/                  TypeScript types generated from Rust (specta / ts-rs)
+├─ evals/                     labelled sets and the eval harness (FS-29)
+├─ benchmarks/  demo/  docs/
+└─ .github/                   CI per area (path filters) and CODEOWNERS
+```
+
+**Migration, in small PRs:**
+1. **S1:** root Cargo workspace; the gateway is created directly as `crates/aliv-gateway`.
+2. **S2:** move the vault plugin's domain code to `crates/aliv-vault`; `tauri-plugin-aliv-vault` keeps only the Tauri commands (the vault crate already has `tauri` as an optional dependency). The vault's tests and CI job move with it.
+3. **R2:** `packages/ui` and generated `packages/types` once a second UI exists; one lockfile per language at the root.
+4. **R4:** `apps/server`, `apps/admin-console` and `apps/word-addin` slot in without restructuring.
+
+**Base-app code** (mobile configs, `mlx-server`, `adk`, `examples`, `extensions`) stays in `apps/desktop` and is marked upstream-owned in `CODEOWNERS`, so ALIV code and upstream code stay easy to tell apart.
+
+## 5. Where new code goes (R1–R4)
 
 | Feature | Rust | Web |
 |---|---|---|
-| Model gateway, router, redaction (R1) | `src-tauri/src/core/gateway/`, building on the existing `core/server/proxy.rs` and `provider_secrets.rs`; split into a crate once the Firm Server needs it | `web-app/src/aliv/gateway.ts` (thin client); RoutePill, RedactionPreview in `aliv/components/` |
-| Agent runtime, tables, workflows (R2) | `src-tauri/crates/aliv-agents` using the vault crate | `aliv/tables/`, `aliv/workflows/`, `aliv/library/` |
-| Document writers (R2) | `src-tauri/crates/aliv-docgen` (DOCX, XLSX, PDF) | — |
+| Model gateway, router, redaction (R1) | `crates/aliv-gateway`, building on the existing `core/server/proxy.rs` and `provider_secrets.rs` | `web-app/src/aliv/gateway.ts` (thin client); RoutePill, RedactionPreview in `aliv/components/` |
+| Agent runtime, tables, workflows (R2) | `crates/aliv-agents` using `aliv-vault` | `aliv/tables/`, `aliv/workflows/`, `aliv/library/` |
+| Document writers (R2) | `crates/aliv-docgen` (DOCX, XLSX, PDF) | — |
 | Monitors and automation (R3) | `aliv-agents::scheduler` | `aliv/inbox/`, `aliv/automations/` |
-| Matter workspace, chats (R1) | vault plugin (new tables) + gateway | `aliv/workspace/`, `aliv/chats/` (replaces base-app `routes/project` for matter work) |
-| Skills, MCP and web-search governance (R1) | `core/agent/skills.rs`, `core/mcp`, `tauri-plugin-websearch`, called only via `core/gateway/` | `aliv/settings/skills-tools/` |
-| Artifacts (R2) | vault plugin + `aliv-docgen` | `aliv/artifacts/` (reuses base-app `HtmlArtifact` in a sandbox) |
-| Connectors (R3) | `src-tauri/src/core/connectors/` | `aliv/connections/` |
-| Firm Server (R4) | `apps/server/` (axum) reusing the vault and agents crates | Desktop gains a server-backed `service` implementation |
-| Word add-in (R4) | — | `apps/word-addin/` (Office.js) |
+| Matter workspace, chats (R1) | `aliv-vault` (new tables) + gateway | `aliv/workspace/`, `aliv/chats/` (replaces base-app `routes/project` for matter work) |
+| Skills, MCP and web-search governance (R1) | `crates/aliv-mcp` and `aliv-gateway`, wrapping `core/agent/skills.rs`, `core/mcp` and `tauri-plugin-websearch` | `aliv/settings/skills-tools/` |
+| Artifacts (R2) | `aliv-vault` + `aliv-docgen` | `aliv/artifacts/` (reuses base-app `HtmlArtifact` in a sandbox) |
+| Connectors (R3) | `crates/aliv-connectors` | `aliv/connections/` |
+| Evaluation (R1–R2) | `evals/` harness (Rust runner + labelled sets) | — |
+| Firm Server (R4) | `apps/server/` (axum) using the same crates | Desktop gains a server-backed `service` implementation |
+| Word add-in (R4) | — | `apps/word-addin/` (Office.js), shares `packages/ui` and `packages/types` |
 
 **Rules:**
 - feature code stays under `aliv/`, not mixed into the base app's folders;
+- domain logic lives in `crates/`; app shells only wire it up;
 - each new crate has unit tests plus a CI matrix entry;
+- TypeScript types for IPC are generated from Rust, never hand-copied;
 - each new IPC command is added to permissions and to `tests/ipc.rs`.
