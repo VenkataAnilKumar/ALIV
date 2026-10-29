@@ -45,7 +45,8 @@ App shell (left sidebar from the base app)
 | Counters | Deadlines in 30 days, waiting for you, running now, model calls this month with the share run locally |
 | Upcoming deadlines | All matters, 90 days, DaysPill; Open jumps to the clause |
 | Waiting for you | Approvals, inbox items (R3), cells needing review (R2) |
-| Running | Tables and workflows with progress; click opens the run log |
+| Running | Tables, workflows and scheduled automations with progress; click opens the run log |
+| Recent artifacts | Latest versioned outputs across matters (R2) |
 | Sidebar | Pinned matters with their policy icon |
 
 **Matters** (shipped) lists every matter and is the landing screen until Home ships.
@@ -156,16 +157,16 @@ Entries: time, kind, summary, expandable detail. Verify integrity → success or
 
 | Screen | Behaviour | IDs |
 |---|---|---|
-| **Matter settings › Workspace** (R1) | Matter instructions (client, our side, objectives, house style); linked source folders with last-scan time and Re-scan; output folder (R2) | WS-02/03/04 |
+| **Matter settings › Workspace** (R1) · [mockup](../assets/mockups/workspace-settings.png) | Matter instructions (client, our side, objectives, house style); linked source folders with last-scan time and Re-scan; output folder (R2) | WS-02/03/04 |
 | **Matter settings › Skills & tools** (R1) | Enabled skills with trust badge (built-in, firm, personal, third-party) and version; allowed MCP servers with trust level; web search on/off (Hybrid only) | WS-06, SKL-01/02, MCP-02, SRCH-10 |
 | **Chats tab** (R1) | Threads inside the matter; each message shows its RoutePill and the skills used; `/` opens enabled skills | WS-01, SKL-01 |
 | **Skill review dialog** (R1) | Full SKILL.md, bundled files and scripts, trust level, source; Enable is disabled for third-party skills on Local only matters | SKL-03/04 |
 | **Approval card for tools and scripts** (R1) | Tool or script name, server or skill, exactly what will be sent or changed; Approve / Reject | MCP-04, SKL-04 |
-| **Artifacts tab** (R2) | Grid or list: type icon, title, version, author, route, skills; open shows the artifact with citations, version history and diff; Export; Save to output folder (proposal) | ART-01–05 |
+| **Artifacts tab** (R2) · [mockup](../assets/mockups/artifacts.png) | Grid or list: type icon, title, version, author, route, skills; open shows the artifact with citations, version history and diff; Export; Save to output folder (proposal) | ART-01–05 |
 | **Global search** (R2) | ⌘K; results grouped by type and labelled by matter and tier (this matter / firm knowledge / web) | SRCH-09/11 |
 | **Connections › Connectors** (R3) | Add iManage, NetDocuments, SharePoint, Drive, Box, Outlook/Gmail; pick workspaces or folders; link to a matter; sync status, last sync, errors | CON-01–06 |
 | **Connections › MCP servers** (R1) | Servers with trust level, tools list, firm allow/block status, test connection | MCP-01/07 |
-| **Automations tab** (R3) | List of automations (trigger, action, last run, next run, on/off); editor: trigger, action (workflow, agent or skill), matter, schedule; run history with retry and pause | AUTO-01–07 |
+| **Automations tab** (R3) · [mockup](../assets/mockups/automations.png) | List of automations (trigger, action, last run, next run, on/off); editor: trigger, action (workflow, agent or skill), matter, schedule; run history with retry and pause | AUTO-01–07 |
 | **Library › Skills** (R1–R3) | My, firm and built-in skills; Import (hub or git plugin); editor; publish with change note (R3); Skill Builder from a chat (R3) | SKL-06–08 |
 
 ## 5b. Admin interface
