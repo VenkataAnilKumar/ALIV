@@ -1,7 +1,7 @@
 # Security & Compliance
 ## Threat model, controls and compliance mapping
 
-**Version:** 1.0 | **Date:** October 29, 2026 | **Status:** Active. Customer-facing summary: [`security.md`](../security.md), which is the source of truth for what is true *today*.
+**Version:** 1.0 | **Date:** October 29, 2026 | **Status:** Active. Customer-facing summary: [`security.md`](../guides/security.md), which is the source of truth for what is true *today*.
 
 ---
 

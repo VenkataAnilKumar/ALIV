@@ -17,7 +17,7 @@
 | — | GA | Release readiness | Signed installers, update server, vault encryption, onboarding | Runs alongside Phases 2–3 |
 
 **Why this order:**
-- **Phase 1 first:** it makes "hybrid" real and safe. Without the gateway and redaction, every cloud-using feature in Phase 2 would widen the gap in [`security.md`](../security.md).
+- **Phase 1 first:** it makes "hybrid" real and safe. Without the gateway and redaction, every cloud-using feature in Phase 2 would widen the gap in [`security.md`](../guides/security.md).
 - **Phase 2 next:** it delivers the features buyers compare against Harvey.
 - **Phases 3–4:** they extend reach once the core is trusted.
 

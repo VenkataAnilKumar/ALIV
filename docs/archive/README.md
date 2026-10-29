@@ -1,9 +1,8 @@
 # Archive
 
-Documents kept for history. They describe the **legacy ALIV app** that lived at the repository root (`src/`, `src-tauri/`, `python/`, `db/`), retired in favour of [`apps/desktop`](../../apps/desktop/README.md). See [`docs/PLAN.md`](../PLAN.md) for the plan.
+Documents kept for history only. **Nothing here describes the current product.** Use the [product documents](../README.md) instead.
 
-Nothing in this folder describes the current product. Don't use it as a reference for how ALIV works today.
-
-| Folder | Contents |
-|---|---|
-| `legacy-app/` | Product document, PRDs, architecture and design notes, phase build guides, hardening reports, demo script and changelog for the legacy app. Its code is in the git history before it was removed |
+| Folder | Contents | Replaced by |
+|---|---|---|
+| [`superseded/`](superseded/) | `PLAN.md` (the completed rebuild plan, steps A–F), `MARKET_RESEARCH.md`, `ALIV_FUTURE_STRATEGY.md`, `CUSTOMER_ONE_PAGER.md` | [Implementation Phases](../07-implementation/ALIV_Implementation-Phases.md), [Competitive Analysis](../03-market/ALIV_Competitive-Analysis.md), [Product Definition](../02-product/ALIV_Product-Definition.md), [Product Overview](../02-product/ALIV_Product-Overview.md) |
+| `legacy-app/` | Product document, PRDs, architecture and design notes, build guides, hardening reports, demo script and changelog for the **legacy ALIV app** that lived at the repository root, retired in favour of [`apps/desktop`](../../apps/desktop/README.md). Its code is in the git history | The whole numbered document set |

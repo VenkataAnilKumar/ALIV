@@ -1,6 +1,6 @@
 # ALIV plan
 
-**Decision:** [`apps/desktop`](../apps/desktop/README.md) is the product. The legacy app that lived at the repository root (`src/`, `src-tauri/`, `python/`) has been retired, after the few things it did that the new app didn't were rebuilt inside the new app. Full product docs are written after that, so they're written once.
+**Decision:** [`apps/desktop`](../../../apps/desktop/README.md) is the product. The legacy app that lived at the repository root (`src/`, `src-tauri/`, `python/`) has been retired, after the few things it did that the new app didn't were rebuilt inside the new app. Full product docs are written after that, so they're written once.
 
 Each step is one pull request into `main`.
 
@@ -22,7 +22,7 @@ Each step is one pull request into `main`.
 | OCR for scanned PDFs and images | `python/workers/ocr_worker.py` (Tesseract) | B: done, `tauri-plugin-aliv-vault/src/ocr.rs` |
 | Meaning-based (embedding) search, fused with keyword search | `python/workers/embedding_worker.py`, `src-tauri/src/core/retrieval.rs` | C: done, `tauri-plugin-aliv-vault/src/semantic.rs` |
 | Document summaries, conversation memory, token budget | `python/workers/summarization_worker.py`, `src-tauri/src/core/memory.rs` | D: done. Summaries are extractive (`extract::summarize`), not model-written; context budget in `web-app/src/aliv/ask.ts`. Conversation memory is covered by the app's chat threads |
-| Diagnostics export and benchmark views | `src/pages/DiagnosticsPage.tsx`, `BenchmarksPage.tsx` | E: done. Vault health report (`vault_diagnostics`); app logs and hardware were already in the new app; benchmarks run from [`benchmarks/`](../benchmarks/README.md) |
+| Diagnostics export and benchmark views | `src/pages/DiagnosticsPage.tsx`, `BenchmarksPage.tsx` | E: done. Vault health report (`vault_diagnostics`); app logs and hardware were already in the new app; benchmarks run from [`benchmarks/`](../../../benchmarks/README.md) |
 
 Already covered by the new app, so nothing to port: field extraction (the register is a superset of the legacy templates), safe file actions with undo, email parsing, workspace and ingestion.
 
@@ -30,4 +30,4 @@ Each capability is rebuilt in Rust inside `tauri-plugin-aliv-vault` rather than 
 
 ## After the plan
 
-Signed installers and an ALIV update server; first-run setup; the cloud gateway that routes and redacts cloud calls; accuracy benchmarks on real contracts; design-partner pilots. See the roadmap in [`apps/desktop/README.md`](../apps/desktop/README.md#roadmap).
+Signed installers and an ALIV update server; first-run setup; the cloud gateway that routes and redacts cloud calls; accuracy benchmarks on real contracts; design-partner pilots. See the roadmap in [`apps/desktop/README.md`](../../../apps/desktop/README.md#roadmap).

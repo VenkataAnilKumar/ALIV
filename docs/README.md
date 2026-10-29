@@ -41,11 +41,18 @@ The product documents run from brand to product, market, specs, design, technica
 
 | Document | For |
 |---|---|
-| [User guide](user-guide.md) | People using ALIV |
-| [Security and privacy](security.md) | A firm's IT or risk team |
-| [Developer guide](developer.md) | Contributors |
-| [Plan (completed)](PLAN.md) | The rebuild of the legacy app into the desktop app (steps A–F, done) |
+| [User guide](guides/user-guide.md) | People using ALIV |
+| [Security and privacy](guides/security.md) | A firm's IT or risk team: what is true today |
+| [Developer guide](guides/developer.md) | Contributors: build, test, CI |
 
-## Background
+## Folder layout
 
-[Market research](MARKET_RESEARCH.md) (Oct 2026 snapshot, partly about the legacy app), [future strategy](ALIV_FUTURE_STRATEGY.md), [customer one-pager](CUSTOMER_ONE_PAGER.md). Legacy-app documents are in [archive/](archive/README.md).
+```
+docs/
+├─ 01-brand … 07-implementation   Product documents (table above)
+├─ guides/                        User, security and developer guides
+├─ assets/                        Screenshots
+└─ archive/                       History only: superseded docs and the legacy app
+```
+
+Older strategy, market research, the customer one-pager and the completed rebuild plan are kept in [archive/](archive/README.md). The numbered documents above replace them.

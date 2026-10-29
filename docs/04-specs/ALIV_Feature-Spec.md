@@ -172,7 +172,7 @@ Nothing calls a provider directly.
 
 ## [FS-8] Model Gateway (R1)
 
-**Purpose:** one place in the Rust core through which every model call passes, so the policy cannot be bypassed and every call is audited. This closes the main gap listed in [`security.md`](../security.md).
+**Purpose:** one place in the Rust core through which every model call passes, so the policy cannot be bypassed and every call is audited. This closes the main gap listed in [`security.md`](../guides/security.md).
 
 | ID | Requirement | Priority |
 |---|---|---|

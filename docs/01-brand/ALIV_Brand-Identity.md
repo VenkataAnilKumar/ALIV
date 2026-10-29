@@ -91,4 +91,4 @@ Details and tokens: [Design System](../05-design/ALIV_Design-System.md).
 | Answers cite their sources | Vault encrypted at rest (GA) | "Replaces lawyers" |
 | Tamper-evident audit log | SOC 2 (only once audited) | "Certified compliant" without a certificate |
 
-The source of truth for security claims is [`security.md`](../security.md).
+The source of truth for security claims is [`security.md`](../guides/security.md).
