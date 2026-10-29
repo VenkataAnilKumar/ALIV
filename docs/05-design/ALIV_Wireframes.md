@@ -7,7 +7,7 @@ Low-fidelity layouts for the [UI Spec](ALIV_UI-Spec.md). ✅ marks shipped scree
 
 ## High-fidelity mockups
 
-Rendered with the app's design tokens ([Design System](ALIV_Design-System.md)). These are **mockups of planned screens**, not screenshots; the data is fictional. All screens use the full navigation (Home, Matters, Library, Connections, Chat, Settings, ⌘K search) and the full matter tab order.
+Rendered with the app's design tokens ([Design System](ALIV_Design-System.md)). These are **mockups of planned screens**, not screenshots; the data is fictional. All screens use the app's real sidebar (Matters, New chat, New project, Search ⌘K, Hub, Settings, which already exist) plus the new entries (Home, Library, Connections), and the full matter tab order. Projects stay listed with a "→ matter" conversion hint.
 
 | Screen | Release | Image |
 |---|---|---|

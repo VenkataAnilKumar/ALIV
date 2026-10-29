@@ -113,7 +113,7 @@ Nothing calls a provider directly.
 | SRCH-06 | Filters: document type, date range, party, folder | P1 | R2 |
 | SRCH-07 | Search across several selected matters (explicit user choice) | P2 | R3 |
 | SRCH-08 | ANN index when a matter exceeds ~200k passages | P2 | R4 |
-| SRCH-09 | **Global search** bar: matters, documents, clauses, tables, artifacts, runs and chats, scoped to what the user may see | P1 | R2 |
+| SRCH-09 | **Global search:** extend the existing ⌘K search dialog (today it searches chat threads) to matters, documents, clauses, tables, artifacts and runs, scoped to what the user may see | P1 | R2 |
 | SRCH-10 | **Web search** (existing `tauri-plugin-websearch`) runs only through the gateway: blocked on Local only matters; on Hybrid, the query is shown, redacted and audited before it is sent | P0 | R1 |
 | SRCH-11 | Search tiers are always labelled: *this matter* (local), *firm knowledge* (FS-18), *web / research* (FS-22) | P1 | R2 |
 | SRCH-12 | Web results used in an answer are cited with their URL and fetch date, and never written into the matter's index unless the user saves them | P1 | R2 |
@@ -485,7 +485,7 @@ FS-17 Monitors become built-in automation templates.
 | WS-02 | **Matter instructions:** client, our side, objectives, house style; applied to Ask, tables, workflows and agents in the matter | P0 | R1 |
 | WS-03 | **Linked source folders:** the matter records its folders (and connector sources, FS-23); re-scan on demand; watch in R3 | P0 | R1 (record, re-scan) · R3 (watch) |
 | WS-04 | **Output folder:** one folder per matter where approved artifacts and file actions are written; never overwrites | P1 | R2 |
-| WS-05 | Migration: existing chat projects can be converted into matters (threads, instructions and assistant kept) | P1 | R1 |
+| WS-05 | Migration: existing chat projects can be converted into matters (threads, instructions and assistant kept). The Projects entry stays in the sidebar, with "Convert to matter", until a user has no projects left | P1 | R1 |
 | WS-06 | Matter-level choice of enabled skills (FS-28) and MCP servers (FS-24) | P0 | R1 |
 | WS-07 | Pin matters; recent activity per matter on Home | P2 | R1 |
 | WS-08 | Matter export: documents list, register, artifacts, chats and audit as an open archive | P1 | R2 |
@@ -503,6 +503,7 @@ FS-17 Monitors become built-in automation templates.
 | SKL-03 | **Review before enabling:** show the full SKILL.md and list bundled scripts and files | P0 | R1 |
 | SKL-04 | Skill scripts never run without approval, and run sandboxed (no network, matter folder read-only) | P0 | R1 |
 | SKL-05 | Every run records the skills used (name and version) in the audit entry and on the artifact | P0 | R1 |
+| SKL-10 | Skills are browsed and imported in the existing **Hub** (a Skills tab next to Models) | P1 | R1 |
 | SKL-06 | Starter packs: NDA triage, DD checklist, lease abstract, chronology method, client-memo style, invoice checks, covenant reading; US / UK / EU variants | P1 | R2 |
 | SKL-07 | Firm skill library: publish, version, change notes, deprecate; lawyers can propose skills | P1 | R3 |
 | SKL-08 | **Skill Builder:** turn a chat or a corrected output into a draft skill for review | P2 | R3 |

@@ -8,9 +8,9 @@
 ## 1. Navigation
 
 ```
-App shell (left sidebar from the base app)
+App shell (left sidebar; ✅ = already in the app)
 ├─ Home                 R1–R3  (one view across all matters; see W-0)
-├─ Matters                          ← ALIV home today
+├─ Matters               ✅      ← ALIV home today
 │   └─ Matter
 │       ├─ Overview      ✅
 │       ├─ Chats         R1  (matter chats, under the matter's policy)
@@ -24,10 +24,14 @@ App shell (left sidebar from the base app)
 │       ├─ Approvals     ✅
 │       ├─ Inbox         R3  (monitor results)
 │       └─ Audit log     ✅
-├─ Library               R1–R3: Skills · Workflows · Playbooks · Clauses · Agents · Knowledge bases
-├─ Global search (⌘K)    R2: matters, documents, clauses, cells, artifacts, runs, chats
-├─ Connections           R1: MCP servers · R3: document connectors
-├─ Chat, Models, Settings (base app)
+├─ New chat + Chats      ✅  free chat; cannot read matters (chats about a matter live in the matter)
+├─ New project + Projects ✅ kept until converted: each project offers "Convert to matter" (WS-05)
+├─ Search (⌘K)           ✅  today: chat threads (SearchDialog) · R2: extended to matters, documents,
+│                             clauses, cells, artifacts and runs (SRCH-09)
+├─ Hub                   ✅  Models (download, ranking) · R1: Skills tab (import from the skill hub / git plugins)
+├─ Library               R2–R3: Workflows · Playbooks · Clauses · Agents · Knowledge bases
+├─ Connections           R1: MCP servers (moved from Settings) · R3: document connectors
+├─ Settings              ✅  + Admin pages (R1)
 └─ Vault health (dialog from Matters) ✅
 ```
 
@@ -163,11 +167,11 @@ Entries: time, kind, summary, expandable detail. Verify integrity → success or
 | **Skill review dialog** (R1) | Full SKILL.md, bundled files and scripts, trust level, source; Enable is disabled for third-party skills on Local only matters | SKL-03/04 |
 | **Approval card for tools and scripts** (R1) | Tool or script name, server or skill, exactly what will be sent or changed; Approve / Reject | MCP-04, SKL-04 |
 | **Artifacts tab** (R2) · [mockup](../assets/mockups/artifacts.png) | Grid or list: type icon, title, version, author, route, skills; open shows the artifact with citations, version history and diff; Export; Save to output folder (proposal) | ART-01–05 |
-| **Global search** (R2) | ⌘K; results grouped by type and labelled by matter and tier (this matter / firm knowledge / web) | SRCH-09/11 |
+| **Search** (R2) | Extends the existing ⌘K `SearchDialog` (today: chat threads) with matters, documents, clauses, cells, artifacts and runs; results grouped by type and labelled by matter and tier (this matter / firm knowledge / web) | SRCH-09/11 |
 | **Connections › Connectors** (R3) | Add iManage, NetDocuments, SharePoint, Drive, Box, Outlook/Gmail; pick workspaces or folders; link to a matter; sync status, last sync, errors | CON-01–06 |
 | **Connections › MCP servers** (R1) | Servers with trust level, tools list, firm allow/block status, test connection | MCP-01/07 |
 | **Automations tab** (R3) · [mockup](../assets/mockups/automations.png) | List of automations (trigger, action, last run, next run, on/off); editor: trigger, action (workflow, agent or skill), matter, schedule; run history with retry and pause | AUTO-01–07 |
-| **Library › Skills** (R1–R3) | My, firm and built-in skills; Import (hub or git plugin); editor; publish with change note (R3); Skill Builder from a chat (R3) | SKL-06–08 |
+| **Hub › Skills** (R1–R3) | Next to Hub › Models: my, firm and built-in skills; Import (skill hub or git plugin, both already in the code); editor; publish with change note (R3); Skill Builder from a chat (R3) | SKL-06–08 |
 
 ## 5b. Admin interface
 
