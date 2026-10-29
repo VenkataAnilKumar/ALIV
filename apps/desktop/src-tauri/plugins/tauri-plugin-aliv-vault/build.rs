@@ -9,6 +9,7 @@ const COMMANDS: &[&str] = &[
     "pending_embeddings",
     "store_embeddings",
     "embedding_status",
+    "vault_diagnostics",
     "review_grid",
     "propose_renames",
     "list_actions",

@@ -64,9 +64,8 @@ Platform prerequisites, tests and the repository layout are in the [app guide](a
 |---|---|
 | [`apps/desktop/`](apps/desktop/README.md) | **The ALIV app**: Tauri 2 desktop app, matter vault plugin, `aliv` CLI, React UI |
 | `demo/corpus/` | Sample legal and finance documents used by the demo and tests |
-| `benchmarks/` | Labelled corpus and scoring scripts for extraction accuracy |
+| [`benchmarks/`](benchmarks/README.md) | Labelled corpus and the script that scores the vault's extraction |
 | `docs/` | [Plan](docs/PLAN.md), [market research](docs/MARKET_RESEARCH.md), [customer one-pager](docs/CUSTOMER_ONE_PAGER.md), [strategy](docs/ALIV_FUTURE_STRATEGY.md) |
-| `src/`, `src-tauri/`, `python/` | Legacy app, **being retired** ([plan](docs/PLAN.md)). Its docs are in [`docs/archive/`](docs/archive/) |
 
 ## License
 

@@ -53,6 +53,15 @@ impl Tesseract {
         Some(Self { tesseract, pdftoppm: locate("ALIV_PDFTOPPM", "pdftoppm") })
     }
 
+    /// The binaries in use, for diagnostics.
+    pub fn tesseract_path(&self) -> &Path {
+        &self.tesseract
+    }
+
+    pub fn pdftoppm_path(&self) -> Option<&Path> {
+        self.pdftoppm.as_deref()
+    }
+
     fn read_image(&self, image: &Path) -> Result<(String, Vec<f64>), String> {
         // `--psm 6` reads the page as one block of text, which keeps a
         // label and its value on the same line; the default page

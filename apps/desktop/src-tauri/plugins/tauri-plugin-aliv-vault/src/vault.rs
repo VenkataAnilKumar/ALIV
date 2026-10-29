@@ -176,6 +176,18 @@ impl Vault {
         Ok(Outcome::Indexed { ocr: doc.ocr_confidence.is_some() })
     }
 
+    /// A health report for support. Holds counts and reasons, never document
+    /// text, so it can be shared.
+    pub fn diagnostics(&self) -> Result<VaultDiagnostics> {
+        let audit = self.store.verify_audit()?;
+        let mut report = self.store.diagnostics_counts(audit)?;
+        if let Some(t) = ocr::Tesseract::detect() {
+            report.tesseract = Some(t.tesseract_path().display().to_string());
+            report.pdftoppm = t.pdftoppm_path().map(|p| p.display().to_string());
+        }
+        Ok(report)
+    }
+
     fn read_scan(&self, file: &Path, ext: &str) -> std::result::Result<ocr::OcrText, String> {
         match &self.ocr {
             Some(engine) => engine.recognize(file, ext),
@@ -606,6 +618,22 @@ mod tests {
         }
         pdf.extend(format!("trailer\n<< /Size {} /Root 1 0 R >>\nstartxref\n{xref}\n%%EOF\n", objects.len() + 1).bytes());
         pdf
+    }
+
+    /// The health report counts what was read and why the rest was not, and
+    /// carries no document text.
+    #[test]
+    fn diagnostics_report_counts_and_reasons() {
+        let (v, m, dir) = setup();
+        v.ingest_paths(&m, &[dir.path().to_string_lossy().to_string()]).unwrap();
+        let d = v.diagnostics().unwrap();
+        assert_eq!((d.matters, d.documents, d.indexed, d.skipped), (1, 3, 2, 1));
+        assert_eq!(d.unreadable, vec![ReasonCount { reason: ocr::NOT_INSTALLED.into(), count: 1 }]);
+        assert!(d.passages >= 2 && d.embedded == 0);
+        assert!(d.audit.ok && d.audit.entries > 0);
+        assert!(d.database_bytes > 0);
+        let json = serde_json::to_string(&d).unwrap();
+        assert!(!json.contains("Holdover"), "no document text in the report");
     }
 
     #[test]

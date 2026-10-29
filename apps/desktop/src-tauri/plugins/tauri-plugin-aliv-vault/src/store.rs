@@ -487,6 +487,45 @@ impl Store {
         Ok(rows.collect::<std::result::Result<_, _>>()?)
     }
 
+    /// Counts for [`Vault::diagnostics`](crate::Vault::diagnostics), filled
+    /// in apart from the OCR tools and the audit check.
+    pub fn diagnostics_counts(&self, audit: AuditVerification) -> Result<VaultDiagnostics> {
+        let conn = self.conn();
+        let count = |sql: &str| -> Result<i64> { Ok(conn.query_row(sql, [], |r| r.get(0))?) };
+        let database_path: Option<String> = conn
+            .query_row("SELECT file FROM pragma_database_list WHERE name = 'main'", [], |r| r.get(0))
+            .optional()?
+            .filter(|p: &String| !p.is_empty());
+        let mut unreadable = Vec::new();
+        {
+            let mut stmt = conn.prepare(
+                "SELECT COALESCE(error, status), COUNT(*) FROM documents WHERE status != 'indexed'
+                 GROUP BY 1 ORDER BY 2 DESC, 1 LIMIT 20",
+            )?;
+            for row in stmt.query_map([], |r| Ok(ReasonCount { reason: r.get(0)?, count: r.get(1)? }))? {
+                unreadable.push(row?);
+            }
+        }
+        Ok(VaultDiagnostics {
+            version: env!("CARGO_PKG_VERSION").to_string(),
+            generated_at: now(),
+            database_path,
+            database_bytes: count("SELECT page_count * page_size FROM pragma_page_count, pragma_page_size")?,
+            matters: count("SELECT COUNT(*) FROM matters")?,
+            documents: count("SELECT COUNT(*) FROM documents")?,
+            indexed: count("SELECT COUNT(*) FROM documents WHERE status = 'indexed'")?,
+            skipped: count("SELECT COUNT(*) FROM documents WHERE status = 'skipped'")?,
+            failed: count("SELECT COUNT(*) FROM documents WHERE status = 'failed'")?,
+            ocr_documents: count("SELECT COUNT(*) FROM documents WHERE ocr_confidence IS NOT NULL")?,
+            passages: count("SELECT COUNT(*) FROM chunks")?,
+            embedded: count("SELECT COUNT(*) FROM chunk_vectors")?,
+            unreadable,
+            tesseract: None,
+            pdftoppm: None,
+            audit,
+        })
+    }
+
     pub fn verify_audit(&self) -> Result<AuditVerification> {
         let conn = self.conn();
         let mut stmt = conn.prepare("SELECT id, matter_id, ts, kind, summary, detail, prev_hash, hash FROM audit ORDER BY id")?;

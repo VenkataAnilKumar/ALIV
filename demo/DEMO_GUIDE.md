@@ -1,6 +1,6 @@
 # ALIV — Interactive Demo Guide
 
-> **Note:** this walkthrough was written for the legacy ALIV app at the repository root, which is being retired. The sample corpus below also powers the new desktop app: run `yarn dev:web` in `apps/desktop` and open `/matters/` for the Matters demo. An updated walkthrough will replace this guide.
+> **Note:** this walkthrough was written for the legacy ALIV app at the repository root, now retired. The sample corpus below also powers the new desktop app: run `yarn dev:web` in `apps/desktop` and open `/matters/` for the Matters demo. An updated walkthrough will replace this guide.
 
 > Run a complete buyer-facing or technical demo in under 8 minutes using the included sample corpus.
 
@@ -238,17 +238,7 @@ Run these against the demo corpus after ingestion to validate retrieval quality:
 
 ---
 
-## Running the Benchmark Suite
+## Running the Benchmark
 
-```bash
-cd benchmarks
-python run_full_benchmark_suite.py
-```
+See [`benchmarks/README.md`](../benchmarks/README.md): the vault scans the labelled corpus and `score_vault_extraction.py` scores the extracted fields.
 
-Results are written to `benchmarks/results/full_suite_latest.json`.
-
-Latest gate results:
-- Ingestion: **PASS** (200/200 files, success_rate = 1.0)
-- Retrieval top-5: **100%** (threshold ≥ 85%)
-- Extraction precision: **97.4%** (threshold ≥ 95%)
-- Open critical defects: **0**

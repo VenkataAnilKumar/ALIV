@@ -71,6 +71,11 @@ pub async fn store_embeddings(vault: V<'_>, embeddings: Vec<PassageEmbedding>) -
 }
 
 #[tauri::command]
+pub async fn vault_diagnostics(vault: V<'_>) -> Result<VaultDiagnostics> {
+    blocking(&vault, |v| v.diagnostics()).await
+}
+
+#[tauri::command]
 pub async fn embedding_status(vault: V<'_>, matter_id: String) -> Result<EmbeddingStatus> {
     vault.store.embedding_status(&matter_id)
 }

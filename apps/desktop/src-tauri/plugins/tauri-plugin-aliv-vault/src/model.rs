@@ -170,7 +170,39 @@ pub struct ModelCallDecision {
     pub audit_id: i64,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+/// A health report for support: what the vault holds, what it could not
+/// read and why, which OCR tools it found, and whether the audit chain holds.
+/// Counts and reasons only; no document text.
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
+#[serde(rename_all = "camelCase")]
+pub struct VaultDiagnostics {
+    pub version: String,
+    pub generated_at: String,
+    pub database_path: Option<String>,
+    pub database_bytes: i64,
+    pub matters: i64,
+    pub documents: i64,
+    pub indexed: i64,
+    pub skipped: i64,
+    pub failed: i64,
+    pub ocr_documents: i64,
+    pub passages: i64,
+    pub embedded: i64,
+    /// Why documents could not be read, most common first.
+    pub unreadable: Vec<ReasonCount>,
+    pub tesseract: Option<String>,
+    pub pdftoppm: Option<String>,
+    pub audit: AuditVerification,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
+#[serde(rename_all = "camelCase")]
+pub struct ReasonCount {
+    pub reason: String,
+    pub count: i64,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct AuditVerification {
     pub ok: bool,

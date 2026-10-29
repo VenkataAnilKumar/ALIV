@@ -8,6 +8,7 @@ import type {
   MatterInput,
   ModelCallDecision,
   ModelCallRequest,
+  VaultDiagnostics,
   PassageEmbedding,
   PendingPassage,
   SearchHit,
@@ -44,5 +45,6 @@ export interface VaultService {
   authorizeModelCall(request: ModelCallRequest): Promise<ModelCallDecision>
   listAudit(matterId?: string, limit?: number): Promise<AuditEntry[]>
   verifyAudit(): Promise<AuditVerification>
+  diagnostics(): Promise<VaultDiagnostics>
   exportRegisterCsv(matterId: string, dest: string): Promise<number>
 }

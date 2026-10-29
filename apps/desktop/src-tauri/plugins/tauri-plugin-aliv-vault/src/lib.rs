@@ -35,6 +35,7 @@ pub fn init<R: tauri::Runtime>(db_path: std::path::PathBuf) -> tauri::plugin::Ta
             commands::pending_embeddings,
             commands::store_embeddings,
             commands::embedding_status,
+            commands::vault_diagnostics,
             commands::review_grid,
             commands::propose_renames,
             commands::list_actions,

@@ -145,6 +145,12 @@ fn web_app_payloads_round_trip() {
     assert!(all.as_array().unwrap().len() >= audit.as_array().unwrap().len());
     assert_eq!(call(&w, "verify_audit", json!({})).unwrap()["ok"], true);
 
+    let d = call(&w, "vault_diagnostics", json!({})).unwrap();
+    assert_eq!((d["matters"].as_i64(), d["indexed"].as_i64()), (Some(1), Some(1)), "{d}");
+    assert_eq!(d["audit"]["ok"], true);
+    assert!(d["databaseBytes"].as_i64().unwrap() > 0);
+    assert!(d["databasePath"].as_str().unwrap().ends_with("vault.db"));
+
     // Errors reach the webview as readable strings.
     let err = call(&w, "set_action_status", json!({ "id": "nope", "status": "approved" })).unwrap_err();
     assert!(err.as_str().unwrap().contains("not found"), "{err}");

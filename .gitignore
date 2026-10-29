@@ -4,24 +4,8 @@ __pycache__/
 .venv/
 venv/
 
-# Rust
-src-tauri/target/
-.cargo-install-target/
-
 # Node
 node_modules/
-dist/
-
-# Local app data
-.aliv/
-.aliv-bench/
-logs/*.json
-logs/*.log
-benchmarks/results/full_suite_*.json
-benchmarks/runs/*
-!benchmarks/runs/.gitkeep
-benchmarks/reports/*
-!benchmarks/reports/.gitkeep
 
 # Editors
 .vscode/

@@ -1,5 +1,0 @@
-Metadata-Version: 2.4
-Name: aliv-workers
-Version: 0.1.0
-Summary: ALIV local parsing, OCR, extraction, and embedding workers
-Requires-Python: >=3.11
