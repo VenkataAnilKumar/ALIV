@@ -51,6 +51,7 @@ Everything else that touches the network is user-initiated and carries no matter
 - **The vault is not encrypted by ALIV.** Protect it with full-disk encryption (FileVault, BitLocker, LUKS), as you would the documents themselves.
 - **The audit log is tamper-evident, not tamper-proof.** Verification detects an altered or reordered entry. It cannot prevent someone with access to the file from deleting the whole vault.
 - **The policy check guards the Ask flow.** The cloud request itself is sent from the app after the check approves it. Routing cloud calls through the Rust proxy, so that no code path can skip the check, and pseudonymizing names and amounts before a cloud call, are on the roadmap. Until then, keep matters that must never reach a cloud provider on *Local only*, and use only local models for them.
+- **Web search, MCP tools and chat projects** come from the open-source app ALIV builds on, and today they work **outside** matter policy. Don't put client documents into free chat or MCP tools; use a matter's Ask instead. Putting them under the same policy check is on the roadmap (R1).
 - **Cloud providers' own handling** of the text sent to them (retention, training) is governed by your agreement with that provider.
 
 ## Reporting a vulnerability

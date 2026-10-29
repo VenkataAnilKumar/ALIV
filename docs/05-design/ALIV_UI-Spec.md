@@ -13,15 +13,20 @@ App shell (left sidebar from the base app)
 ├─ Matters                          ← ALIV home today
 │   └─ Matter
 │       ├─ Overview      ✅
-│       ├─ Ask           ✅  (R2: @-mentions, save, suggestions)
+│       ├─ Chats         R1  (matter chats, under the matter's policy)
+│       ├─ Ask           ✅  (R2: @-mentions, save, suggestions; R1: /skills)
 │       ├─ Register      ✅
 │       ├─ Tables        R2
 │       ├─ Workflows     R2  (runs and outputs for this matter)
+│       ├─ Artifacts     R2  (versioned, cited work product)
+│       ├─ Automations   R3  (triggers and run history)
 │       ├─ Documents     ✅
 │       ├─ Approvals     ✅
 │       ├─ Inbox         R3  (monitor results)
 │       └─ Audit log     ✅
-├─ Library               R2/R3: Workflows · Playbooks · Clauses · Agents · Knowledge bases
+├─ Library               R1–R3: Skills · Workflows · Playbooks · Clauses · Agents · Knowledge bases
+├─ Global search (⌘K)    R2: matters, documents, clauses, cells, artifacts, runs, chats
+├─ Connections           R1: MCP servers · R3: document connectors
 ├─ Chat, Models, Settings (base app)
 └─ Vault health (dialog from Matters) ✅
 ```
@@ -145,6 +150,22 @@ Entries: time, kind, summary, expandable detail. Verify integrity → success or
 
 ---
 
+## 5a. Matter workspace (FS-27), skills, MCP, artifacts, connectors, automation
+
+| Screen | Behaviour | IDs |
+|---|---|---|
+| **Matter settings › Workspace** (R1) | Matter instructions (client, our side, objectives, house style); linked source folders with last-scan time and Re-scan; output folder (R2) | WS-02/03/04 |
+| **Matter settings › Skills & tools** (R1) | Enabled skills with trust badge (built-in, firm, personal, third-party) and version; allowed MCP servers with trust level; web search on/off (Hybrid only) | WS-06, SKL-01/02, MCP-02, SRCH-10 |
+| **Chats tab** (R1) | Threads inside the matter; each message shows its RoutePill and the skills used; `/` opens enabled skills | WS-01, SKL-01 |
+| **Skill review dialog** (R1) | Full SKILL.md, bundled files and scripts, trust level, source; Enable is disabled for third-party skills on Local only matters | SKL-03/04 |
+| **Approval card for tools and scripts** (R1) | Tool or script name, server or skill, exactly what will be sent or changed; Approve / Reject | MCP-04, SKL-04 |
+| **Artifacts tab** (R2) | Grid or list: type icon, title, version, author, route, skills; open shows the artifact with citations, version history and diff; Export; Save to output folder (proposal) | ART-01–05 |
+| **Global search** (R2) | ⌘K; results grouped by type and labelled by matter and tier (this matter / firm knowledge / web) | SRCH-09/11 |
+| **Connections › Connectors** (R3) | Add iManage, NetDocuments, SharePoint, Drive, Box, Outlook/Gmail; pick workspaces or folders; link to a matter; sync status, last sync, errors | CON-01–06 |
+| **Connections › MCP servers** (R1) | Servers with trust level, tools list, firm allow/block status, test connection | MCP-01/07 |
+| **Automations tab** (R3) | List of automations (trigger, action, last run, next run, on/off); editor: trigger, action (workflow, agent or skill), matter, schedule; run history with retry and pause | AUTO-01–07 |
+| **Library › Skills** (R1–R3) | My, firm and built-in skills; Import (hub or git plugin); editor; publish with change note (R3); Skill Builder from a chat (R3) | SKL-06–08 |
+
 ## 5b. Admin interface
 
 Admins set policy and see metadata (counts, routes, costs, audit entries), **never document text**.
@@ -153,7 +174,8 @@ Admins set policy and see metadata (counts, routes, costs, audit entries), **nev
 
 | Page | Contents | Feature IDs |
 |---|---|---|
-| AI policy | Defaults for new matters (policy, redaction level), allowed cloud providers, routing by step type, hardware tier and local model | MAT-02, RED-04, RTR-02/03/05 |
+| AI policy | Defaults for new matters (policy, redaction level), allowed cloud providers, routing by step type, hardware tier and local model; web search allowed on Hybrid or never | MAT-02, RED-04, RTR-02/03/05, SRCH-10 |
+| Skills & MCP | Allowed skill sources and trust levels; MCP servers allowed or blocked firm-wide | SKL-02, MCP-07 |
 | Spend | Firm and per-matter monthly cloud limits; usage by matter; calls refused at a limit | GW-06 |
 | Audit | Verify all matters; export a matter's trail | AUD-02/05 |
 | Health | Vault health, OCR tools, model status, copy report | AUD-03 |

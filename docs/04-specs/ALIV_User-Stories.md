@@ -22,6 +22,13 @@ Stories are grouped by epic, which maps to the [Feature Spec](ALIV_Feature-Spec.
 | E9 Agents & monitors | FS-16–18 | US-901–905 |
 | E10 Finance | FS-19 | US-1001–1003 |
 | E11 Firm scale | FS-20–22 | US-1101–1104 |
+| E12 Matter workspace | FS-27 | US-1201–1205 |
+| E13 Search | FS-3 (SRCH-09–12) | US-1301–1303 |
+| E14 Skills & plugins | FS-28 | US-1401–1405 |
+| E15 MCP | FS-24 | US-1501–1504 |
+| E16 Artifacts | FS-25 | US-1601–1604 |
+| E17 Connectors | FS-23 | US-1701–1703 |
+| E18 Automation | FS-26 | US-1801–1803 |
 
 ---
 
@@ -228,3 +235,101 @@ Stories are grouped by epic, which maps to the [Feature Spec](ALIV_Feature-Spec.
 
 **US-1104 · Public research** (R4, P1)
 - Given a research connector, when I search, then results are cited with source links, and no matter text is sent unless the matter is Hybrid and I confirm.
+
+## E12 Matter workspace
+
+**US-1201 · Chat inside a matter** (R1, P0)
+*As a lawyer, I want my conversations about a client to live in that client's matter, so that they follow its policy and audit.*
+- Given a Local only matter, when I chat about its documents, then only local models are used and the chat appears in the matter's audit log.
+- Given a free chat outside any matter, when I ask about a client's contract, then it can't read any matter's documents.
+
+**US-1202 · Matter instructions** (R1, P0)
+- Given I set "We act for the buyer; UK English; short paragraphs" on a matter, then Ask, tables and workflows in that matter follow them, and the instructions are shown on each run.
+
+**US-1203 · Linked folders** (R1, P0)
+- Given a matter with linked folders, when I choose Re-scan, then new and changed files are indexed and the matter shows when each folder was last scanned.
+
+**US-1204 · Output folder** (R2, P1)
+- Given an approved memo, when it is saved, then it lands in the matter's output folder without overwriting an existing file.
+
+**US-1205 · Convert a project** (R1, P1)
+- Given an existing chat project, when I convert it, then its threads, instructions and assistant move into a new matter set to Local only.
+
+## E13 Search
+
+**US-1301 · Web search respects policy** (R1, P0)
+- Given a Local only matter, when a step wants web search, then it is refused and logged.
+- Given a Hybrid matter, then I see the redacted query before it is sent, and the call is audited.
+
+**US-1302 · Global search** (R2, P1)
+- Given the search bar, when I type "change of control", then I see matching documents, clauses, table cells and artifacts across the matters I can access, labelled by matter.
+
+**US-1303 · Cited web results** (R2, P1)
+- Given an answer that uses web results, then each is cited with URL and date, and nothing is added to the matter unless I save it.
+
+## E14 Skills & plugins
+
+**US-1401 · Use a skill** (R1, P0)
+- Given the "NDA review method" skill is enabled on a matter, when I type `/nda-review` in Ask, then the answer follows the skill and the audit entry names the skill and version.
+
+**US-1402 · Review before enabling** (R1, P0)
+- Given a new skill, when I enable it, then I see its full instructions and any bundled scripts first; third-party skills are off by default in matters.
+
+**US-1403 · Scripts need approval** (R1, P0)
+- Given a skill with a script, then the script never runs without my approval, and runs with no network access.
+
+**US-1404 · Firm library** (R3, P1)
+- Given legal ops publishes "House memo style v4", then lawyers can enable it, see its change notes, and older artifacts still show v3.
+
+**US-1405 · Skill Builder** (R3, P2)
+- Given a corrected output, when I choose "Save as skill", then a draft skill is created for review, not published.
+
+## E15 MCP
+
+**US-1501 · Trust levels** (R1, P0)
+- Given an MCP server, then it is labelled local, firm or third-party, and a Local only matter can use local servers only.
+
+**US-1502 · Per-matter allow-list** (R1, P0)
+- Given a matter, then MCP tools are off until I allow specific servers; calls that send matter text are redacted and audited.
+
+**US-1503 · Actions need approval** (R1, P0)
+- Given an agent wants to log time in the billing system via MCP, then it appears in Approvals and runs only after approval.
+
+**US-1504 · ALIV as an MCP server** (R4, P1)
+- Given a paired AI client, when it calls `search_matter`, then it gets cited passages only from matters granted to it, and the call is audited.
+
+## E16 Artifacts
+
+**US-1601 · Every output saved** (R2, P0)
+- Given a workflow finishes, then its memo is saved as an artifact with citations, run, route and skills used.
+
+**US-1602 · Versions** (R2, P1)
+- Given I re-run a memo, then a new version is created and I can compare it with the previous one.
+
+**US-1603 · Safe rendering** (R2, P0)
+- Given an HTML or chart artifact, then it renders without network access.
+
+**US-1604 · Reuse** (R2, P1)
+- Given an artifact, when I @-mention it in Ask, then the answer can cite it.
+
+## E17 Connectors
+
+**US-1701 · Link a DMS workspace** (R3, P0)
+- Given an iManage workspace, when I link it to a matter, then its documents are indexed locally, read-only, with counts in the audit log.
+
+**US-1702 · Incremental sync** (R3, P1)
+- Given a linked source, when documents change, then the next sync re-indexes only those, and deleted ones are flagged.
+
+**US-1703 · Source permissions** (R4, P1)
+- Given a Firm Server, then users see connector documents only if they can open them at the source.
+
+## E18 Automation
+
+**US-1801 · Create an automation** (R3, P0)
+- Given a trigger "every weekday at 08:00" and the "deadline digest" template, then results arrive in the matter Inbox each weekday.
+
+**US-1802 · Always proposals** (R3, P0)
+- Given an automation that would rename files or send a message, then those go to Approvals and are never applied automatically.
+
+**US-1803 · Run history** (R3, P0)
+- Given an automation, then I can see each run's trigger, steps, routes, duration and outcome, retry a failed run, and pause it.

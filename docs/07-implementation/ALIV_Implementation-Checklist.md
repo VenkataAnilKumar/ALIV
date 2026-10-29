@@ -42,8 +42,13 @@
 - [ ] Redaction preview (RED-05)
 - [ ] Redaction recall ≥ 98% gate in CI (RED-06)
 - [ ] Spend limits, fallback, hardware-aware model choice (GW-06/07, RTR-05)
-- [ ] `security.md`: remove the "policy check guards the Ask flow" limit
-- [ ] **Exit:** Local only never routes to cloud (policy matrix test); preview equals what is sent
+- [ ] Matter chats, instructions, linked folders; convert chat projects (WS-01/02/03/05)
+- [ ] Web search through the gateway: blocked on Local only, redacted and audited on Hybrid (SRCH-10)
+- [ ] MCP trust levels, per-matter allow-lists, redaction and audit, approvals for side-effecting tools (MCP-01–04/07)
+- [ ] Skills per matter: trust levels, review dialog, sandboxed scripts on approval, skills in audit (SKL-01–05, WS-06)
+- [ ] Desktop Admin › AI policy and Skills & MCP pages
+- [ ] `security.md`: remove the "policy check guards the Ask flow" limit and the "web search, MCP and chat projects outside matter policy" limit
+- [ ] **Exit:** Local only never routes to cloud, and no chat, web search, MCP call or skill script bypasses the gateway (policy matrix test); preview equals what is sent
 
 ## Phase 2: Work product (R2)
 
@@ -60,6 +65,9 @@
 - [ ] PST/MBOX; 10k-document ingestion with resume (ING-06/07)
 - [ ] Field corrections kept across re-ingestion (REG-06); XLSX register export (REG-08)
 - [ ] Audit trail export, PDF and JSON (AUD-05)
+- [ ] Artifacts: store, versions, diff, tab, sandboxed HTML, export, output folder (ART-01–07, WS-04)
+- [ ] Global search across matters and types (SRCH-09/11/12)
+- [ ] Starter legal and finance skill packs with golden-output tests (SKL-06)
 - [ ] **Exit:** a pilot DD matter end to end inside ALIV
 
 ## Phase 3: Agents (R3)
@@ -69,6 +77,9 @@
 - [ ] Monitors: scheduler, watch folders, digest, triage, inbox (MON-01–04, ING-08)
 - [ ] Knowledge bases, read-only and cited (KB-01–03)
 - [ ] Finance pack (FIN-01–05) with ≥ 95% invoice field accuracy
+- [ ] Automation engine: triggers, actions, history, retries, templates; proposals only (AUTO-01–07)
+- [ ] Document connectors: iManage, SharePoint, NetDocuments, Outlook, then Drive, Box, Gmail (CON-01–06)
+- [ ] MCP tools in agents (MCP-05); firm skill library and Skill Builder (SKL-07/08)
 - [ ] **Exit:** a 4-step agent built in under 15 minutes by a non-technical user
 
 ## Phase 4: Scale & reach (R4)
@@ -77,6 +88,8 @@
 - [ ] SSO with two identity providers; server GPU models (SRV-03/05)
 - [ ] Word add-in on Windows and Mac (WORD-01–03)
 - [ ] Research connectors (RES-01/02/04)
+- [ ] ALIV as an MCP server; connector source permissions (MCP-06, CON-04)
+- [ ] Shared and signed skills (SKL-09)
 - [ ] **Exit:** 20 concurrent users on one server; access lists enforced in tests
 
 ## GA track

@@ -44,6 +44,12 @@ Nothing calls a provider directly.
 | [FS-20] Firm Server & Roles | SRV | R4 | Planned |
 | [FS-21] Word Add-in | WORD | R4 | Planned |
 | [FS-22] Research Connectors | RES | R4 | Planned |
+| [FS-23] Document Connectors | CON | R3 | Planned |
+| [FS-24] MCP (tools and server) | MCP | R1 → R4 | Partly in base app |
+| [FS-25] Artifacts | ART | R2 | Partly in base app |
+| [FS-26] Automation | AUTO | R3 | Planned |
+| [FS-27] Matter Workspace | WS | R1 → R3 | Planned |
+| [FS-28] Skills & Plugins | SKL | R1 → R4 | Partly in base app |
 
 ---
 
@@ -104,6 +110,10 @@ Nothing calls a provider directly.
 | SRCH-06 | Filters: document type, date range, party, folder | P1 | R2 |
 | SRCH-07 | Search across several selected matters (explicit user choice) | P2 | R3 |
 | SRCH-08 | ANN index when a matter exceeds ~200k passages | P2 | R4 |
+| SRCH-09 | **Global search** bar: matters, documents, clauses, tables, artifacts, runs and chats, scoped to what the user may see | P1 | R2 |
+| SRCH-10 | **Web search** (existing `tauri-plugin-websearch`) runs only through the gateway: blocked on Local only matters; on Hybrid, the query is shown, redacted and audited before it is sent | P0 | R1 |
+| SRCH-11 | Search tiers are always labelled: *this matter* (local), *firm knowledge* (FS-18), *web / research* (FS-22) | P1 | R2 |
+| SRCH-12 | Web results used in an answer are cited with their URL and fetch date, and never written into the matter's index unless the user saves them | P1 | R2 |
 
 ---
 
@@ -389,6 +399,113 @@ Nothing calls a provider directly.
 
 ---
 
+## [FS-23] Document Connectors (R3)
+
+**Purpose:** bring documents in from where firms already keep them (cf. Legora's iManage, NetDocuments, SharePoint, Box and Google Drive integrations, and CoCounsel's iManage integration), without changing the vault's privacy model.
+
+| ID | Requirement | Priority |
+|---|---|---|
+| CON-01 | Read-only connectors: iManage, NetDocuments, SharePoint / OneDrive, Google Drive, Box, Outlook / Gmail (messages and attachments) | P0 (DMS, SharePoint, Outlook) · P1 (others) |
+| CON-02 | A connector source is linked to a matter like a folder: selected workspaces, folders or mail filters | P0 |
+| CON-03 | Content is downloaded to the machine and indexed locally; nothing is sent back to the source | P0 |
+| CON-04 | Source permissions are recorded per document; a user only sees documents they can open at the source (Firm Server, R4) | P1 |
+| CON-05 | Incremental sync on demand or by schedule (FS-26); deleted source files are flagged, not silently removed | P1 |
+| CON-06 | Credentials and OAuth tokens in the OS keychain; each sync is audited (counts, never content) | P0 |
+| CON-07 | Writing back to a DMS (save an artifact as a new version) is a proposal that needs approval | P2 |
+
+**Edge cases:** expired tokens (sync pauses with a clear message); very large workspaces (selective sync, progress and resume as in ING-07); source documents checked out or locked.
+
+---
+
+## [FS-24] MCP: Tools and Server (R1 → R4)
+
+**Purpose:** use the open Model Context Protocol in both directions without opening a side door out of the vault. MCP is now standard in legal AI (Harvey uses it as client and server; CoCounsel Legal connects to Claude over MCP; Legora is adding the iManage MCP Server; see the [Competitive Analysis](../03-market/ALIV_Competitive-Analysis.md), §6); ALIV's difference is local servers and per-matter governance. The base app already has a full MCP client in Rust (`src-tauri/src/core/mcp`, with OAuth) and an MCP settings page.
+
+| ID | Requirement | Priority | Release |
+|---|---|---|---|
+| MCP-01 | Every MCP server has a **trust level**: *local* (runs on this machine, no network), *firm* (firm-hosted), *third-party* | P0 | R1 |
+| MCP-02 | In a matter, MCP tools are off by default; the matter lists the servers it allows. Local only matters may use *local* servers only | P0 | R1 |
+| MCP-03 | Tool calls that send matter text to a *firm* or *third-party* server go through the gateway: policy check, redaction (FS-9), audit entry with server, tool and payload hash | P0 | R1 |
+| MCP-04 | Tools that change something outside ALIV (create a record, send a message, log time) are proposals that need approval | P0 | R1 |
+| MCP-05 | Agent and workflow steps can call allowed MCP tools (FS-16) | P1 | R3 |
+| MCP-06 | **ALIV as an MCP server:** read-only tools (`search_matter`, `get_register`, `get_artifact`) for other AI clients on the same machine or Firm Server; each client must be paired and is limited to the matters granted to it; every call audited | P1 | R4 |
+| MCP-07 | Admins can allow-list or block servers firm-wide | P1 | R1 (desktop policy file) · R4 (console) |
+
+**Out of scope:** MCP servers that ALIV installs or runs automatically from the internet.
+
+---
+
+## [FS-25] Artifacts (R2)
+
+**Purpose:** every piece of work product is a saved, versioned, cited object in the matter, the deliverables lawyers keep and send. The base app already renders artifacts (`routes/artifacts.tsx`, `HtmlArtifact`).
+
+| ID | Requirement | Priority |
+|---|---|---|
+| ART-01 | Outputs of Ask (saved answers), tables, workflows, playbooks, drafting and agents are stored as artifacts: memo, issues list, chronology, table, redlined DOCX, chart, note | P0 |
+| ART-02 | Each artifact keeps its citations, the run that produced it, the skills and models used, and its route (local / cloud) | P0 |
+| ART-03 | Versions: re-running or editing creates a new version; earlier versions stay readable; diff between versions | P1 |
+| ART-04 | Artifacts tab per matter, with search, filters (type, author, date) and pinning | P0 |
+| ART-05 | Export as DOCX, PDF, XLSX or Markdown; saving to the matter's output folder (WS-04) is a proposal | P0 |
+| ART-06 | HTML / chart artifacts render in a sandbox with no network access and no access to other matters | P0 |
+| ART-07 | Artifacts can be @-mentioned in Ask and used as inputs to workflows | P1 |
+
+---
+
+## [FS-26] Automation (R3)
+
+**Purpose:** general triggers that run agents, growing FS-17 Monitors into an automation engine. Automations always **propose**; they never apply changes or send anything on their own.
+
+| ID | Requirement | Priority |
+|---|---|---|
+| AUTO-01 | Triggers: schedule (cron-like), watched folder or connector source (FS-23), new email matching a filter, register date approaching, manual, local webhook | P0 |
+| AUTO-02 | Action: run a workflow, agent or skill on the trigger's input, in a chosen matter | P0 |
+| AUTO-03 | Results go to the matter Inbox; changes go to Approvals | P0 |
+| AUTO-04 | Every run respects matter policy, routing and spend limits; a run that would need cloud on a Local only matter runs locally or stops with a reason | P0 |
+| AUTO-05 | Run history with inputs, steps, routes, duration and outcome; retries with back-off; pause and resume | P0 |
+| AUTO-06 | Runs while the app is open on the desktop; server-side on Firm Server (MON-04) | P1 |
+| AUTO-07 | Templates: daily deadline digest, NDA inbox triage, new data-room upload triage, weekly invoice check | P1 |
+
+FS-17 Monitors become built-in automation templates.
+
+---
+
+## [FS-27] Matter Workspace (R1 → R3)
+
+**Purpose:** the matter is the one project folder. The base app's chat "Projects" (`routes/project`) and agent projects (`agent.toml`) merge into matters, so there is one way to organise work and every conversation runs under the matter's policy.
+
+| ID | Requirement | Priority | Release |
+|---|---|---|---|
+| WS-01 | **Chats inside a matter:** conversations that use matter documents run under the matter's policy, routing and audit; free chat outside matters stays available and cannot read any matter | P0 | R1 |
+| WS-02 | **Matter instructions:** client, our side, objectives, house style; applied to Ask, tables, workflows and agents in the matter | P0 | R1 |
+| WS-03 | **Linked source folders:** the matter records its folders (and connector sources, FS-23); re-scan on demand; watch in R3 | P0 | R1 (record, re-scan) · R3 (watch) |
+| WS-04 | **Output folder:** one folder per matter where approved artifacts and file actions are written; never overwrites | P1 | R2 |
+| WS-05 | Migration: existing chat projects can be converted into matters (threads, instructions and assistant kept) | P1 | R1 |
+| WS-06 | Matter-level choice of enabled skills (FS-28) and MCP servers (FS-24) | P0 | R1 |
+| WS-07 | Pin matters; recent activity per matter on Home | P2 | R1 |
+| WS-08 | Matter export: documents list, register, artifacts, chats and audit as an open archive | P1 | R2 |
+
+---
+
+## [FS-28] Skills & Plugins (R1 → R4)
+
+**Purpose:** package the firm's know-how ("how we do it here") as reusable skills. The base app already supports `SKILL.md` skills (compatible with Anthropic's Agent Skills format), import from Anthropic's public skill hub, git-installed plugins and a skill editor (`src-tauri/src/core/agent/skills.rs`, `skill_hub.rs`, `plugins.rs`).
+
+| ID | Requirement | Priority | Release |
+|---|---|---|---|
+| SKL-01 | Skills are enabled per matter (WS-06); Ask (`/skill-name`), workflow steps and agent steps can use enabled skills | P0 | R1 |
+| SKL-02 | **Trust levels:** built-in, firm-approved, personal, third-party. Third-party hub skills are off by default in matters | P0 | R1 |
+| SKL-03 | **Review before enabling:** show the full SKILL.md and list bundled scripts and files | P0 | R1 |
+| SKL-04 | Skill scripts never run without approval, and run sandboxed (no network, matter folder read-only) | P0 | R1 |
+| SKL-05 | Every run records the skills used (name and version) in the audit entry and on the artifact | P0 | R1 |
+| SKL-06 | Starter packs: NDA triage, DD checklist, lease abstract, chronology method, client-memo style, invoice checks, covenant reading; US / UK / EU variants | P1 | R2 |
+| SKL-07 | Firm skill library: publish, version, change notes, deprecate; lawyers can propose skills | P1 | R3 |
+| SKL-08 | **Skill Builder:** turn a chat or a corrected output into a draft skill for review | P2 | R3 |
+| SKL-09 | Shared through Firm Server or a firm git repository (plugins); optional signing of firm skills | P1 | R4 |
+
+**Relation to other modules:** a *skill* is how to do something; a *playbook* (FS-13) is structured positions to check against; a *workflow* or *agent* (FS-12, FS-16) is ordered steps; a *knowledge base* (FS-18) is documents to cite.
+
+---
+
 ## Cross-cutting requirements
 
 | Area | Requirement |
@@ -398,4 +515,5 @@ Nothing calls a provider directly.
 | **Audit** | Every model call, agent step and change is a chain entry |
 | **Performance** | Interactive actions answer in < 300 ms; model output starts streaming in < 3 s locally |
 | **Accessibility** | WCAG 2.1 AA |
+| **Data-exit paths** | Model calls, web search (SRCH-10), MCP tools (MCP-03), connectors (CON-03: inbound only) and skill scripts (SKL-04) are the only ways data can leave a matter; each is governed by the gateway and audited |
 | **Data portability** | Matters export to an open format (JSON plus original files) |

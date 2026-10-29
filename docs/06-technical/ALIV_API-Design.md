@@ -61,7 +61,9 @@ Example routing for a Hybrid matter: `extract → local`, `draft → cloud`.
 | `definition_list`, `definition_save`, `definition_publish` | Workflows and agents |
 | `run_start`, `run_status`, `run_cancel`, `run_resume`, `run_log` | Runs (events streamed over a channel) |
 | `playbook_*`, `clause_*`, `kb_*` | Libraries |
-| `monitor_*`, `inbox_list`, `inbox_update` | Monitors (R3) |
+| `monitor_*`, `inbox_list`, `inbox_update` | Monitors (R3; become automation templates) |
+| `automation_list`, `automation_save`, `automation_toggle`, `automation_runs`, `automation_retry` | Automation (R3) |
+| `artifact_list`, `artifact_get`, `artifact_versions`, `artifact_diff`, `artifact_export`, `artifact_save_to_output` | Artifacts (R2) |
 
 ### Agent tools (what a step may call)
 
@@ -77,6 +79,23 @@ Example routing for a Hybrid matter: `extract → local`, `draft → cloud`.
 | `research.search(source, query)` | External research (R4) | Hybrid + confirmation |
 
 Tools that change existing files or leave the machine only ever create proposals.
+
+## 4b. Workspace, skills, tools and connectors (R1–R3)
+
+| Command | Purpose | Release |
+|---|---|---|
+| `matter_chat_list`, `matter_chat_send` (stream) | Chats inside a matter, through the gateway | R1 |
+| `matter_set_instructions`, `matter_folders_set`, `matter_rescan` | Workspace settings | R1 |
+| `skill_list`, `skill_review`, `matter_skills_set` | Skills per matter; review shows SKILL.md and scripts. Wraps the existing `agent_skill_*` commands | R1 |
+| `mcp_server_list`, `mcp_server_set_trust`, `matter_tools_set` | Trust levels and per-matter allow-lists. Wraps the existing MCP commands | R1 |
+| `tool_call_approve`, `tool_call_reject` | Approvals for side-effecting tools and skill scripts | R1 |
+| `web_search` (gateway) | Policy-checked, redacted, audited web search | R1 |
+| `global_search` | Across permitted matters and object types | R2 |
+| `connector_add`, `connector_link`, `connector_sync`, `connector_status` | Document connectors | R3 |
+
+### ALIV as an MCP server (R4)
+
+Read-only tools exposed to paired clients, each limited to granted matters and audited: `search_matter(matter, query)` → cited passages; `get_register(matter, filter)`; `get_artifact(matter, id)`. No tool writes to the vault or files.
 
 ## 5. Local API and CLI
 

@@ -164,6 +164,20 @@ Run
 - **Resumable runs:** a run can resume after a crash; completed steps are not re-run.
 - **Review Tables** are a special run: one step per column, fanned out per document, run in parallel locally (bounded by CPU/GPU) and sequentially for cloud (rate limits). Each cell is a `ModelRequest` whose sources are that document's top passages.
 
+## 7b. Other paths out of a matter: web search, MCP, skills, connectors
+
+Model calls are not the only way matter text could leave the machine. The gateway governs every one of these paths with the same three steps: **policy check → (redact) → audit**.
+
+| Path | Exists today | Rule in the gateway | Feature IDs |
+|---|---|---|---|
+| **Web search** | `tauri-plugin-websearch` (Exa backend; keyless by default) | Local only: blocked. Hybrid: the query is shown, redacted and audited before sending. Results are cited with URL and date | SRCH-10/12 |
+| **MCP tools** | MCP client in `core/mcp` (with OAuth) | Each server has a trust level (local / firm / third-party). A matter allows specific servers; Local only allows *local* servers only. Payloads to firm or third-party servers are redacted and audited; side-effecting tools need approval | MCP-01–04 |
+| **Skill scripts** | Skills and plugins in `core/agent` | Scripts run only with approval, sandboxed with no network; skill names and versions are recorded on every run | SKL-02–05 |
+| **Connectors** | — | Inbound only. Writing back to a DMS is a proposal | CON-03/07 |
+| **ALIV as an MCP server** | — | Read-only tools; paired clients only; limited to granted matters; every call audited | MCP-06 |
+
+**Matter workspace (FS-27).** Chats that use matter documents run inside the matter, so they inherit the same policy and routing. Free chat outside matters cannot read any matter. This closes the gap where base-app chat "Projects", web search and MCP tools work today outside matter policy.
+
 ## 8. Data stored
 
 | Table (new in R1–R3) | Purpose |
@@ -176,6 +190,11 @@ Run
 | `playbooks`, `positions` | Playbooks and their positions |
 | `clauses` | Clause library |
 | `knowledge_bases` | Read-only collections (documents live in the same passage store, flagged) |
+| `matter_chats`, `matter_instructions` | Chats and instructions inside a matter (FS-27) |
+| `artifacts`, `artifact_versions` | Saved work product with citations, run, skills and route (FS-25) |
+| `mcp_servers`, `matter_tools` | MCP servers with trust levels, and the servers each matter allows (FS-24) |
+| `skills_enabled` | Skills enabled per matter, with version (FS-28) |
+| `connector_sources`, `automations`, `automation_runs` | Connectors (FS-23) and automations (FS-26) |
 
 The full schema is in the [Data Model](ALIV_Data-Model.md).
 
@@ -188,6 +207,7 @@ The full schema is in the [Data Model](ALIV_Data-Model.md).
 | Every call is accountable | Audit entry per call with route, model, sizes and source ids; chain integrity check |
 | Agents can't act on their own | Changes are proposals; approval is required and audited |
 | Keys are protected | OS keychain; never serialised to the web layer |
+| No side door out of a matter | Web search, MCP tools and skill scripts pass the same policy, redaction and audit as model calls (§7b) |
 
 ## 10. Testing
 

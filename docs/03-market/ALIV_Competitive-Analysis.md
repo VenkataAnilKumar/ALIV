@@ -166,6 +166,11 @@ Points worth keeping (mostly vendor marketing):
 | Playbook review & redlines | ◐ | ◐ | ◐ | ✅ | ✅ | — | — | ○ FS-13 |
 | Drafting in Word | ◐ | ◐ | ◐ | ✅ | ✅ | — | — | ○ FS-21 |
 | Licensed legal research | ✅ | ✅ | ✅ (Westlaw) | — | — | — | — | ○ FS-22 (partners) |
+| DMS / SharePoint / email connectors | ✅ | ✅ (iManage, NetDocuments, SharePoint, Box, Drive) | ✅ (iManage API) | ? | ? | — | — | ○ FS-23 |
+| Saved, versioned outputs (artifacts) | ◐ | ◐ | ◐ | ? | — | — | ◐ exports | ○ FS-25 |
+| Firm know-how as reusable skills | ? | ? | ? | ? | ? | ◐ | ◐ base-app skills | ○ FS-28 (governed, per matter) |
+| MCP (tools in, vault out) | ✅ client and server | ◐ iManage MCP announced Oct 2026 | ✅ CoCounsel Legal ↔ Claude (May 2026); iManage MCP announced | ? | ? | ◐ | ◐ base-app MCP client | ○ FS-24 (trust levels, allow-lists, local servers) |
+| Event-driven automation | ◐ | ✅ | — | ◐ | — | — | — | ○ FS-26 |
 | Runs fully on the firm's machines | — | — | — | ◐ | — | ✅ | ✅ | ✅ |
 | Per-matter cloud policy | — | — | — | — | — | — | ✅ | ✅ |
 | Per-step model routing + redaction | — | — | — | — | — | — | — | ○ FS-9/10 |
@@ -173,7 +178,7 @@ Points worth keeping (mostly vendor marketing):
 | Approval-gated, undoable file actions | — | — | — | — | — | — | ✅ | ✅ |
 | Self-serve small-firm pricing | — | — | ◐ | — | ✅ | ✅ | ○ | ○ |
 
-"?" means no public evidence either way; enterprise products likely log internally, but don't expose a verifiable chain to the customer.
+Connector and MCP rows were checked by web search in October 2026 (sources in §6). Artifacts, skills and automation rows are best-known status; no public evidence was found for Luminance or Spellbook on MCP or skills. "?" means no public evidence either way; enterprise products likely log internally, but don't expose a verifiable chain to the customer.
 
 ---
 
@@ -197,6 +202,21 @@ Points worth keeping (mostly vendor marketing):
 |---|---|
 | Harvey or Legora launch a private-deployment edition | Compete on price, desktop simplicity, Windows, and the per-step audit chain; ship R2 quickly |
 | Microsoft adds on-device document Q&A to Windows/Copilot | Generic retrieval becomes a commodity. ALIV's moat is the workflow and governance layer |
+| Competitors adopt open standards: Harvey runs MCP as client and server; CoCounsel connects to Claude over MCP; Legora is adding the iManage MCP Server | MCP is now table stakes, not a differentiator. ALIV competes on *where* it runs and *how it is governed*: local MCP servers for Local only matters, per-matter allow-lists, redaction and audit of every tool call, and skills under the same controls |
 | Local models stay too weak for complex reasoning | Hybrid routing with redaction; hardware tiers; citations expose errors |
 | Licensed content locks users into CoCounsel/Westlaw | Partner and connect (FS-22); focus ALIV on the firm's own documents, where licensed content doesn't help |
 | A new local-first legal startup (e.g. LocalApps) wins small firms first | Speed on R1–R2, an open data format, and finance coverage as a second wedge |
+
+---
+
+## 6. Sources for the October 2026 update (connectors and MCP)
+
+| Finding | Source |
+|---|---|
+| Harvey uses MCP as a client (tool calls to external services) and as a server (surfacing customers' internal assets in Harvey) | [Harvey: MCP overview](https://www.harvey.ai/blog/harvey-mcp-overview) |
+| Legora integration ecosystem: iManage, NetDocuments, SharePoint, Box, Google Drive; MCP connections to iManage and NetDocuments | [Legora: integration ecosystem](https://legora.com/newsroom/legora-launches-integration-ecosystem-spanning-the-enterprise-legal-stack), [Legora integrations](https://legora.com/integrations) |
+| Legora and iManage: planned connection to the iManage MCP Server, with iManage permissions deciding what users can retrieve (16 Oct 2026) | [Legora press release](https://legora.com/newsroom/legora-and-imanage-deepen-integration-through-imanage-mcp-server), [LawNext](https://www.lawnext.com/2026/10/legora-and-imanage-deepen-integration-through-imanagemcp-server.html) |
+| Thomson Reuters and Anthropic: MCP integration connecting Claude with CoCounsel Legal (May 2026) | [Thomson Reuters, May 2026](https://www.thomsonreuters.com/en/press-releases/2026/may/thomson-reuters-and-anthropic-expand-partnership-to-connect-claude-with-cocounsel-legal) |
+| Next-generation, agentic CoCounsel Legal generally available (20 Aug 2026) | [Thomson Reuters, Aug 2026](https://www.thomsonreuters.com/en/press-releases/2026/august/thomson-reuters-launches-next-generation-of-cocounsel-legal-the-ai-ecosystem-built-for-legal-professionals) |
+| iManage and Thomson Reuters partnership; MCP support for governed iManage content announced, not yet launched | [Legal Futures](https://www.legalfutures.co.uk/associate-news/imanage-and-thomson-reuters-announce-strategic-partnership-to-deliver-governed-ai-powered-legal-workflows), [CMOtech](https://cmotech.asia/story/imanage-thomson-reuters-expand-legal-ai-partnership) |
+

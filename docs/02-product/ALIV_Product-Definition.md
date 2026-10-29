@@ -104,6 +104,12 @@ Every **matter** is a private vault on the firm's own machines. A **hybrid model
 | **Agent Builder** | Multi-step agents from tools, steps and model rules | Automate the firm's own processes |
 | **Monitors** | Agents that run on a schedule or when files arrive: deadline scans, new-document triage | Nothing is missed between reviews (cf. Legora Monitors, Harvey retention notifications) |
 | **Knowledge bases** | Firm precedents, playbooks and clause banks, shared read-only across matters | Answers and drafts grounded in the firm's own work |
+| **Matter workspace** | One project folder per matter: chats, instructions, linked folders, artifacts, automations | One place for a client's work; every conversation under the matter's policy |
+| **Artifacts** | Versioned, cited work product: memos, issues lists, chronologies, redlines | Deliverables that carry their evidence and history |
+| **Skills** | The firm's know-how packaged as reusable instructions (`SKILL.md`): NDA method, memo style, DD checklist | Consistent work in the firm's way, applied by Ask, workflows and agents |
+| **Connectors** | Read-only import from iManage, NetDocuments, SharePoint, Drive, Box, Outlook/Gmail | Work where documents already live (cf. Harvey and Legora DMS integrations) |
+| **MCP** | Open Model Context Protocol: agents use firm tools; other AI clients can query ALIV read-only | Fits the firm's stack without a side door out of the vault |
+| **Automation** | Triggers (schedule, folder, email, date) that run agents and propose results | Routine work handled continuously, still approved by people |
 | **Hybrid AI layer** | Gateway, router and redaction | Strong cloud reasoning where allowed, local everywhere else, all audited |
 | **Governance** | Policies, approvals, audit chain, health report | Evidence for clients, insurers and regulators |
 
@@ -118,10 +124,10 @@ Feature IDs refer to the [Feature Spec](../04-specs/ALIV_Feature-Spec.md). The p
 | Release | Theme | Features | Status |
 |---|---|---|---|
 | **R0** (shipped) | Private matter vault | FS-1 Matters & policy · FS-2 Ingestion & OCR · FS-3 Hybrid search · FS-4 Register & extraction · FS-5 Assistant · FS-6 Approvals & file actions · FS-7 Audit & health | ✅ |
-| **R1** | Hybrid foundation | FS-8 Model gateway · FS-9 Redaction · FS-10 Model router | Phase 1 |
-| **R2** | Harvey-class work product | FS-11 Review Tables · FS-12 Workflows · FS-13 Playbooks & redlines · FS-14 Clause library & drafting · FS-15 Document compare | Phase 2 |
-| **R3** | Agents | FS-16 Agent Builder · FS-17 Monitors · FS-18 Knowledge bases · FS-19 Finance pack | Phase 3 |
-| **R4** | Scale & reach | FS-20 Firm Server & roles · FS-21 Word add-in · FS-22 Research connectors | Phase 4 |
+| **R1** | Hybrid foundation | FS-8 Model gateway · FS-9 Redaction · FS-10 Model router · FS-27 Matter workspace (chats, instructions) · web search, MCP and skills brought under matter policy (SRCH-10, FS-24, FS-28) | Phase 1 |
+| **R2** | Harvey-class work product | FS-11 Review Tables · FS-12 Workflows · FS-13 Playbooks & redlines · FS-14 Clause library & drafting · FS-15 Document compare · FS-25 Artifacts · global search · skill packs | Phase 2 |
+| **R3** | Agents | FS-16 Agent Builder · FS-17 Monitors · FS-18 Knowledge bases · FS-19 Finance pack · FS-26 Automation · FS-23 Document connectors · MCP tools in agents · skill library and builder | Phase 3 |
+| **R4** | Scale & reach | FS-20 Firm Server & roles · FS-21 Word add-in · FS-22 Research connectors · ALIV as an MCP server · shared, signed skills | Phase 4 |
 
 ---
 
@@ -204,6 +210,8 @@ Cloud model usage is billed by the provider under the customer's own API key (br
 | Microsoft builds local Q&A into Windows | Generic local search becomes a commodity | Medium | Moat is the workflow layer (tables, playbooks, agents), not retrieval |
 | Extraction rules fail on real-world documents | Low register accuracy | Medium | Model-assisted extraction as a second pass (FS-11); benchmark on real anonymised documents |
 | Support load from diverse hardware | Cost, churn | Medium | Hardware check at setup; vault health report; recommended configurations |
+| Web search, MCP tools or skill scripts leak matter text | Confidentiality breach through a side path | Medium today (base-app features sit outside matter policy) | R1 puts every exit path under the gateway: trust levels, allow-lists, redaction, approval, audit |
+| A malicious or careless skill or plugin | Wrong or harmful outputs; data exfiltration by scripts | Medium | Trust levels, review before enabling, sandboxed scripts, third-party skills off in matters, signing (R4) |
 | Dependence on the open-source base (Apache-2.0) | Upstream divergence | Low | Isolated vault plugin; keep the base thin; licence compliance |
 
 ---
@@ -236,3 +244,9 @@ The capability set is drawn from what the leading products ship in 2026, then fi
 | **Redaction** | Replacing names, parties and amounts with placeholders before a cloud call, then restoring them (FS-9) |
 | **Workflow** | A predefined multi-step task with fixed prompts and output format |
 | **Agent** | A user-defined, multi-step process with tools, model rules and optional schedule |
+| **Skill** | Packaged know-how (`SKILL.md` plus optional files) that Ask, workflows and agents apply (FS-28) |
+| **Artifact** | A saved, versioned piece of work product with its citations and run (FS-25) |
+| **Connector** | A read-only link to a document system or mailbox (FS-23) |
+| **MCP** | Model Context Protocol, an open standard for connecting AI to tools; ALIV uses it in both directions (FS-24) |
+| **Automation** | A trigger plus an agent run whose results are proposals (FS-26) |
+| **Matter workspace** | The matter as the one project folder: chats, instructions, folders, artifacts, automations (FS-27) |

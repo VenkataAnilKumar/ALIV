@@ -214,3 +214,64 @@ Settings › Admin for whoever manages the firm's install. Defaults for new matt
 ## W-14 Firm Server Admin Console (R4)
 
 A browser console: Dashboard, Users & groups, Matters & walls, AI policy, Providers, Spend, Audit, Health & backups, Updates, SSO. The dashboard shows users, matters by policy, model calls by route, calls refused by policy, cloud spend, recent policy events, GPU model server and backups. **Admins see metadata only** (counts, routes, costs, audit entries), never document text. See the [mockup](../assets/mockups/admin-console.png).
+
+## W-15 Matter workspace settings (R1)
+
+```
+┌ Project Falcon › Settings › Workspace ────────────────────────────────────────┐
+│ Instructions  [We act for the buyer. UK English. Short paragraphs. Flag     ] │
+│               [anything affecting completion timing.                       ] │
+│ Source folders  \\fs01\deals\falcon\dataroom      scanned 08:02 [Re-scan] │
+│                 SharePoint › Falcon DR (connector)  synced 07:55   [Sync]    │
+│ Output folder   \\fs01\deals\falcon\ALIV Output                [Change] │
+├ Skills & tools ───────────────────────────────────────────────────────────────┤
+│ Skills   [✓] DD checklist v3      firm      [✓] House memo style v4   firm   │
+│          [ ] UK lease abstract v1 firm      [ ] contract-redliner     3rd ⚠  │
+│ MCP      [✓] Billing (firm)  tools: log_time ⇢ approval                       │
+│          [ ] Web research (third-party)        Web search [✓] (Hybrid only)  │
+└───────────────────────────────────────────────────────────────────────────────┘
+```
+
+## W-16 Skill review (R1)
+
+```
+┌ Enable skill: contract-redliner ─────────────────── source: skills hub (3rd) ┐
+│ SKILL.md                                  │ Bundled files                     │
+│ name: contract-redliner                   │  redline.py   ⚠ script            │
+│ description: Suggest redlines for …       │  clauses.md                       │
+│ ## Steps …                                │ Scripts run only with approval,   │
+│                                           │ sandboxed, no network.            │
+│ Trust: third-party · off by default in matters      [Cancel] [Enable for me] │
+└───────────────────────────────────────────────────────────────────────────────┘
+```
+
+## W-17 Artifacts tab (R2)
+
+```
+│ Artifacts   [All ▾] [Memo] [Table] [Chronology] [Redline]        ⌕ search     │
+│ 📄 Client memo: DD findings   v3 · Priya · ☁ redacted · skills: memo style v4  │
+│ ▦ DD core terms (XLSX)        v7 · table run · ● local                        │
+│ ⇄ NDA_Meridian redlines       v1 · playbook Mutual NDA v3 · ● local           │
+│   └ open → document with citations · History (v1–v3) · Diff · Export · Save → │
+```
+
+## W-18 Connectors (R3)
+
+```
+│ Connections › Connectors                                     [+ Add connector]│
+│ iManage (firm-dm.harbor.law)   3 workspaces → 3 matters   synced 07:55  ✓     │
+│ SharePoint (Falcon DR)         1 site → Project Falcon    synced 07:55  ✓     │
+│ Outlook (priya@…)              filter "Project Falcon"    token expired ⚠ [Re-auth]│
+│ Read-only. Content is indexed on this computer; nothing is written back.      │
+```
+
+## W-19 Automations (R3)
+
+```
+│ Automations                                                    [+ New]        │
+│ ● Morning data-room triage   every weekday 07:30 → agent "DD triage"   on     │
+│     last run 07:31 ✓ 6 new docs · 2 inbox items · 0 cloud calls   [History]   │
+│ ● NDA inbox                  new email "NDA" → playbook Mutual NDA v3   on    │
+│ ○ Weekly invoice check       Mon 06:00 → workflow "Invoice vs contract" paused│
+│ Results go to Inbox; changes go to Approvals. Nothing is applied automatically.│
+```
