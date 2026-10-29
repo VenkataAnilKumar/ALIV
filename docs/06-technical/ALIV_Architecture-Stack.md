@@ -102,7 +102,7 @@ Reviewed October 29, 2026 at **OpenGeni** [`Cloudgeni-ai/opengeni@6c5a6b5`](http
 | OpenGeni `docs/tool-search.md` | Small visible tool set; load more by name or meaning (keyword + embeddings fused, as in ALIV search) | `aliv-mcp`, MCP-09 | 1 | R3 |
 | OpenGeni `packages/tool-gateway` catalog digests | Tool catalog hashed so the approved set is pinned and auditable | `aliv-mcp`: record a digest of each matter's allowed tool catalog in the audit log | 1 | R1 |
 | OpenGeni `packages/decisions` typed judgments | Predicate / choice / score answers with probabilities and refusal | Review-table answer types and confidence (TBL-02/03), evaluation judge (EVAL-03) | 1 | R2 |
-| OpenGeni `agent/crates/opengeni-agent-update` (Rust, ~2.5k lines) | Self-update: signed manifest, minisign + sha256, version monotonicity, staged rollout, atomic swap, rollback | Desktop updater (GA track) | **2** (port, or use the same crates: `minisign-verify`, `self-replace`) | GA |
+| OpenGeni `agent/crates/opengeni-agent-update` (Rust, ~2.5k lines) | Self-update: signed manifest, minisign + sha256, version monotonicity, staged rollout, atomic swap, rollback | Desktop updater (GA track) | **Superseded:** ALIV uses Tauri's official `tauri-plugin-updater` (already minisign-signed); OpenGeni's staged-rollout and rollback ideas are design reference only | GA |
 | OpenGeni `agent/` Runner + `opengeni-relay` (Rust) | Machines only dial out; no durable credentials on the machine | Desktop ↔ Firm Server link | 1, possibly 2 | R4 |
 | OpenAgents A2A connector, converters, task store (Python) | Agent-to-agent task exchange | A2A in Rust against the spec; use their tests as reference cases | 4 | R4 option |
 | OpenAgents network exposed as an MCP server | Network tools over MCP | Compare with ALIV as an MCP server (MCP-06) | 1 | R4 |
@@ -113,4 +113,90 @@ Reviewed October 29, 2026 at **OpenGeni** [`Cloudgeni-ai/opengeni@6c5a6b5`](http
 - add the component to `THIRD_PARTY_NOTICES.md` (Apache-2.0), including any upstream NOTICE text;
 - port only what is needed; add ALIV tests and run it through the same security review as our own code (the updater and sandbox especially);
 - never take on upstream infrastructure (Postgres, Temporal, NATS, Docker) as a desktop requirement.
+
+## 7. Hybrid architecture: four planes
+
+| Plane | Runs where | Holds client data? | Technology |
+|---|---|---|---|
+| **1. Local** (desktop) | User's computer | Yes, the matter vault | Tauri 2, Rust, React, SQLite (+ SQLCipher), llama.cpp / MLX |
+| **2. Firm** (Firm Server, R4) | Firm's server room or **the firm's own cloud tenancy** | Yes, shared matters | Same Rust crates, axum, PostgreSQL + pgvector, Docker / Helm, Terraform (**Azure first**, then AWS, GCP) |
+| **3. Model** (gateway) | Inside planes 1 and 2 | Passes only what policy allows | Rust gateway: policy, routing, redaction, audit; adapters via `genai` for local engines, OpenAI-compatible, Anthropic, Azure OpenAI, AWS Bedrock, Google, open-model hosts; OpenRouter only as an explicitly allowed cloud provider |
+| **4. ALIV Cloud** (control plane) | **Vercel now**; a public cloud (Azure first) when scale or compliance needs it | **Never** | Website, public docs, public demo, update manifest, licences and accounts, model and skill catalogue (Next.js + Vercel Functions, Postgres from the Vercel Marketplace such as Neon); installers on GitHub Releases; opt-in crash reports via Sentry. The connection relay needs long-lived connections, so it comes later on a public cloud (R4) |
+
+An optional **managed ALIV cloud** (a dedicated tenant per firm, firm-held keys) may follow R4; it is not required by the plan.
+
+## 8. Data and supporting technology
+
+| Need | Desktop | Firm Server | ALIV Cloud |
+|---|---|---|---|
+| Database | **SQLite** (WAL); one file per matter for very large vaults; **SQLCipher** encryption (GA) | **PostgreSQL 16+** with **pgvector**, row-level security per matter, point-in-time backups; SQLite allowed for < 20 users | Managed PostgreSQL (no client data) |
+| Data access | **SQLx** for both SQLite and PostgreSQL behind one repository interface in `aliv-vault` | same | — |
+| Keyword search | SQLite FTS5 | PostgreSQL full-text or **Tantivy** | — |
+| Vectors | Exact search now; **LanceDB** or **sqlite-vec** by benchmark (R2); int8/binary compressed vectors | **pgvector** (HNSW) | — |
+| Files | Read in place | Read-only mounts or connectors; outputs in S3-compatible storage (MinIO on-prem, Azure Blob in cloud) | Release artifacts |
+| Jobs and schedules | Tokio + job table; **apalis**, **tokio-cron-scheduler** | Same code on PostgreSQL (`SKIP LOCKED` workers) | — |
+| UI updates | Tauri IPC events | Server-Sent Events / WebSockets | — |
+| Secrets | OS keychain | Azure Key Vault / AWS KMS / HashiCorp Vault, firm-held keys (BYOK) | Cloud KMS |
+| Identity | Local user | OIDC / SAML (Entra ID, Okta, Google); roles admin / member / viewer | Accounts |
+| Transport | — | TLS 1.3 (rustls) | TLS 1.3 |
+| Supply chain | Signed updates (`tauri-plugin-updater`) | Signed images (**cosign**), SBOMs (**syft**, `cargo-auditable`) | Same |
+| Observability | OpenTelemetry (no content), opt-in crash reports | OTel to the firm's own tools (Grafana, Datadog, Azure Monitor) | Same |
+
+**SQLite scaling:** a 10,000-document matter is roughly 0.5–1 million passages and 2–5 GB, well within SQLite's limits. Its real limits are concurrent writers and network-shared files, so multi-user deployments use the Firm Server on PostgreSQL; a vault file must never be shared over a network drive.
+
+**Deliberately not used:** MongoDB and other NoSQL stores (legal data is relational); Elasticsearch / OpenSearch (heavy to run); Pinecone and other hosted vector databases, Firebase / hosted Supabase (client data in a third-party cloud); Redis, Kafka, Temporal, NATS (not needed at ALIV's scale); semantic caching shared across matters (could leak one matter into another; any cache is per matter and per policy).
+
+## 9. Agent framework decision
+
+ALIV builds on the **existing Rust agent runtime** (`src-tauri/src/core/agent`, about 46k lines: loop, sub-agents, plan, goals, compaction, memory, skills, hooks, OTel), evolving it into `crates/aliv-agents`, with every model and tool call going through `aliv-gateway`.
+
+| Library | Use |
+|---|---|
+| `genai` (Rust) | Model provider adapters (in use) |
+| `rmcp` (Rust, official MCP SDK) | MCP client, later ALIV as an MCP server (in use) |
+| `cedar-policy` (Rust) | Tool and agent policy, Allow / Ask / Block (R1) |
+| `rig-core` (Rust) | Evaluate in R2 for tool, embedding or extraction helpers |
+| A2A SDK | Agent-to-agent interop (R4) |
+| LangGraph, CrewAI, OpenAI / Claude Agent SDKs, Microsoft Agent Framework, Google ADK | **Not in the shipped app** (Python/TS runtimes). Allowed in CI, evals and prototypes, or as a firm's external agents connecting through MCP or A2A. Their designs inform `aliv-agents` (checkpointed step graphs, handoffs, guardrails) |
+
+**Conditions for any agent library:** all model and tool calls go through the gateway; built-in telemetry off (e.g. LangSmith, CrewAI telemetry); permissive licence and active maintenance; runs locally; wrapped behind ALIV interfaces so it can be replaced; recorded here and in `THIRD_PARTY_NOTICES.md`.
+
+**OpenGeni as a foundation:** not adopted. Re-evaluate at R4 only for an optional managed-cloud edition, once it has tagged releases and stable APIs.
+
+## 10. Reuse policy and component map
+
+| Kind | Rule |
+|---|---|
+| Whole products and platforms (OpenGeni, OpenAgents, LiteLLM, Portkey, Bifrost, TensorZero, OpenRouter) | **Reference specific parts only**: read the code, write ALIV's own version; small ported pieces keep their notice |
+| Building-block libraries, including agent-framework libraries | **Use when they help**, under the conditions in §9 |
+| External services that receive data | **No**, except cloud models through the gateway on Hybrid matters |
+
+| Part of ALIV | Library to use | Licence |
+|---|---|---|
+| Tool policy | Cedar (`cedar-policy`) | Apache-2.0 |
+| Signed auto-update | `tauri-plugin-updater` | MIT / Apache |
+| Skill-script sandbox | Wasmtime; Landlock on Linux | Apache-2.0 |
+| Vault encryption | SQLCipher via `rusqlite` | BSD |
+| Data access | SQLx | MIT / Apache |
+| Jobs and schedules | apalis, tokio-cron-scheduler | MIT / Apache |
+| Server search | Tantivy | MIT |
+| Vectors | LanceDB or sqlite-vec (benchmark); pgvector on server | Apache / MIT / PostgreSQL |
+| Embeddings, rerankers, PII model | llama.cpp (in use); `ort` (ONNX Runtime), fastembed-rs; GLiNER-style PII model | MIT / Apache |
+| OCR | Tesseract (in use); evaluate pure-Rust `ocrs` | Apache / MIT |
+| Layout parsing | Docling / Granite-Docling or olmOCR (benchmark) | MIT / Apache |
+| Word, Excel, PDF output | `docx-rs`, `rust_xlsxwriter`, Typst | MIT, MIT/Apache, Apache |
+| Compare | `similar` | Apache-2.0 |
+| Server and auth | axum, tower, `openidconnect`, `samael` or Keycloak / Zitadel | MIT / Apache |
+| Tracing | `opentelemetry-rust` | Apache-2.0 |
+| Review grid | TanStack Table + TanStack Virtual | MIT |
+| Source viewer | PDF.js (`react-pdf`) | Apache-2.0 |
+| Drafting editor | Tiptap | MIT |
+| Agent Builder canvas | React Flow (`@xyflow/react`) | MIT |
+| Command palette | cmdk | MIT |
+| Evaluations (CI only) | promptfoo; Ragas | MIT / Apache |
+| Word add-in | Office.js | MIT |
+
+Every adoption is checked for licence and maintenance first and recorded in `THIRD_PARTY_NOTICES.md`.
+
+**Gateway reference designs** (reference only): Portkey AI Gateway (MIT) for fallback chains, retries and guardrail hooks; LiteLLM for provider mappings and a model metadata table (context window, price, capabilities; data used only after a licence check); Bifrost (Apache-2.0) for budgets; TensorZero for a Rust gateway design (reportedly archived in 2026). OpenRouter is proprietary: usable only as an optional cloud provider, explicitly allowed by the firm and subject to ZDR and region rules.
 

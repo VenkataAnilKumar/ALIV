@@ -126,4 +126,6 @@ matters 1─* documents 1─* chunks 1─1 chunk_vectors
 - **No document text in `audit` or `model_calls`**: hashes and sizes only.
 - **Every citation** resolves to `(document_id, chunk_ordinal)`.
 - **User edits** (`field_overrides`, `review_cells.original_value`) survive re-ingestion.
+- **One engine-neutral data layer:** `aliv-vault` uses SQLx so the same schema runs on SQLite (desktop) and PostgreSQL + pgvector (Firm Server, with row-level security per matter).
+- **Very large vaults:** one database file per matter, and compressed (int8 or binary) vectors, keep files small and searches fast.
 - **Encryption at rest (GA):** SQLCipher or page-level encryption with the key in the OS keychain.
