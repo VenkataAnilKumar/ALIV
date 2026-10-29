@@ -176,7 +176,7 @@ Run
 | `clauses` | Clause library |
 | `knowledge_bases` | Read-only collections (documents live in the same passage store, flagged) |
 
-The full schema is in the Data Model document (batch 3).
+The full schema is in the [Data Model](ALIV_Data-Model.md).
 
 ## 9. Security properties
 
