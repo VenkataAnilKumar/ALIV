@@ -64,13 +64,16 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          # The agent and CLI tests share one process-wide test home (user
+          # skills, config), so they run one at a time; in parallel they see
+          # each other's fixtures.
           - name: desktop
             dir: src-tauri
-            test: cargo test --lib
+            test: cargo test --lib -- --test-threads=1
           - name: cli
             dir: src-tauri
             test: >-
-              cargo test --no-default-features --features cli --lib &&
+              cargo test --no-default-features --features cli --lib -- --test-threads=1 &&
               (cd aliv-cli && cargo test --features cli)
           - name: vault plugin
             dir: src-tauri/plugins/tauri-plugin-aliv-vault
