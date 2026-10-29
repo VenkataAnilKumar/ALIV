@@ -72,7 +72,37 @@ Same images as the Firm Server, deployed into the firm's own tenancy:
 
 ## 4b. ALIV Cloud (control plane, no client data)
 
-A small service run by ALIV: update server, licences and accounts, the model and skill catalogue, an optional connection relay so desktops can reach a firm's server without opening inbound ports (machines only dial out), and opt-in crash reports. It never receives documents, passages, prompts or answers. Stack: a small API and managed PostgreSQL on Azure, deployed with Terraform. An optional managed ALIV cloud (dedicated tenant per firm, firm-held keys) may follow R4.
+ALIV's own services. They **never** receive documents, passages, prompts or answers.
+
+| Service | Hosting now | Notes |
+|---|---|---|
+| Website and public docs | **Vercel** (Next.js) | Custom domain, preview deploys per PR |
+| **Public demo** (browser preview with sample data) | **Vercel** | See §4c |
+| Update manifest (`latest.json`) | **Vercel** (static or function) | Signed with minisign; the app trusts the signature, not the host |
+| Installers (.dmg, .exe, AppImage, .deb) | **GitHub Releases** | Large binaries; signed |
+| Licences, accounts, model and skill catalogue | **Vercel Functions** + Postgres from the Vercel Marketplace (e.g. Neon) | Business logic in plain TypeScript modules; functions are thin wrappers |
+| Opt-in crash reports | Sentry (hosted or self-hosted) | No document data |
+| Connection relay (desktop ↔ Firm Server) | **Later, on a public cloud** (R4) | Needs long-lived connections, which serverless functions don't suit |
+
+**Staying portable:** standard Postgres (no proprietary features), plain HTTP functions, signed manifests and releases, and custom domains (for example `api.` and `updates.` subdomains). Moving to Azure, AWS or GCP is then a redeploy.
+
+**When to move to a public cloud:** the relay or other long-running services are needed (R4); a customer requires a specific region or certified environment (SOC 2 scope, EU-only); or costs at scale exceed a basic cloud setup. Azure comes first, as most law firms run on Microsoft; the website can stay on Vercel.
+
+## 4c. Public demo on Vercel
+
+The same React web app (`apps/desktop/web-app`) runs in a browser with the in-memory demo vault (`demo-service.ts`) when it is not inside Tauri. Deployed on Vercel, it lets prospects try ALIV with the sample documents. It has no backend, holds no real data and sends nothing to a model provider.
+
+| Vercel setting | Value |
+|---|---|
+| Root directory | `apps/desktop` |
+| Install command | `corepack enable && yarn install --immutable` |
+| Build command | `yarn build:tauri:plugin:api && yarn build:core && yarn build:extensions && yarn build:web` |
+| Output directory | `web-app/dist` |
+| Routing | Single-page app: rewrite all paths to `/index.html`; open on `/matters/` |
+
+These settings follow the repository's quick start and must be verified on the first deploy. Screens that need the Rust core (chat, model hub, settings) don't work in the browser, so the demo starts on Matters and the README labels it as sample data only.
+
+**Customer web app (R4):** the same UI, served by the **Firm Server** inside the firm and talking to its API through a server-backed service implementation. It is never hosted on Vercel.
 
 ## 5. Environments and release
 

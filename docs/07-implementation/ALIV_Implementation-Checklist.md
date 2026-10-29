@@ -109,6 +109,7 @@
 
 ## GA track
 
+- [ ] ALIV Cloud on Vercel (website, docs, update manifest, licences) and public demo
 - [ ] Signed self-update with verification and rollback
 - [ ] Signed and notarised installers (macOS, Windows)
 - [ ] Update server and signed `latest.json`

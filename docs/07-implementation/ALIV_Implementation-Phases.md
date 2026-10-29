@@ -116,6 +116,7 @@
 | Signed and notarised installers (macOS, Windows), update server | Required to ship to customers |
 | Signed self-update with rollback, using Tauri's official `tauri-plugin-updater` (minisign-signed); staged rollout | Safe updates for firms, including air-gapped mirrors |
 | Vault encryption at rest (key in the OS keychain) | Closes the second limitation in `security.md` |
+| ALIV Cloud on Vercel: website, docs, signed update manifest, licences; **public demo** of the web app with sample data | Activation and sales; no client data |
 | First-run onboarding: hardware check, model download, sample matter | Activation KPI |
 | Crash reporting (opt-in, no document data) | Support |
 | Real-document accuracy benchmark (anonymised, with pilot firms) | Credible accuracy claims |

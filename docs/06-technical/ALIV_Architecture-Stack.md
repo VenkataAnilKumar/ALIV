@@ -121,7 +121,7 @@ Reviewed October 29, 2026 at **OpenGeni** [`Cloudgeni-ai/opengeni@6c5a6b5`](http
 | **1. Local** (desktop) | User's computer | Yes, the matter vault | Tauri 2, Rust, React, SQLite (+ SQLCipher), llama.cpp / MLX |
 | **2. Firm** (Firm Server, R4) | Firm's server room or **the firm's own cloud tenancy** | Yes, shared matters | Same Rust crates, axum, PostgreSQL + pgvector, Docker / Helm, Terraform (**Azure first**, then AWS, GCP) |
 | **3. Model** (gateway) | Inside planes 1 and 2 | Passes only what policy allows | Rust gateway: policy, routing, redaction, audit; adapters via `genai` for local engines, OpenAI-compatible, Anthropic, Azure OpenAI, AWS Bedrock, Google, open-model hosts; OpenRouter only as an explicitly allowed cloud provider |
-| **4. ALIV Cloud** (control plane) | ALIV's cloud | **Never** | Update server, licences and accounts, model and skill catalogue, optional connection relay (machines only dial out), opt-in crash reports; small API + managed PostgreSQL on Azure, Terraform |
+| **4. ALIV Cloud** (control plane) | **Vercel now**; a public cloud (Azure first) when scale or compliance needs it | **Never** | Website, public docs, public demo, update manifest, licences and accounts, model and skill catalogue (Next.js + Vercel Functions, Postgres from the Vercel Marketplace such as Neon); installers on GitHub Releases; opt-in crash reports via Sentry. The connection relay needs long-lived connections, so it comes later on a public cloud (R4) |
 
 An optional **managed ALIV cloud** (a dedicated tenant per firm, firm-held keys) may follow R4; it is not required by the plan.
 
