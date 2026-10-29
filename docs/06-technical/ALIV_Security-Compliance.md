@@ -15,6 +15,9 @@
 | Provider API keys | OS keychain, encrypted-file fallback (✅); used only by the gateway (R1) | High |
 | Model weights | App data folder | Low |
 | Firm knowledge (playbooks, clauses, KBs) | Vault (R2–R3) | High |
+| Firm skills and plugins | Agent store; firm library (R3) | High: shape every output |
+| Connector and MCP credentials | OS keychain | High |
+| Artifacts | Vault + matter output folder (R2) | Highest: client work product |
 
 ## 2. Trust boundaries
 
@@ -22,6 +25,8 @@
 2. **Machine ↔ cloud providers.** Crossed only for Hybrid matters, through the gateway (R1).
 3. **Desktop ↔ Firm Server.** HTTPS with OIDC (R4).
 4. **Documents ↔ parsers.** Untrusted input (malformed PDFs, images).
+5. **Matter ↔ tools.** Web search, MCP servers and skill scripts are code or services outside the vault; each is a potential exit path, governed by the gateway (see the Hybrid AI Architecture, §7b).
+6. **Connectors ↔ DMS / mail.** Inbound sync with the firm's credentials.
 
 ## 3. Threats and controls (STRIDE summary)
 
@@ -37,6 +42,13 @@
 | **Tampering** | CSV formula injection | Cells starting with `= + - @` neutralised | ✅ |
 | **Repudiation** | "AI didn't do that" | Audit entry per model call and file action; exportable trail | ✅ / R2 export |
 | **Elevation** | Agent renames or sends without consent | Agents only propose; approval and undo | ✅ actions / R3 agents |
+| **Information disclosure: web search** | A search query carries client names to a search provider | Blocked on Local only; on Hybrid, query shown, redacted and audited (SRCH-10) | R1 (today web search sits outside matter policy) |
+| **Information disclosure: MCP** | A third-party MCP tool receives matter text | Trust levels, per-matter allow-list, redaction, audit; Local only allows local servers only (MCP-01–03) | R1 |
+| **Elevation: MCP** | A tool creates records or sends messages | Side-effecting tools are proposals (MCP-04) | R1 |
+| **Tampering / elevation: skills** | A skill's script exfiltrates data or a skill's instructions are malicious | Trust levels, review before enabling, scripts sandboxed with no network and only on approval, third-party skills off in matters, optional signing (SKL-02–04, SKL-09) | R1 / R4 signing |
+| **Information disclosure: chats** | A chat outside a matter reads matter documents | Matter workspace: document chats live in a matter; free chat can't read matters (WS-01) | R1 |
+| **Information disclosure: artifacts** | An HTML artifact phones home | Sandboxed rendering, no network (ART-06) | R2 |
+| **Spoofing: connectors** | Stolen DMS tokens | Keychain storage, least-privilege read scopes, audit per sync (CON-06) | R3 |
 | **Elevation** | Prompt injection in a document instructs the agent | Tools are scoped; side effects need approval; documents are data in prompts; outputs cite sources | R2 |
 | **DoS / parser bugs** | Malicious PDF crashes ingestion | Per-file errors isolated; resumable ingestion; fuzzing of extractors | ✅ isolation / R2 fuzzing |
 | **Spoofing** | Fake update | Signed installers and updates | GA |
@@ -76,3 +88,4 @@ Copied from `security.md` and kept in sync:
 2. The audit log is tamper-evident, not tamper-proof.
 3. The policy check guards the Ask flow; the cloud request is sent from the app after approval. Fixed in R1 (gateway).
 4. The provider's own handling of text sent to it is governed by the firm's agreement with that provider.
+5. Web search, MCP tools and chat projects from the base app work today **outside** matter policy. Keep client documents out of free chat and MCP tools until R1 puts them under the gateway.
