@@ -46,9 +46,33 @@ pub async fn list_documents(vault: V<'_>, matter_id: String) -> Result<Vec<Docum
     vault.store.list_documents(&matter_id)
 }
 
+/// Keyword search, fused with meaning-based search when the app sends the
+/// question's embedding.
 #[tauri::command]
-pub async fn search(vault: V<'_>, matter_id: String, query: String, limit: Option<usize>) -> Result<Vec<SearchHit>> {
-    vault.store.search(&matter_id, &query, limit.unwrap_or(8).clamp(1, 50))
+pub async fn search(
+    vault: V<'_>,
+    matter_id: String,
+    query: String,
+    limit: Option<usize>,
+    query_vector: Option<Vec<f32>>,
+) -> Result<Vec<SearchHit>> {
+    let limit = limit.unwrap_or(8).clamp(1, 50);
+    blocking(&vault, move |v| v.store.hybrid_search(&matter_id, &query, query_vector.as_deref(), limit)).await
+}
+
+#[tauri::command]
+pub async fn pending_embeddings(vault: V<'_>, matter_id: String, limit: Option<usize>) -> Result<Vec<PendingPassage>> {
+    vault.store.pending_embeddings(&matter_id, limit.unwrap_or(64).clamp(1, 512))
+}
+
+#[tauri::command]
+pub async fn store_embeddings(vault: V<'_>, embeddings: Vec<PassageEmbedding>) -> Result<usize> {
+    blocking(&vault, move |v| v.store.store_embeddings(&embeddings)).await
+}
+
+#[tauri::command]
+pub async fn embedding_status(vault: V<'_>, matter_id: String) -> Result<EmbeddingStatus> {
+    vault.store.embedding_status(&matter_id)
 }
 
 #[tauri::command]

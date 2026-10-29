@@ -14,8 +14,14 @@ export class TauriVaultService implements VaultService {
   ingestPaths: VaultService['ingestPaths'] = (matterId, paths) =>
     cmd('ingest_paths', { matterId, paths })
   listDocuments: VaultService['listDocuments'] = (matterId) => cmd('list_documents', { matterId })
-  search: VaultService['search'] = (matterId, query, limit) =>
-    cmd('search', { matterId, query, limit })
+  search: VaultService['search'] = (matterId, query, limit, queryVector) =>
+    cmd('search', { matterId, query, limit, queryVector: queryVector ?? null })
+  pendingEmbeddings: VaultService['pendingEmbeddings'] = (matterId, limit) =>
+    cmd('pending_embeddings', { matterId, limit })
+  storeEmbeddings: VaultService['storeEmbeddings'] = (embeddings) =>
+    cmd('store_embeddings', { embeddings })
+  embeddingStatus: VaultService['embeddingStatus'] = (matterId) =>
+    cmd('embedding_status', { matterId })
   reviewGrid: VaultService['reviewGrid'] = (matterId) => cmd('review_grid', { matterId })
   proposeRenames: VaultService['proposeRenames'] = (matterId) => cmd('propose_renames', { matterId })
   listActions: VaultService['listActions'] = (matterId) => cmd('list_actions', { matterId })

@@ -10,7 +10,7 @@ Each step is one pull request into `main`.
 |---|---|---|---|
 | A | **Docs cleanup, plan and CI** | Obsolete docs moved to `docs/archive/`; root README describes the new app; GitHub Actions runs the desktop app's tests on every PR | `main` is green and the README matches the product |
 | B ✅ | **OCR** | Scanned PDFs and images are read during ingestion, instead of being listed as unreadable. Passages read by OCR are marked as such, with a confidence score | The 40 scanned documents in `benchmarks/` are indexed and their fields extracted |
-| C | **Hybrid search** | Meaning-based search next to the existing keyword search (FTS5), combined with reciprocal-rank fusion. Falls back to keyword-only when no embedding model is available | Questions phrased differently from the contract text still find the right clause |
+| C ✅ | **Hybrid search** | Meaning-based search next to the existing keyword search (FTS5), combined with reciprocal-rank fusion. Falls back to keyword-only when no embedding model is available | Questions phrased differently from the contract text still find the right clause |
 | D | **Summaries and context budget** | A cached summary per document, keyed by content hash; Ask fits long matters into the model's context | Ask works on a 500-document matter without overflowing the context |
 | E | **Diagnostics; retire the legacy app** | Diagnostics and benchmark views in the new app; `src/`, `src-tauri/`, `python/` and their configs removed | One app, one build |
 | F | **Product docs** | User guide, security and privacy overview, developer architecture and build docs | Every feature in the app has a page |
@@ -20,7 +20,7 @@ Each step is one pull request into `main`.
 | Capability | Legacy app | Rebuilt in |
 |---|---|---|
 | OCR for scanned PDFs and images | `python/workers/ocr_worker.py` (Tesseract) | B: done, `tauri-plugin-aliv-vault/src/ocr.rs` |
-| Meaning-based (embedding) search, fused with keyword search | `python/workers/embedding_worker.py`, `src-tauri/src/core/retrieval.rs` | C |
+| Meaning-based (embedding) search, fused with keyword search | `python/workers/embedding_worker.py`, `src-tauri/src/core/retrieval.rs` | C: done, `tauri-plugin-aliv-vault/src/semantic.rs` |
 | Document summaries, conversation memory, token budget | `python/workers/summarization_worker.py`, `src-tauri/src/core/memory.rs` | D |
 | Diagnostics export and benchmark views | `src/pages/DiagnosticsPage.tsx`, `BenchmarksPage.tsx` | E |
 

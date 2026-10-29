@@ -12,6 +12,7 @@ Built with Tauri 2 (Rust) and React. Runs local models through llama.cpp or MLX,
 - **Ingestion.** Point a matter at folders. PDF, DOCX, XLSX, PPTX, HTML, TXT/MD and EML files are parsed on the device, split into passages and indexed with SQLite FTS5. Unchanged files are skipped by content hash. Unreadable files stay listed with the reason.
 - **OCR.** Scanned images (PNG, JPEG, TIFF) and PDFs with no text layer are read with [Tesseract](https://github.com/tesseract-ocr/tesseract), on the device. Low-resolution scans are enlarged first, and PDF pages are rendered at 300 dpi (up to 50 pages). Each OCR'd document shows its OCR confidence, and its extracted values are scaled by it, so a poor scan lands in *Needs review*. OCR needs Tesseract, plus Poppler for scanned PDFs: `brew install tesseract poppler` on macOS, `sudo apt install tesseract-ocr poppler-utils` on Debian/Ubuntu, or the [UB Mannheim installer](https://github.com/UB-Mannheim/tesseract/wiki) on Windows. Set `ALIV_TESSERACT` / `ALIV_PDFTOPPM` to use binaries outside the usual locations. Without Tesseract, scans stay listed as skipped with that reason.
 - **Register.** Rules extract type, parties, effective, expiry/due and renewal-notice dates, amount, notice period, governing law and the penalty clause. Every value links to the passage it was read from, with a confidence score. Filters: due in 90 days, passed, needs review. The register exports to CSV, with formula injection neutralized.
+- **Hybrid search.** Passages are found by keyword (SQLite FTS5) and by meaning, fused with reciprocal-rank fusion. The app embeds passages in the background with the local llama.cpp embedding model, never a cloud provider, so it is safe for Local only matters; the Documents tab shows the coverage. Without the embedding model, search is keyword-only.
 - **Ask.** Retrieves the top passages plus the register, sends them as numbered sources, and asks the model to cite each statement. Answers stream, and each `[n]` opens its source. Without a model, deadline questions are answered directly from the register ("computed, no model used"), and other questions return the matching passages.
 - **Policy gate.** Every model call goes through `authorize_model_call` in Rust first. A cloud model on a Local only matter is refused and the refusal is logged. Providers count as local when they are built-in engines (llama.cpp, MLX) or point at loopback.
 - **Approvals.** ALIV proposes `Type_Counterparty_Date` renames with a risk level. Nothing on disk changes until a proposal is approved and applied. Applying refuses to overwrite files, and each rename can be undone.
@@ -65,11 +66,10 @@ Accuracy on the labelled corpus in `benchmarks/` (200 documents, including 40 sc
 ## Roadmap
 
 1. **Kernel-routed model traffic.** Today the policy gate decides and logs every call, but the request itself is still sent from the webview. Next, route cloud calls through the Rust proxy (`src-tauri/src/core/server/proxy.rs`) so the gate can't be bypassed, and add pseudonymization of names and amounts before cloud calls.
-2. **Hybrid search.** Add embeddings via the vector-db plugin next to FTS5, with reciprocal-rank fusion.
-3. **LLM-assisted extraction** as a second pass for fields the rules leave empty, always with a citation.
-4. **Agent packs and scheduled agents.** Weekly deadline scans and NDA triage against a playbook.
-5. **Firm Server mode.** A shared vault over the local network.
-6. **Release.** Signed builds and an update feed, a browser extension for browser control, and translations for the new Matters screens.
+2. **LLM-assisted extraction** as a second pass for fields the rules leave empty, always with a citation.
+3. **Agent packs and scheduled agents.** Weekly deadline scans and NDA triage against a playbook.
+4. **Firm Server mode.** A shared vault over the local network.
+5. **Release.** Signed builds and an update feed, a browser extension for browser control, and translations for the new Matters screens.
 
 ## License
 

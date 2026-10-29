@@ -75,6 +75,23 @@ export interface SearchHit {
   score: number
 }
 
+/** A passage the vault has no embedding for yet. */
+export interface PendingPassage {
+  chunkId: number
+  text: string
+}
+
+export interface PassageEmbedding {
+  chunkId: number
+  vector: number[]
+}
+
+/** How much of a matter is covered by meaning-based search. */
+export interface EmbeddingStatus {
+  passages: number
+  embedded: number
+}
+
 export interface IngestReport {
   scanned: number
   indexed: number

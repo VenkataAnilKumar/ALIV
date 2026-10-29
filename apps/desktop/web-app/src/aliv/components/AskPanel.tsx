@@ -7,6 +7,7 @@ import { useModelProvider } from '@/hooks/useModelProvider'
 import { cn } from '@/lib/utils'
 import { ask, modelLocation, parseCitations, type AskResult, type AskSource } from '../ask'
 import type { Matter } from '../types'
+import { localEmbedder } from '../semantic'
 import { errorMessage } from '../useMatter'
 import { getVault } from '../vault'
 import { EmptyState, Pill, Section } from './primitives'
@@ -59,6 +60,9 @@ export function AskPanel({
         provider: provider ?? undefined,
         modelId: selectedModel?.id,
         signal: controller.signal,
+        // Embeddings come from the local engine, so they are safe for every
+        // matter; the browser preview has none and searches by keyword.
+        embed: vault.mode === 'desktop' ? localEmbedder : undefined,
         onText: (text) => setTurns((t) => t.map((x) => (x.id === id ? { ...x, streaming: text } : x))),
       })
       setTurns((t) => t.map((x) => (x.id === id ? { ...x, result } : x)))
@@ -230,6 +234,13 @@ function TurnView({ turn, activeN, onCite }: { turn: Turn; activeN: number | nul
             {r.location === 'local' ? <Cpu className="size-3.5" /> : <Cloud className="size-3.5" />}
             {r.model} · {r.provider} · {r.location}
             {r.status === 'answered' && ` · ${r.sources.length} sources`}
+          </div>
+        )}
+        {r?.searchMode && r.sources.length > 0 && (
+          <div className="mt-1 text-xs text-muted-foreground">
+            {r.searchMode === 'hybrid'
+              ? 'Passages found by keyword and by meaning.'
+              : 'Passages found by keyword. Meaning-based search needs the local embedding model.'}
           </div>
         )}
       </div>

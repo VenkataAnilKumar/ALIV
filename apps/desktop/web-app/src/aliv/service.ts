@@ -2,11 +2,14 @@ import type {
   AuditEntry,
   AuditVerification,
   GridRow,
+  EmbeddingStatus,
   IngestReport,
   Matter,
   MatterInput,
   ModelCallDecision,
   ModelCallRequest,
+  PassageEmbedding,
+  PendingPassage,
   SearchHit,
   VaultAction,
   VaultDocument,
@@ -24,7 +27,14 @@ export interface VaultService {
   deleteMatter(id: string): Promise<void>
   ingestPaths(matterId: string, paths: string[]): Promise<IngestReport>
   listDocuments(matterId: string): Promise<VaultDocument[]>
-  search(matterId: string, query: string, limit?: number): Promise<SearchHit[]>
+  /**
+   * Keyword search; with `queryVector` (the question's embedding) it is fused
+   * with meaning-based search over the matter's embedded passages.
+   */
+  search(matterId: string, query: string, limit?: number, queryVector?: number[]): Promise<SearchHit[]>
+  pendingEmbeddings(matterId: string, limit?: number): Promise<PendingPassage[]>
+  storeEmbeddings(embeddings: PassageEmbedding[]): Promise<number>
+  embeddingStatus(matterId: string): Promise<EmbeddingStatus>
   reviewGrid(matterId: string): Promise<GridRow[]>
   proposeRenames(matterId: string): Promise<VaultAction[]>
   listActions(matterId: string): Promise<VaultAction[]>

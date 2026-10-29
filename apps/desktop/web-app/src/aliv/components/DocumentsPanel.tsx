@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { useServiceHub } from '@/hooks/useServiceHub'
 import type { VaultDocument } from '../types'
 import { errorMessage } from '../useMatter'
+import type { MeaningIndex } from '../useMeaningIndex'
 import { getVault } from '../vault'
 import { EmptyState, Pill, Section } from './primitives'
 
@@ -13,7 +14,15 @@ function size(bytes: number) {
   return `${(bytes / 1024 / 1024).toFixed(1)} MB`
 }
 
-export function DocumentsPanel({ documents, onAddDocuments }: { documents: VaultDocument[]; onAddDocuments: () => void }) {
+export function DocumentsPanel({
+  documents,
+  onAddDocuments,
+  meaning,
+}: {
+  documents: VaultDocument[]
+  onAddDocuments: () => void
+  meaning?: MeaningIndex
+}) {
   const serviceHub = useServiceHub()
   const desktop = getVault().mode === 'desktop'
 
@@ -46,7 +55,7 @@ export function DocumentsPanel({ documents, onAddDocuments }: { documents: Vault
   return (
     <Section
       title="Documents"
-      description={`${indexed} indexed · ${documents.length - indexed} not readable. Re-adding a folder only re-reads files that changed.`}
+      description={`${indexed} indexed · ${documents.length - indexed} not readable. Re-adding a folder only re-reads files that changed.${meaning ? ` ${meaningLine(meaning)}` : ''}`}
       actions={
         <Button size="sm" variant="outline" onClick={onAddDocuments}>
           <FolderPlus className="size-4" /> Add folder
@@ -110,4 +119,13 @@ export function DocumentsPanel({ documents, onAddDocuments }: { documents: Vault
       </div>
     </Section>
   )
+}
+
+/** One sentence on how much of the matter meaning-based search covers. */
+function meaningLine(m: MeaningIndex): string {
+  if (!m.passages) return ''
+  if (m.running) return `Building the meaning index: ${m.embedded} of ${m.passages} passages.`
+  if (m.embedded >= m.passages) return 'Search matches by keyword and by meaning.'
+  if (!m.available) return 'Search matches by keyword; meaning-based search needs the local embedding model.'
+  return `Meaning index covers ${m.embedded} of ${m.passages} passages.`
 }
