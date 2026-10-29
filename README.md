@@ -14,7 +14,7 @@ Client documents are indexed on your own computer. Answers cite their sources, f
 [![Rust](https://img.shields.io/badge/Rust-Backend-orange?style=flat-square&logo=rust)](https://www.rust-lang.org)
 [![React](https://img.shields.io/badge/React-UI-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev)
 
-[🚀 Build and run](#build-and-run) &nbsp;·&nbsp; [📖 User guide](docs/user-guide.md) &nbsp;·&nbsp; [🔒 Security](docs/security.md) &nbsp;·&nbsp; [🛠️ Developer guide](docs/developer.md) &nbsp;·&nbsp; [🗺️ Plan](docs/PLAN.md) &nbsp;·&nbsp; [📊 Market research](docs/MARKET_RESEARCH.md)
+[🚀 Build and run](#build-and-run) &nbsp;·&nbsp; [📚 Product docs](docs/README.md) &nbsp;·&nbsp; [📖 User guide](docs/user-guide.md) &nbsp;·&nbsp; [🔒 Security](docs/security.md) &nbsp;·&nbsp; [🛠️ Developer guide](docs/developer.md) &nbsp;·&nbsp; [🗺️ Plan](docs/PLAN.md) &nbsp;·&nbsp; [📊 Market research](docs/MARKET_RESEARCH.md)
 
 <br/>
 
