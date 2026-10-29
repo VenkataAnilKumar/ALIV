@@ -10,6 +10,7 @@ import type {
   PendingPassage,
   SearchHit,
   VaultAction,
+  VaultDiagnostics,
   VaultDocument,
 } from './types'
 
@@ -386,6 +387,28 @@ export class DemoVaultService implements VaultService {
 
   async verifyAudit() {
     return { ok: true, entries: this.audit.length, firstBrokenId: null }
+  }
+
+  async diagnostics(): Promise<VaultDiagnostics> {
+    const indexed = this.docs.filter((d) => d.status === 'indexed').length
+    return {
+      version: 'demo',
+      generatedAt: this.now(),
+      databasePath: null,
+      databaseBytes: 0,
+      matters: this.matters.length,
+      documents: this.docs.length,
+      indexed,
+      skipped: this.docs.length - indexed,
+      failed: 0,
+      ocrDocuments: 0,
+      passages: this.passages.length,
+      embedded: 0,
+      unreadable: [],
+      tesseract: null,
+      pdftoppm: null,
+      audit: await this.verifyAudit(),
+    }
   }
 
   async exportRegisterCsv(): Promise<number> {

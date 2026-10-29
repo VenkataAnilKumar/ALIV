@@ -11,6 +11,7 @@ permissions = [
   "allow-pending-embeddings",
   "allow-store-embeddings",
   "allow-embedding-status",
+  "allow-vault-diagnostics",
   "allow-review-grid",
   "allow-propose-renames",
   "allow-list-actions",

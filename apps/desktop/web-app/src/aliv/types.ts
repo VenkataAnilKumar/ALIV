@@ -94,6 +94,26 @@ export interface EmbeddingStatus {
   embedded: number
 }
 
+/** The vault's health report: counts and reasons, never document text. */
+export interface VaultDiagnostics {
+  version: string
+  generatedAt: string
+  databasePath: string | null
+  databaseBytes: number
+  matters: number
+  documents: number
+  indexed: number
+  skipped: number
+  failed: number
+  ocrDocuments: number
+  passages: number
+  embedded: number
+  unreadable: { reason: string; count: number }[]
+  tesseract: string | null
+  pdftoppm: string | null
+  audit: AuditVerification
+}
+
 export interface IngestReport {
   scanned: number
   indexed: number

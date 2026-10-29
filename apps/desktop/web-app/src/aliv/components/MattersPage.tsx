@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Link, useNavigate } from '@tanstack/react-router'
-import { Briefcase, CalendarClock, FileText, Info, Landmark, Plus, Scale, ShieldCheck } from 'lucide-react'
+import { Activity, Briefcase, CalendarClock, FileText, Info, Landmark, Plus, Scale, ShieldCheck } from 'lucide-react'
 import { toast } from 'sonner'
 import HeaderPage from '@/containers/HeaderPage'
 import { Button } from '@/components/ui/button'
@@ -8,6 +8,7 @@ import { deadlines, type Deadline } from '../dates'
 import type { Matter, MatterInput } from '../types'
 import { errorMessage } from '../useMatter'
 import { getVault } from '../vault'
+import { HealthDialog } from './HealthDialog'
 import { MatterDialog } from './MatterDialog'
 import { DaysPill, EmptyState, Pill, PolicyPill } from './primitives'
 
@@ -21,6 +22,7 @@ export function MattersPage() {
   const vault = getVault()
   const [cards, setCards] = useState<MatterCard[] | null>(null)
   const [dialogOpen, setDialogOpen] = useState(false)
+  const [healthOpen, setHealthOpen] = useState(false)
 
   const load = useCallback(async () => {
     try {
@@ -57,9 +59,14 @@ export function MattersPage() {
       <HeaderPage>
         <div className="flex items-center justify-between w-full pr-2">
           <span className="text-sm text-muted-foreground">ALIV</span>
-          <Button size="sm" onClick={() => setDialogOpen(true)}>
-            <Plus className="size-4" /> New matter
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button size="sm" variant="ghost" onClick={() => setHealthOpen(true)}>
+              <Activity className="size-4" /> Vault health
+            </Button>
+            <Button size="sm" onClick={() => setDialogOpen(true)}>
+              <Plus className="size-4" /> New matter
+            </Button>
+          </div>
         </div>
       </HeaderPage>
 
@@ -154,6 +161,7 @@ export function MattersPage() {
       </div>
 
       <MatterDialog open={dialogOpen} onOpenChange={setDialogOpen} onSubmit={create} />
+      <HealthDialog open={healthOpen} onOpenChange={setHealthOpen} />
     </div>
   )
 }

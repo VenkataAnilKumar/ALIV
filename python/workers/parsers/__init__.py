@@ -1,1 +1,0 @@
-"""Parser adapters for ALIV."""

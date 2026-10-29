@@ -39,3 +39,14 @@ describe('DemoVaultService', () => {
     expect(terms("What's the penalty for late payment?")).toEqual(["what's", 'penalty', 'late', 'payment'])
   })
 })
+
+describe('vault health', () => {
+  it('reports counts without document text', async () => {
+    const vault = new DemoVaultService()
+    const d = await vault.diagnostics()
+    expect(d.matters).toBeGreaterThan(0)
+    expect(d.indexed).toBe(d.documents)
+    expect(d.audit.ok).toBe(true)
+    expect(JSON.stringify(d)).not.toMatch(/holdover/i)
+  })
+})

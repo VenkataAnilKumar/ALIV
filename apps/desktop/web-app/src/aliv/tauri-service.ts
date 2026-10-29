@@ -35,6 +35,7 @@ export class TauriVaultService implements VaultService {
   listAudit: VaultService['listAudit'] = (matterId, limit) =>
     cmd('list_audit', { matterId: matterId ?? null, limit })
   verifyAudit: VaultService['verifyAudit'] = () => cmd('verify_audit')
+  diagnostics: VaultService['diagnostics'] = () => cmd('vault_diagnostics')
   exportRegisterCsv: VaultService['exportRegisterCsv'] = (matterId, dest) =>
     cmd('export_register_csv', { matterId, dest })
 }
