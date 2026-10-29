@@ -74,6 +74,8 @@ Same images as the Firm Server, deployed into the firm's own tenancy:
 
 ALIV's own services. They **never** receive documents, passages, prompts or answers.
 
+**Status:** planned. Nothing is deployed yet; the Vercel project and account are set up once the product is ready for release, with the account provided by the product owner.
+
 | Service | Hosting now | Notes |
 |---|---|---|
 | Website and public docs | **Vercel** (Next.js) | Custom domain, preview deploys per PR |
