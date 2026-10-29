@@ -11,6 +11,7 @@ Rendered with the app's design tokens ([Design System](ALIV_Design-System.md)). 
 
 | Screen | Release | Image |
 |---|---|---|
+| Home: one view across all matters (W-0) | R1–R3 | ![Home](../assets/mockups/home.png) |
 | Review table with source drawer (W-5) | R2 | ![Review table](../assets/mockups/review-table.png) |
 | Workflow run with redaction preview (W-7, W-8) | R1–R2 | ![Workflow run](../assets/mockups/workflow-run.png) |
 | Agent Builder (W-10) | R3 | ![Agent Builder](../assets/mockups/agent-builder.png) |
@@ -19,6 +20,18 @@ Rendered with the app's design tokens ([Design System](ALIV_Design-System.md)). 
 | Firm Server Admin Console (W-14) | R4 | ![Admin Console](../assets/mockups/admin-console.png) |
 
 ---
+
+## W-0 Home (R1–R3)
+
+The landing screen once tables, workflows and monitors exist. It shows:
+- a greeting;
+- a quick Ask box with a matter picker and its route pill;
+- four counters: deadlines in 30 days, waiting for you, running now, model calls this month with the local share;
+- upcoming deadlines across all matters;
+- "Waiting for you": approvals, inbox items, cells needing review;
+- running tables and workflows with progress.
+
+Pinned matters sit in the sidebar with their policy icon. See the [mockup](../assets/mockups/home.png). Until R1, the Matters home (W-1) is the landing screen.
 
 ## W-1 Matters home ✅
 

@@ -9,7 +9,8 @@
 
 ```
 App shell (left sidebar from the base app)
-├─ Matters                          ← ALIV home
+├─ Home                 R1–R3  (one view across all matters; see W-0)
+├─ Matters                          ← ALIV home today
 │   └─ Matter
 │       ├─ Overview      ✅
 │       ├─ Ask           ✅  (R2: @-mentions, save, suggestions)
@@ -29,7 +30,22 @@ App shell (left sidebar from the base app)
 
 ---
 
-## 2. Matters (home) ✅
+## 2. Home (R1–R3) and Matters ✅
+
+**Home** becomes the landing screen once there is work to track across matters ([mockup](../assets/mockups/home.png)):
+
+| Element | Behaviour |
+|---|---|
+| Quick Ask | Matter picker plus the RoutePill for that matter; @-mentions (R2) |
+| Counters | Deadlines in 30 days, waiting for you, running now, model calls this month with the share run locally |
+| Upcoming deadlines | All matters, 90 days, DaysPill; Open jumps to the clause |
+| Waiting for you | Approvals, inbox items (R3), cells needing review (R2) |
+| Running | Tables and workflows with progress; click opens the run log |
+| Sidebar | Pinned matters with their policy icon |
+
+**Matters** (shipped) lists every matter and is the landing screen until Home ships.
+
+### Matters ✅
 
 | Element | Behaviour |
 |---|---|
