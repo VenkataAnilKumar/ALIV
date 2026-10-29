@@ -46,7 +46,7 @@ jobs:
       - run: yarn build:tauri:plugin:api && yarn build:core && yarn build:extensions
       - run: yarn lint
       - name: Type check
-        run: npx tsc -b
+        run: yarn exec tsc -b
         working-directory: apps/desktop/web-app
       - run: yarn test:all
 
@@ -54,6 +54,12 @@ jobs:
     name: Rust (${{ matrix.name }})
     runs-on: ubuntu-latest
     timeout-minutes: 90
+    env:
+      # Plugin-install tests commit to scratch git repos.
+      GIT_AUTHOR_NAME: ALIV CI
+      GIT_AUTHOR_EMAIL: ci@aliv.invalid
+      GIT_COMMITTER_NAME: ALIV CI
+      GIT_COMMITTER_EMAIL: ci@aliv.invalid
     strategy:
       fail-fast: false
       matrix:
