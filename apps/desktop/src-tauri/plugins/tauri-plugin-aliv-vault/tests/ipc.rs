@@ -92,6 +92,7 @@ fn web_app_payloads_round_trip() {
     let docs = call(&w, "list_documents", json!({ "matterId": id })).unwrap();
     assert_eq!(docs[0]["fileName"], "lease.txt");
     assert_eq!(docs[0]["docType"], "Lease");
+    assert!(docs[0]["summary"].as_str().unwrap().starts_with("Lease between Acme Commercial Properties LLC"), "{}", docs[0]);
 
     let hits = call(&w, "search", json!({ "matterId": id, "query": "holdover penalty", "limit": 5 })).unwrap();
     assert_eq!(hits[0]["fileName"], "lease.txt");

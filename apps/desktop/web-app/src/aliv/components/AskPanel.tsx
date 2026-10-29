@@ -63,6 +63,7 @@ export function AskPanel({
         // Embeddings come from the local engine, so they are safe for every
         // matter; the browser preview has none and searches by keyword.
         embed: vault.mode === 'desktop' ? localEmbedder : undefined,
+        contextTokens: contextTokens(selectedModel),
         onText: (text) => setTurns((t) => t.map((x) => (x.id === id ? { ...x, streaming: text } : x))),
       })
       setTurns((t) => t.map((x) => (x.id === id ? { ...x, result } : x)))
@@ -241,6 +242,7 @@ function TurnView({ turn, activeN, onCite }: { turn: Turn; activeN: number | nul
             {r.searchMode === 'hybrid'
               ? 'Passages found by keyword and by meaning.'
               : 'Passages found by keyword. Meaning-based search needs the local embedding model.'}
+            {!!r.omitted && ` ${r.omitted} more matching ${r.omitted === 1 ? 'source was' : 'sources were'} left out to fit the model's context window.`}
           </div>
         )}
       </div>
@@ -340,4 +342,10 @@ function SourceCard({ source, active, onClick }: { source: AskSource; active: bo
       <p className={cn('text-xs leading-relaxed whitespace-pre-line', !active && 'line-clamp-3')}>{source.text}</p>
     </li>
   )
+}
+
+/** The model's configured context length in tokens; undefined when "auto". */
+function contextTokens(model: { settings?: Record<string, { controller_props?: { value?: unknown } }> } | null | undefined) {
+  const value = Number(model?.settings?.ctx_len?.controller_props?.value)
+  return Number.isFinite(value) && value > 0 ? value : undefined
 }

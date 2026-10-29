@@ -117,6 +117,7 @@ export class DemoVaultService implements VaultService {
         chunkCount: paragraphs.length,
         ingestedAt: this.now(),
         ocrConfidence: null,
+        summary: null,
       })
       this.fields.set(id, d.fields)
     }

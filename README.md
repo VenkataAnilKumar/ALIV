@@ -43,8 +43,6 @@ Legal and finance teams hold thousands of confidential documents (NDAs, leases, 
 
 <img src="docs/assets/aliv-desktop-register.png" alt="Register with a field's source passage" width="100%" />
 
-**In progress** (see the [plan](docs/PLAN.md)): document summaries for very large matters.
-
 ## Build and run
 
 The app lives in [`apps/desktop`](apps/desktop/README.md). It needs Node 22 and Rust (the version is pinned in `apps/desktop/rust-toolchain.toml`).

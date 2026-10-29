@@ -122,6 +122,7 @@ impl Vault {
             chunk_count: 0,
             ingested_at: now(),
             ocr_confidence: None,
+            summary: None,
         };
 
         let has_text = |t: &str| t.trim().chars().count() >= MIN_TEXT_CHARS;
@@ -169,6 +170,7 @@ impl Vault {
             .collect();
         doc.doc_type = fields.iter().find(|f| f.key == extract::DOC_TYPE).map(|f| f.value.clone());
         doc.char_count = text.chars().count() as i64;
+        doc.summary = Some(extract::summarize(&fields.iter().map(|f| (f.key.as_str(), f.value.as_str())).collect::<Vec<_>>(), &text));
         let texts: Vec<String> = chunks.into_iter().map(|c| c.text).collect();
         self.store.upsert_document(&doc, &sha, &texts, &fields)?;
         Ok(Outcome::Indexed { ocr: doc.ocr_confidence.is_some() })
