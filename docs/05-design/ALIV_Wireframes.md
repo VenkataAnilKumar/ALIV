@@ -59,7 +59,7 @@ Pinned matters sit in the sidebar with their policy icon. See the [mockup](../as
 
 ```
 ┌─ Acme lease review  🔒 Local only ─────────────────────────────────────── ⋯ ┐
-│ Overview  [Ask]  Register  Tables  Workflows  Documents  Approvals  Audit     │
+│ Overview Chats [Ask] Register Tables Workflows Artifacts Documents Approvals… │
 ├───────────────────────────────────────────────┬──────────────────────────────┤
 │ [Model: Qwen 8B ▾]        (● This computer)   │ Sources                      │
 │ ┌───────────────────────────────────────────┐ │ ┌──────────────────────────┐ │

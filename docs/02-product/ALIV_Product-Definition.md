@@ -27,7 +27,7 @@
 
 **ALIV** gives legal and finance teams the capabilities of enterprise legal AI: cited answers over a document set, review tables, one-click workflows, playbook redlines and custom agents. It does this without requiring them to hand their clients' documents to a vendor's cloud.
 
-Every **matter** is a private vault on the firm's own machines. A **hybrid model router** decides, per matter and per step, whether a model runs locally (llama.cpp, MLX) or in the cloud (OpenAI, Anthropic and others). When the cloud is allowed, only the minimum text is sent, after **redaction**, through one **audited gateway**. Every answer is **cited** to the passage it came from.
+Every **matter** is a private vault and workspace on the firm's own machines: documents, chats, instructions, skills, artifacts and automations in one place. A **hybrid model router** decides, per matter and per step, whether a model runs locally (llama.cpp, MLX) or in the cloud (OpenAI, Anthropic and others). When the cloud is allowed, only the minimum text is sent, after **redaction**, through one **audited gateway**. Every answer is **cited** to the passage it came from. The firm's know-how runs as **skills**, its systems connect through **connectors** and **MCP**, and **automations** keep work moving. Web search, MCP tools and skill scripts pass the same policy check, redaction and audit as model calls.
 
 | | |
 |---|---|
@@ -36,7 +36,7 @@ Every **matter** is a private vault on the firm's own machines. A **hybrid model
 | **Primary buyers** | Small and mid-size law firms, in-house legal, accounting and tax firms, regulated finance teams |
 | **Core promise** | *Harvey-class work product. Your client data stays yours. Every step on the record.* |
 | **Today** | Matters, ingestion with OCR, hybrid search, extraction register, cited Ask, approvals with undo, audit log, vault health |
-| **Next** | Model gateway, redaction and router → Review Tables, Workflows, Playbooks → Agent Builder → Firm Server |
+| **Next** | Gateway, redaction, router and matter workspace, with web search, MCP and skills under policy → Review Tables, Workflows, Playbooks, Artifacts → Agent Builder, Automation, Connectors → Firm Server |
 
 ---
 
@@ -87,7 +87,9 @@ Every **matter** is a private vault on the firm's own machines. A **hybrid model
 4. **Everything cited.** Every generated statement links to a source passage or register entry. Uncited output is labelled as such.
 5. **Everything on the record.** Model calls (allowed and refused), file changes and agent steps go into a hash-chained audit log.
 6. **Humans approve changes.** File changes, redlines and outbound actions are proposals until a person approves them, and they can be undone.
-7. **Deterministic where possible.** Parsing, OCR, extraction rules, search and summaries are deterministic and testable. Models are used where judgement is needed.
+7. **No side doors.** Web search, MCP tools, skill scripts and connectors are governed exactly like model calls: policy check, redaction, approval for actions, audit.
+8. **Open standards, firm-controlled.** MCP and `SKILL.md` skills connect ALIV to the firm's tools and know-how; trust levels and per-matter allow-lists decide what runs.
+9. **Deterministic where possible.** Parsing, OCR, extraction rules, search and summaries are deterministic and testable. Models are used where judgement is needed.
 
 ---
 
@@ -156,8 +158,8 @@ Feature IDs refer to the [Feature Spec](../04-specs/ALIV_Feature-Spec.md). The p
 
 | Tier | For | Includes | Indicative price* |
 |---|---|---|---|
-| **Solo** | Individual lawyers and accountants | Desktop app, local models, R0–R2 features | $39–59 / user / month, or a perpetual licence with a yearly update plan |
-| **Team** | Firms of 2–50 | Solo, plus Agent Builder, shared clause library and playbooks, priority support | $79–129 / user / month |
+| **Solo** | Individual lawyers and accountants | Desktop app, local models, R0–R2 features, built-in skill packs | $39–59 / user / month, or a perpetual licence with a yearly update plan |
+| **Team** | Firms of 2–50 | Solo, plus Agent Builder, automation, connectors, firm skill library, shared clause library and playbooks, priority support | $79–129 / user / month |
 | **Firm Server** | Firms needing shared vaults and admin | Self-hosted server, roles, SSO, central audit | Per-server licence plus per-user fee |
 | **Enterprise / private cloud** | Larger firms, in-house at regulated companies | Private deployment, compliance pack, custom agents | Annual contract |
 
@@ -175,11 +177,12 @@ Cloud model usage is billed by the provider under the customer's own API key (br
 | **Hardware** | Minimum 16 GB RAM. Recommended 32 GB, or Apple Silicon M-series Pro/Max, for 14B+ local models |
 | **Local models** | llama.cpp (GGUF) and MLX. A recommended model per hardware tier. A local embedding model is required for meaning search |
 | **Cloud models** | OpenAI-compatible and Anthropic APIs via the gateway. Customer-supplied keys |
-| **Data at rest** | One SQLite vault per installation (R0). Encryption at rest planned for R1; until then, full-disk encryption |
+| **Data at rest** | One SQLite vault per installation (R0). Encryption at rest planned on the GA track (alongside R2–R3); until then, full-disk encryption |
 | **Performance** | Ingestion ≥ 5 text documents/s on a 2023 laptop. Ask first token ≤ 3 s with a local 7–8B model. Search ≤ 300 ms on 10k passages |
 | **Reliability** | Ingestion resumable; unchanged files skipped; no data loss on crash (SQLite WAL) |
 | **Auditability** | 100% of model calls and file changes in the hash chain; integrity check on demand |
 | **Accessibility** | WCAG 2.1 AA for core screens |
+| **Integrations** | MCP (client in R1 under policy; ALIV as a server in R4); read-only DMS and mail connectors (R3); SKILL.md skills and git plugins |
 | **Updates** | Signed installers and an update server (planned before general availability) |
 
 ---
@@ -192,6 +195,8 @@ Cloud model usage is billed by the provider under the customer's own API key (br
 | **Value** | Hours saved per diligence matter (self-reported, pilot cohort) | ≥ 50% vs baseline |
 | **Accuracy** | Review Table cells judged correct and correctly cited in pilot audits | ≥ 95% |
 | **Trust** | Matters set to Local only that never recorded a cloud call | 100% (a hard guarantee, measured from the audit log) |
+| **Trust** | Web search, MCP and skill-script calls that passed the gateway's policy check | 100% (no side doors; measured from `tool_calls`) |
+| **Leverage** | Firm skills in active use per firm (Team tier) | ≥ 10 |
 | **Engagement** | Weekly active users / paid seats | ≥ 60% |
 | **Workflow adoption** | Share of active users running ≥ 1 workflow or agent a week | ≥ 40% |
 | **Retention** | Logo retention at 12 months | ≥ 85% |

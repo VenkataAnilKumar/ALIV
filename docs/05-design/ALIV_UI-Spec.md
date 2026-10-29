@@ -67,6 +67,8 @@ App shell (left sidebar from the base app)
 
 ## 3. Matter tabs
 
+Full tab order once R1–R3 ship: **Overview · Chats · Ask · Register · Tables · Workflows · Artifacts · Documents · Approvals · Inbox · Automations · Audit log**. Chats, Artifacts and Automations are specified in §5a.
+
 ### 3.1 Overview ✅
 StatCards: documents indexed (with needs-attention hint), upcoming deadlines, pending approvals, last activity. Lists: next deadlines, documents needing attention (skipped/failed with reason). Quick ask box → Ask tab.
 

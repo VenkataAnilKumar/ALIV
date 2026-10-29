@@ -13,12 +13,17 @@
                 │   ├─ Web UI (React)  ──IPC──▶  Rust core (Tauri)                  │
                 │   │                              ├─ Vault (SQLite)                │
                 │   │                              ├─ Local engines (llama.cpp/MLX) │
-                │   │                              └─ OCR (Tesseract, pdftoppm)     │
+                │   │                              ├─ OCR (Tesseract, pdftoppm)     │
+                │   │                              ├─ Skills, MCP client, web search│
+                │   │                              └─ Gateway (R1): every exit path │
                 │  Documents on disk / file shares (read in place)                  │
-                └──────────────────────────────┬────────────────────────────────────┘
-                                               │ Hybrid matters only (R1: via gateway, redacted)
-                                               ▼
-                                Cloud model providers (OpenAI-compatible, Anthropic)
+                │  Local MCP servers (no network)                                   │
+                └───────────┬──────────────────┬───────────────────┬────────────────┘
+          Hybrid only, redacted, audited       │ policy + audit    │ inbound, read-only (R3)
+                            ▼                  ▼                   ▼
+         Cloud model providers     Web search · firm/3rd-party   DMS, SharePoint,
+         (OpenAI-compatible,       MCP servers                    Drive, Box, mail
+          Anthropic)                                              (connectors)
 ```
 
 **Later deployments:** the Firm Server (R4) hosts shared vaults for many desktops. See [Deployment Architecture](ALIV_Deployment-Architecture.md).
