@@ -45,12 +45,12 @@
 | 1.0 | **Workspace:** root Cargo workspace; `crates/aliv-gateway`; move the vault to `crates/aliv-vault`; generated TS types; eval harness with retrieval and redaction sets | EVAL-01/02/04 | Builds and tests unchanged after the move; eval gate runs in CI |
 | 1.1 | **Gateway core:** `ModelRequest`, provider adapters (llama.cpp, OpenAI-compatible, Anthropic), streaming over IPC, reusing the core's provider proxy and keychain storage | GW-01/03/04 | Ask runs end to end through the gateway; no provider call or key left in the web layer (CI check) |
 | 1.2 | **Policy and audit in the gateway:** refusal, `model_calls` table, audit entry per call | GW-02/05, AUD-06 | Policy-matrix test passes for every step type |
-| 1.3 | **Router:** step types, default routing, matter overrides, route shown in Ask | RTR-01/02/04 | Local only never routes to cloud; Hybrid routes per the table in the Hybrid AI Architecture |
-| 1.4 | **Redaction:** entity store from the register, local NER, placeholders, restore, preview | RED-01/02/03/05 | ≥ 98% recall for parties and people on the labelled set; preview matches what is sent |
+| 1.3 | **Router:** step types, default routing, matter overrides, route shown in Ask | RTR-01/02/04, RTR-03 | Local only never routes to cloud; Hybrid routes per the table in the Hybrid AI Architecture |
+| 1.4 | **Redaction:** entity store from the register, local NER, placeholders, restore, preview | RED-01/02/03/05, RED-04/06 | ≥ 98% recall for parties and people on the labelled set; preview matches what is sent |
 | 1.5 | **Spend limits, fallback, hardware-aware local model choice** | GW-06/07, RTR-05 | Limits enforced and audited; fallback behaviour tested |
 | 1.6 | **Matter workspace:** chats inside matters, matter instructions, linked folders with re-scan, convert chat projects | WS-01/02/03/05/07 | No chat can read a matter's documents outside that matter; conversion keeps threads |
 | 1.7 | **No side doors:** web search and MCP tool calls through the gateway (policy, redaction, audit); MCP trust levels and per-matter allow-lists; approvals for side-effecting tools | SRCH-10, MCP-01–04/07 | Policy-matrix test covers web search and MCP; Local only refuses non-local servers |
-| 1.8 | **Skills under governance:** per-matter enablement, trust levels, review dialog, sandboxed scripts on approval, skills recorded in audit | SKL-01–05, WS-06 | A third-party skill can't run in a Local only matter; script sandbox has no network (tested) |
+| 1.8 | **Skills under governance:** per-matter enablement, trust levels, review dialog, sandboxed scripts on approval, skills recorded in audit | SKL-01–05, WS-06, SKL-10 | A third-party skill can't run in a Local only matter; script sandbox has no network (tested) |
 
 **Phase exit:**
 - `security.md` no longer lists the "policy check guards the Ask flow" limitation, nor the one about web search, MCP and chat projects outside matter policy;
@@ -64,10 +64,10 @@
 
 | # | Work | Feature IDs | Exit criteria |
 |---|---|---|---|
-| 2.1 | **Agent runtime v1:** definitions, runs, steps, citation verification, resume | (runtime) | Fake-model replay tests; resume after a forced crash |
-| 2.2 | **Review Tables core:** create, question columns with types, cited cells, register columns, filters, XLSX export | TBL-01/02/03/04/08/09 | 200-document benchmark matter: ≥ 95% of cells correct and correctly cited (human-checked sample) |
+| 2.1 | **Agent runtime v1:** definitions, runs, steps, citation verification, resume | (runtime) AUD-04 | Fake-model replay tests; resume after a forced crash |
+| 2.2 | **Review Tables core:** create, question columns with types, cited cells, register columns, filters, XLSX export | TBL-01/02/03/04/08/09, REG-07 | 200-document benchmark matter: ≥ 95% of cells correct and correctly cited (human-checked sample) |
 | 2.3 | **Review Tables advanced:** conditional and manual columns, comments, inline edits, templates, 10k-row background runs | TBL-05/06/07/10/11 | 10,000-row run completes with resume; edits audited |
-| 2.4 | **Workflows library:** summarise, chronology, compare, memo, NDA triage, DD issues list, lease abstract; DOCX/XLSX outputs; optional steps | WF-01–05, CMP-01 | Each workflow has a golden-output test on the demo corpus |
+| 2.4 | **Workflows library:** summarise, chronology, compare, memo, NDA triage, DD issues list, lease abstract; DOCX/XLSX outputs; optional steps | WF-01–05, CMP-01, WF-06, CMP-02/03 | Each workflow has a golden-output test on the demo corpus |
 | 2.5 | **Playbooks and redlines:** positions, single and batch runs, DOCX tracked changes, starter playbooks | PB-01–05 | NDA playbook flags known deviations in a labelled NDA set (≥ 90% recall) |
 | 2.6 | **Clause library and drafting** | DRF-01–04 | Drafts cite library clauses; DOCX output opens cleanly in Word |
 | 2.7 | **Ask upgrades:** @-mentions, suggest tables and workflows, save as DOCX/PDF, follow-ups, uncited-claim flags | ASK-06–10 | Usability test with 5 pilot users |
@@ -76,6 +76,7 @@
 | 2.10 | **Global search and skill packs:** ⌘K across matters and types; starter legal and finance skills | SRCH-09/11/12, SKL-06 | Search < 300 ms on the demo corpus; each starter skill has a golden-output test |
 | 2.11 | **Document-AI upgrade:** layout-aware parsing, structure-aware chunks with context lines, local reranker, schema-constrained extraction, ANN decision | ING-10/11, SRCH-13/14, REG-09, EVAL-03/05 | Retrieval recall@10 and field accuracy improve on the eval sets vs R0 |
 | 2.12 | **Contract-finance basics:** invoice fields extracted; deterministic calculation tool; fee and payment schedules as tables | FIN-01 (fields), FIN-06/07 | Calculation results reproduce exactly from cited inputs; invoice fields ≥ 95% on the labelled set |
+| 2.13 | **Register and matter polish:** user corrections kept across re-ingestion, XLSX register export, folder moves as proposals, audit-trail export, search filters, matter export | REG-06/08, ACT-04, AUD-05, SRCH-06, WS-08 | Corrections survive re-ingestion; exports open cleanly in Excel; audit export verified against the chain |
 
 **Phase exit:** a pilot firm runs a due-diligence matter end to end (ingest → review table → issues list → memo) without leaving ALIV.
 
@@ -85,12 +86,12 @@
 
 | # | Work | Feature IDs | Exit criteria |
 |---|---|---|---|
-| 3.1 | **Agent Builder UI:** steps, tools, routing, test-runs, versions | AGT-01–06 | A non-technical user builds a 4-step agent in under 15 minutes (usability test) |
-| 3.2 | **Monitors:** schedules, watch folders, date triggers, deadline digest, new-document triage, inbox | MON-01–04, ING-08 | Monitors fire reliably across app restarts |
-| 3.3 | **Knowledge bases** | KB-01–03 | KB content is cited and never mixed with matter data |
+| 3.1 | **Agent Builder UI:** steps, tools, routing, test-runs, versions | AGT-01–06, ACT-05 | A non-technical user builds a 4-step agent in under 15 minutes (usability test) |
+| 3.2 | **Monitors:** schedules, watch folders, date triggers, deadline digest, new-document triage, inbox | MON-01–04, ING-08, MAT-07 | Monitors fire reliably across app restarts |
+| 3.3 | **Knowledge bases** | KB-01–03, SRCH-07, EVAL-06 | KB content is cited and never mixed with matter data |
 | 3.4 | **Finance pack:** invoice register, invoice-to-contract check, covenant tracker, KYC template | FIN-01–05 | Labelled invoice set: ≥ 95% field accuracy; known mismatches flagged |
 | 3.5 | **Automation engine:** triggers, actions, run history, retries, templates (monitors become templates) | AUTO-01–07 | Automations survive restarts; nothing applied without approval (tested) |
-| 3.6 | **Document connectors:** iManage, NetDocuments, SharePoint, Outlook first; then Drive, Box, Gmail | CON-01–06 | Read-only sync of a 5k-document workspace with incremental updates |
+| 3.6 | **Document connectors:** iManage, NetDocuments, SharePoint, Outlook first; then Drive, Box, Gmail | CON-01–06, ING-09 | Read-only sync of a 5k-document workspace with incremental updates |
 | 3.7 | **MCP tools in agents; firm skill library and Skill Builder** | MCP-05, SKL-07/08 | An agent step uses an allowed firm MCP tool with approval; skills versioned and published |
 
 ---
@@ -99,7 +100,7 @@
 
 | # | Work | Feature IDs | Exit criteria |
 |---|---|---|---|
-| 4.1 | **Firm Server:** shared matters, users, roles, ethical walls, central audit, backups | SRV-01/02/04/06, MAT-06 | 20 concurrent users on one server; access lists enforced in tests |
+| 4.1 | **Firm Server:** shared matters, users, roles, ethical walls, central audit, backups | SRV-01/02/04/06, MAT-06, KB-04 | 20 concurrent users on one server; access lists enforced in tests |
 | 4.2 | **SSO and server-side GPU models** | SRV-03/05 | SAML/OIDC with two identity providers |
 | 4.3 | **Word add-in** | WORD-01–03 | Playbook redlines inserted as tracked changes in Word on Windows and Mac |
 | 4.4 | **Research connectors:** connector API, public sources first | RES-01/02/04 | Cited results with source links; no matter text sent without confirmation |
@@ -119,6 +120,19 @@
 | Real-document accuracy benchmark (anonymised, with pilot firms) | Credible accuracy claims |
 
 ---
+
+## Backlog (P2, scheduled when capacity allows)
+
+| Item | Feature IDs | Earliest |
+|---|---|---|
+| Ask a question about a review table | TBL-12 | R2 |
+| Build a playbook from past executed contracts | PB-06 | R3 |
+| Import and export agents as files | AGT-07 | R3 |
+| Read-only ERP lookups via MCP | FIN-08 | R3 |
+| Write artifacts back to a DMS as a new version | CON-07 | R3 |
+| Licensed research sources through partners | RES-03 | R4 |
+
+SRCH-08 (ANN index) is superseded by SRCH-14, decided by benchmark in R2.
 
 ## Architecture decisions by phase
 
