@@ -1,0 +1,144 @@
+[
+ {
+  "model_name": "Qwen3.5-4B-GGUF",
+  "developer": "unsloth",
+  "downloads": 908344,
+  "createdAt": "2026-03-02T05:46:32.000Z",
+  "pipeline_tag": "image-text-to-text",
+  "library_name": "gguf",
+  "tools": true,
+  "num_quants": 22,
+  "quants": [
+   {
+    "model_id": "Qwen3.5-4B-BF16",
+    "path": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-BF16.gguf",
+    "file_size": "7.8 GB"
+   },
+   {
+    "model_id": "Qwen3.5-4B-IQ4_NL",
+    "path": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-IQ4_NL.gguf",
+    "file_size": "2.4 GB"
+   },
+   {
+    "model_id": "Qwen3.5-4B-IQ4_XS",
+    "path": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-IQ4_XS.gguf",
+    "file_size": "2.3 GB"
+   },
+   {
+    "model_id": "Qwen3.5-4B-Q3_K_M",
+    "path": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-Q3_K_M.gguf",
+    "file_size": "2.1 GB"
+   },
+   {
+    "model_id": "Qwen3.5-4B-Q3_K_S",
+    "path": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-Q3_K_S.gguf",
+    "file_size": "2.0 GB"
+   },
+   {
+    "model_id": "Qwen3.5-4B-Q4_0",
+    "path": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-Q4_0.gguf",
+    "file_size": "2.4 GB"
+   },
+   {
+    "model_id": "Qwen3.5-4B-Q4_1",
+    "path": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-Q4_1.gguf",
+    "file_size": "2.6 GB"
+   },
+   {
+    "model_id": "Qwen3.5-4B-Q4_K_M",
+    "path": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-Q4_K_M.gguf",
+    "file_size": "2.6 GB"
+   },
+   {
+    "model_id": "Qwen3.5-4B-Q4_K_S",
+    "path": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-Q4_K_S.gguf",
+    "file_size": "2.4 GB"
+   },
+   {
+    "model_id": "Qwen3.5-4B-Q5_K_M",
+    "path": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-Q5_K_M.gguf",
+    "file_size": "2.9 GB"
+   },
+   {
+    "model_id": "Qwen3.5-4B-Q5_K_S",
+    "path": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-Q5_K_S.gguf",
+    "file_size": "2.8 GB"
+   },
+   {
+    "model_id": "Qwen3.5-4B-Q6_K",
+    "path": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-Q6_K.gguf",
+    "file_size": "3.3 GB"
+   },
+   {
+    "model_id": "Qwen3.5-4B-Q8_0",
+    "path": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-Q8_0.gguf",
+    "file_size": "4.2 GB"
+   },
+   {
+    "model_id": "Qwen3.5-4B-UD-IQ2_M",
+    "path": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-UD-IQ2_M.gguf",
+    "file_size": "1.6 GB"
+   },
+   {
+    "model_id": "Qwen3.5-4B-UD-IQ2_XXS",
+    "path": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-UD-IQ2_XXS.gguf",
+    "file_size": "1.4 GB"
+   },
+   {
+    "model_id": "Qwen3.5-4B-UD-IQ3_XXS",
+    "path": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-UD-IQ3_XXS.gguf",
+    "file_size": "1.8 GB"
+   },
+   {
+    "model_id": "Qwen3.5-4B-UD-Q2_K_XL",
+    "path": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-UD-Q2_K_XL.gguf",
+    "file_size": "1.8 GB"
+   },
+   {
+    "model_id": "Qwen3.5-4B-UD-Q3_K_XL",
+    "path": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-UD-Q3_K_XL.gguf",
+    "file_size": "2.3 GB"
+   },
+   {
+    "model_id": "Qwen3.5-4B-UD-Q4_K_XL",
+    "path": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-UD-Q4_K_XL.gguf",
+    "file_size": "2.7 GB"
+   },
+   {
+    "model_id": "Qwen3.5-4B-UD-Q5_K_XL",
+    "path": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-UD-Q5_K_XL.gguf",
+    "file_size": "3.0 GB"
+   },
+   {
+    "model_id": "Qwen3.5-4B-UD-Q6_K_XL",
+    "path": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-UD-Q6_K_XL.gguf",
+    "file_size": "3.9 GB"
+   },
+   {
+    "model_id": "Qwen3.5-4B-UD-Q8_K_XL",
+    "path": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-UD-Q8_K_XL.gguf",
+    "file_size": "5.5 GB"
+   }
+  ],
+  "num_mmproj": 3,
+  "mmproj_models": [
+   {
+    "model_id": "mmproj-BF16",
+    "path": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/mmproj-BF16.gguf",
+    "file_size": "644.3 MB"
+   },
+   {
+    "model_id": "mmproj-F16",
+    "path": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/mmproj-F16.gguf",
+    "file_size": "641.3 MB"
+   },
+   {
+    "model_id": "mmproj-F32",
+    "path": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/mmproj-F32.gguf",
+    "file_size": "1.2 GB"
+   }
+  ],
+  "readme": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/README.md",
+  "description": "Qwen3.5-4B is a 4B-parameter multimodal AI model supporting text, images, and video with 262K token context length."
+ }
+]

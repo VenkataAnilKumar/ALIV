@@ -1,0 +1,13 @@
+{
+  "welcome": "Bem-vindo ao ALIV",
+  "description": "Para começar, inicie rapidamente com ALIV Model ou escolha seu próprio provedor local ou remoto",
+  "descriptionWeb": "Para começar, você precisará conectar-se a um modelo em nuvem usando uma chave de API",
+  "quickStart": "Início rápido com ALIV Model",
+  "quickStartDescription": "Nenhuma configuração necessária",
+  "quickStartFailed": "Algo deu errado. Por favor, tente novamente.",
+  "downloading": "Baixando ALIV Model...",
+  "downloadingDescription": "Por favor, aguarde enquanto baixamos o modelo. Isso pode levar alguns minutos.",
+  "orDivider": "ou",
+  "localModel": "Configurar modelo local",
+  "remoteProvider": "Configurar provedor remoto"
+}

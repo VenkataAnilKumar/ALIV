@@ -1,0 +1,76 @@
+# ALIV Desktop
+
+Local-first AI workspace for legal and finance teams. Client documents are indexed on your own computer. Answers cite their sources, file changes wait for approval, and every model call is recorded in a tamper-evident audit log.
+
+Built with Tauri 2 (Rust) and React. Runs local models through llama.cpp or MLX, and can use cloud models when a matter's policy allows it.
+
+## Features
+
+- **Matters.** One vault per client engagement, typed Legal or Finance, with a model policy:
+  - **Local only** (default): passages never go to a cloud model.
+  - **Hybrid**: cloud models are allowed, but only the matching passages are sent, and every call is logged.
+- **Ingestion.** Point a matter at folders. PDF (text), DOCX, XLSX, PPTX, HTML, TXT/MD and EML files are parsed on the device, split into passages and indexed with SQLite FTS5. Unchanged files are skipped by content hash. Unreadable files, such as scans (no OCR yet), stay listed with the reason.
+- **Register.** Rules extract type, parties, effective, expiry/due and renewal-notice dates, amount, notice period, governing law and the penalty clause. Every value links to the passage it was read from, with a confidence score. Filters: due in 90 days, passed, needs review. The register exports to CSV, with formula injection neutralized.
+- **Ask.** Retrieves the top passages plus the register, sends them as numbered sources, and asks the model to cite each statement. Answers stream, and each `[n]` opens its source. Without a model, deadline questions are answered directly from the register ("computed, no model used"), and other questions return the matching passages.
+- **Policy gate.** Every model call goes through `authorize_model_call` in Rust first. A cloud model on a Local only matter is refused and the refusal is logged. Providers count as local when they are built-in engines (llama.cpp, MLX) or point at loopback.
+- **Approvals.** ALIV proposes `Type_Counterparty_Date` renames with a risk level. Nothing on disk changes until a proposal is approved and applied. Applying refuses to overwrite files, and each rename can be undone.
+- **Audit log.** Ingestion, policy changes, model calls (allowed and blocked), proposals and file changes are recorded in a SHA-256 hash chain, with a one-click integrity check.
+- **Models.** Local models download straight from Hugging Face, with no mirror in between. A model catalog ships with the app (`web-app/public/catalog/`). The first-run setup recommends `unsloth/Qwen3.5-4B-GGUF`.
+
+## Layout
+
+| Where | What |
+|---|---|
+| `src-tauri/` | Rust app: model engines, MCP, agent runtime, local API server |
+| `src-tauri/plugins/tauri-plugin-aliv-vault/` | The matter vault: ingestion, passage search, field extraction, file actions, policy gate, audit log |
+| `src-tauri/aliv-cli/` | Headless `aliv` command-line agent |
+| `web-app/` | React UI; Matters workspace in `web-app/src/aliv/` |
+| `core/`, `extensions/`, `packages/` | Extension runtime, built-in extensions, SDK packages |
+| `scripts/aliv-demo-fixture.py` | Builds the browser-preview fixture from `demo/corpus` using the real extractor |
+
+## Build and run
+
+Requires Node 22 and Rust (the version is pinned by `rust-toolchain.toml`). On Linux you also need `libwebkit2gtk-4.1-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev`.
+
+```bash
+cd apps/desktop
+corepack enable                    # uses yarn 4.5.3 from package.json
+# if repo.yarnpkg.com is blocked: export COREPACK_NPM_REGISTRY=https://registry.npmjs.org
+yarn install
+yarn build:tauri:plugin:api && yarn build:core && yarn build:extensions
+yarn dev                           # desktop app
+yarn dev:web                       # browser preview at /matters/ (demo data, simulated file actions)
+```
+
+## Tests
+
+```bash
+yarn test:all                                                   # all JS/TS tests
+yarn download:bin && node scripts/stub-tauri-resources.mjs
+(cd src-tauri && cargo test --lib)                              # Rust app
+(cd src-tauri/plugins/tauri-plugin-aliv-vault && cargo test)    # vault, incl. IPC contract test
+python3 ../../benchmarks/score_vault_extraction.py <scan.json>  # extraction accuracy (see script header)
+```
+
+`tests/ipc.rs` sends the exact payloads the web app sends through Tauri's IPC and permission layer, so a renamed command or argument fails in CI rather than in the app.
+
+Accuracy on the labelled corpus in `benchmarks/` (160 text documents; the 40 scanned images are skipped without OCR): type, effective date, expiry date, amount and vendor are 100% correct. Penalty clauses: 100% recall, 88% precision, because late-payment interest clauses are counted as extra. That corpus is generated from templates, so expect lower numbers on real-world documents. The register therefore always shows the source passage and flags low-confidence values.
+
+## Release infrastructure (not set up yet)
+
+- **Auto-update** is off. Set `AUTO_UPDATER_DISABLED=false` once releases are signed with an ALIV key: put the key in `tauri.conf.json` under `plugins.updater.pubkey`, and add endpoints.
+- **CLI and agent update manifests** point at `https://github.com/VenkataAnilKumar/ALIV/releases/download/<channel>/<file>`. They work once releases with those tags and assets are published.
+
+## Roadmap
+
+1. **Kernel-routed model traffic.** Today the policy gate decides and logs every call, but the request itself is still sent from the webview. Next, route cloud calls through the Rust proxy (`src-tauri/src/core/server/proxy.rs`) so the gate can't be bypassed, and add pseudonymization of names and amounts before cloud calls.
+2. **OCR** for scanned PDFs and images.
+3. **Hybrid search.** Add embeddings via the vector-db plugin next to FTS5, with reciprocal-rank fusion.
+4. **LLM-assisted extraction** as a second pass for fields the rules leave empty, always with a citation.
+5. **Agent packs and scheduled agents.** Weekly deadline scans and NDA triage against a playbook.
+6. **Firm Server mode.** A shared vault over the local network.
+7. **Release.** Signed builds and an update feed, a browser extension for browser control, and translations for the new Matters screens.
+
+## License
+
+Apache-2.0. See [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
