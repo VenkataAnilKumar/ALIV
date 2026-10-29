@@ -33,7 +33,7 @@
 | **S10** | 2.4a Workflows library UI and RunLog · 2.4b Summarise, chronology, compare (CMP-01) · 2.4c DOCX writer · 2.9 Artifacts store, versions and tab (outputs saved as artifacts) | Chronology saved as a versioned artifact |
 | **S11** | 2.4d Memo, NDA triage, DD issues list, lease abstract · optional steps · golden-output tests | DD issues list from a table |
 | **S12** | 2.5 Playbooks: editor, single and batch runs, tracked-changes DOCX, starter playbooks · 2.6 Clause library and drafting | NDA playbook with redlines opened in Word |
-| **S13** | 2.7 Ask upgrades (@-mentions, suggestions, save, follow-ups, uncited marks) · 2.8 PST/MBOX, 10k-document ingestion with resume · 2.10 Global search and starter skill packs · 2.11 Document-AI upgrade (layout parsing, structure-aware chunks, reranker, constrained extraction) · pilot hardening | Pilot DD matter end to end |
+| **S13** | 2.7 Ask upgrades (@-mentions, suggestions, save, follow-ups, uncited marks) · 2.8 PST/MBOX, 10k-document ingestion with resume · 2.10 Global search and starter skill packs · 2.11 Document-AI upgrade (layout parsing, structure-aware chunks, reranker, constrained extraction) · 2.12 Contract-finance basics (invoice fields, calculation tool, fee schedules) · pilot hardening | Pilot DD matter end to end |
 
 ## Phase 3: Agents (R3), sprints 14–19
 

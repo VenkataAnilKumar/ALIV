@@ -1,5 +1,5 @@
 # Competitive Analysis
-## ALIV in the legal & finance AI market
+## ALIV in the legal AI market, and contract finance
 
 **Version:** 1.0 | **Date:** October 29, 2026 | **Status:** Active
 
@@ -190,7 +190,7 @@ Connector and MCP rows were checked by web search in October 2026 (sources in §
 | Mid-size firms (50–300) | Legora, CoCounsel, Luminance | Firm Server with an audit chain; Hybrid routing gives cloud quality with control |
 | **Small firms (2–50) and solos** | Spellbook, generic tools, nothing | **Beachhead.** Desktop, no IT, Harvey-class workflows, honest pricing |
 | **Regulated in-house teams** | Often nothing (cloud AI banned by policy) | **Beachhead.** Local only matters, audit evidence |
-| **Finance teams, accounting and tax** | Hebbia (high end), spreadsheets | Review Tables + finance pack over contracts, invoices and filings |
+| **Contract finance:** finance ops, accounting and audit firms | Spreadsheets, CLM add-ons | Second wedge: invoice-to-contract checks, covenants, audit evidence, with a calculation tool and cited sources. Not competing with finance research platforms (Hebbia, AlphaSense) |
 
 **Message:** *The legal AI you can run inside your firm.* Lead with cited accuracy and review tables (what users buy), and close on governance (what risk teams approve).
 

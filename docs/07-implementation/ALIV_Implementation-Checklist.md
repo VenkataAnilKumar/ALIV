@@ -72,6 +72,7 @@
 - [ ] Global search across matters and types (SRCH-09/11/12)
 - [ ] Layout-aware parsing and structure-aware chunks (ING-10/11)
 - [ ] Local reranker; ANN index decision by benchmark (SRCH-13/14)
+- [ ] Contract-finance basics: invoice fields, calculation tool, fee schedules as tables (FIN-01 fields, FIN-06/07)
 - [ ] Schema-constrained extraction (REG-09); LLM-as-judge calibrated (EVAL-03/05)
 - [ ] Starter legal and finance skill packs with golden-output tests (SKL-06)
 - [ ] **Exit:** a pilot DD matter end to end inside ALIV

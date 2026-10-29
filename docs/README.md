@@ -1,6 +1,6 @@
 # ALIV documentation
 
-ALIV is a **hybrid intelligent agent platform for legal and finance teams**. Every matter is a private vault on the firm's own machines. Agents, workflows and review tables run over it, with a per-matter, per-step policy that decides what runs locally and what may use a cloud model, and every model call is audited.
+ALIV is a **hybrid intelligent agent platform for legal teams, and the finance work in their contracts** (invoices against contract terms, covenants, payment terms, audit evidence). Every matter is a private vault on the firm's own machines. Agents, workflows and review tables run over it, with a per-matter, per-step policy that decides what runs locally and what may use a cloud model, and every model call is audited.
 
 The product documents run from brand to product, market, specs, design, technical and implementation. Feature scope is based on research into Harvey, Legora, CoCounsel, Luminance, Spellbook and private legal-AI vendors (see the [Competitive Analysis](03-market/ALIV_Competitive-Analysis.md)).
 

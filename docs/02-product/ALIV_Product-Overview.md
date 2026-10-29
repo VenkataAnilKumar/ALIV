@@ -5,7 +5,7 @@
 
 ---
 
-**ALIV is a hybrid intelligent agent platform for legal and finance teams.** Every matter is a private vault on the firm's own machines. Agents, review tables and workflows run over it. A per-matter, per-step policy decides what runs on a local model and what may use a cloud model, after redaction. Every call is audited.
+**ALIV is a hybrid intelligent agent platform for legal teams, and the finance work in their contracts.** Every matter is a private vault on the firm's own machines. Agents, review tables and workflows run over it. A per-matter, per-step policy decides what runs on a local model and what may use a cloud model, after redaction. Every call is audited.
 
 ## The problem
 

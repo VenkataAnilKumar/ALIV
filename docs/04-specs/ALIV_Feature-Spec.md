@@ -1,5 +1,5 @@
 # Feature Specification
-## ALIV: hybrid intelligent agent platform for legal and finance
+## ALIV: hybrid intelligent agent platform for legal teams and contract finance
 
 **Version:** 1.0 | **Date:** October 29, 2026 | **Status:** Active (R0 shipped, R1–R4 planned)
 
@@ -359,15 +359,18 @@ Nothing calls a provider directly.
 
 ## [FS-19] Finance Pack (R3)
 
-**Purpose:** the second wedge: finance and accounting teams.
+**Purpose:** the second wedge, **contract finance**: the finance work that depends on contracts (invoices against terms, covenants, payment terms, audit evidence). Out of scope: modelling, market data, bookkeeping, tax (see the scope table in the Product Definition, §3).
 
 | ID | Requirement | Priority |
 |---|---|---|
-| FIN-01 | Invoice register: vendor, invoice number, dates, amounts, tax, PO | P0 |
+| FIN-01 | Invoice register: vendor, invoice number, dates, amounts, tax, PO, currency, payment terms (fields extracted from R2; register view R3) | P0 |
 | FIN-02 | **Invoice-to-contract check**: price, escalation, payment terms vs the contract; exceptions table | P0 |
 | FIN-03 | **Covenant tracker** for loan and facility agreements: covenants, test dates, thresholds; monitor reminders | P1 |
 | FIN-04 | **KYC / onboarding file review** table template | P1 |
 | FIN-05 | XLSX output designed for accounting import | P1 |
+| FIN-06 | **Deterministic calculation tool** (R2): totals, escalations, late fees, interest and variances are computed by code, never by the model; results show their inputs and formula, and cite the clauses and invoices used | P0 |
+| FIN-07 | **Fee and payment schedules** extracted as tables with cell citations (uses ING-10, R2) | P1 |
+| FIN-08 | Read-only ERP lookups (NetSuite, SAP, QuickBooks, Xero) via MCP, only to match invoices and payments to contracts | P2 |
 
 ---
 

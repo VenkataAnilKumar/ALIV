@@ -1,6 +1,6 @@
 # ALIV Desktop
 
-Local-first AI workspace for legal and finance teams. Client documents are indexed on your own computer. Answers cite their sources, file changes wait for approval, and every model call is recorded in a tamper-evident audit log.
+Local-first AI workspace for legal teams, and the finance work in their contracts. Client documents are indexed on your own computer. Answers cite their sources, file changes wait for approval, and every model call is recorded in a tamper-evident audit log.
 
 Built with Tauri 2 (Rust) and React. Runs local models through llama.cpp or MLX, and can use cloud models when a matter's policy allows it.
 

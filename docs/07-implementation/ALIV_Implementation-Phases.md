@@ -75,6 +75,7 @@
 | 2.9 | **Artifacts:** store, versions, diff, Artifacts tab, sandboxed HTML, export, output folder | ART-01–07, WS-04 | Every workflow output is an artifact with citations, run, skills and route |
 | 2.10 | **Global search and skill packs:** ⌘K across matters and types; starter legal and finance skills | SRCH-09/11/12, SKL-06 | Search < 300 ms on the demo corpus; each starter skill has a golden-output test |
 | 2.11 | **Document-AI upgrade:** layout-aware parsing, structure-aware chunks with context lines, local reranker, schema-constrained extraction, ANN decision | ING-10/11, SRCH-13/14, REG-09, EVAL-03/05 | Retrieval recall@10 and field accuracy improve on the eval sets vs R0 |
+| 2.12 | **Contract-finance basics:** invoice fields extracted; deterministic calculation tool; fee and payment schedules as tables | FIN-01 (fields), FIN-06/07 | Calculation results reproduce exactly from cited inputs; invoice fields ≥ 95% on the labelled set |
 
 **Phase exit:** a pilot firm runs a due-diligence matter end to end (ingest → review table → issues list → memo) without leaving ALIV.
 

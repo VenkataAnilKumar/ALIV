@@ -104,7 +104,7 @@ export function MatterDialog({
             Practice
             <div className="flex gap-2">
               <Choice selected={kind === 'legal'} onClick={() => setKind('legal')} icon={<Scale className="size-4" />} title="Legal" body="Contracts, leases, NDAs, disputes" />
-              <Choice selected={kind === 'finance'} onClick={() => setKind('finance')} icon={<Landmark className="size-4" />} title="Finance" body="Invoices, statements, tax, audit" />
+              <Choice selected={kind === 'finance'} onClick={() => setKind('finance')} icon={<Landmark className="size-4" />} title="Finance" body="Invoices, loans, payment terms, audit evidence" />
             </div>
           </div>
           <div className="flex flex-col gap-1.5 text-sm">

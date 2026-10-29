@@ -80,7 +80,7 @@ Details and tokens: [Design System](../05-design/ALIV_Design-System.md).
 | Partners, GCs | Client confidentiality and outside-counsel guidelines | Local only by default, per-matter policy, audit export |
 | Associates, analysts | Hours saved on review and drafting | Review tables, workflows, cited answers |
 | Legal ops, IT | Control and evidence | Gateway, redaction, Firm Server, health report |
-| Finance controllers | Fewer payment errors, deadlines met | Invoice-to-contract check, covenant tracker |
+| Finance ops, accounting and audit (contract finance) | Payments that match the contract; evidence ready for audit | Invoice-to-contract check, covenant tracker, calculation tool with cited inputs |
 
 ## 7. Claims we can and can't make
 
