@@ -1,0 +1,21 @@
+[default]
+description = "Default permissions for the ALIV vault plugin"
+permissions = [
+  "allow-list-matters",
+  "allow-create-matter",
+  "allow-update-matter",
+  "allow-delete-matter",
+  "allow-ingest-paths",
+  "allow-list-documents",
+  "allow-search",
+  "allow-review-grid",
+  "allow-propose-renames",
+  "allow-list-actions",
+  "allow-set-action-status",
+  "allow-execute-approved",
+  "allow-undo-action",
+  "allow-authorize-model-call",
+  "allow-list-audit",
+  "allow-verify-audit",
+  "allow-export-register-csv",
+]

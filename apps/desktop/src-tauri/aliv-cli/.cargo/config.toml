@@ -1,0 +1,6 @@
+# Redirect build output into the desktop crate's target dir so the produced
+# `aliv` binary lands at src-tauri/target/release/aliv, the path every CLI build
+# script and CI template already expects. aliv-cli is standalone (not a workspace
+# member), so without this it would build into aliv-cli/target instead.
+[build]
+target-dir = "../target"

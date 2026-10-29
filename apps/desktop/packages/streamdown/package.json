@@ -1,0 +1,49 @@
+{
+  "name": "streamdown",
+  "version": "2.1.1",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VenkataAnilKumar/ALIV.git",
+    "directory": "apps/desktop/packages/streamdown"
+  },
+  "author": "Hayden Bleasel <hayden.bleasel@vercel.com>",
+  "license": "Apache-2.0",
+  "description": "A drop-in replacement for react-markdown, designed for AI-powered streaming. Vendored into ALIV from the Apache-2.0 streamdown project.",
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "hast-util-to-jsx-runtime": "^2.3.6",
+    "html-url-attributes": "^3.0.1",
+    "marked": "^17.0.1",
+    "rehype-harden": "^1.1.7",
+    "rehype-raw": "^7.0.0",
+    "rehype-sanitize": "^6.0.0",
+    "remark-gfm": "^4.0.1",
+    "remark-math": "^6.0.0",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.2",
+    "remend": "workspace:*",
+    "shiki": "^3.19.0",
+    "tailwind-merge": "^3.4.0",
+    "unified": "^11.0.5",
+    "unist-util-visit": "^5.0.0"
+  },
+  "private": true
+}

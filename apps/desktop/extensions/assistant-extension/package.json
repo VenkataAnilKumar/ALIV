@@ -1,0 +1,36 @@
+{
+  "name": "@aliv/assistant-extension",
+  "productName": "ALIV Assistant",
+  "version": "1.0.2",
+  "description": "Powers the default AI assistant that works with all your installed models.",
+  "main": "dist/index.js",
+  "node": "dist/node/index.js",
+  "author": "ALIV Contributors",
+  "license": "Apache-2.0",
+  "scripts": {
+    "build": "rolldown -c rolldown.config.mjs",
+    "build:publish": "rimraf *.tgz --glob || true && yarn build && npm pack && cpx *.tgz ../../pre-install",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "cpx": "1.5.0",
+    "jsdom": "^26.1.0",
+    "rimraf": "6.0.1",
+    "rolldown": "1.0.0-beta.1",
+    "run-script-os": "1.1.6",
+    "typescript": "5.9.2",
+    "vitest": "3.2.7"
+  },
+  "dependencies": {
+    "@aliv/core": "workspace:*"
+  },
+  "files": [
+    "dist/*",
+    "package.json",
+    "README.md"
+  ],
+  "installConfig": {
+    "hoistingLimits": "workspaces"
+  },
+  "packageManager": "yarn@4.5.3"
+}

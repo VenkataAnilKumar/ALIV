@@ -1,0 +1,31 @@
+MASTER SERVICES AGREEMENT
+
+This Master Services Agreement ("Agreement") is entered into as of December 15, 2025
+between Northwind Logistics Inc. ("Provider") and Redstone Enterprises Inc. ("Client").
+
+1. SERVICES
+   Provider shall deliver freight forwarding, customs brokerage and warehousing services
+   described in each Statement of Work issued under this Agreement.
+
+2. TERM
+   This Agreement commences on December 15, 2025 and expires on December 15, 2026,
+   unless renewed in writing by both parties.
+
+3. RENEWAL
+   Client may renew for one additional year by giving written notice no later than
+   November 15, 2026.
+
+4. FEES
+   Annual contract value: $186,000 USD, invoiced monthly in arrears.
+   Late payments accrue interest at 1% per month on the outstanding balance.
+
+5. SERVICE LEVELS AND PENALTIES
+   If on-time delivery falls below 97% in any calendar month, Provider shall pay a penalty
+   equal to 5% of that month's fees, capped at $9,300 per month.
+
+6. TERMINATION
+   Either party may terminate for convenience on ninety (90) days' written notice.
+
+7. GOVERNING LAW
+   This Agreement shall be governed by the laws of the State of Washington, without regard
+   to its conflict of laws principles.

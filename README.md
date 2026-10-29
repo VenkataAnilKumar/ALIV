@@ -118,6 +118,20 @@ Built-in benchmark automation across ingestion, retrieval, and extraction with v
 
 ---
 
+## Next-generation desktop app
+
+ALIV is being rebuilt as a hybrid local + cloud agent platform for legal and finance teams. It lives in [`apps/desktop/`](apps/desktop/README.md).
+
+- **Matters.** Each client matter is a private vault with a model policy: Local only, or Hybrid.
+- **Register.** Dates, parties, amounts, notice periods and penalty clauses are extracted on the device, and every value links to its source passage.
+- **Ask.** Answers cite numbered sources. A Rust policy gate refuses cloud models on Local only matters.
+- **Approvals and audit.** File renames wait for approval and can be undone. Every model call and file change goes into a hash-chained audit log.
+
+<img src="docs/assets/aliv-desktop-overview.png" alt="ALIV matter overview with upcoming deadlines" width="100%" />
+<img src="docs/assets/aliv-desktop-register.png" alt="Register with a field's source passage" width="100%" />
+
+---
+
 ## Architecture
 
 ```mermaid

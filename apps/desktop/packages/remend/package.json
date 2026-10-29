@@ -1,0 +1,28 @@
+{
+  "name": "remend",
+  "version": "1.1.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VenkataAnilKumar/ALIV.git",
+    "directory": "apps/desktop/packages/remend"
+  },
+  "author": "Hayden Bleasel <hayden.bleasel@vercel.com>",
+  "license": "Apache-2.0",
+  "description": "Self-healing markdown. Intelligently parses and styles incomplete Markdown blocks. Vendored into ALIV from the Apache-2.0 streamdown project.",
+  "private": true
+}

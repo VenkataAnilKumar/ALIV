@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aliv-adk"
+version = "0.1.0"
+description = "Python client for the ALIV agent runtime: sessions, streamed turns, and host tools over `aliv cli agent rpc`"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+authors = [{ name = "ALIV", email = "service@example.com" }]
+keywords = ["aliv", "agent", "adk", "json-rpc"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "License :: OSI Approved :: Apache Software License",
+]
+# No dependencies on purpose: the runtime is a process, the channel is JSON, and
+# a host that has to install a tree to embed an agent will not.
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/VenkataAnilKumar/ALIV"
+Repository = "https://github.com/VenkataAnilKumar/ALIV"
+
+[tool.setuptools]
+packages = ["aliv_adk"]
+
+[tool.setuptools.package-data]
+aliv_adk = ["py.typed"]

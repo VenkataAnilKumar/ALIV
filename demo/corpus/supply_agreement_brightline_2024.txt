@@ -1,0 +1,27 @@
+SUPPLY AGREEMENT
+
+Document Type: Supply Agreement
+Supplier: Brightline Components GmbH
+Customer: Redstone Enterprises Inc.
+Effective Date: 2024-01-20
+Expiry Date: 2027-01-20
+Contract Value: EUR 412,500
+
+1. SUPPLY
+   Supplier shall manufacture and deliver the components listed in Schedule A at the prices
+   stated therein, subject to annual indexation.
+
+2. TERM AND RENEWAL
+   This Agreement expires on 20 January 2027. Customer must give notice of renewal no later
+   than 20 December 2026; otherwise the Agreement ends on its expiry date.
+
+3. LIQUIDATED DAMAGES
+   For each week of delay beyond the confirmed delivery date, Supplier shall pay liquidated
+   damages of 0.5% of the value of the delayed delivery, up to a maximum of 5%.
+
+4. TERMINATION
+   Either party may terminate this Agreement upon 60 days written notice in the event of a
+   material breach that remains uncured.
+
+5. GOVERNING LAW
+   This Agreement is governed by the laws of Germany.
