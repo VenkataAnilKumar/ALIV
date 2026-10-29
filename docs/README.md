@@ -9,9 +9,9 @@ The product documents run from brand to product, market, specs, design, technica
 | # | Document | What it answers | Status |
 |---|---|---|---|
 | **01 Brand** | | | |
-| 1 | Brand Identity | Who ALIV is, how it speaks, how it looks | Planned (batch 3) |
+| 1 | [Brand Identity](01-brand/ALIV_Brand-Identity.md) | Who ALIV is, how it speaks, how it looks | ✅ |
 | **02 Product** | | | |
-| 2 | Product Overview | ALIV on one page | Planned (batch 3) |
+| 2 | [Product Overview](02-product/ALIV_Product-Overview.md) | ALIV on one page | ✅ |
 | 3 | [Product Definition](02-product/ALIV_Product-Definition.md) | Vision, personas, value, features by release, KPIs, risks | ✅ |
 | **03 Market** | | | |
 | 4 | [Competitive Analysis](03-market/ALIV_Competitive-Analysis.md) | Harvey and the field: where ALIV wins and loses | ✅ |
@@ -24,18 +24,18 @@ The product documents run from brand to product, market, specs, design, technica
 | 9 | [UI Spec](05-design/ALIV_UI-Spec.md) | Screen-by-screen behaviour | ✅ |
 | 10 | [Wireframes](05-design/ALIV_Wireframes.md) | Layouts of current and planned screens | ✅ |
 | **06 Technical** | | | |
-| 11 | System Architecture | Components, sequences, non-functional requirements | Planned (batch 3) |
+| 11 | [System Architecture](06-technical/ALIV_System-Architecture.md) | Components, sequences, non-functional requirements | ✅ |
 | 12 | [Hybrid AI Architecture](06-technical/ALIV_Hybrid-AI-Architecture.md) | Model gateway, router, redaction, agent runtime | ✅ |
-| 13 | Architecture Stack | Technology choices and why | Planned (batch 3) |
-| 14 | Data Model | Vault schema, current and planned | Planned (batch 3) |
-| 15 | API Design | Vault commands, agent tools, local API, CLI | Planned (batch 3) |
-| 16 | Security & Compliance | Threat model, controls, compliance mapping | Planned (batch 3) |
-| 17 | Deployment Architecture | Desktop, Firm Server, private cloud | Planned (batch 3) |
-| 18 | Repo Structure | Where everything lives | Planned (batch 3) |
+| 13 | [Architecture Stack](06-technical/ALIV_Architecture-Stack.md) | Technology choices and why | ✅ |
+| 14 | [Data Model](06-technical/ALIV_Data-Model.md) | Vault schema, current and planned | ✅ |
+| 15 | [API Design](06-technical/ALIV_API-Design.md) | Vault commands, agent tools, local API, CLI | ✅ |
+| 16 | [Security & Compliance](06-technical/ALIV_Security-Compliance.md) | Threat model, controls, compliance mapping | ✅ |
+| 17 | [Deployment Architecture](06-technical/ALIV_Deployment-Architecture.md) | Desktop, Firm Server, private cloud | ✅ |
+| 18 | [Repo Structure](06-technical/ALIV_Repo-Structure.md) | Where everything lives | ✅ |
 | **07 Implementation** | | | |
 | 19 | [Implementation Phases](07-implementation/ALIV_Implementation-Phases.md) | Phases, scope and exit criteria | ✅ |
-| 20 | Sprint Plan | Phases broken into PRs | Planned (batch 3) |
-| 21 | Implementation Checklist | Per-phase done list | Planned (batch 3) |
+| 20 | [Sprint Plan](07-implementation/ALIV_Sprint-Plan.md) | Phases broken into PRs | ✅ |
+| 21 | [Implementation Checklist](07-implementation/ALIV_Implementation-Checklist.md) | Per-phase done list | ✅ |
 
 ## Guides
 
