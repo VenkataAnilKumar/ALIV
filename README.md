@@ -2,7 +2,7 @@
 
 # ALIV
 
-### Autonomous Local Intelligence Vault
+### Audited Local Intelligence Vault
 
 **The hybrid AI platform that keeps client matters on your machines.**<br/>
 Cited answers, contract registers and audited AI for legal teams, and the finance work in their contracts. Local by default, cloud only when a matter's policy allows it.
