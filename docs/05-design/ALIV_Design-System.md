@@ -93,6 +93,9 @@ Button (default, outline, ghost, destructive; sizes `sm`, `icon`, `icon-xs`) · 
 | `RedactionPreview` | Cloud steps | Side-by-side original vs redacted, placeholders highlighted |
 | `ApprovalCard` | Approvals inbox | Proposal, diff or preview, approve / reject, undo after apply |
 | `StepEditor` | Agent Builder | Step type, instructions, tools, output, optional toggle |
+| `TrustBadge` | Skills, MCP servers | built-in / firm (success) · personal (neutral) · third-party (warning) · local server (success) |
+| `ArtifactCard` | Artifacts tab, Home | Type icon, title, version, route, skills; opens with citations and history |
+| `TriggerPill` | Automations | Schedule · folder · email · date · webhook, with next run time |
 
 ## 4. Patterns
 

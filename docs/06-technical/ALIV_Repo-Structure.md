@@ -90,7 +90,11 @@ docs/
 | Model gateway, router, redaction (R1) | `src-tauri/src/core/gateway/`, building on the existing `core/server/proxy.rs` and `provider_secrets.rs`; split into a crate once the Firm Server needs it | `web-app/src/aliv/gateway.ts` (thin client); RoutePill, RedactionPreview in `aliv/components/` |
 | Agent runtime, tables, workflows (R2) | `src-tauri/crates/aliv-agents` using the vault crate | `aliv/tables/`, `aliv/workflows/`, `aliv/library/` |
 | Document writers (R2) | `src-tauri/crates/aliv-docgen` (DOCX, XLSX, PDF) | — |
-| Monitors (R3) | `aliv-agents::scheduler` | `aliv/inbox/` |
+| Monitors and automation (R3) | `aliv-agents::scheduler` | `aliv/inbox/`, `aliv/automations/` |
+| Matter workspace, chats (R1) | vault plugin (new tables) + gateway | `aliv/workspace/`, `aliv/chats/` (replaces base-app `routes/project` for matter work) |
+| Skills, MCP and web-search governance (R1) | `core/agent/skills.rs`, `core/mcp`, `tauri-plugin-websearch`, called only via `core/gateway/` | `aliv/settings/skills-tools/` |
+| Artifacts (R2) | vault plugin + `aliv-docgen` | `aliv/artifacts/` (reuses base-app `HtmlArtifact` in a sandbox) |
+| Connectors (R3) | `src-tauri/src/core/connectors/` | `aliv/connections/` |
 | Firm Server (R4) | `apps/server/` (axum) reusing the vault and agents crates | Desktop gains a server-backed `service` implementation |
 | Word add-in (R4) | — | `apps/word-addin/` (Office.js) |
 

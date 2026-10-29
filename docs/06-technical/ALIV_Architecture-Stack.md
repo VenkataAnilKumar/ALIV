@@ -25,6 +25,7 @@
 | Secrets | OS keychain (Keychain, Credential Manager, Secret Service), AES-256-GCM file fallback on headless Linux (`provider_secrets.rs`) | — | ✅ storage; R1 makes the gateway their only user |
 | Documents out | DOCX (tracked changes), XLSX, PDF writers in Rust | — | R2 |
 | Email archives | PST/MBOX readers | — | R2 |
+| Tools and skills | MCP client (`core/mcp`, rmcp-based, with OAuth); SKILL.md skills and git plugins (`core/agent`) | — | ✅ base app; R1 governance |
 | Server | Rust (axum) + PostgreSQL or SQLite, OIDC/SAML | — | R4 |
 | Word add-in | Office.js (TypeScript) | — | R4 |
 | Tests | Vitest, Rust `cargo test`, Tauri mock runtime IPC test, Playwright (e2e) | — | ✅ |

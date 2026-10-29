@@ -39,7 +39,13 @@
 | **Router** | Gateway | Step type → model and location | R1 |
 | **Redactor** | Gateway | Entity detection, placeholders, restore | R1 |
 | **Agent runtime** | Rust core | Runs tables, workflows and agents step by step; resumable | R2 |
-| **Scheduler** | Rust core | Monitors, watch folders | R3 |
+| **Scheduler / automation engine** | Rust core | Triggers (schedule, watch folder, connector, email, date, webhook) → agent runs → Inbox and Approvals | R3 |
+| **Matter workspace** | Vault + web layer | Matter chats, instructions, linked and output folders; replaces base-app chat Projects | R1 |
+| **Skills & plugins** | `src-tauri/src/core/agent/skills.rs`, `skill_hub.rs`, `plugins.rs` | SKILL.md skills, hub import, git plugins; R1 adds trust levels, per-matter enablement, sandboxed scripts, audit | ✅ base · R1 governance |
+| **MCP client / server** | `src-tauri/src/core/mcp` | Client with OAuth exists; R1 routes tool calls through the gateway (trust levels, allow-lists, redaction, audit); R4 adds ALIV as a read-only MCP server | ✅ base client · R1 · R4 |
+| **Web search** | `tauri-plugin-websearch` | Exa backend; R1 puts it behind the gateway's policy check | ✅ base · R1 |
+| **Artifact store** | Vault + output folder | Versioned work product with citations, run, skills and route; sandboxed HTML rendering | R2 (base app has artifact rendering) |
+| **Connectors** | Rust core | Read-only sync from DMS, SharePoint, Drive, Box, mail into the vault | R3 |
 | **Firm Server** | Separate binary reusing the vault crate | Shared vaults, users, roles, SSO | R4 |
 
 ## 3. Key flows

@@ -10,10 +10,10 @@
 | Phase | Release | Theme | Features | Status |
 |---|---|---|---|---|
 | 0 | R0 | Private matter vault | FS-1 to FS-7 | ✅ Complete (PRs #12–#17) |
-| 1 | R1 | Hybrid foundation | FS-8 Gateway · FS-9 Redaction · FS-10 Router | Next |
-| 2 | R2 | Harvey-class work product | FS-11 Review Tables · FS-12 Workflows · FS-13 Playbooks · FS-14 Drafting · FS-15 Compare (+ ING-06/07, ASK-06–10) | Planned |
-| 3 | R3 | Agents | FS-16 Agent Builder · FS-17 Monitors · FS-18 Knowledge Bases · FS-19 Finance Pack | Planned |
-| 4 | R4 | Scale & reach | FS-20 Firm Server · FS-21 Word Add-in · FS-22 Research Connectors | Planned |
+| 1 | R1 | Hybrid foundation | FS-8 Gateway · FS-9 Redaction · FS-10 Router · FS-27 Matter workspace · governance of web search, MCP and skills (SRCH-10, FS-24, FS-28) | Next |
+| 2 | R2 | Harvey-class work product | FS-11 Review Tables · FS-12 Workflows · FS-13 Playbooks · FS-14 Drafting · FS-15 Compare · FS-25 Artifacts (+ ING-06/07, ASK-06–10, global search, skill packs) | Planned |
+| 3 | R3 | Agents | FS-16 Agent Builder · FS-17 Monitors · FS-18 Knowledge Bases · FS-19 Finance Pack · FS-26 Automation · FS-23 Connectors (+ MCP tools in agents, skill library) | Planned |
+| 4 | R4 | Scale & reach | FS-20 Firm Server · FS-21 Word Add-in · FS-22 Research Connectors (+ ALIV as an MCP server, shared skills) | Planned |
 | — | GA | Release readiness | Signed installers, update server, vault encryption, onboarding | Runs alongside Phases 2–3 |
 
 **Why this order:**
@@ -47,9 +47,12 @@
 | 1.3 | **Router:** step types, default routing, matter overrides, route shown in Ask | RTR-01/02/04 | Local only never routes to cloud; Hybrid routes per the table in the Hybrid AI Architecture |
 | 1.4 | **Redaction:** entity store from the register, local NER, placeholders, restore, preview | RED-01/02/03/05 | ≥ 98% recall for parties and people on the labelled set; preview matches what is sent |
 | 1.5 | **Spend limits, fallback, hardware-aware local model choice** | GW-06/07, RTR-05 | Limits enforced and audited; fallback behaviour tested |
+| 1.6 | **Matter workspace:** chats inside matters, matter instructions, linked folders with re-scan, convert chat projects | WS-01/02/03/05/07 | No chat can read a matter's documents outside that matter; conversion keeps threads |
+| 1.7 | **No side doors:** web search and MCP tool calls through the gateway (policy, redaction, audit); MCP trust levels and per-matter allow-lists; approvals for side-effecting tools | SRCH-10, MCP-01–04/07 | Policy-matrix test covers web search and MCP; Local only refuses non-local servers |
+| 1.8 | **Skills under governance:** per-matter enablement, trust levels, review dialog, sandboxed scripts on approval, skills recorded in audit | SKL-01–05, WS-06 | A third-party skill can't run in a Local only matter; script sandbox has no network (tested) |
 
 **Phase exit:**
-- `security.md` no longer lists the "policy check guards the Ask flow" limitation;
+- `security.md` no longer lists the "policy check guards the Ask flow" limitation, nor the one about web search, MCP and chat projects outside matter policy;
 - redaction recall gate passes in CI.
 
 ---
@@ -68,6 +71,8 @@
 | 2.6 | **Clause library and drafting** | DRF-01–04 | Drafts cite library clauses; DOCX output opens cleanly in Word |
 | 2.7 | **Ask upgrades:** @-mentions, suggest tables and workflows, save as DOCX/PDF, follow-ups, uncited-claim flags | ASK-06–10 | Usability test with 5 pilot users |
 | 2.8 | **Ingestion at scale:** .pst/.mbox archives; 10k-document matters with pause and resume | ING-06/07 | Enron-style public mailbox sample ingests with thread metadata |
+| 2.9 | **Artifacts:** store, versions, diff, Artifacts tab, sandboxed HTML, export, output folder | ART-01–07, WS-04 | Every workflow output is an artifact with citations, run, skills and route |
+| 2.10 | **Global search and skill packs:** ⌘K across matters and types; starter legal and finance skills | SRCH-09/11/12, SKL-06 | Search < 300 ms on the demo corpus; each starter skill has a golden-output test |
 
 **Phase exit:** a pilot firm runs a due-diligence matter end to end (ingest → review table → issues list → memo) without leaving ALIV.
 
@@ -81,6 +86,9 @@
 | 3.2 | **Monitors:** schedules, watch folders, date triggers, deadline digest, new-document triage, inbox | MON-01–04, ING-08 | Monitors fire reliably across app restarts |
 | 3.3 | **Knowledge bases** | KB-01–03 | KB content is cited and never mixed with matter data |
 | 3.4 | **Finance pack:** invoice register, invoice-to-contract check, covenant tracker, KYC template | FIN-01–05 | Labelled invoice set: ≥ 95% field accuracy; known mismatches flagged |
+| 3.5 | **Automation engine:** triggers, actions, run history, retries, templates (monitors become templates) | AUTO-01–07 | Automations survive restarts; nothing applied without approval (tested) |
+| 3.6 | **Document connectors:** iManage, NetDocuments, SharePoint, Outlook first; then Drive, Box, Gmail | CON-01–06 | Read-only sync of a 5k-document workspace with incremental updates |
+| 3.7 | **MCP tools in agents; firm skill library and Skill Builder** | MCP-05, SKL-07/08 | An agent step uses an allowed firm MCP tool with approval; skills versioned and published |
 
 ---
 
@@ -92,6 +100,8 @@
 | 4.2 | **SSO and server-side GPU models** | SRV-03/05 | SAML/OIDC with two identity providers |
 | 4.3 | **Word add-in** | WORD-01–03 | Playbook redlines inserted as tracked changes in Word on Windows and Mac |
 | 4.4 | **Research connectors:** connector API, public sources first | RES-01/02/04 | Cited results with source links; no matter text sent without confirmation |
+| 4.5 | **ALIV as an MCP server; source permissions for connectors** | MCP-06, CON-04 | Paired clients see only granted matters; every call audited |
+| 4.6 | **Shared and signed skills via Firm Server** | SKL-09 | Unsigned firm skills flagged; signature verified on load |
 
 ---
 

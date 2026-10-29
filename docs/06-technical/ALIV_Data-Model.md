@@ -108,6 +108,16 @@ matters 1─* documents 1─* chunks 1─1 chunk_vectors
 | `knowledge_bases`, `kb_documents` | R3 | KBs are read-only collections; their passages live in `chunks` with `matter_id = 'kb:<id>'` |
 | `monitors`, `inbox_items` | R3 | monitor: `kind`, `schedule`, `config` (JSON), `enabled`; item: `monitor_id`, `matter_id`, `payload` (JSON), `state` |
 | `field_overrides` | R2 | user corrections kept across re-ingestion: `document_id`, `key`, `value`, `edited_by`, `ts` |
+| `matter_instructions` | R1 | `matter_id`, `text`, `updated_by`, `updated_at` (FS-27) |
+| `matter_folders` | R1 | `matter_id`, `kind` (`source|output`), `path` or `connector_source_id`, `last_scan_at`, `watch` (FS-27, FS-23) |
+| `matter_chats`, `chat_messages` | R1 | chat: `id`, `matter_id`, `title`, `created_at`; message: `chat_id`, `role`, `text`, `model_call_id`, `skills` (JSON), `citations` (JSON) |
+| `skills_enabled` | R1 | `matter_id`, `skill_name`, `version`, `trust` (`builtin|firm|personal|third_party`), `enabled_by`, `ts` (FS-28) |
+| `mcp_servers` | R1 | `id`, `name`, `transport`, `trust` (`local|firm|third_party`), `firm_status` (`allowed|blocked`) (FS-24) |
+| `matter_tools` | R1 | `matter_id`, `mcp_server_id`, `allowed_tools` (JSON), `web_search` (bool) |
+| `tool_calls` | R1 | `id`, `matter_id`, `kind` (`mcp|web_search|skill_script`), `target`, `payload_sha256`, `redaction_level`, `approved_by`, `status`, `audit_id` |
+| `artifacts`, `artifact_versions` | R2 | artifact: `id`, `matter_id`, `type`, `title`, `pinned`; version: `artifact_id`, `version`, `run_id`, `content_ref`, `citations` (JSON), `skills` (JSON), `route`, `created_by`, `created_at` (FS-25) |
+| `connector_sources` | R3 | `id`, `kind` (`imanage|netdocuments|sharepoint|gdrive|box|outlook|gmail`), `config` (JSON, no secrets), `matter_id`, `last_sync_at`, `status` (FS-23) |
+| `automations`, `automation_runs` | R3 | automation: `id`, `matter_id`, `trigger` (JSON), `action` (JSON), `enabled`; run: `automation_id`, `run_id`, `trigger_payload` (JSON), `status`, `started_at`, `finished_at` (FS-26; replaces `monitors`) |
 | `users`, `groups`, `matter_access` | R4 | Firm Server identities, roles (`admin|member|viewer`), ethical walls |
 
 ## 4. Rules
