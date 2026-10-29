@@ -14,7 +14,7 @@ Client documents are indexed on your own computer. Answers cite their sources, f
 [![Rust](https://img.shields.io/badge/Rust-Backend-orange?style=flat-square&logo=rust)](https://www.rust-lang.org)
 [![React](https://img.shields.io/badge/React-UI-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev)
 
-[🚀 Build and run](#build-and-run) &nbsp;·&nbsp; [📖 App guide](apps/desktop/README.md) &nbsp;·&nbsp; [🗺️ Plan](docs/PLAN.md) &nbsp;·&nbsp; [📊 Market research](docs/MARKET_RESEARCH.md)
+[🚀 Build and run](#build-and-run) &nbsp;·&nbsp; [📖 User guide](docs/user-guide.md) &nbsp;·&nbsp; [🔒 Security](docs/security.md) &nbsp;·&nbsp; [🛠️ Developer guide](docs/developer.md) &nbsp;·&nbsp; [🗺️ Plan](docs/PLAN.md) &nbsp;·&nbsp; [📊 Market research](docs/MARKET_RESEARCH.md)
 
 <br/>
 
@@ -65,7 +65,7 @@ Platform prerequisites, tests and the repository layout are in the [app guide](a
 | [`apps/desktop/`](apps/desktop/README.md) | **The ALIV app**: Tauri 2 desktop app, matter vault plugin, `aliv` CLI, React UI |
 | `demo/corpus/` | Sample legal and finance documents used by the demo and tests |
 | [`benchmarks/`](benchmarks/README.md) | Labelled corpus and the script that scores the vault's extraction |
-| `docs/` | [Plan](docs/PLAN.md), [market research](docs/MARKET_RESEARCH.md), [customer one-pager](docs/CUSTOMER_ONE_PAGER.md), [strategy](docs/ALIV_FUTURE_STRATEGY.md) |
+| `docs/` | [User guide](docs/user-guide.md), [security and privacy](docs/security.md), [developer guide](docs/developer.md), [plan](docs/PLAN.md), [market research](docs/MARKET_RESEARCH.md), [customer one-pager](docs/CUSTOMER_ONE_PAGER.md), [strategy](docs/ALIV_FUTURE_STRATEGY.md) |
 
 ## License
 

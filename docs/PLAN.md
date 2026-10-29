@@ -13,7 +13,7 @@ Each step is one pull request into `main`.
 | C ✅ | **Hybrid search** | Meaning-based search next to the existing keyword search (FTS5), combined with reciprocal-rank fusion. Falls back to keyword-only when no embedding model is available | Questions phrased differently from the contract text still find the right clause |
 | D ✅ | **Summaries and context budget** | A summary per document, built at ingestion from its extracted fields and opening (no model), so it changes only when the file does; Ask fits its sources into the model's context window, most relevant first | Ask works on a 500-document matter without overflowing the context |
 | E ✅ | **Diagnostics; retire the legacy app** | A vault health report in the new app (Matters → Vault health); `src/`, `src-tauri/`, `python/`, `db/` and their configs removed | One app, one build |
-| F | **Product docs** | User guide, security and privacy overview, developer architecture and build docs | Every feature in the app has a page |
+| F ✅ | **Product docs** | User guide, security and privacy overview, developer architecture and build docs | Every feature in the app has a page |
 
 ## What the legacy app has that the new app doesn't
 
