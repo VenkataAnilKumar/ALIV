@@ -56,7 +56,7 @@ Nothing calls a provider directly.
 | MAT-01 | Create, rename, delete a matter with name, client and type (Legal / Finance) | P0 | ✅ |
 | MAT-02 | Policy per matter: **Local only** (default) or **Hybrid** | P0 | ✅ |
 | MAT-03 | Policy changes are audited with the old and new value | P0 | ✅ |
-| MAT-04 | Deleting a matter removes its index and history but never the user's files | P0 | ✅ |
+| MAT-04 | Deleting a matter removes its index (documents, passages, fields, embeddings, proposals) but never the user's files; its audit entries are kept so the chain stays verifiable | P0 | ✅ |
 | MAT-05 | Search, answers, tables and agents never read across matters unless the user selects several matters explicitly | P0 | ✅ (single-matter today) |
 | MAT-06 | Ethical walls: users and groups allowed per matter | P1 | R4 (FS-20) |
 | MAT-07 | Retention date per matter, with reminders before it (cf. Harvey retention notifications) | P2 | R3 (FS-17) |

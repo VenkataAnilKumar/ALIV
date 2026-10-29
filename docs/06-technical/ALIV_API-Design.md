@@ -47,10 +47,10 @@
 | `gateway_preview` | `ModelRequest` | `{redactedPrompt, replacements[]}` (exactly what would be sent) |
 | `gateway_call` | `ModelRequest, streamChannel` | stream of `{delta}` then `{done, modelCallId, citations[]}` |
 | `gateway_cancel` | `callId` | — |
-| `set_provider_key` / `delete_provider_key` | `provider, key` | — (stored in the OS keychain; never returned) |
+| `set_provider_key` / `delete_provider_key` | `provider, key` | — (stored in the OS keychain, as the base app already does in `provider_secrets.rs`; never returned) |
 | `get_matter_settings` / `set_matter_settings` | `matterId, settings` | `MatterSettings` (audited) |
 
-**Step types:** `extract`, `classify`, `answer`, `summarise`, `draft`, `compare`, `redline`, `research`.
+**Step types** (same as RTR-02 and the Hybrid AI Architecture router table): `embed`, `extract`, `classify`, `summarise`, `answer`, `compare`, `draft`, `reason`. Redlines are `draft` steps; research connectors (R4) have their own confirmation rule (RES-04).
 Example routing for a Hybrid matter: `extract → local`, `draft → cloud`.
 
 ## 4. Agent runtime (R2–R3)
@@ -80,7 +80,7 @@ Tools that change existing files or leave the machine only ever create proposals
 
 ## 5. Local API and CLI
 
-- **Local HTTP API (base app, opt-in):** OpenAI-compatible `/v1/chat/completions` served on loopback for local models. In R1 it is limited to models only. Vault data is never exposed over HTTP on the desktop.
+- **Local HTTP API (base app, opt-in):** an OpenAI-compatible server on loopback (`src-tauri/src/core/server/`). It serves models only. Vault data is never exposed over HTTP on the desktop, and in R1 any cloud traffic through it goes through the gateway's policy check.
 - **CLI (`aliv-cli`):** terminal agent from the base app. Planned vault subcommands: `aliv vault ingest <matter> <path>`, `aliv vault search`, `aliv vault audit verify`, `aliv run <workflow>` (R2) for scripted, scheduled jobs.
 
 ## 6. Firm Server API (R4)

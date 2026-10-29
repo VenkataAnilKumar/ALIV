@@ -15,6 +15,7 @@ ALIV uses **strong cloud models where a matter allows it, and local models every
 - **The policy check:** the vault's `authorize_model_call` checks the matter policy and audits the call.
 - **The model call:** the web layer then sends the request itself.
 - **Embeddings:** computed by the local llama.cpp engine.
+- **Already in the Rust core (from the base app):** a provider proxy and OpenAI-compatible local server (`src-tauri/src/core/server/proxy.rs`), and provider-key storage in the OS keychain with an encrypted-file fallback (`provider_secrets.rs`). The gateway builds on these rather than starting from scratch.
 
 **Gap:** the cloud request is sent from the web layer after the check, so the check guards the Ask flow but is not unbypassable. R1 moves all calls into the Rust core.
 

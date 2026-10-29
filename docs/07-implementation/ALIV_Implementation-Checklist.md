@@ -17,30 +17,30 @@
 ## Phase 0: Private matter vault (R0) ✅
 
 - [x] Matters with Local only / Hybrid policy (MAT-01–03)
-- [x] Ingestion of PDF, DOCX and text; change detection by hash (ING-01/02/04)
-- [x] OCR for scans and images with confidence (ING-03/05)
-- [x] Passages + FTS5 keyword search
-- [x] Local embeddings and RRF hybrid search (SRCH)
-- [x] Register extraction with confidence and evidence; deadlines (REG-01–03)
+- [x] Ingestion of PDF, DOCX, XLSX, PPTX, HTML, text, CSV, RTF and EML; change detection by hash; unreadable files listed with a reason (ING-01/02/05)
+- [x] OCR for scans and images, with confidence carried into field confidence (ING-03/04)
+- [x] Passages + FTS5 keyword search (SRCH-01)
+- [x] Local embeddings, RRF hybrid search, background embedding, keyword fallback (SRCH-02–05)
+- [x] Register extraction with confidence and evidence; deadline filters (REG-01–03)
 - [x] Formula-safe CSV export (REG-04)
-- [x] Extractive summaries; context budget with "left out" count (ASK-04/05)
-- [x] Cited answers with policy check (`authorize_model_call`) (ASK-01–03)
-- [x] Rename proposals, approve, execute, undo (ACT)
+- [x] Extractive summaries (REG-05); context budget with "left out" count (ASK-03)
+- [x] Cited answers, clickable sources, register answers without a model, route shown (ASK-01/02/04/05); policy check via `authorize_model_call` (MAT-02)
+- [x] Rename proposals, approve, execute, undo (ACT-01–03)
 - [x] Hash-chained audit with Verify integrity (AUD-01/02)
-- [x] Vault health diagnostics (no text)
+- [x] Vault health diagnostics, no text (AUD-03)
 - [x] Legacy app retired; docs set; CI with OCR tools
 
 ## Phase 1: Hybrid foundation (R1)
 
 - [ ] Gateway crate; llama.cpp, OpenAI-compatible and Anthropic adapters; streaming (GW-01/03/04)
-- [ ] Provider keys in the OS keychain only
+- [ ] Provider keys used only by the gateway (they are already stored in the OS keychain by `provider_secrets.rs`)
 - [ ] CI check: no provider URLs or keys in `web-app`
 - [ ] Policy check and audit in the gateway; `model_calls` table (GW-02/05, AUD-06)
 - [ ] Step types, default routes, matter overrides (RTR-01/02/04)
 - [ ] Matter settings UI; RoutePill
 - [ ] Entity store, detectors, placeholders, restore (RED-01–03)
 - [ ] Redaction preview (RED-05)
-- [ ] Redaction recall ≥ 98% gate in CI
+- [ ] Redaction recall ≥ 98% gate in CI (RED-06)
 - [ ] Spend limits, fallback, hardware-aware model choice (GW-06/07, RTR-05)
 - [ ] `security.md`: remove the "policy check guards the Ask flow" limit
 - [ ] **Exit:** Local only never routes to cloud (policy matrix test); preview equals what is sent
@@ -58,7 +58,7 @@
 - [ ] Clause library and drafting (DRF-01–04)
 - [ ] Ask upgrades (ASK-06–10)
 - [ ] PST/MBOX; 10k-document ingestion with resume (ING-06/07)
-- [ ] Field overrides kept across re-ingestion; XLSX register export
+- [ ] Field corrections kept across re-ingestion (REG-06); XLSX register export (REG-08)
 - [ ] Audit trail export, PDF and JSON (AUD-05)
 - [ ] **Exit:** a pilot DD matter end to end inside ALIV
 

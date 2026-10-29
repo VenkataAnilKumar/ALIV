@@ -67,11 +67,13 @@ Accuracy on the labelled corpus in `benchmarks/` (200 documents, including 40 sc
 
 ## Roadmap
 
-1. **Kernel-routed model traffic.** Today the policy gate decides and logs every call, but the request itself is still sent from the webview. Next, route cloud calls through the Rust proxy (`src-tauri/src/core/server/proxy.rs`) so the gate can't be bypassed, and add pseudonymization of names and amounts before cloud calls.
-2. **LLM-assisted extraction** as a second pass for fields the rules leave empty, always with a citation.
-3. **Agent packs and scheduled agents.** Weekly deadline scans and NDA triage against a playbook.
-4. **Firm Server mode.** A shared vault over the local network.
-5. **Release.** Signed builds and an update feed, a browser extension for browser control, and translations for the new Matters screens.
+The product roadmap is in [Implementation Phases](../../docs/07-implementation/ALIV_Implementation-Phases.md) and the [Sprint Plan](../../docs/07-implementation/ALIV_Sprint-Plan.md). In short:
+
+1. **R1 Hybrid foundation (next).** A model gateway in the Rust core, built on the existing provider proxy (`src-tauri/src/core/server/proxy.rs`) and keychain storage (`provider_secrets.rs`), so every model call is policy-checked and audited and can't be bypassed. Then per-step routing and redaction before cloud calls.
+2. **R2 Work product.** Review tables, workflows, playbooks with redlines, drafting, compare.
+3. **R3 Agents.** Agent builder, monitors, knowledge bases, finance pack.
+4. **R4 Scale.** Firm Server, SSO, Word add-in, research connectors.
+5. **Release (alongside R2–R3).** Signed builds, update feed, vault encryption at rest, onboarding.
 
 ## License
 

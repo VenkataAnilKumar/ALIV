@@ -16,8 +16,8 @@
 
 | Sprint | PRs | Demo |
 |---|---|---|
-| **S1** | 1.1a Gateway crate skeleton: `ModelRequest`, `Route`, llama.cpp adapter, IPC streaming · 1.1b Ask uses the gateway for local models | Ask runs through the gateway locally |
-| **S2** | 1.1c OpenAI-compatible and Anthropic adapters, keys in the OS keychain · 1.1d CI check: no provider URLs or keys in `web-app` · 1.2 `model_calls` table, policy check moved into the gateway, audit per call | Hybrid matter asks a cloud model via the gateway; Local only refused |
+| **S1** | 1.1a Gateway module skeleton (on the existing `core/server/proxy.rs`): `ModelRequest`, `Route`, llama.cpp adapter, IPC streaming · 1.1b Ask uses the gateway for local models | Ask runs through the gateway locally |
+| **S2** | 1.1c OpenAI-compatible and Anthropic adapters using the existing keychain storage · 1.1d CI check: no provider URLs or keys in `web-app` · 1.2 `model_calls` table, policy check moved into the gateway, audit per call | Hybrid matter asks a cloud model via the gateway; Local only refused |
 | **S3** | 1.3a Step types and default routes · 1.3b Matter settings UI (W-12), RoutePill · 1.4a Entity store from the register, regex detectors | Route shown before and after each call |
 | **S4** | 1.4b Local NER, placeholders and restore · 1.4c RedactionPreview (W-8) · 1.4d Redaction recall benchmark in CI (≥ 98%) · 1.5 Spend limits, fallback, hardware-aware model choice · `security.md` update | Preview shows exactly what leaves; recall gate green |
 

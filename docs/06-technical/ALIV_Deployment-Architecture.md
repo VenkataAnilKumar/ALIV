@@ -29,9 +29,9 @@
 
 | Item | Detail |
 |---|---|
-| **Installers** | macOS `.dmg` (universal), Windows NSIS `.exe`, Linux AppImage and `.deb`. Built by the Tauri bundler (`tauri.*.conf.json`) |
+| **Installers** | macOS `.dmg`, Windows NSIS `.exe`, Linux AppImage and `.deb`. Built by the Tauri bundler (`tauri.*.conf.json`) |
 | **Signing** | macOS Developer ID + notarisation; Windows Authenticode (`sign.ps1`). Required for GA |
-| **Updates** | Tauri updater with a signed `latest.json` (template in `src-tauri/latest.json.template`) from ALIV's update server; firms can disable or mirror it |
+| **Updates** | Planned (GA): Tauri updater with a signed `latest.json` (template in `src-tauri/latest.json.template`) from ALIV's update server; firms can disable or mirror it. **Today auto-update is off** until releases are signed |
 | **OCR dependencies** | Tesseract and poppler are detected at runtime. Missing tools are reported in Vault health. Bundling is planned for GA (macOS/Windows) |
 | **Models** | Downloaded on first run from the model catalogue, or side-loaded (GGUF) for air-gapped sites |
 | **Air-gapped install** | Supported: offline installer, side-loaded models, updater disabled, Local only matters |

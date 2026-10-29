@@ -12,7 +12,7 @@
 | Client documents | Firm's disks and shares (read in place) | Highest |
 | Vault (passages, fields, summaries, embeddings) | `vault.db` | Highest: derived client data |
 | Audit log | `vault.db` `audit` | High: evidence |
-| Provider API keys | OS keychain (R1) | High |
+| Provider API keys | OS keychain, encrypted-file fallback (✅); used only by the gateway (R1) | High |
 | Model weights | App data folder | Low |
 | Firm knowledge (playbooks, clauses, KBs) | Vault (R2–R3) | High |
 
@@ -49,7 +49,7 @@
 - **Secrets:** never in the repo, logs or audit; keys in the OS keychain only.
 - **Logging:** no document text in logs, crash reports or the audit log.
 - **Testing:** policy matrix tests (every step type × policy), redaction recall gate (≥ 98% parties and people), IPC permission test, audit chain tests.
-- **Vulnerability reporting:** [`SECURITY.md`](../../apps/desktop/SECURITY.md); fix critical issues within 14 days.
+- **Vulnerability reporting:** see [`SECURITY.md`](../../apps/desktop/SECURITY.md).
 
 ## 5. Compliance mapping
 
