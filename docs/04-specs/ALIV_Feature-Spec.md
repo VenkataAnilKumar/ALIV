@@ -330,6 +330,9 @@ Nothing calls a provider directly.
 | AGT-05 | Share agents across the firm (Team tier / FS-20) | P1 |
 | AGT-06 | Versioning; each run records the agent version | P1 |
 | AGT-07 | Import and export agents as files | P2 |
+| AGT-08 | **Structured questions mid-run:** a step can ask the user up to a few text or choice questions and wait; the answer (or *skipped*, *let the agent decide*, *expired*) returns to the **same** step, even after a restart. Not an approval | P1 |
+| AGT-09 | **Interrupt, resume and replay** a run from its event history; the run log shows each step as it was recorded | P0 |
+| AGT-10 | **Goal-driven runs:** a run can carry success criteria and keeps going until the agent records the goal as complete with evidence, or a person pauses it | P2 |
 
 ---
 
@@ -439,6 +442,8 @@ Nothing calls a provider directly.
 | MCP-05 | Agent and workflow steps can call allowed MCP tools (FS-16) | P1 | R3 |
 | MCP-06 | **ALIV as an MCP server:** read-only tools (`search_matter`, `get_register`, `get_artifact`) for other AI clients on the same machine or Firm Server; each client must be paired and is limited to the matters granted to it; every call audited | P1 | R4 |
 | MCP-07 | Admins can allow-list or block servers firm-wide | P1 | R1 (desktop policy file) · R4 (console) |
+| MCP-08 | **Per-tool policy Allow / Ask / Block**; the most specific rule wins and ties resolve to Block; tool arguments can never select a looser rule; a prepared action keeps the decision it was approved under | P0 | R1 |
+| MCP-09 | **Tool search:** with large tool catalogs a step sees only a few tools and loads others by name or meaning (keyword + local embeddings, fused) | P1 | R3 |
 
 **Out of scope:** MCP servers that ALIV installs or runs automatically from the internet.
 

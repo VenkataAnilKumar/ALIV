@@ -45,6 +45,7 @@
 - [ ] Redaction preview (RED-05)
 - [ ] Redaction recall ≥ 98% gate in CI (RED-06)
 - [ ] Spend limits, fallback, hardware-aware model choice (GW-06/07, RTR-05)
+- [ ] Per-tool Allow / Ask / Block policy (MCP-08)
 - [ ] Firm-level routing defaults (RTR-03); redaction levels (RED-04); Skills tab in Hub (SKL-10)
 - [ ] Matter chats, instructions, linked folders; convert chat projects (WS-01/02/03/05)
 - [ ] Web search through the gateway: blocked on Local only, redacted and audited on Hybrid (SRCH-10)
@@ -69,6 +70,7 @@
 - [ ] PST/MBOX; 10k-document ingestion with resume (ING-06/07)
 - [ ] Field corrections kept across re-ingestion (REG-06); XLSX register export (REG-08)
 - [ ] Audit trail export, PDF and JSON (AUD-05)
+- [ ] Structured mid-run questions; interrupt, resume and replay (AGT-08/09)
 - [ ] Agent and workflow steps audited (AUD-04); model second pass as table columns (REG-07); duplicate workflow as agent (WF-06); compare against template, DOCX (CMP-02/03)
 - [ ] Folder moves as proposals (ACT-04); search filters (SRCH-06); matter export (WS-08)
 - [ ] Artifacts: store, versions, diff, tab, sandboxed HTML, export, output folder (ART-01–07, WS-04)
@@ -90,6 +92,7 @@
 - [ ] Automation engine: triggers, actions, history, retries, templates; proposals only (AUTO-01–07)
 - [ ] Document connectors: iManage, SharePoint, NetDocuments, Outlook, then Drive, Box, Gmail (CON-01–06)
 - [ ] MCP tools in agents (MCP-05); firm skill library and Skill Builder (SKL-07/08)
+- [ ] Goal-driven runs (AGT-10); tool search for large catalogs (MCP-09)
 - [ ] Agent proposals in the approval queue (ACT-05); retention reminders (MAT-07); cross-matter search (SRCH-07); duplicate detection (ING-09); firm-run evals (EVAL-06)
 - [ ] **Exit:** a 4-step agent built in under 15 minutes by a non-technical user
 
@@ -106,6 +109,7 @@
 
 ## GA track
 
+- [ ] Signed self-update with verification and rollback
 - [ ] Signed and notarised installers (macOS, Windows)
 - [ ] Update server and signed `latest.json`
 - [ ] Vault encryption at rest (key in the OS keychain)

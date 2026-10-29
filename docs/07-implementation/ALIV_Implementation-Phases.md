@@ -49,7 +49,7 @@
 | 1.4 | **Redaction:** entity store from the register, local NER, placeholders, restore, preview | RED-01/02/03/05, RED-04/06 | ≥ 98% recall for parties and people on the labelled set; preview matches what is sent |
 | 1.5 | **Spend limits, fallback, hardware-aware local model choice** | GW-06/07, RTR-05 | Limits enforced and audited; fallback behaviour tested |
 | 1.6 | **Matter workspace:** chats inside matters, matter instructions, linked folders with re-scan, convert chat projects | WS-01/02/03/05/07 | No chat can read a matter's documents outside that matter; conversion keeps threads |
-| 1.7 | **No side doors:** web search and MCP tool calls through the gateway (policy, redaction, audit); MCP trust levels and per-matter allow-lists; approvals for side-effecting tools | SRCH-10, MCP-01–04/07 | Policy-matrix test covers web search and MCP; Local only refuses non-local servers |
+| 1.7 | **No side doors:** web search and MCP tool calls through the gateway (policy, redaction, audit); MCP trust levels and per-matter allow-lists; approvals for side-effecting tools | SRCH-10, MCP-01–04/07, MCP-08 | Policy-matrix test covers web search and MCP; Local only refuses non-local servers |
 | 1.8 | **Skills under governance:** per-matter enablement, trust levels, review dialog, sandboxed scripts on approval, skills recorded in audit | SKL-01–05, WS-06, SKL-10 | A third-party skill can't run in a Local only matter; script sandbox has no network (tested) |
 
 **Phase exit:**
@@ -64,7 +64,7 @@
 
 | # | Work | Feature IDs | Exit criteria |
 |---|---|---|---|
-| 2.1 | **Agent runtime v1:** definitions, runs, steps, citation verification, resume | (runtime) AUD-04 | Fake-model replay tests; resume after a forced crash |
+| 2.1 | **Agent runtime v1:** definitions, runs, steps, citation verification, resume | (runtime) AUD-04, AGT-08/09 | Fake-model replay tests; resume after a forced crash |
 | 2.2 | **Review Tables core:** create, question columns with types, cited cells, register columns, filters, XLSX export | TBL-01/02/03/04/08/09, REG-07 | 200-document benchmark matter: ≥ 95% of cells correct and correctly cited (human-checked sample) |
 | 2.3 | **Review Tables advanced:** conditional and manual columns, comments, inline edits, templates, 10k-row background runs | TBL-05/06/07/10/11 | 10,000-row run completes with resume; edits audited |
 | 2.4 | **Workflows library:** summarise, chronology, compare, memo, NDA triage, DD issues list, lease abstract; DOCX/XLSX outputs; optional steps | WF-01–05, CMP-01, WF-06, CMP-02/03 | Each workflow has a golden-output test on the demo corpus |
@@ -90,9 +90,9 @@
 | 3.2 | **Monitors:** schedules, watch folders, date triggers, deadline digest, new-document triage, inbox | MON-01–04, ING-08, MAT-07 | Monitors fire reliably across app restarts |
 | 3.3 | **Knowledge bases** | KB-01–03, SRCH-07, EVAL-06 | KB content is cited and never mixed with matter data |
 | 3.4 | **Finance pack:** invoice register, invoice-to-contract check, covenant tracker, KYC template | FIN-01–05 | Labelled invoice set: ≥ 95% field accuracy; known mismatches flagged |
-| 3.5 | **Automation engine:** triggers, actions, run history, retries, templates (monitors become templates) | AUTO-01–07 | Automations survive restarts; nothing applied without approval (tested) |
+| 3.5 | **Automation engine:** triggers, actions, run history, retries, templates (monitors become templates) | AUTO-01–07, AGT-10 | Automations survive restarts; nothing applied without approval (tested) |
 | 3.6 | **Document connectors:** iManage, NetDocuments, SharePoint, Outlook first; then Drive, Box, Gmail | CON-01–06, ING-09 | Read-only sync of a 5k-document workspace with incremental updates |
-| 3.7 | **MCP tools in agents; firm skill library and Skill Builder** | MCP-05, SKL-07/08 | An agent step uses an allowed firm MCP tool with approval; skills versioned and published |
+| 3.7 | **MCP tools in agents; firm skill library and Skill Builder** | MCP-05, SKL-07/08, MCP-09 | An agent step uses an allowed firm MCP tool with approval; skills versioned and published |
 
 ---
 
@@ -114,6 +114,7 @@
 | Work | Why |
 |---|---|
 | Signed and notarised installers (macOS, Windows), update server | Required to ship to customers |
+| Signed self-update: minisign + sha256 verification, version monotonicity, staged rollout, atomic swap and rollback (pattern from OpenGeni's `opengeni-agent-update`, see Architecture Stack §6) | Safe updates for firms, including air-gapped mirrors |
 | Vault encryption at rest (key in the OS keychain) | Closes the second limitation in `security.md` |
 | First-run onboarding: hardware check, model download, sample matter | Activation KPI |
 | Crash reporting (opt-in, no document data) | Support |
