@@ -114,6 +114,7 @@ export class DemoVaultService implements VaultService {
         charCount: d.text.length,
         chunkCount: paragraphs.length,
         ingestedAt: this.now(),
+        ocrConfidence: null,
       })
       this.fields.set(id, d.fields)
     }
@@ -195,6 +196,7 @@ export class DemoVaultService implements VaultService {
       unchanged: already ? n : 0,
       skipped: 0,
       failed: 0,
+      ocr: 0,
       errors: [],
     }
   }

@@ -33,7 +33,7 @@ Legal and finance teams hold thousands of confidential documents (NDAs, leases, 
 - **Matters.** One private vault per client engagement, typed Legal or Finance, with a model policy:
   - **Local only** (default): passages never go to a cloud model.
   - **Hybrid**: cloud models are allowed, but only the matching passages are sent, and every call is logged.
-- **Ingestion.** Point a matter at folders. PDF (text), DOCX, XLSX, PPTX, HTML, TXT/MD and EML files are parsed on the device and indexed. Unchanged files are skipped.
+- **Ingestion.** Point a matter at folders. PDF, DOCX, XLSX, PPTX, HTML, TXT/MD and EML files are parsed on the device and indexed. Scanned PDFs and images are read with OCR (Tesseract). Unchanged files are skipped.
 - **Register.** Parties, dates, renewal-notice deadlines, amounts, notice periods, governing law and penalty clauses are extracted. Every value links to the passage it came from, with a confidence score.
 - **Ask.** Answers cite numbered sources you can open. Deadline questions are answered straight from the register, with no model needed.
 - **Policy gate.** Every model call is checked in Rust first. A cloud model on a Local only matter is refused, and the refusal is logged.
@@ -43,7 +43,7 @@ Legal and finance teams hold thousands of confidential documents (NDAs, leases, 
 
 <img src="docs/assets/aliv-desktop-register.png" alt="Register with a field's source passage" width="100%" />
 
-**In progress** (see the [plan](docs/PLAN.md)): OCR for scanned PDFs, meaning-based search alongside keyword search, and document summaries for very large matters.
+**In progress** (see the [plan](docs/PLAN.md)): meaning-based search alongside keyword search, and document summaries for very large matters.
 
 ## Build and run
 

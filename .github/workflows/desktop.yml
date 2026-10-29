@@ -86,6 +86,8 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y libwebkit2gtk-4.1-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev
+          # OCR for the vault's scan tests.
+          sudo apt-get install -y tesseract-ocr poppler-utils
       - uses: actions/setup-node@v4
         with:
           node-version: 22

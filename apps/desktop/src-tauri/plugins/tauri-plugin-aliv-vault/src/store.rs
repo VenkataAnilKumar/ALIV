@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS documents (
     doc_type    TEXT,
     char_count  INTEGER NOT NULL DEFAULT 0,
     ingested_at TEXT NOT NULL,
+    ocr_confidence REAL,
     UNIQUE (matter_id, path)
 );
 
@@ -115,6 +116,7 @@ impl Store {
 
     fn init(conn: Connection) -> Result<Self> {
         conn.execute_batch(SCHEMA)?;
+        migrate(&conn)?;
         Ok(Self { conn: Mutex::new(conn) })
     }
 
@@ -201,9 +203,9 @@ impl Store {
         let tx = conn.transaction()?;
         tx.execute("DELETE FROM documents WHERE matter_id=?1 AND path=?2", params![doc.matter_id, doc.path])?;
         tx.execute(
-            "INSERT INTO documents (id, matter_id, path, file_name, ext, size, sha256, status, error, doc_type, char_count, ingested_at)
-             VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12)",
-            params![doc.id, doc.matter_id, doc.path, doc.file_name, doc.ext, doc.size, sha, doc.status, doc.error, doc.doc_type, doc.char_count, doc.ingested_at],
+            "INSERT INTO documents (id, matter_id, path, file_name, ext, size, sha256, status, error, doc_type, char_count, ingested_at, ocr_confidence)
+             VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12,?13)",
+            params![doc.id, doc.matter_id, doc.path, doc.file_name, doc.ext, doc.size, sha, doc.status, doc.error, doc.doc_type, doc.char_count, doc.ingested_at, doc.ocr_confidence],
         )?;
         {
             let mut ins = tx.prepare("INSERT INTO chunks (document_id, matter_id, ordinal, text) VALUES (?1,?2,?3,?4)")?;
@@ -427,8 +429,21 @@ pub fn fts_query(question: &str) -> Option<String> {
     Some(terms.iter().map(|t| format!("\"{}\"", t.replace('"', ""))).collect::<Vec<_>>().join(" OR "))
 }
 
+/// Brings a vault created by an earlier version up to [`SCHEMA`]: `CREATE
+/// TABLE IF NOT EXISTS` leaves an existing table's columns as they were.
+fn migrate(conn: &Connection) -> Result<()> {
+    let has_column = |table: &str, column: &str| -> Result<bool> {
+        let mut stmt = conn.prepare(&format!("SELECT 1 FROM pragma_table_info('{table}') WHERE name=?1"))?;
+        Ok(stmt.exists(params![column])?)
+    };
+    if !has_column("documents", "ocr_confidence")? {
+        conn.execute("ALTER TABLE documents ADD COLUMN ocr_confidence REAL", [])?;
+    }
+    Ok(())
+}
+
 const DOC_SELECT: &str = "SELECT d.id, d.matter_id, d.path, d.file_name, d.ext, d.size, d.status, d.error, d.doc_type, d.char_count,
-    (SELECT COUNT(*) FROM chunks c WHERE c.document_id = d.id), d.ingested_at FROM documents d";
+    (SELECT COUNT(*) FROM chunks c WHERE c.document_id = d.id), d.ingested_at, d.ocr_confidence FROM documents d";
 
 const ACTION_SELECT: &str = "SELECT id, matter_id, document_id, kind, from_path, to_path, reason, risk, status, error, created_at, updated_at FROM actions";
 
@@ -459,6 +474,7 @@ fn row_to_document(r: &rusqlite::Row) -> rusqlite::Result<Document> {
         char_count: r.get(9)?,
         chunk_count: r.get(10)?,
         ingested_at: r.get(11)?,
+        ocr_confidence: r.get(12)?,
     })
 }
 
@@ -515,6 +531,28 @@ mod tests {
         assert!(fts_query("?? the of").is_none());
     }
 
+    /// A vault written before OCR existed opens, gains the column, and its
+    /// documents read back as not OCR'd.
+    #[test]
+    fn a_vault_from_before_ocr_is_migrated() {
+        let dir = tempfile::tempdir().unwrap();
+        let path = dir.path().join("vault.db");
+        {
+            let conn = Connection::open(&path).unwrap();
+            conn.execute_batch(&SCHEMA.replace("    ocr_confidence REAL,\n", "")).unwrap();
+            conn.execute("INSERT INTO matters (id, name, created_at) VALUES ('m', 'Old', '2025-01-01')", []).unwrap();
+            conn.execute(
+                "INSERT INTO documents (id, matter_id, path, file_name, status, ingested_at) VALUES ('d', 'm', '/x/a.txt', 'a.txt', 'indexed', '2025-01-01')",
+                [],
+            )
+            .unwrap();
+        }
+        let s = Store::open(&path).unwrap();
+        assert_eq!(s.get_document("d").unwrap().ocr_confidence, None);
+        drop(s);
+        Store::open(&path).expect("migrating twice is a no-op");
+    }
+
     #[test]
     fn search_ranks_and_scopes_by_matter() {
         let s = Store::open_in_memory().unwrap();
@@ -533,6 +571,7 @@ mod tests {
             char_count: 10,
             chunk_count: 0,
             ingested_at: now(),
+            ocr_confidence: None,
         };
         s.upsert_document(&doc(&a.id, "lease.txt"), "h", &["Holdover penalty of $2,800 per day.".into(), "Rent is due monthly.".into()], &[]).unwrap();
         s.upsert_document(&doc(&b.id, "other.txt"), "h", &["Penalty clause in another matter.".into()], &[]).unwrap();

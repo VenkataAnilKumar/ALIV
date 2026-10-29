@@ -28,6 +28,8 @@ regex = "1"
 chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
 walkdir = "2"
 sha2 = "0.10"
+# Upscales low-resolution scans before OCR. Already in the app's tree via tauri.
+image = { version = "0.25", default-features = false, features = ["png", "jpeg", "tiff"] }
 
 [dev-dependencies]
 tempfile = "3"
@@ -38,3 +40,14 @@ toml = "0.8"
 
 [build-dependencies]
 tauri-plugin = { version = "2.3.1", features = ["build"] }
+
+# Scans are enlarged before OCR (plugins/tauri-plugin-aliv-vault/src/ocr.rs).
+# Unoptimized, that resize takes seconds per page in dev builds and tests.
+[profile.dev.package.image]
+opt-level = 3
+[profile.dev.package.png]
+opt-level = 3
+[profile.dev.package.fdeflate]
+opt-level = 3
+[profile.dev.package.zune-jpeg]
+opt-level = 3

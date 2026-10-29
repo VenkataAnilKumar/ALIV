@@ -36,6 +36,8 @@ export interface VaultDocument {
   charCount: number
   chunkCount: number
   ingestedAt: string
+  /** Set when the text was read by OCR: mean word confidence, 0 to 1. */
+  ocrConfidence: number | null
 }
 
 export type FieldKey =
@@ -79,6 +81,8 @@ export interface IngestReport {
   unchanged: number
   skipped: number
   failed: number
+  /** Of `indexed`, how many were read by OCR. */
+  ocr: number
   errors: string[]
 }
 

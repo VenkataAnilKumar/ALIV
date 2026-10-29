@@ -43,6 +43,8 @@ pub struct Document {
     pub char_count: i64,
     pub chunk_count: i64,
     pub ingested_at: String,
+    /// Set when the text was read by OCR: the mean word confidence, 0 to 1.
+    pub ocr_confidence: Option<f64>,
 }
 
 /// One extracted value, always tied back to the passage it came from.
@@ -84,6 +86,8 @@ pub struct IngestReport {
     pub unchanged: usize,
     pub skipped: usize,
     pub failed: usize,
+    /// Of `indexed`, how many were read by OCR.
+    pub ocr: usize,
     pub errors: Vec<String>,
 }
 

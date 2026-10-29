@@ -288,6 +288,11 @@ fn date_role(text: &str, m: &DateMention) -> Option<(&'static str, f64)> {
     ];
     // A renewal deadline is often phrased with generic words ("delivered by",
     // "no later than"), so renewal wins unless an explicit expiry word follows it.
+    // A header line labelled just "Date:" is the document's own date: the
+    // invoice, letter or signature date. Less certain than a named label.
+    if candidates.iter().all(|(_, pos)| pos.is_none()) && text[line_start..m.start].trim().eq_ignore_ascii_case("date:") {
+        return Some((EFFECTIVE_DATE, 0.8));
+    }
     let explicit_expiry = last(&["expir", "terminat", "end date"]);
     let role = match (candidates[0].1, explicit_expiry) {
         (Some(r), e) if e.map_or(true, |e| e < r) => RENEWAL_DEADLINE,
@@ -538,6 +543,14 @@ mod tests {
         assert_eq!(get(&f, RENEWAL_DEADLINE).unwrap().value, "2026-11-15");
         let f = extract_all("Effective Date: 2025-03-01\nExpiry Date: 2026-03-01\n");
         assert_eq!(get(&f, EFFECTIVE_DATE).unwrap().value, "2025-03-01", "labelled lines never borrow context");
+    }
+
+    #[test]
+    fn a_bare_date_label_is_the_documents_date() {
+        let f = extract_all("Scanned Contract #161\nVendor: Summit Audit Partners\nDate: 2025-03-14\nExpiry: 2026-11-27\n");
+        let effective = get(&f, EFFECTIVE_DATE).unwrap();
+        assert_eq!((effective.value.as_str(), effective.confidence), ("2025-03-14", 0.8));
+        assert_eq!(get(&f, EXPIRY_DATE).unwrap().value, "2026-11-27");
     }
 
     #[test]
