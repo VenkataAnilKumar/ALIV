@@ -401,7 +401,7 @@ Nothing calls a provider directly.
 
 ## [FS-23] Document Connectors (R3)
 
-**Purpose:** bring documents in from where firms already keep them (cf. Harvey and Legora DMS integrations), without changing the vault's privacy model.
+**Purpose:** bring documents in from where firms already keep them (cf. Legora's iManage, NetDocuments, SharePoint, Box and Google Drive integrations, and CoCounsel's iManage integration), without changing the vault's privacy model.
 
 | ID | Requirement | Priority |
 |---|---|---|
@@ -419,7 +419,7 @@ Nothing calls a provider directly.
 
 ## [FS-24] MCP: Tools and Server (R1 → R4)
 
-**Purpose:** use the open Model Context Protocol in both directions without opening a side door out of the vault. The base app already has a full MCP client in Rust (`src-tauri/src/core/mcp`, with OAuth) and an MCP settings page.
+**Purpose:** use the open Model Context Protocol in both directions without opening a side door out of the vault. MCP is now standard in legal AI (Harvey uses it as client and server; CoCounsel Legal connects to Claude over MCP; Legora is adding the iManage MCP Server; see the [Competitive Analysis](../03-market/ALIV_Competitive-Analysis.md), §6); ALIV's difference is local servers and per-matter governance. The base app already has a full MCP client in Rust (`src-tauri/src/core/mcp`, with OAuth) and an MCP settings page.
 
 | ID | Requirement | Priority | Release |
 |---|---|---|---|

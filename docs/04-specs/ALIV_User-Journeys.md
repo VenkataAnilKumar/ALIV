@@ -20,6 +20,8 @@ These journeys follow the personas in the [Product Definition](../02-product/ALI
 | J7 | Hybrid drafting with redaction | Priya | R1 → R2 |
 | J8 | Building a firm agent | Lena, legal ops | R3 |
 | J9 | Answering a client's AI-use audit | Lena | R0 → R2 |
+| J10 | Data room on autopilot: connector + skills + automation | Priya | R3 |
+| J11 | Governing skills, MCP and web search firm-wide | Lena | R1 → R4 |
 
 ---
 
@@ -54,12 +56,12 @@ These journeys follow the personas in the [Product Definition](../02-product/ALI
 | Step | User does | ALIV does | Feature |
 |---|---|---|---|
 | 1 | Creates matter "Project Falcon", **Hybrid**, redaction *standard* | Policy and redaction level audited | MAT-02, RED-04 |
-| 2 | Adds the data-room export (PDFs, scans, a .pst of key emails) | Ingests 300 documents and 2,000 emails; resumable progress | ING-01–07 |
+| 2 | Adds the data-room export (PDFs, scans, a .pst of key emails), or links the SharePoint data room (R3) | Ingests 300 documents and 2,000 emails; resumable progress | ING-01–07, CON-01/02 |
 | 3 | **New review table** from template *M&A due diligence* | Columns: change of control, assignment, exclusivity, termination for convenience, liability cap, governing law, MFN | TBL-01/10 |
 | 4 | Adds a custom column: "Does the customer have audit rights? (yes/no)" | Column typed yes/no; cells fill in the background, each cited | TBL-02/03/11 |
 | 5 | Adds a **conditional column**: "If change of control = yes, what consent is required?" | Runs only on matching rows | TBL-05 |
 | 6 | Filters "needs review"; opens low-confidence cells; edits two; comments on one for the partner | Edits keep the original value and are audited; comments are visible to the team | TBL-07/08 |
-| 7 | Runs workflow **DD issues list** on the table | Groups issues by severity and drafts a DOCX issues list with citations | WF-01/05 |
+| 7 | Runs workflow **DD issues list** on the table, with the firm's *DD checklist* skill | Groups issues by severity and drafts a DOCX issues list with citations, saved as an artifact | WF-01/05, SKL-01, ART-01 |
 | 8 | Exports the table to XLSX and the issues list to DOCX | Files saved to the matter | TBL-09 |
 
 **Routing (Hybrid):**
@@ -178,9 +180,39 @@ These journeys follow the personas in the [Product Definition](../02-product/ALI
 
 ---
 
+## J10: Data room on autopilot (R3)
+
+**Persona:** Priya. **Goal:** keep a live diligence picture while the seller keeps uploading.
+
+| Step | User does | ALIV does | Feature |
+|---|---|---|---|
+| 1 | Links the seller's SharePoint data room to "Project Falcon" | Read-only sync; documents indexed locally; counts audited | CON-01–03, WS-03 |
+| 2 | Enables the *DD checklist* and *House memo style* skills on the matter | Skills reviewed and recorded with versions | SKL-01–05 |
+| 3 | Creates an automation: "every morning, triage new uploads into the DD table" | Trigger + agent; proposals only | AUTO-01–03 |
+| 4 | Next morning, opens Inbox | New documents classified, table rows filled and cited, deviations flagged | AUTO-03, TBL-03 |
+| 5 | Approves logging 0.5 h to the billing system | MCP tool call runs after approval; audited | MCP-04 |
+| 6 | Re-runs the issues memo | New artifact version; diff against yesterday's | ART-03 |
+
+---
+
+## J11: Governing skills, MCP and web search (R1 → R4)
+
+**Persona:** Lena, legal ops. **Goal:** let lawyers use skills and tools without opening a side door.
+
+| Step | User does | ALIV does | Feature |
+|---|---|---|---|
+| 1 | Admin › AI policy: web search allowed on Hybrid matters only | Local only matters refuse web search; Hybrid shows the redacted query | SRCH-10 |
+| 2 | Admin › MCP: allows the firm's billing server (*firm* trust); blocks third-party servers | Matters can only allow listed servers | MCP-01/02/07 |
+| 3 | Publishes *House memo style v4* to the firm skill library | Versioned; lawyers can enable it per matter | SKL-07 |
+| 4 | Reviews the audit: which skills and tools shaped last month's client memos | Each artifact lists skills, versions, tools and routes | ART-02, SKL-05 |
+| 5 | (R4) Admin Console: shares skills and allowed MCP servers firm-wide | Central policy, central audit | SKL-09, SRV-04 |
+
+---
+
 ## Journey-level requirements
 
 - **Show where work runs, every time:** "on this computer" or "cloud, redacted".
 - **Make every output traceable:** a citation, or a visible "uncited" marker.
 - **Never surprise the user:** file changes, redlines and messages are proposals until approved.
+- **No side doors:** web search, MCP tools and skill scripts follow the same policy, redaction and audit as model calls.
 - **Make long jobs resumable:** 10k-document tables, large ingestions and agent runs survive restarts.
