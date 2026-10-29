@@ -1,6 +1,6 @@
 # Developer guide
 
-How ALIV is put together, and how to build and test it. The app lives in [`apps/desktop`](../apps/desktop); its [README](../apps/desktop/README.md) has the platform prerequisites and the quick-start commands.
+How ALIV is put together, and how to build and test it. The app lives in [`apps/desktop`](../../apps/desktop); its [README](../../apps/desktop/README.md) has the platform prerequisites and the quick-start commands.
 
 ## Architecture
 
@@ -82,11 +82,11 @@ Notes:
 - **One test thread.** The agent and CLI tests share one process-wide test home (user skills, config), so run them with `--test-threads=1`.
 - **OCR tests.** The vault's real-OCR test runs only when Tesseract is installed. CI installs `tesseract-ocr` and `poppler-utils`.
 - **Disk space.** Rust debug builds are large. `CARGO_PROFILE_DEV_DEBUG=0 CARGO_PROFILE_TEST_DEBUG=0` cuts their size several-fold, and CI uses that.
-- **Extraction accuracy.** Measure it with [`benchmarks/`](../benchmarks/README.md).
+- **Extraction accuracy.** Measure it with [`benchmarks/`](../../benchmarks/README.md).
 
 ## CI
 
-[`.github/workflows/desktop.yml`](../.github/workflows/desktop.yml) runs on every pull request and push to `main` that touches `apps/desktop`. It has four jobs:
+[`.github/workflows/desktop.yml`](../../.github/workflows/desktop.yml) runs on every pull request and push to `main` that touches `apps/desktop`. It has four jobs:
 - **Web:** lint, type check and tests.
 - **Rust desktop:** the desktop library tests.
 - **Rust CLI:** the CLI library, binary and integration tests.

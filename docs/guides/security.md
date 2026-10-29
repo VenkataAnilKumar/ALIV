@@ -55,4 +55,4 @@ Everything else that touches the network is user-initiated and carries no matter
 
 ## Reporting a vulnerability
 
-See [`apps/desktop/SECURITY.md`](../apps/desktop/SECURITY.md).
+See [`apps/desktop/SECURITY.md`](../../apps/desktop/SECURITY.md).

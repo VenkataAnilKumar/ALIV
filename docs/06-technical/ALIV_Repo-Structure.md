@@ -78,9 +78,9 @@ docs/
 │                            Data Model, API Design, Security & Compliance,
 │                            Deployment, Repo Structure
 ├─ 07-implementation/        Implementation Phases, Sprint Plan, Checklist
-├─ user-guide.md, security.md, developer.md, PLAN.md
+├─ guides/                  User guide, security and privacy, developer guide
 ├─ assets/                   Screenshots
-└─ archive/                  Historical material (legacy app)
+└─ archive/                  History: superseded docs and the legacy app
 ```
 
 ## 4. Where new code goes (R1–R4)

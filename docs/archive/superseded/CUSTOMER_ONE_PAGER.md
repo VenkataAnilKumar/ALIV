@@ -56,4 +56,4 @@ Example pilot candidates:
 
 ## Suggested Next Step
 
-Run the customer-facing walkthrough in [the demo guide](../demo/DEMO_GUIDE.md), then define a scoped pilot folder and acceptance criteria.
+Run the customer-facing walkthrough in [the demo guide](../../../demo/DEMO_GUIDE.md), then define a scoped pilot folder and acceptance criteria.
