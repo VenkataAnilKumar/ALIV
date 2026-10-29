@@ -114,7 +114,7 @@
 | Work | Why |
 |---|---|
 | Signed and notarised installers (macOS, Windows), update server | Required to ship to customers |
-| Signed self-update: minisign + sha256 verification, version monotonicity, staged rollout, atomic swap and rollback (pattern from OpenGeni's `opengeni-agent-update`, see Architecture Stack §6) | Safe updates for firms, including air-gapped mirrors |
+| Signed self-update with rollback, using Tauri's official `tauri-plugin-updater` (minisign-signed); staged rollout | Safe updates for firms, including air-gapped mirrors |
 | Vault encryption at rest (key in the OS keychain) | Closes the second limitation in `security.md` |
 | First-run onboarding: hardware check, model download, sample matter | Activation KPI |
 | Crash reporting (opt-in, no document data) | Support |

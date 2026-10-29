@@ -217,6 +217,7 @@ The full schema is in the [Data Model](ALIV_Data-Model.md).
   - tool calls are checked against the step's allowed tools;
   - side-effecting tools need approval;
   - a local classifier flags likely injected instructions in retrieved passages and shows them in the run log.
+- **Providers:** adapters (via `genai`) for local engines, OpenAI-compatible endpoints, Anthropic, Azure OpenAI, AWS Bedrock, Google and open-model hosts. OpenRouter is treated as a separate provider the firm must allow explicitly. A model metadata registry (context window, price, capabilities) feeds the router and spend limits. Any response cache is per matter and per policy, never shared across matters.
 - **Provider controls:** a matter (or firm) can require **zero-data-retention** providers only and pin a **region** (EU / US endpoints); calls that can't meet the requirement are refused and logged.
 - **Durable runs:** agent runs are event-sourced (each step's inputs, route and output appended), so a run can resume, replay for evaluation, or be audited step by step.
 

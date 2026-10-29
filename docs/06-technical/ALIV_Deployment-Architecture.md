@@ -70,6 +70,10 @@ Same images as the Firm Server, deployed into the firm's own tenancy:
 - models self-hosted in the VPC, or the cloud provider's private endpoints (e.g. Bedrock, Azure OpenAI) treated as "cloud" routes subject to policy;
 - no ALIV-operated infrastructure in the data path. ALIV ships images and updates only.
 
+## 4b. ALIV Cloud (control plane, no client data)
+
+A small service run by ALIV: update server, licences and accounts, the model and skill catalogue, an optional connection relay so desktops can reach a firm's server without opening inbound ports (machines only dial out), and opt-in crash reports. It never receives documents, passages, prompts or answers. Stack: a small API and managed PostgreSQL on Azure, deployed with Terraform. An optional managed ALIV cloud (dedicated tenant per firm, firm-held keys) may follow R4.
+
 ## 5. Environments and release
 
 | Environment | Purpose |
