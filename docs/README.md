@@ -17,12 +17,12 @@ The product documents run from brand to product, market, specs, design, technica
 | 4 | [Competitive Analysis](03-market/ALIV_Competitive-Analysis.md) | Harvey and the field: where ALIV wins and loses | ✅ |
 | **04 Specs** | | | |
 | 5 | [Feature Spec](04-specs/ALIV_Feature-Spec.md) | Every feature module: requirements, edge cases, scope | ✅ |
-| 6 | User Journeys | End-to-end flows for each persona | Planned (batch 2) |
-| 7 | User Stories | Stories with acceptance criteria | Planned (batch 2) |
+| 6 | [User Journeys](04-specs/ALIV_User-Journeys.md) | End-to-end flows for each persona | ✅ |
+| 7 | [User Stories](04-specs/ALIV_User-Stories.md) | Stories with acceptance criteria | ✅ |
 | **05 Design** | | | |
-| 8 | Design System | Tokens, components, states, accessibility | Planned (batch 2) |
-| 9 | UI Spec | Screen-by-screen behaviour | Planned (batch 2) |
-| 10 | Wireframes | Layouts of current and planned screens | Planned (batch 2) |
+| 8 | [Design System](05-design/ALIV_Design-System.md) | Tokens, components, states, accessibility | ✅ |
+| 9 | [UI Spec](05-design/ALIV_UI-Spec.md) | Screen-by-screen behaviour | ✅ |
+| 10 | [Wireframes](05-design/ALIV_Wireframes.md) | Layouts of current and planned screens | ✅ |
 | **06 Technical** | | | |
 | 11 | System Architecture | Components, sequences, non-functional requirements | Planned (batch 3) |
 | 12 | [Hybrid AI Architecture](06-technical/ALIV_Hybrid-AI-Architecture.md) | Model gateway, router, redaction, agent runtime | ✅ |
