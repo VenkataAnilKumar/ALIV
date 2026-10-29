@@ -1,5 +1,7 @@
 # ALIV — Interactive Demo Guide
 
+> **Note:** this walkthrough was written for the legacy ALIV app at the repository root, which is being retired. The sample corpus below also powers the new desktop app: run `yarn dev:web` in `apps/desktop` and open `/matters/` for the Matters demo. An updated walkthrough will replace this guide.
+
 > Run a complete buyer-facing or technical demo in under 8 minutes using the included sample corpus.
 
 ---
@@ -218,7 +220,7 @@ Who are the vendors named in these documents?
 | "What if Ollama is slow on our hardware?" | llama3.2:3b runs on 8 GB RAM. Upgrade to mistral:7b for better quality with 16 GB. Gemma 4 support is on the roadmap. |
 | "How does it handle 10,000 files?" | Incremental indexing processes only changed files. sqlite-vec ANN search scales without full re-scan. |
 | "What about Word and email files?" | .docx via python-docx, .eml via email stdlib. Both are in the ingestion pipeline. |
-| "Is this production-ready?" | Phases 0–5 complete, all benchmark gates passed. Phase 6 (release candidate) in progress. See `docs/ALIV_PRODUCT_PHASES.md`. |
+| "Is this production-ready?" | Phases 0–5 complete, all benchmark gates passed. Phase 6 (release candidate) in progress. See `docs/archive/legacy-app/ALIV_PRODUCT_PHASES.md`. |
 
 ---
 
