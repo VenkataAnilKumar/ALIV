@@ -85,3 +85,32 @@ The router (R1) picks the tier from `tauri-plugin-hardware` and the matter's rou
 
 These sources are mostly secondary; each choice is confirmed by ALIV's own benchmark before adoption.
 
+## 6. Upstream reuse: OpenGeni and OpenAgents
+
+Reviewed October 29, 2026 at **OpenGeni** [`Cloudgeni-ai/opengeni@6c5a6b5`](https://github.com/Cloudgeni-ai/opengeni/tree/6c5a6b5284d2c818f9b5ba62d43f780480bb0eac) and **OpenAgents** [`openagents-org/openagents@c94dcbd`](https://github.com/openagents-org/openagents/tree/c94dcbd91b9680ef6b50e76fe6e074114dba836a). Both are Apache-2.0.
+
+**Decision:** neither project is a dependency. OpenGeni's service needs Bun/TypeScript, Postgres, Temporal, NATS and Docker; OpenAgents' SDK is Python and its shared workspace is hosted. ALIV is Rust on one local SQLite file. We reuse **designs**, and port **code** only where it is Rust, self-contained and clearly better than writing our own.
+
+**Reuse levels:** 1 = design rebuilt in Rust · 2 = code ported with attribution · 3 = run as a service · 4 = protocol interop only.
+
+| Upstream piece | What it does | ALIV target | Level | When |
+|---|---|---|---|---|
+| OpenGeni `docs/human-input.md`, `packages/runtime` (`request_human_input`) | A step asks structured questions and resumes the **same** tool call; outcomes *answered / skipped / let the agent decide / expired / cancelled* | `aliv-agents`, AGT-08 | 1 | R2 (S6) |
+| OpenGeni `docs/tool-approvals.md`, `packages/db` action policy | Per-tool Allow / Ask / Block; most specific rule wins, ties Block; arguments can't select a looser rule; prepared actions keep their decision | `aliv-gateway` + `aliv-mcp`, MCP-08 | 1 | R1 (S5) |
+| OpenGeni event history ("every event stored; live streams backfill from it") | Interrupt, resume, replay from durable events | `aliv-agents` event-sourced runs in SQLite, AGT-09 | 1 | R2 (S6) |
+| OpenGeni `docs/goals.md` | Goal-driven sessions that continue until completed with evidence or paused | `aliv-agents`, AGT-10 | 1 | R3 (S19) |
+| OpenGeni `docs/tool-search.md` | Small visible tool set; load more by name or meaning (keyword + embeddings fused, as in ALIV search) | `aliv-mcp`, MCP-09 | 1 | R3 |
+| OpenGeni `packages/tool-gateway` catalog digests | Tool catalog hashed so the approved set is pinned and auditable | `aliv-mcp`: record a digest of each matter's allowed tool catalog in the audit log | 1 | R1 |
+| OpenGeni `packages/decisions` typed judgments | Predicate / choice / score answers with probabilities and refusal | Review-table answer types and confidence (TBL-02/03), evaluation judge (EVAL-03) | 1 | R2 |
+| OpenGeni `agent/crates/opengeni-agent-update` (Rust, ~2.5k lines) | Self-update: signed manifest, minisign + sha256, version monotonicity, staged rollout, atomic swap, rollback | Desktop updater (GA track) | **2** (port, or use the same crates: `minisign-verify`, `self-replace`) | GA |
+| OpenGeni `agent/` Runner + `opengeni-relay` (Rust) | Machines only dial out; no durable credentials on the machine | Desktop ↔ Firm Server link | 1, possibly 2 | R4 |
+| OpenAgents A2A connector, converters, task store (Python) | Agent-to-agent task exchange | A2A in Rust against the spec; use their tests as reference cases | 4 | R4 option |
+| OpenAgents network exposed as an MCP server | Network tools over MCP | Compare with ALIV as an MCP server (MCP-06) | 1 | R4 |
+| OpenAgents hosted workspace, launcher daemon | Shared cloud workspace for coding agents | — | ✕ (conflicts with Local only) | — |
+
+**Rules for any ported code (level 2):**
+- record the upstream path and commit in a header comment, keep the original copyright notice, and mark ALIV's changes;
+- add the component to `THIRD_PARTY_NOTICES.md` (Apache-2.0), including any upstream NOTICE text;
+- port only what is needed; add ALIV tests and run it through the same security review as our own code (the updater and sandbox especially);
+- never take on upstream infrastructure (Postgres, Temporal, NATS, Docker) as a desktop requirement.
+
