@@ -3,6 +3,7 @@
 
 use crate::error::{Result, VaultError};
 use crate::model::*;
+use crate::semantic;
 use rusqlite::{params, Connection, OptionalExtension};
 use sha2::{Digest, Sha256};
 use std::path::Path;
@@ -56,6 +57,13 @@ END;
 CREATE TRIGGER IF NOT EXISTS chunks_ad AFTER DELETE ON chunks BEGIN
     INSERT INTO chunks_fts(chunks_fts, rowid, text) VALUES ('delete', old.id, old.text);
 END;
+
+-- One embedding per passage, unit length, from the app's local embedder.
+CREATE TABLE IF NOT EXISTS chunk_vectors (
+    chunk_id    INTEGER PRIMARY KEY REFERENCES chunks(id) ON DELETE CASCADE,
+    dim         INTEGER NOT NULL,
+    vector      BLOB NOT NULL
+);
 
 CREATE TABLE IF NOT EXISTS fields (
     document_id   TEXT NOT NULL REFERENCES documents(id) ON DELETE CASCADE,
@@ -259,6 +267,118 @@ impl Store {
 
     // ------------------------------------------------------------- search
 
+    /// Keyword search, fused with meaning-based search when `query_vector` is
+    /// given and the matter has passages embedded at the same dimension.
+    pub fn hybrid_search(&self, matter_id: &str, query: &str, query_vector: Option<&[f32]>, limit: usize) -> Result<Vec<SearchHit>> {
+        let Some(qv) = query_vector.and_then(semantic::normalize) else {
+            return self.search(matter_id, query, limit);
+        };
+        let pool = limit * semantic::CANDIDATES_PER_RESULT;
+        let keyword = self.search(matter_id, query, pool)?;
+        let meaning = self.nearest(matter_id, &qv, pool)?;
+        if meaning.is_empty() {
+            return Ok(keyword.into_iter().take(limit).collect());
+        }
+        let keyword_ids: Vec<i64> = keyword.iter().map(|h| h.chunk_id).collect();
+        let meaning_ids: Vec<i64> = meaning.iter().map(|(id, _)| *id).collect();
+        let mut hits = Vec::with_capacity(limit);
+        for (id, score) in semantic::fuse(&keyword_ids, &meaning_ids).into_iter().take(limit) {
+            let hit = match keyword.iter().find(|h| h.chunk_id == id) {
+                Some(h) => SearchHit { score, ..h.clone() },
+                // Found by meaning alone: no keyword snippet to show, so the
+                // passage's opening stands in for one.
+                None => SearchHit { score, ..self.passage_hit(id)? },
+            };
+            hits.push(hit);
+        }
+        Ok(hits)
+    }
+
+    /// The `limit` passages of a matter closest in meaning to `query`, a unit
+    /// vector. Passages embedded at another dimension (a different model) are
+    /// not comparable and are ignored.
+    fn nearest(&self, matter_id: &str, query: &[f32], limit: usize) -> Result<Vec<(i64, f64)>> {
+        let conn = self.conn();
+        let mut stmt = conn.prepare(
+            "SELECT v.chunk_id, v.vector FROM chunk_vectors v JOIN chunks c ON c.id = v.chunk_id
+             WHERE c.matter_id = ?1 AND v.dim = ?2",
+        )?;
+        let mut scored: Vec<(i64, f64)> = stmt
+            .query_map(params![matter_id, query.len() as i64], |r| Ok((r.get::<_, i64>(0)?, r.get::<_, Vec<u8>>(1)?)))?
+            .filter_map(|r| r.ok())
+            .map(|(id, bytes)| (id, semantic::dot(query, &semantic::from_bytes(&bytes))))
+            .collect();
+        scored.sort_by(|a, b| b.1.partial_cmp(&a.1).unwrap_or(std::cmp::Ordering::Equal));
+        scored.truncate(limit);
+        Ok(scored)
+    }
+
+    fn passage_hit(&self, chunk_id: i64) -> Result<SearchHit> {
+        let conn = self.conn();
+        Ok(conn.query_row(
+            "SELECT c.id, c.document_id, d.file_name, d.path, c.ordinal, c.text
+             FROM chunks c JOIN documents d ON d.id = c.document_id WHERE c.id = ?1",
+            params![chunk_id],
+            |r| {
+                let text: String = r.get(5)?;
+                Ok(SearchHit {
+                    chunk_id: r.get(0)?,
+                    document_id: r.get(1)?,
+                    file_name: r.get(2)?,
+                    path: r.get(3)?,
+                    ordinal: r.get(4)?,
+                    snippet: opening(&text, 200),
+                    text,
+                    score: 0.0,
+                })
+            },
+        )?)
+    }
+
+    /// Passages of a matter that have no embedding yet, oldest first, for the
+    /// app to embed in batches.
+    pub fn pending_embeddings(&self, matter_id: &str, limit: usize) -> Result<Vec<PendingPassage>> {
+        let conn = self.conn();
+        let mut stmt = conn.prepare(
+            "SELECT c.id, c.text FROM chunks c LEFT JOIN chunk_vectors v ON v.chunk_id = c.id
+             WHERE c.matter_id = ?1 AND v.chunk_id IS NULL ORDER BY c.id LIMIT ?2",
+        )?;
+        let rows = stmt.query_map(params![matter_id, limit as i64], |r| Ok(PendingPassage { chunk_id: r.get(0)?, text: r.get(1)? }))?;
+        Ok(rows.collect::<std::result::Result<_, _>>()?)
+    }
+
+    /// Stores passage embeddings. Vectors are checked and normalized; one that
+    /// is empty, non-finite or for an unknown passage is skipped. Returns how
+    /// many were stored.
+    pub fn store_embeddings(&self, embeddings: &[PassageEmbedding]) -> Result<usize> {
+        let mut conn = self.conn();
+        let tx = conn.transaction()?;
+        let mut stored = 0;
+        {
+            let mut ins = tx.prepare(
+                "INSERT OR REPLACE INTO chunk_vectors (chunk_id, dim, vector)
+                 SELECT ?1, ?2, ?3 WHERE EXISTS (SELECT 1 FROM chunks WHERE id = ?1)",
+            )?;
+            for e in embeddings {
+                if let Some(v) = semantic::normalize(&e.vector) {
+                    stored += ins.execute(params![e.chunk_id, v.len() as i64, semantic::to_bytes(&v)])?;
+                }
+            }
+        }
+        tx.commit()?;
+        Ok(stored)
+    }
+
+    /// How much of a matter is embedded, so the app can say whether search
+    /// covers meaning yet.
+    pub fn embedding_status(&self, matter_id: &str) -> Result<EmbeddingStatus> {
+        Ok(self.conn().query_row(
+            "SELECT COUNT(*), COUNT(v.chunk_id) FROM chunks c LEFT JOIN chunk_vectors v ON v.chunk_id = c.id WHERE c.matter_id = ?1",
+            params![matter_id],
+            |r| Ok(EmbeddingStatus { passages: r.get(0)?, embedded: r.get(1)? }),
+        )?)
+    }
+
     pub fn search(&self, matter_id: &str, query: &str, limit: usize) -> Result<Vec<SearchHit>> {
         let Some(fts) = fts_query(query) else { return Ok(vec![]) };
         let conn = self.conn();
@@ -442,6 +562,19 @@ fn migrate(conn: &Connection) -> Result<()> {
     Ok(())
 }
 
+/// The first `max` characters of `text`, cut at a word boundary.
+fn opening(text: &str, max: usize) -> String {
+    let flat = text.split_whitespace().collect::<Vec<_>>().join(" ");
+    if flat.chars().count() <= max {
+        return flat;
+    }
+    let cut: String = flat.chars().take(max).collect();
+    match cut.rfind(' ') {
+        Some(i) => format!("{}…", &cut[..i]),
+        None => format!("{cut}…"),
+    }
+}
+
 const DOC_SELECT: &str = "SELECT d.id, d.matter_id, d.path, d.file_name, d.ext, d.size, d.status, d.error, d.doc_type, d.char_count,
     (SELECT COUNT(*) FROM chunks c WHERE c.document_id = d.id), d.ingested_at, d.ocr_confidence FROM documents d";
 
@@ -551,6 +684,88 @@ mod tests {
         assert_eq!(s.get_document("d").unwrap().ocr_confidence, None);
         drop(s);
         Store::open(&path).expect("migrating twice is a no-op");
+    }
+
+    /// A passage with no shared words is still found by meaning, a passage in
+    /// both rankings comes first, and another matter's vectors never leak in.
+    #[test]
+    fn hybrid_search_fuses_keyword_and_meaning() {
+        let s = Store::open_in_memory().unwrap();
+        let (a, b) = (matter(&s), matter(&s));
+        let doc = |m: &str, name: &str| Document {
+            id: uuid::Uuid::new_v4().to_string(),
+            matter_id: m.into(),
+            path: format!("/x/{name}"),
+            file_name: name.into(),
+            ext: "txt".into(),
+            size: 1,
+            status: "indexed".into(),
+            error: None,
+            doc_type: None,
+            char_count: 10,
+            chunk_count: 0,
+            ingested_at: now(),
+            ocr_confidence: None,
+        };
+        s.upsert_document(
+            &doc(&a.id, "msa.txt"),
+            "h",
+            &[
+                "Termination for convenience: either party may end this agreement on 30 days notice.".into(),
+                "Fees are payable monthly in arrears.".into(),
+                "The agreement may be terminated early for material breach.".into(),
+            ],
+            &[],
+        )
+        .unwrap();
+        s.upsert_document(&doc(&b.id, "other.txt"), "h", &["Unrelated matter text.".into()], &[]).unwrap();
+
+        // Toy 3-d "embeddings": axis 0 = ending the contract, 1 = money.
+        let vectors = [[0.9f32, 0.1, 0.0], [0.0, 1.0, 0.0], [0.8, 0.0, 0.2]];
+        let pending = s.pending_embeddings(&a.id, 10).unwrap();
+        assert_eq!(pending.len(), 3);
+        let embeddings: Vec<PassageEmbedding> =
+            pending.iter().zip(vectors).map(|(p, v)| PassageEmbedding { chunk_id: p.chunk_id, vector: v.to_vec() }).collect();
+        assert_eq!(s.store_embeddings(&embeddings).unwrap(), 3);
+        let other = s.pending_embeddings(&b.id, 10).unwrap();
+        s.store_embeddings(&[PassageEmbedding { chunk_id: other[0].chunk_id, vector: vec![1.0, 0.0, 0.0] }]).unwrap();
+        assert_eq!(s.embedding_status(&a.id).unwrap(), EmbeddingStatus { passages: 3, embedded: 3 });
+        assert!(s.pending_embeddings(&a.id, 10).unwrap().is_empty());
+
+        // "How do we exit?" shares no keyword with the termination clauses;
+        // only meaning finds them.
+        let question = [1.0f32, 0.0, 0.0];
+        assert!(s.search(&a.id, "how do we exit", 5).unwrap().is_empty());
+        let hits = s.hybrid_search(&a.id, "how do we exit", Some(&question), 2).unwrap();
+        assert_eq!(hits.len(), 2);
+        assert!(hits[0].text.starts_with("Termination for convenience"), "{hits:?}");
+        assert!(!hits[0].snippet.is_empty());
+        assert!(hits.iter().all(|h| h.file_name == "msa.txt"), "other matters stay out");
+
+        // Matching both ways ranks first: "terminated" by keyword and meaning.
+        let hits = s.hybrid_search(&a.id, "terminated", Some(&question), 3).unwrap();
+        assert!(hits[0].text.contains("terminated early"), "{hits:?}");
+
+        // A vector from a model of another size is ignored, not compared.
+        let hits = s.hybrid_search(&a.id, "fees", Some(&[1.0, 0.0]), 3).unwrap();
+        assert_eq!(hits.len(), 1, "keyword-only: {hits:?}");
+
+        // Re-ingesting replaces the passages, so their vectors go with them.
+        s.upsert_document(&doc(&a.id, "msa.txt"), "h2", &["New text.".into()], &[]).unwrap();
+        assert_eq!(s.embedding_status(&a.id).unwrap(), EmbeddingStatus { passages: 1, embedded: 0 });
+    }
+
+    #[test]
+    fn bad_embeddings_are_skipped() {
+        let s = Store::open_in_memory().unwrap();
+        assert_eq!(
+            s.store_embeddings(&[
+                PassageEmbedding { chunk_id: 999, vector: vec![1.0] },
+                PassageEmbedding { chunk_id: 1, vector: vec![] },
+            ])
+            .unwrap(),
+            0
+        );
     }
 
     #[test]

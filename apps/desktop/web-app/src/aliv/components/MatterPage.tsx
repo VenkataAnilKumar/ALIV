@@ -14,6 +14,7 @@ import {
 import { useServiceHub } from '@/hooks/useServiceHub'
 import type { MatterInput } from '../types'
 import { errorMessage, useMatter } from '../useMatter'
+import { useMeaningIndex } from '../useMeaningIndex'
 import { getVault } from '../vault'
 import { ApprovalsPanel } from './ApprovalsPanel'
 import { AskPanel } from './AskPanel'
@@ -32,6 +33,8 @@ export function MatterPage({ matterId }: { matterId: string }) {
   const vault = getVault()
   const serviceHub = useServiceHub()
   const navigate = useNavigate()
+  // Re-checked whenever the document list reloads, so an import is embedded.
+  const meaning = useMeaningIndex(matterId, documents)
   const [tab, setTab] = useState<MatterTab>('overview')
   const [question, setQuestion] = useState('')
   const [ingesting, setIngesting] = useState(false)
@@ -172,7 +175,7 @@ export function MatterPage({ matterId }: { matterId: string }) {
               )}
               {tab === 'ask' && <AskPanel matter={matter} initialQuestion={question} onAsked={reload} hasDocuments={documents.length > 0} />}
               {tab === 'register' && <RegisterPanel matter={matter} grid={grid} />}
-              {tab === 'documents' && <DocumentsPanel documents={documents} onAddDocuments={addDocuments} />}
+              {tab === 'documents' && <DocumentsPanel documents={documents} onAddDocuments={addDocuments} meaning={meaning} />}
               {tab === 'approvals' && <ApprovalsPanel matter={matter} actions={actions} onChanged={reload} />}
               {tab === 'audit' && <AuditPanel audit={audit} />}
             </>

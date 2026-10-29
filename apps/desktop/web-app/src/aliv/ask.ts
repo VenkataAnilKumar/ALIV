@@ -2,6 +2,7 @@ import { streamText } from 'ai'
 import { BACKGROUND_THREAD_ID, CHAT_SLOT_ID } from '@/constants/models'
 import { ModelFactory } from '@/lib/model-factory'
 import { daysUntil } from './dates'
+import { questionVector, type Embedder } from './semantic'
 import type { VaultService } from './service'
 import { FIELD_LABELS, type FieldKey, type GridRow, type Matter, type SearchHit } from './types'
 
@@ -31,6 +32,8 @@ export interface AskResult {
   provider?: string
   location?: 'local' | 'cloud'
   reason?: string
+  /** Whether the passages were found by keyword and meaning, or keyword only. */
+  searchMode?: 'hybrid' | 'keyword'
 }
 
 const LOCAL_PROVIDERS = new Set(['llamacpp', 'mlx', 'ollama', 'lmstudio'])
@@ -115,6 +118,8 @@ export interface AskOptions {
   modelId?: string
   onText?: (text: string) => void
   signal?: AbortSignal
+  /** The local embedder; without one, passages are found by keyword only. */
+  embed?: Embedder
   /** Injected in tests. */
   createModel?: typeof ModelFactory.createModel
   stream?: typeof streamText
@@ -122,8 +127,10 @@ export interface AskOptions {
 
 export async function ask(opts: AskOptions): Promise<AskResult> {
   const { vault, matter, question, provider, modelId } = opts
+  const vector = await questionVector(opts.embed, question)
+  const searchMode: AskResult['searchMode'] = vector ? 'hybrid' : 'keyword'
   const [hits, grid] = await Promise.all([
-    vault.search(matter.id, question, MAX_PASSAGES),
+    vault.search(matter.id, question, MAX_PASSAGES, vector),
     vault.reviewGrid(matter.id),
   ])
   const plan = buildAskPlan(question, hits, grid)
@@ -132,15 +139,17 @@ export async function ask(opts: AskOptions): Promise<AskResult> {
       status: 'no_sources',
       text: 'No documents in this matter match the question yet. Add documents, or try different words.',
       sources: [],
+      searchMode,
     }
   }
   if (!provider || !modelId) {
     const computed = deadlineAnswer(question, plan.sources, grid)
-    if (computed) return { status: 'computed', text: computed, sources: plan.sources }
+    if (computed) return { status: 'computed', text: computed, sources: plan.sources, searchMode }
     return {
       status: 'no_model',
       text: 'Choose a model to get a written answer. Until then, here are the passages that match.',
       sources: plan.sources,
+      searchMode,
     }
   }
 
@@ -154,7 +163,7 @@ export async function ask(opts: AskOptions): Promise<AskResult> {
     sourceCount: plan.sources.length,
     purpose: 'answer',
   })
-  const meta = { model: modelId, provider: provider.provider, location }
+  const meta = { model: modelId, provider: provider.provider, location, searchMode }
   if (!decision.allowed) {
     return { status: 'blocked', text: decision.reason, sources: plan.sources, reason: decision.reason, ...meta }
   }

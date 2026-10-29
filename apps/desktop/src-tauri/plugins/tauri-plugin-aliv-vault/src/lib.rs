@@ -12,6 +12,7 @@ pub mod error;
 pub mod extract;
 pub mod model;
 pub mod ocr;
+pub mod semantic;
 pub mod store;
 pub mod vault;
 
@@ -31,6 +32,9 @@ pub fn init<R: tauri::Runtime>(db_path: std::path::PathBuf) -> tauri::plugin::Ta
             commands::ingest_paths,
             commands::list_documents,
             commands::search,
+            commands::pending_embeddings,
+            commands::store_embeddings,
+            commands::embedding_status,
             commands::review_grid,
             commands::propose_renames,
             commands::list_actions,

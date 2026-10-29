@@ -97,6 +97,17 @@ fn web_app_payloads_round_trip() {
     assert_eq!(hits[0]["fileName"], "lease.txt");
     assert!(hits[0]["chunkId"].is_number());
 
+    // Meaning-based search: embed what is pending, then search with a vector.
+    let pending = call(&w, "pending_embeddings", json!({ "matterId": id, "limit": 64 })).unwrap();
+    let pending = pending.as_array().unwrap();
+    assert!(!pending.is_empty() && pending[0]["text"].is_string());
+    let embeddings: Vec<Value> = pending.iter().map(|p| json!({ "chunkId": p["chunkId"], "vector": [1.0, 0.0, 0.0] })).collect();
+    assert_eq!(call(&w, "store_embeddings", json!({ "embeddings": embeddings })).unwrap(), pending.len());
+    let status = call(&w, "embedding_status", json!({ "matterId": id })).unwrap();
+    assert_eq!(status["embedded"], status["passages"]);
+    let hits = call(&w, "search", json!({ "matterId": id, "query": "zzz unmatched", "limit": 5, "queryVector": [1.0, 0.0, 0.0] })).unwrap();
+    assert_eq!(hits[0]["fileName"], "lease.txt", "found by meaning alone");
+
     let grid = call(&w, "review_grid", json!({ "matterId": id })).unwrap();
     let fields = grid[0]["fields"].as_array().unwrap();
     assert!(fields.iter().any(|f| f["key"] == "expiry_date" && f["value"] == "2026-03-01" && f["chunkOrdinal"] == 0));

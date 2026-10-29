@@ -78,6 +78,29 @@ pub struct SearchHit {
     pub score: f64,
 }
 
+/// A passage still to be embedded.
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
+#[serde(rename_all = "camelCase")]
+pub struct PendingPassage {
+    pub chunk_id: i64,
+    pub text: String,
+}
+
+/// One passage's embedding, as the app's embedder produced it.
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
+#[serde(rename_all = "camelCase")]
+pub struct PassageEmbedding {
+    pub chunk_id: i64,
+    pub vector: Vec<f32>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
+#[serde(rename_all = "camelCase")]
+pub struct EmbeddingStatus {
+    pub passages: i64,
+    pub embedded: i64,
+}
+
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct IngestReport {

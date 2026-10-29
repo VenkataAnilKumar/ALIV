@@ -35,7 +35,7 @@ Legal and finance teams hold thousands of confidential documents (NDAs, leases, 
   - **Hybrid**: cloud models are allowed, but only the matching passages are sent, and every call is logged.
 - **Ingestion.** Point a matter at folders. PDF, DOCX, XLSX, PPTX, HTML, TXT/MD and EML files are parsed on the device and indexed. Scanned PDFs and images are read with OCR (Tesseract). Unchanged files are skipped.
 - **Register.** Parties, dates, renewal-notice deadlines, amounts, notice periods, governing law and penalty clauses are extracted. Every value links to the passage it came from, with a confidence score.
-- **Ask.** Answers cite numbered sources you can open. Deadline questions are answered straight from the register, with no model needed.
+- **Ask.** Passages are found by keyword and, with the local embedding model, by meaning, so "can we exit early?" finds a termination-for-convenience clause. Answers cite numbered sources you can open. Deadline questions are answered straight from the register, with no model needed.
 - **Policy gate.** Every model call is checked in Rust first. A cloud model on a Local only matter is refused, and the refusal is logged.
 - **Approvals and undo.** Proposed file renames change nothing on disk until approved, never overwrite files, and can be undone.
 - **Audit log.** Ingestion, policy changes, model calls, proposals and file changes are recorded in a SHA-256 hash chain with a one-click integrity check.
@@ -43,7 +43,7 @@ Legal and finance teams hold thousands of confidential documents (NDAs, leases, 
 
 <img src="docs/assets/aliv-desktop-register.png" alt="Register with a field's source passage" width="100%" />
 
-**In progress** (see the [plan](docs/PLAN.md)): meaning-based search alongside keyword search, and document summaries for very large matters.
+**In progress** (see the [plan](docs/PLAN.md)): document summaries for very large matters.
 
 ## Build and run
 

@@ -2,10 +2,12 @@ import { demoDocuments, type FixtureDoc } from './demo/fixture'
 import type { VaultService } from './service'
 import type {
   AuditEntry,
+  EmbeddingStatus,
   Field,
   GridRow,
   Matter,
   MatterInput,
+  PendingPassage,
   SearchHit,
   VaultAction,
   VaultDocument,
@@ -234,6 +236,20 @@ export class DemoVaultService implements VaultService {
         score,
       }
     })
+  }
+
+  // The browser preview has no embedding engine, so search stays keyword-only.
+  async pendingEmbeddings(): Promise<PendingPassage[]> {
+    return []
+  }
+
+  async storeEmbeddings(): Promise<number> {
+    return 0
+  }
+
+  async embeddingStatus(matterId: string): Promise<EmbeddingStatus> {
+    const docs = new Set(this.docs.filter((d) => d.matterId === matterId).map((d) => d.id))
+    return { passages: this.passages.filter((p) => docs.has(p.documentId)).length, embedded: 0 }
   }
 
   async reviewGrid(matterId: string): Promise<GridRow[]> {

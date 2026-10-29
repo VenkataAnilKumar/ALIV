@@ -196,14 +196,19 @@ impl Project {
         // catalog layers it in, and it must be as byte-stable as a project one.
         // The test home is shared by the whole process, so the skill lives as
         // long as any fixture does and no longer.
-        LIVE_FIXTURES.fetch_add(1, Ordering::SeqCst);
-        let user = crate::core::agent::skills::user_skills_dir().unwrap();
-        std::fs::create_dir_all(user.join("user-example")).unwrap();
-        std::fs::write(
-            user.join("user-example/SKILL.md"),
-            "---\nname: user-example\ndescription: A user-wide example skill\n---\n\nUser body.\n",
-        )
-        .unwrap();
+        // Counted and written under one lock, so a fixture dropping on another
+        // thread cannot remove the skill between this count and this write.
+        {
+            let mut live = LIVE_FIXTURES.lock().unwrap_or_else(|e| e.into_inner());
+            *live += 1;
+            let user = crate::core::agent::skills::user_skills_dir().unwrap();
+            std::fs::create_dir_all(user.join("user-example")).unwrap();
+            std::fs::write(
+                user.join("user-example/SKILL.md"),
+                "---\nname: user-example\ndescription: A user-wide example skill\n---\n\nUser body.\n",
+            )
+            .unwrap();
+        }
         std::fs::write(
             store.join("memory/note.md"),
             "A durable fact about the fixture project.\n\nLonger detail.\n",
@@ -218,14 +223,20 @@ impl Project {
 }
 
 /// Live [`Project`] fixtures, so the shared user-scope skill is removed when
-/// the last one drops.
-static LIVE_FIXTURES: AtomicU32 = AtomicU32::new(0);
+/// the last one drops. A lock rather than an atomic: the count and the file
+/// change together, or a fixture created while the last one drops could have
+/// its skill deleted mid-test.
+static LIVE_FIXTURES: std::sync::Mutex<u32> = std::sync::Mutex::new(0);
 
 impl Drop for Project {
     fn drop(&mut self) {
-        if LIVE_FIXTURES.fetch_sub(1, Ordering::SeqCst) == 1 {
-            if let Some(user) = crate::core::agent::skills::user_skills_dir() {
-                let _ = std::fs::remove_dir_all(user.join("user-example"));
+        {
+            let mut live = LIVE_FIXTURES.lock().unwrap_or_else(|e| e.into_inner());
+            *live -= 1;
+            if *live == 0 {
+                if let Some(user) = crate::core::agent::skills::user_skills_dir() {
+                    let _ = std::fs::remove_dir_all(user.join("user-example"));
+                }
             }
         }
         let _ = std::fs::remove_dir_all(&self.root);
