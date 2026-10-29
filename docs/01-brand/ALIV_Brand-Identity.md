@@ -7,16 +7,20 @@
 
 ## 1. The name
 
-**ALIV**: *Autonomous Local Intelligence Vault*.
+**ALIV**: *Audited Local Intelligence Vault*.
 
 | Part | Meaning |
 |---|---|
-| **Autonomous** | Agents do multi-step work: tables, workflows, monitors. People approve what changes. |
+| **Audited** | Every ingestion, model call, tool call and approval is recorded in a tamper-evident, verifiable log. ALIV's clearest difference from cloud legal AI |
 | **Local** | The matter vault lives on the firm's machines. Local models are the default. |
 | **Intelligence** | Cited answers, extraction, drafting and review, at Harvey-class depth. |
 | **Vault** | Each matter is a private, audited container. Nothing mixes across clients. |
 
 Write it as **ALIV**, all capitals, no punctuation. Say it like "alive".
+
+**Why "Audited", not "Autonomous":** the earlier long form said *Autonomous*. It was changed because ALIV's rule is that agents propose and people approve, and "autonomous" AI worries lawyers, risk teams and regulators. *Audited* names what buyers can verify.
+
+**Name status:** quick web checks (October 2026) found no legal or finance AI product called ALIV. A formal trademark search (USPTO, EUIPO, UKIPO; classes 9 and 42) and domain checks are still needed before public launch.
 
 ## 2. Positioning
 
