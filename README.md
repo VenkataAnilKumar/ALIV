@@ -55,9 +55,26 @@ ALIV brings that kind of work to the firm's own hardware:
 
 <img src="docs/assets/aliv-desktop-register.png" alt="Register with a field's source passage" width="100%" />
 
+### Also in the app (from the open-source base)
+
+| | |
+|---|---|
+| ✎ **Chat and projects** | Free chat with local or cloud models; projects group chats with instructions |
+| ⌕ **Search (⌘K)** | Search across chat threads |
+| ⬡ **Hub** | Browse and download local models (GGUF) from Hugging Face |
+| 🧩 **MCP and skills** | MCP client with OAuth; `SKILL.md` skills, skill-hub import and git plugins |
+| 🌐 **Web search** | Built-in web search tool |
+| 🗎 **Artifacts** | Rendered outputs from chats |
+
+These work today **outside matter policy**. Keep client documents in a matter's Ask until R1 brings chat, web search, MCP and skills under the same policy check, redaction and audit (see [Status](#status)).
+
 ### Coming next
 
-Model gateway and redaction · matter workspace · skills · review tables · workflows · playbooks with redlines · artifacts · connectors · MCP · automation · agent builder · Firm Server. See the [roadmap](#roadmap).
+Model gateway and redaction · matter workspace (chats, instructions, folders) · governed skills, MCP and web search · review tables · workflows · playbooks with redlines · artifacts · layout-aware parsing and reranking · evaluation harness · connectors · automation · agent builder · Firm Server. See the [roadmap](#roadmap).
+
+<img src="docs/assets/mockups/home.png" alt="Mockup of the planned Home screen across all matters" width="100%" />
+
+<sub>Mockup of the planned Home screen. More in the [Wireframes](docs/05-design/ALIV_Wireframes.md#high-fidelity-mockups).</sub>
 
 ## How it works
 
@@ -98,8 +115,8 @@ Platform prerequisites, tests and release notes are in the [app guide](apps/desk
 | Release | Theme | Highlights | Status |
 |---|---|---|---|
 | **R0** | Private matter vault | Matters, ingestion with OCR, hybrid search, cited Ask, register, approvals, audit log | ✅ Shipped |
-| **R1** | Hybrid foundation | One audited Rust gateway for every model call, redaction before cloud, per-step routing; matter workspace; web search, MCP and skills under matter policy | Next |
-| **R2** | Harvey-class work product | Review tables, workflows, playbooks and redlines, drafting, compare, artifacts, global search, skill packs | Planned |
+| **R1** | Hybrid foundation | One audited Rust gateway for every model call, redaction before cloud, per-step routing; matter workspace; web search, MCP and skills under matter policy; evaluation harness | Next |
+| **R2** | Harvey-class work product | Review tables, workflows, playbooks and redlines, drafting, compare, artifacts, global search, skill packs; layout-aware parsing, reranking and schema-constrained extraction | Planned |
 | **R3** | Agents | Agent builder, automation, connectors, MCP tools in agents, knowledge bases, skill library, finance pack | Planned |
 | **R4** | Scale and reach | Firm Server with SSO and ethical walls, Word add-in, research connectors, ALIV as an MCP server | Planned |
 
@@ -109,7 +126,8 @@ Details: [Implementation Phases](docs/07-implementation/ALIV_Implementation-Phas
 
 ALIV is **pre-release**. Signed installers, auto-update and vault encryption at rest are on the release track. Until then:
 - protect the vault with full-disk encryption;
-- keep matters that must never reach a cloud provider on *Local only*.
+- keep matters that must never reach a cloud provider on *Local only*;
+- keep client documents out of free chat, web search and MCP tools, which don't follow matter policy until R1.
 
 [Security and privacy](docs/guides/security.md) lists exactly what is true today.
 
@@ -118,6 +136,7 @@ ALIV is **pre-release**. Signed installers, auto-update and vault encryption at 
 | | |
 |---|---|
 | 📚 [Product documents](docs/README.md) | Brand, product, market, specs, design, technical and implementation (21 documents) |
+| 🖼️ [Mockups](docs/05-design/ALIV_Wireframes.md#high-fidelity-mockups) | Ten mockups of planned screens, including the admin interfaces |
 | 📖 [User guide](docs/guides/user-guide.md) | Using ALIV day to day |
 | 🔒 [Security and privacy](docs/guides/security.md) | What is stored, what can leave the computer, controls and limits |
 | 🛠️ [Developer guide](docs/guides/developer.md) | Architecture in the code, building, testing, CI |
@@ -129,7 +148,9 @@ ALIV is **pre-release**. Signed installers, auto-update and vault encryption at 
 | [`apps/desktop/`](apps/desktop/README.md) | The ALIV app: Rust core and matter-vault plugin, React UI, local engines, `aliv` CLI |
 | `demo/` | Sample legal and finance documents, and the [demo guide](demo/DEMO_GUIDE.md) |
 | [`benchmarks/`](benchmarks/README.md) | Labelled corpus and the script that scores extraction accuracy |
-| [`docs/`](docs/README.md) | Product documents, guides and archive |
+| [`docs/`](docs/README.md) | Product documents, guides, mockups and archive |
+
+From R1 the repository grows into Cargo and Yarn workspaces: shared Rust code in `crates/` (vault, gateway, agents…), shared UI and generated types in `packages/`, quality sets in `evals/`, and new apps (Firm Server, admin console, Word add-in) under `apps/`. See [Repo Structure](docs/06-technical/ALIV_Repo-Structure.md).
 
 ## License
 
