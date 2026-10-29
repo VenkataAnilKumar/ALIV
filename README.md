@@ -4,17 +4,18 @@
 
 ### Autonomous Local Intelligence Vault
 
-**A local-first AI workspace for legal and finance teams.**<br/>
-Client documents are indexed on your own computer. Answers cite their sources, file changes wait for your approval, and every model call is recorded in a tamper-evident audit log.
+**The hybrid AI platform that keeps client matters on your machines.**<br/>
+Cited answers, contract registers and audited AI for legal and finance teams. Local by default, cloud only when a matter's policy allows it.
 
 <br/>
 
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue?style=flat-square)](apps/desktop/LICENSE)
 [![Tauri 2](https://img.shields.io/badge/Tauri-2.x-24C8D8?style=flat-square&logo=tauri&logoColor=white)](https://tauri.app)
-[![Rust](https://img.shields.io/badge/Rust-Backend-orange?style=flat-square&logo=rust)](https://www.rust-lang.org)
-[![React](https://img.shields.io/badge/React-UI-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev)
+[![Rust](https://img.shields.io/badge/Rust-core-orange?style=flat-square&logo=rust)](https://www.rust-lang.org)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev)
+[![Status](https://img.shields.io/badge/status-pre--release-amber?style=flat-square)](#status)
 
-[🚀 Build and run](#build-and-run) &nbsp;·&nbsp; [📚 Product docs](docs/README.md) &nbsp;·&nbsp; [📖 User guide](docs/guides/user-guide.md) &nbsp;·&nbsp; [🔒 Security](docs/guides/security.md) &nbsp;·&nbsp; [🛠️ Developer guide](docs/guides/developer.md) &nbsp;·&nbsp; [🗺️ Roadmap](docs/07-implementation/ALIV_Implementation-Phases.md)
+[Quick start](#quick-start) · [Features](#features) · [How it works](#how-it-works) · [Roadmap](#roadmap) · [Docs](#documentation)
 
 <br/>
 
@@ -24,52 +25,115 @@ Client documents are indexed on your own computer. Answers cite their sources, f
 
 ---
 
-## Why ALIV?
+## Why ALIV
 
-Legal and finance teams hold thousands of confidential documents (NDAs, leases, service agreements, invoices) that often can't be sent to a cloud AI without breaching client confidentiality or compliance rules. ALIV keeps them on the user's machine by default, and when a matter's policy allows a cloud model, it sends only the passages a question needs and logs every call.
+Cloud legal-AI platforms like Harvey and Legora have shown what AI can do for review, drafting and workflows, but they run in the vendor's cloud. Many firms, their clients and regulated finance teams can't send every confidential document there.
 
-## What it does
+ALIV brings that kind of work to the firm's own hardware:
 
-- **Matters.** One private vault per client engagement, typed Legal or Finance, with a model policy:
-  - **Local only** (default): passages never go to a cloud model.
-  - **Hybrid**: cloud models are allowed, but only the matching passages are sent, and every call is logged.
-- **Ingestion.** Point a matter at folders. PDF, DOCX, XLSX, PPTX, HTML, TXT/MD and EML files are parsed on the device and indexed. Scanned PDFs and images are read with OCR (Tesseract). Unchanged files are skipped.
-- **Register.** Parties, dates, renewal-notice deadlines, amounts, notice periods, governing law and penalty clauses are extracted. Every value links to the passage it came from, with a confidence score.
-- **Ask.** Passages are found by keyword and, with the local embedding model, by meaning, so "can we exit early?" finds a termination-for-convenience clause. Answers cite numbered sources you can open. Deadline questions are answered straight from the register, with no model needed.
-- **Policy gate.** Every model call is checked in Rust first. A cloud model on a Local only matter is refused, and the refusal is logged.
-- **Approvals and undo.** Proposed file renames change nothing on disk until approved, never overwrite files, and can be undone.
-- **Audit log.** Ingestion, policy changes, model calls, proposals and file changes are recorded in a SHA-256 hash chain with a one-click integrity check.
-- **Agent and CLI.** The `aliv` command-line agent and an embeddable agent protocol. See the [agent cookbook](apps/desktop/docs/agent/adk-cookbook.md).
+- **Private by default.** Each matter is a private vault on your computer. Documents are read in place, embeddings are computed locally, and new matters are *Local only*.
+- **Hybrid by policy.** When a matter allows it, a cloud model can be used, but only the passages a question needs are sent, and every call is checked and logged.
+- **Cited and in control.** Every answer and extracted value links to its source passage. File changes are proposals until you approve them, and can be undone.
+- **Provable.** Every ingestion, policy change, model call and file action goes into a tamper-evident audit log you can verify.
+
+## Features
+
+### Available now
+
+| | |
+|---|---|
+| 🗂️ **Matters** | One private vault per client engagement (Legal or Finance), each with a *Local only* or *Hybrid* model policy |
+| 📥 **Ingestion** | PDF, DOCX, XLSX, PPTX, HTML, TXT/MD and EML, parsed on the device. Scans and images are read with OCR (Tesseract). Unchanged files are skipped on re-import |
+| 🔎 **Hybrid search** | Keyword (SQLite FTS5) and meaning (local embeddings), fused, so "can we exit early?" finds a termination-for-convenience clause |
+| 💬 **Ask** | Answers with numbered citations you can open. Large matters are trimmed to what fits the model, and the answer says how much was left out. Deadline questions are answered from the register, with no model |
+| 📋 **Register** | Parties, dates, renewal-notice deadlines, amounts, notice periods, governing law and penalties, each with a confidence score and its source passage. CSV export is safe against spreadsheet formulas |
+| 🛡️ **Policy gate** | Every model call in Ask is checked in Rust first. A cloud model on a *Local only* matter is refused, and the refusal is logged |
+| ✅ **Approvals** | Proposed file renames never touch the disk until approved, never overwrite, and can be undone |
+| 🔗 **Audit log** | SHA-256 hash chain with one-click integrity verification |
+| 🩺 **Vault health** | A shareable report of counts and reasons, with no document text |
+| 🤖 **Local models and CLI** | llama.cpp and MLX engines, plus the `aliv` command-line agent ([agent cookbook](apps/desktop/docs/agent/adk-cookbook.md)) |
 
 <img src="docs/assets/aliv-desktop-register.png" alt="Register with a field's source passage" width="100%" />
 
-## Build and run
+### Coming next
 
-The app lives in [`apps/desktop`](apps/desktop/README.md). It needs Node 22 and Rust (the version is pinned in `apps/desktop/rust-toolchain.toml`).
+Model gateway and redaction · review tables · workflows · playbooks with redlines · agent builder · monitors · Firm Server. See the [roadmap](#roadmap).
+
+## How it works
+
+```
+ Documents (stay where they are)
+          │  parse · OCR · split into passages · extract fields · summarise
+          ▼
+ ┌──────────── Matter vault (SQLite, on your machine) ────────────┐
+ │ passages + keyword index · local embeddings · register fields  │
+ │ proposals · hash-chained audit log                             │
+ └───────────────────────────┬────────────────────────────────────┘
+                             │ hybrid search → cited sources
+                             ▼
+                  Ask ─▶ policy check (Rust) ─▶ local model (llama.cpp / MLX)
+                                            └─▶ cloud model (Hybrid matters only, logged)
+```
+
+The app is a Tauri 2 desktop app: a Rust core with the matter-vault plugin, and a React 19 interface. See the [System Architecture](docs/06-technical/ALIV_System-Architecture.md) and [Hybrid AI Architecture](docs/06-technical/ALIV_Hybrid-AI-Architecture.md).
+
+## Quick start
+
+You need **Node 22** and **Rust** (the version is pinned in `apps/desktop/rust-toolchain.toml`). For OCR, install **Tesseract** and **poppler**.
 
 ```bash
 cd apps/desktop
 corepack enable
 yarn install
 yarn build:tauri:plugin:api && yarn build:core && yarn build:extensions
+
 yarn dev          # desktop app
 yarn dev:web      # browser preview with demo data at /matters/
 ```
 
-Platform prerequisites, tests and the repository layout are in the [app guide](apps/desktop/README.md).
+Platform prerequisites, tests and release notes are in the [app guide](apps/desktop/README.md). How to use the app is in the [user guide](docs/guides/user-guide.md).
+
+## Roadmap
+
+| Release | Theme | Highlights | Status |
+|---|---|---|---|
+| **R0** | Private matter vault | Matters, ingestion with OCR, hybrid search, cited Ask, register, approvals, audit log | ✅ Shipped |
+| **R1** | Hybrid foundation | One audited Rust gateway for every model call, redaction before cloud, per-step routing | Next |
+| **R2** | Harvey-class work product | Review tables, workflows, playbooks and redlines, drafting, compare | Planned |
+| **R3** | Agents | Agent builder, monitors, knowledge bases, finance pack | Planned |
+| **R4** | Scale and reach | Firm Server with SSO and ethical walls, Word add-in, research connectors | Planned |
+
+Details: [Implementation Phases](docs/07-implementation/ALIV_Implementation-Phases.md) · [Sprint Plan](docs/07-implementation/ALIV_Sprint-Plan.md).
+
+## Status
+
+ALIV is **pre-release**. Signed installers, auto-update and vault encryption at rest are on the release track. Until then:
+- protect the vault with full-disk encryption;
+- keep matters that must never reach a cloud provider on *Local only*.
+
+[Security and privacy](docs/guides/security.md) lists exactly what is true today.
+
+## Documentation
+
+| | |
+|---|---|
+| 📚 [Product documents](docs/README.md) | Brand, product, market, specs, design, technical and implementation (21 documents) |
+| 📖 [User guide](docs/guides/user-guide.md) | Using ALIV day to day |
+| 🔒 [Security and privacy](docs/guides/security.md) | What is stored, what can leave the computer, controls and limits |
+| 🛠️ [Developer guide](docs/guides/developer.md) | Architecture in the code, building, testing, CI |
 
 ## Repository
 
 | Path | What |
 |---|---|
-| [`apps/desktop/`](apps/desktop/README.md) | **The ALIV app**: Tauri 2 desktop app, matter vault plugin, `aliv` CLI, React UI |
-| `demo/corpus/` | Sample legal and finance documents used by the demo and tests |
-| [`benchmarks/`](benchmarks/README.md) | Labelled corpus and the script that scores the vault's extraction |
-| [`docs/`](docs/README.md) | Product documents (brand → implementation), [user guide](docs/guides/user-guide.md), [security and privacy](docs/guides/security.md), [developer guide](docs/guides/developer.md); history in `docs/archive/` |
+| [`apps/desktop/`](apps/desktop/README.md) | The ALIV app: Rust core and matter-vault plugin, React UI, local engines, `aliv` CLI |
+| `demo/` | Sample legal and finance documents, and the [demo guide](demo/DEMO_GUIDE.md) |
+| [`benchmarks/`](benchmarks/README.md) | Labelled corpus and the script that scores extraction accuracy |
+| [`docs/`](docs/README.md) | Product documents, guides and archive |
 
 ## License
 
-The ALIV app is licensed under Apache-2.0 and builds on Apache-2.0 open-source software. See [`apps/desktop/LICENSE`](apps/desktop/LICENSE) and [`THIRD_PARTY_NOTICES.md`](apps/desktop/THIRD_PARTY_NOTICES.md).
+Apache-2.0. ALIV builds on Apache-2.0 open-source software. See [`apps/desktop/LICENSE`](apps/desktop/LICENSE) and [`THIRD_PARTY_NOTICES.md`](apps/desktop/THIRD_PARTY_NOTICES.md). To report a vulnerability, see [`SECURITY.md`](apps/desktop/SECURITY.md).
 
 <div align="center">
 
