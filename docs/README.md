@@ -51,7 +51,7 @@ The product documents run from brand to product, market, specs, design, technica
 docs/
 ├─ 01-brand … 07-implementation   Product documents (table above)
 ├─ guides/                        User, security and developer guides
-├─ assets/                        Screenshots
+├─ assets/                        Screenshots (shipped app) and mockups/ (planned screens)
 └─ archive/                       History only: superseded docs and the legacy app
 ```
 
