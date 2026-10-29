@@ -20,6 +20,8 @@ export interface AskPlan {
   prompt: string
   sources: AskSource[]
   charsSent: number
+  /** Sources that matched but were left out to fit the model's context window. */
+  omitted: number
 }
 
 export type AskStatus = 'answered' | 'computed' | 'blocked' | 'no_model' | 'no_sources' | 'error'
@@ -34,11 +36,19 @@ export interface AskResult {
   reason?: string
   /** Whether the passages were found by keyword and meaning, or keyword only. */
   searchMode?: 'hybrid' | 'keyword'
+  /** Matching sources left out to fit the model's context window. */
+  omitted?: number
 }
 
 const LOCAL_PROVIDERS = new Set(['llamacpp', 'mlx', 'ollama', 'lmstudio'])
 const MAX_PASSAGES = 8
 const MAX_REGISTER_ROWS = 60
+/** Assumed when the model's context length is not configured ("auto"). */
+export const DEFAULT_CONTEXT_TOKENS = 8192
+/** Kept free for the answer. */
+const ANSWER_RESERVE_TOKENS = 1024
+/** About four characters per token for English prose; close enough to budget by. */
+const CHARS_PER_TOKEN = 4
 const REGISTER_KEYS: FieldKey[] = [
   'doc_type',
   'parties',
@@ -66,29 +76,36 @@ export function modelLocation(provider: Pick<ModelProvider, 'provider' | 'base_u
   return 'cloud'
 }
 
-export function buildAskPlan(question: string, hits: SearchHit[], grid: GridRow[], today: Date = new Date()): AskPlan {
-  const sources: AskSource[] = []
-  for (const h of hits.slice(0, MAX_PASSAGES)) {
-    sources.push({ n: sources.length + 1, kind: 'passage', documentId: h.documentId, fileName: h.fileName, text: h.text })
+/**
+ * Register rows in the order they are worth sending: documents the matching
+ * passages came from, then rows that mention the question's words (a party,
+ * a document type), then the soonest expiry. A large matter's register does
+ * not fit a small model's context, so what is sent first matters.
+ */
+export function rankRegisterRows(grid: GridRow[], hits: SearchHit[], question: string): GridRow[] {
+  const hitDocs = new Set(hits.map((h) => h.documentId))
+  const words = question
+    .toLowerCase()
+    .split(/[^a-z0-9$]+/)
+    .filter((w) => w.length > 3)
+  const score = (row: GridRow) => {
+    const hay = [row.document.fileName, ...row.fields.map((f) => f.value)].join(' ').toLowerCase()
+    return (hitDocs.has(row.document.id) ? 100 : 0) + words.filter((w) => hay.includes(w)).length
   }
-  const rows = [...grid]
-    .sort((a, b) => (fieldValue(a, 'expiry_date') ?? '9999').localeCompare(fieldValue(b, 'expiry_date') ?? '9999'))
-    .slice(0, MAX_REGISTER_ROWS)
-  for (const row of rows) {
-    const parts = REGISTER_KEYS.map((k) => {
-      const v = fieldValue(row, k)
-      return v ? `${FIELD_LABELS[k]}: ${v}` : null
-    }).filter(Boolean)
-    if (!parts.length) continue
-    sources.push({
-      n: sources.length + 1,
-      kind: 'register',
-      documentId: row.document.id,
-      fileName: row.document.fileName,
-      text: parts.join('; '),
-    })
-  }
+  const expiry = (row: GridRow) => fieldValue(row, 'expiry_date') ?? '9999'
+  return grid
+    .map((row) => ({ row, s: score(row) }))
+    .sort((a, b) => b.s - a.s || expiry(a.row).localeCompare(expiry(b.row)))
+    .map((x) => x.row)
+}
 
+export function buildAskPlan(
+  question: string,
+  hits: SearchHit[],
+  grid: GridRow[],
+  today: Date = new Date(),
+  contextTokens: number = DEFAULT_CONTEXT_TOKENS
+): AskPlan {
   const iso = today.toISOString().slice(0, 10)
   const system = [
     'You are ALIV, a careful assistant for legal and finance professionals.',
@@ -99,11 +116,39 @@ export function buildAskPlan(question: string, hits: SearchHit[], grid: GridRow[
     `Today is ${iso}. When a question involves time ("expiring in 90 days", "overdue"), compute it against today and show the dates.`,
     'Be concise. Use short paragraphs or bullet lists. Do not invent clause numbers, amounts or dates.',
   ].join('\n')
+
+  // Sources are added best first while they fit what the model can read,
+  // after the instructions, the question and room for the answer.
+  const fixed = system.length + question.length + 40
+  let room = Math.max(0, (contextTokens - ANSWER_RESERVE_TOKENS) * CHARS_PER_TOKEN - fixed)
+  const sources: AskSource[] = []
+  let omitted = 0
+  const add = (s: Omit<AskSource, 'n'>) => {
+    const cost = s.text.length + s.fileName.length + 30
+    if (cost > room) {
+      omitted++
+      return
+    }
+    room -= cost
+    sources.push({ ...s, n: sources.length + 1 })
+  }
+  for (const h of hits.slice(0, MAX_PASSAGES)) {
+    add({ kind: 'passage', documentId: h.documentId, fileName: h.fileName, text: h.text })
+  }
+  for (const row of rankRegisterRows(grid, hits, question).slice(0, MAX_REGISTER_ROWS)) {
+    const parts = REGISTER_KEYS.map((k) => {
+      const v = fieldValue(row, k)
+      return v ? `${FIELD_LABELS[k]}: ${v}` : null
+    }).filter(Boolean)
+    if (!parts.length) continue
+    add({ kind: 'register', documentId: row.document.id, fileName: row.document.fileName, text: parts.join('; ') })
+  }
+
   const body = sources
     .map((s) => `[${s.n}] (${s.kind === 'passage' ? 'passage' : 'register'} · ${s.fileName})\n${s.text}`)
     .join('\n\n')
   const prompt = `SOURCES\n\n${body}\n\nQUESTION\n${question.trim()}`
-  return { system, prompt, sources, charsSent: system.length + prompt.length }
+  return { system, prompt, sources, charsSent: system.length + prompt.length, omitted }
 }
 
 function fieldValue(row: GridRow, key: FieldKey) {
@@ -120,6 +165,8 @@ export interface AskOptions {
   signal?: AbortSignal
   /** The local embedder; without one, passages are found by keyword only. */
   embed?: Embedder
+  /** The model's context window in tokens, when configured. */
+  contextTokens?: number
   /** Injected in tests. */
   createModel?: typeof ModelFactory.createModel
   stream?: typeof streamText
@@ -133,7 +180,7 @@ export async function ask(opts: AskOptions): Promise<AskResult> {
     vault.search(matter.id, question, MAX_PASSAGES, vector),
     vault.reviewGrid(matter.id),
   ])
-  const plan = buildAskPlan(question, hits, grid)
+  const plan = buildAskPlan(question, hits, grid, new Date(), opts.contextTokens || DEFAULT_CONTEXT_TOKENS)
   if (!plan.sources.length) {
     return {
       status: 'no_sources',
@@ -144,12 +191,13 @@ export async function ask(opts: AskOptions): Promise<AskResult> {
   }
   if (!provider || !modelId) {
     const computed = deadlineAnswer(question, plan.sources, grid)
-    if (computed) return { status: 'computed', text: computed, sources: plan.sources, searchMode }
+    if (computed) return { status: 'computed', text: computed, sources: plan.sources, searchMode, omitted: plan.omitted }
     return {
       status: 'no_model',
       text: 'Choose a model to get a written answer. Until then, here are the passages that match.',
       sources: plan.sources,
       searchMode,
+      omitted: plan.omitted,
     }
   }
 
@@ -163,7 +211,7 @@ export async function ask(opts: AskOptions): Promise<AskResult> {
     sourceCount: plan.sources.length,
     purpose: 'answer',
   })
-  const meta = { model: modelId, provider: provider.provider, location, searchMode }
+  const meta = { model: modelId, provider: provider.provider, location, searchMode, omitted: plan.omitted }
   if (!decision.allowed) {
     return { status: 'blocked', text: decision.reason, sources: plan.sources, reason: decision.reason, ...meta }
   }

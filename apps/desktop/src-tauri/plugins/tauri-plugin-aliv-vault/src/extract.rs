@@ -28,6 +28,56 @@ pub struct Extracted {
     pub snippet: String,
 }
 
+/// A short overview of a document from its extracted fields (`(key, value)`)
+/// and its opening words: what it is, who is party to it, its key dates and
+/// amount. Built without a model, so every document gets one at ingestion and
+/// it changes only when the file does.
+pub fn summarize(fields: &[(&str, &str)], text: &str) -> String {
+    let get = |k: &str| fields.iter().find(|(key, _)| *key == k).map(|(_, v)| *v).filter(|v| !v.is_empty());
+    let mut sentences = Vec::new();
+    let kind = get(DOC_TYPE).unwrap_or("Document");
+    let parties: Vec<&str> = get(PARTIES).map(|p| p.split(" · ").collect()).unwrap_or_default();
+    sentences.push(match parties.as_slice() {
+        [] => kind.to_string(),
+        [one] => format!("{kind} with {one}"),
+        [first @ .., last] => format!("{kind} between {} and {last}", first.join(", ")),
+    });
+    let dates: Vec<String> = [(EFFECTIVE_DATE, "effective"), (EXPIRY_DATE, "expires"), (RENEWAL_DEADLINE, "renewal notice due")]
+        .iter()
+        .filter_map(|(k, label)| get(k).map(|v| format!("{label} {v}")))
+        .collect();
+    if !dates.is_empty() {
+        sentences.push(capitalize(&dates.join("; ")));
+    }
+    if let Some(a) = get(AMOUNT) {
+        sentences.push(format!("Amount {a}"));
+    }
+    if let Some(n) = get(NOTICE_PERIOD) {
+        sentences.push(format!("Notice period {n}"));
+    }
+    if let Some(l) = get(GOVERNING_LAW) {
+        sentences.push(format!("Governed by {l}"));
+    }
+    if get(PENALTY).is_some() {
+        sentences.push("Includes a penalty clause".to_string());
+    }
+    let mut out = sentences.join(". ") + ".";
+    let opening = collapse_ws(text);
+    if !opening.is_empty() {
+        out.push_str(" Opens: ");
+        out.push_str(&truncate_chars(&opening, 160));
+    }
+    out
+}
+
+fn capitalize(s: &str) -> String {
+    let mut c = s.chars();
+    match c.next() {
+        Some(f) => f.to_uppercase().collect::<String>() + c.as_str(),
+        None => String::new(),
+    }
+}
+
 pub fn extract_all(text: &str) -> Vec<Extracted> {
     let normalized = join_table_labels(text);
     let text = normalized.as_str();
@@ -543,6 +593,18 @@ mod tests {
         assert_eq!(get(&f, RENEWAL_DEADLINE).unwrap().value, "2026-11-15");
         let f = extract_all("Effective Date: 2025-03-01\nExpiry Date: 2026-03-01\n");
         assert_eq!(get(&f, EFFECTIVE_DATE).unwrap().value, "2025-03-01", "labelled lines never borrow context");
+    }
+
+    #[test]
+    fn summaries_say_what_who_when_and_how_much() {
+        let f: Vec<(&str, String)> = extract_all(LEASE).into_iter().map(|e| (e.key, e.value)).collect();
+        let fields: Vec<(&str, &str)> = f.iter().map(|(k, v)| (*k, v.as_str())).collect();
+        let s = summarize(&fields, LEASE);
+        assert!(s.starts_with("Lease between Acme Commercial Properties LLC and Redstone Enterprises Inc."), "{s}");
+        assert!(s.contains("Effective 2025-03-01; expires 2026-03-01"), "{s}");
+        assert!(s.contains("Includes a penalty clause"), "{s}");
+        assert!(s.contains("Opens: COMMERCIAL LEASE AGREEMENT"), "{s}");
+        assert_eq!(summarize(&[], "Meeting notes"), "Document. Opens: Meeting notes");
     }
 
     #[test]

@@ -11,7 +11,7 @@ Each step is one pull request into `main`.
 | A | **Docs cleanup, plan and CI** | Obsolete docs moved to `docs/archive/`; root README describes the new app; GitHub Actions runs the desktop app's tests on every PR | `main` is green and the README matches the product |
 | B ✅ | **OCR** | Scanned PDFs and images are read during ingestion, instead of being listed as unreadable. Passages read by OCR are marked as such, with a confidence score | The 40 scanned documents in `benchmarks/` are indexed and their fields extracted |
 | C ✅ | **Hybrid search** | Meaning-based search next to the existing keyword search (FTS5), combined with reciprocal-rank fusion. Falls back to keyword-only when no embedding model is available | Questions phrased differently from the contract text still find the right clause |
-| D | **Summaries and context budget** | A cached summary per document, keyed by content hash; Ask fits long matters into the model's context | Ask works on a 500-document matter without overflowing the context |
+| D ✅ | **Summaries and context budget** | A summary per document, built at ingestion from its extracted fields and opening (no model), so it changes only when the file does; Ask fits its sources into the model's context window, most relevant first | Ask works on a 500-document matter without overflowing the context |
 | E | **Diagnostics; retire the legacy app** | Diagnostics and benchmark views in the new app; `src/`, `src-tauri/`, `python/` and their configs removed | One app, one build |
 | F | **Product docs** | User guide, security and privacy overview, developer architecture and build docs | Every feature in the app has a page |
 
@@ -21,7 +21,7 @@ Each step is one pull request into `main`.
 |---|---|---|
 | OCR for scanned PDFs and images | `python/workers/ocr_worker.py` (Tesseract) | B: done, `tauri-plugin-aliv-vault/src/ocr.rs` |
 | Meaning-based (embedding) search, fused with keyword search | `python/workers/embedding_worker.py`, `src-tauri/src/core/retrieval.rs` | C: done, `tauri-plugin-aliv-vault/src/semantic.rs` |
-| Document summaries, conversation memory, token budget | `python/workers/summarization_worker.py`, `src-tauri/src/core/memory.rs` | D |
+| Document summaries, conversation memory, token budget | `python/workers/summarization_worker.py`, `src-tauri/src/core/memory.rs` | D: done. Summaries are extractive (`extract::summarize`), not model-written; context budget in `web-app/src/aliv/ask.ts`. Conversation memory is covered by the app's chat threads |
 | Diagnostics export and benchmark views | `src/pages/DiagnosticsPage.tsx`, `BenchmarksPage.tsx` | E |
 
 Already covered by the new app, so nothing to port: field extraction (the register is a superset of the legacy templates), safe file actions with undo, email parsing, workspace and ingestion.

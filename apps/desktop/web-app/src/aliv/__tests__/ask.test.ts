@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
-import { ask, buildAskPlan, deadlineAnswer, modelLocation, parseCitations, stripThinking } from '../ask'
+import { ask, buildAskPlan, deadlineAnswer, modelLocation, parseCitations, rankRegisterRows, stripThinking } from '../ask'
 import { DemoVaultService } from '../demo-service'
 
 const provider = (name: string, base_url?: string) =>
@@ -124,5 +124,32 @@ describe('deadlineAnswer', () => {
     const res = await ask({ vault, matter, question: 'What expires in the next 400 days?' })
     expect(res.status).toBe('computed')
     expect(res.text).toContain('[')
+  })
+})
+
+describe('context budget', () => {
+  it('fits the sources to the model and counts what was left out', async () => {
+    const vault = new DemoVaultService()
+    const [matter] = await vault.listMatters()
+    const grid = await vault.reviewGrid(matter.id)
+    const hits = await vault.search(matter.id, 'penalty', 8)
+    const roomy = buildAskPlan('penalty', hits, grid, new Date('2026-10-29T12:00:00Z'), 128_000)
+    const tight = buildAskPlan('penalty', hits, grid, new Date('2026-10-29T12:00:00Z'), 1_600)
+    expect(roomy.omitted).toBe(0)
+    expect(tight.omitted).toBeGreaterThan(0)
+    expect(tight.sources.length).toBeLessThan(roomy.sources.length)
+    // The answer reserve and instructions always fit: the prompt stays within the window.
+    expect(tight.charsSent / 4).toBeLessThan(1_600)
+    // Sources are numbered 1..n with no gaps after trimming.
+    expect(tight.sources.map((s) => s.n)).toEqual(tight.sources.map((_, i) => i + 1))
+  })
+
+  it('sends register rows for the matching documents first', async () => {
+    const vault = new DemoVaultService()
+    const [matter] = await vault.listMatters()
+    const grid = await vault.reviewGrid(matter.id)
+    const hits = (await vault.search(matter.id, 'penalty', 8)).slice(0, 1)
+    const ranked = rankRegisterRows(grid, hits, 'penalty')
+    expect(ranked[0].document.id).toBe(hits[0].documentId)
   })
 })

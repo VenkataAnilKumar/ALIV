@@ -38,6 +38,8 @@ export interface VaultDocument {
   ingestedAt: string
   /** Set when the text was read by OCR: mean word confidence, 0 to 1. */
   ocrConfidence: number | null
+  /** Overview from the extracted fields and the opening words; no model involved. */
+  summary: string | null
 }
 
 export type FieldKey =

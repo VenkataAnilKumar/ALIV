@@ -45,6 +45,9 @@ pub struct Document {
     pub ingested_at: String,
     /// Set when the text was read by OCR: the mean word confidence, 0 to 1.
     pub ocr_confidence: Option<f64>,
+    /// One-paragraph overview built from the extracted fields and the
+    /// document's opening, with no model involved.
+    pub summary: Option<String>,
 }
 
 /// One extracted value, always tied back to the passage it came from.
