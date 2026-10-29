@@ -7,7 +7,7 @@ Low-fidelity layouts for the [UI Spec](ALIV_UI-Spec.md). ✅ marks shipped scree
 
 ## High-fidelity mockups
 
-Rendered with the app's design tokens ([Design System](ALIV_Design-System.md)). These are **mockups of planned screens**, not screenshots; the data is fictional.
+Rendered with the app's design tokens ([Design System](ALIV_Design-System.md)). These are **mockups of planned screens**, not screenshots; the data is fictional. All screens use the full navigation (Home, Matters, Library, Connections, Chat, Settings, ⌘K search) and the full matter tab order.
 
 | Screen | Release | Image |
 |---|---|---|
@@ -18,6 +18,9 @@ Rendered with the app's design tokens ([Design System](ALIV_Design-System.md)). 
 | Inbox (W-11) | R3 | ![Inbox](../assets/mockups/inbox.png) |
 | Admin settings on the desktop (W-13) | R1 | ![Desktop admin](../assets/mockups/admin-desktop.png) |
 | Firm Server Admin Console (W-14) | R4 | ![Admin Console](../assets/mockups/admin-console.png) |
+| Matter workspace settings: instructions, folders, connectors, skills, MCP, web search (W-15) | R1–R3 | ![Workspace settings](../assets/mockups/workspace-settings.png) |
+| Artifacts tab with version, route and skills (W-17) | R2 | ![Artifacts](../assets/mockups/artifacts.png) |
+| Automations with triggers and run history (W-19) | R3 | ![Automations](../assets/mockups/automations.png) |
 
 ---
 
@@ -29,7 +32,8 @@ The landing screen once tables, workflows and monitors exist. It shows:
 - four counters: deadlines in 30 days, waiting for you, running now, model calls this month with the local share;
 - upcoming deadlines across all matters;
 - "Waiting for you": approvals, inbox items, cells needing review;
-- running tables and workflows with progress.
+- running tables, workflows and scheduled automations;
+- recent artifacts.
 
 Pinned matters sit in the sidebar with their policy icon. See the [mockup](../assets/mockups/home.png). Until R1, the Matters home (W-1) is the landing screen.
 
@@ -59,7 +63,7 @@ Pinned matters sit in the sidebar with their policy icon. See the [mockup](../as
 
 ```
 ┌─ Acme lease review  🔒 Local only ─────────────────────────────────────── ⋯ ┐
-│ Overview  [Ask]  Register  Tables  Workflows  Documents  Approvals  Audit     │
+│ Overview Chats [Ask] Register Tables Workflows Artifacts Documents Approvals… │
 ├───────────────────────────────────────────────┬──────────────────────────────┤
 │ [Model: Qwen 8B ▾]        (● This computer)   │ Sources                      │
 │ ┌───────────────────────────────────────────┐ │ ┌──────────────────────────┐ │

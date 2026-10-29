@@ -38,7 +38,7 @@
 
 ## Phase 1: Hybrid foundation (R1)
 
-**Goal:** every model call goes through one audited Rust gateway, with routing per step and redaction before any cloud call.
+**Goal:** every model call, web search, MCP tool call and skill script goes through one audited Rust gateway, with routing per step and redaction before anything leaves; the matter becomes the workspace for chats.
 
 | # | Work | Feature IDs | Exit criteria |
 |---|---|---|---|

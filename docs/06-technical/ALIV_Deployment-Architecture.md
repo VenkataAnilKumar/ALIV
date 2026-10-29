@@ -35,7 +35,7 @@
 | **OCR dependencies** | Tesseract and poppler are detected at runtime. Missing tools are reported in Vault health. Bundling is planned for GA (macOS/Windows) |
 | **Models** | Downloaded on first run from the model catalogue, or side-loaded (GGUF) for air-gapped sites |
 | **Air-gapped install** | Supported: offline installer, side-loaded models, updater disabled, Local only matters |
-| **Managed install** | MDM (Intune, Jamf) deploys the installer and a policy file: defaults (Local only forced, allowed providers, updater URL) |
+| **Managed install** | MDM (Intune, Jamf) deploys the installer and a policy file: defaults (Local only forced, allowed providers, web search on/off, allowed MCP servers and skill sources, updater URL) |
 | **Backup** | `vault.db` can be backed up with the firm's existing tools while the app is closed; documents are backed up as usual |
 
 ## 3. Firm Server (R4)

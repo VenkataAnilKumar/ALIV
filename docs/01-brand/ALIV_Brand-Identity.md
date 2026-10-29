@@ -90,5 +90,7 @@ Details and tokens: [Design System](../05-design/ALIV_Design-System.md).
 | New matters are Local only by default | Identities are redacted before cloud calls (R1) | "100% accurate" |
 | Answers cite their sources | Vault encrypted at rest (GA) | "Replaces lawyers" |
 | Tamper-evident audit log | SOC 2 (only once audited) | "Certified compliant" without a certificate |
+| Skills and MCP are supported (base app) | Web search, MCP and skills follow matter policy (R1) | "Every tool is safe" |
+| | Connectors to iManage, SharePoint… (R3) | "Integrates with everything" |
 
 The source of truth for security claims is [`security.md`](../guides/security.md).
