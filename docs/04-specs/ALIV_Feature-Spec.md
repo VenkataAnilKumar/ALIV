@@ -112,7 +112,7 @@ Nothing calls a provider directly.
 | SRCH-05 | Fall back to keyword-only, and say so, when no embedding model is available | P0 | ✅ |
 | SRCH-06 | Filters: document type, date range, party, folder | P1 | R2 |
 | SRCH-07 | Search across several selected matters (explicit user choice) | P2 | R3 |
-| SRCH-08 | ANN index when a matter exceeds ~200k passages | P2 | R4 |
+| SRCH-08 | ANN index for very large matters: superseded by SRCH-14 (decision by benchmark in R2) | P2 | R2 (see SRCH-14) |
 | SRCH-09 | **Global search:** extend the existing ⌘K search dialog (today it searches chat threads) to matters, documents, clauses, tables, artifacts and runs, scoped to what the user may see | P1 | R2 |
 | SRCH-10 | **Web search** (existing `tauri-plugin-websearch`) runs only through the gateway: blocked on Local only matters; on Hybrid, the query is shown, redacted and audited before it is sent | P0 | R1 |
 | SRCH-11 | Search tiers are always labelled: *this matter* (local), *firm knowledge* (FS-18), *web / research* (FS-22) | P1 | R2 |

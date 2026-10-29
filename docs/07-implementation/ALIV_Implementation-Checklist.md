@@ -16,7 +16,7 @@
 
 ## Phase 0: Private matter vault (R0) ✅
 
-- [x] Matters with Local only / Hybrid policy (MAT-01–03)
+- [x] Matters with Local only / Hybrid policy (MAT-01–05)
 - [x] Ingestion of PDF, DOCX, XLSX, PPTX, HTML, text, CSV, RTF and EML; change detection by hash; unreadable files listed with a reason (ING-01/02/05)
 - [x] OCR for scans and images, with confidence carried into field confidence (ING-03/04)
 - [x] Passages + FTS5 keyword search (SRCH-01)
@@ -45,6 +45,7 @@
 - [ ] Redaction preview (RED-05)
 - [ ] Redaction recall ≥ 98% gate in CI (RED-06)
 - [ ] Spend limits, fallback, hardware-aware model choice (GW-06/07, RTR-05)
+- [ ] Firm-level routing defaults (RTR-03); redaction levels (RED-04); Skills tab in Hub (SKL-10)
 - [ ] Matter chats, instructions, linked folders; convert chat projects (WS-01/02/03/05)
 - [ ] Web search through the gateway: blocked on Local only, redacted and audited on Hybrid (SRCH-10)
 - [ ] MCP trust levels, per-matter allow-lists, redaction and audit, approvals for side-effecting tools (MCP-01–04/07)
@@ -68,6 +69,8 @@
 - [ ] PST/MBOX; 10k-document ingestion with resume (ING-06/07)
 - [ ] Field corrections kept across re-ingestion (REG-06); XLSX register export (REG-08)
 - [ ] Audit trail export, PDF and JSON (AUD-05)
+- [ ] Agent and workflow steps audited (AUD-04); model second pass as table columns (REG-07); duplicate workflow as agent (WF-06); compare against template, DOCX (CMP-02/03)
+- [ ] Folder moves as proposals (ACT-04); search filters (SRCH-06); matter export (WS-08)
 - [ ] Artifacts: store, versions, diff, tab, sandboxed HTML, export, output folder (ART-01–07, WS-04)
 - [ ] Global search across matters and types (SRCH-09/11/12)
 - [ ] Layout-aware parsing and structure-aware chunks (ING-10/11)
@@ -87,6 +90,7 @@
 - [ ] Automation engine: triggers, actions, history, retries, templates; proposals only (AUTO-01–07)
 - [ ] Document connectors: iManage, SharePoint, NetDocuments, Outlook, then Drive, Box, Gmail (CON-01–06)
 - [ ] MCP tools in agents (MCP-05); firm skill library and Skill Builder (SKL-07/08)
+- [ ] Agent proposals in the approval queue (ACT-05); retention reminders (MAT-07); cross-matter search (SRCH-07); duplicate detection (ING-09); firm-run evals (EVAL-06)
 - [ ] **Exit:** a 4-step agent built in under 15 minutes by a non-technical user
 
 ## Phase 4: Scale & reach (R4)
@@ -97,6 +101,7 @@
 - [ ] Research connectors (RES-01/02/04)
 - [ ] ALIV as an MCP server; connector source permissions (MCP-06, CON-04)
 - [ ] Shared and signed skills (SKL-09)
+- [ ] Firm-wide view-only knowledge bases (KB-04)
 - [ ] **Exit:** 20 concurrent users on one server; access lists enforced in tests
 
 ## GA track
