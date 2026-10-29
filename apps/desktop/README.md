@@ -9,7 +9,8 @@ Built with Tauri 2 (Rust) and React. Runs local models through llama.cpp or MLX,
 - **Matters.** One vault per client engagement, typed Legal or Finance, with a model policy:
   - **Local only** (default): passages never go to a cloud model.
   - **Hybrid**: cloud models are allowed, but only the matching passages are sent, and every call is logged.
-- **Ingestion.** Point a matter at folders. PDF (text), DOCX, XLSX, PPTX, HTML, TXT/MD and EML files are parsed on the device, split into passages and indexed with SQLite FTS5. Unchanged files are skipped by content hash. Unreadable files, such as scans (no OCR yet), stay listed with the reason.
+- **Ingestion.** Point a matter at folders. PDF, DOCX, XLSX, PPTX, HTML, TXT/MD and EML files are parsed on the device, split into passages and indexed with SQLite FTS5. Unchanged files are skipped by content hash. Unreadable files stay listed with the reason.
+- **OCR.** Scanned images (PNG, JPEG, TIFF) and PDFs with no text layer are read with [Tesseract](https://github.com/tesseract-ocr/tesseract), on the device. Low-resolution scans are enlarged first, and PDF pages are rendered at 300 dpi (up to 50 pages). Each OCR'd document shows its OCR confidence, and its extracted values are scaled by it, so a poor scan lands in *Needs review*. OCR needs Tesseract, plus Poppler for scanned PDFs: `brew install tesseract poppler` on macOS, `sudo apt install tesseract-ocr poppler-utils` on Debian/Ubuntu, or the [UB Mannheim installer](https://github.com/UB-Mannheim/tesseract/wiki) on Windows. Set `ALIV_TESSERACT` / `ALIV_PDFTOPPM` to use binaries outside the usual locations. Without Tesseract, scans stay listed as skipped with that reason.
 - **Register.** Rules extract type, parties, effective, expiry/due and renewal-notice dates, amount, notice period, governing law and the penalty clause. Every value links to the passage it was read from, with a confidence score. Filters: due in 90 days, passed, needs review. The register exports to CSV, with formula injection neutralized.
 - **Ask.** Retrieves the top passages plus the register, sends them as numbered sources, and asks the model to cite each statement. Answers stream, and each `[n]` opens its source. Without a model, deadline questions are answered directly from the register ("computed, no model used"), and other questions return the matching passages.
 - **Policy gate.** Every model call goes through `authorize_model_call` in Rust first. A cloud model on a Local only matter is refused and the refusal is logged. Providers count as local when they are built-in engines (llama.cpp, MLX) or point at loopback.
@@ -54,7 +55,7 @@ python3 ../../benchmarks/score_vault_extraction.py <scan.json>  # extraction acc
 
 `tests/ipc.rs` sends the exact payloads the web app sends through Tauri's IPC and permission layer, so a renamed command or argument fails in CI rather than in the app.
 
-Accuracy on the labelled corpus in `benchmarks/` (160 text documents; the 40 scanned images are skipped without OCR): type, effective date, expiry date, amount and vendor are 100% correct. Penalty clauses: 100% recall, 88% precision, because late-payment interest clauses are counted as extra. That corpus is generated from templates, so expect lower numbers on real-world documents. The register therefore always shows the source passage and flags low-confidence values.
+Accuracy on the labelled corpus in `benchmarks/` (200 documents, including 40 scanned images read by OCR): type, effective date, expiry date, amount and vendor are 100% correct. Penalty clauses: 100% recall, 88% precision, because late-payment interest clauses are counted as extra. That corpus is generated from templates, so expect lower numbers on real-world documents. The register therefore always shows the source passage and flags low-confidence values.
 
 ## Release infrastructure (not set up yet)
 
@@ -64,12 +65,11 @@ Accuracy on the labelled corpus in `benchmarks/` (160 text documents; the 40 sca
 ## Roadmap
 
 1. **Kernel-routed model traffic.** Today the policy gate decides and logs every call, but the request itself is still sent from the webview. Next, route cloud calls through the Rust proxy (`src-tauri/src/core/server/proxy.rs`) so the gate can't be bypassed, and add pseudonymization of names and amounts before cloud calls.
-2. **OCR** for scanned PDFs and images.
-3. **Hybrid search.** Add embeddings via the vector-db plugin next to FTS5, with reciprocal-rank fusion.
-4. **LLM-assisted extraction** as a second pass for fields the rules leave empty, always with a citation.
-5. **Agent packs and scheduled agents.** Weekly deadline scans and NDA triage against a playbook.
-6. **Firm Server mode.** A shared vault over the local network.
-7. **Release.** Signed builds and an update feed, a browser extension for browser control, and translations for the new Matters screens.
+2. **Hybrid search.** Add embeddings via the vector-db plugin next to FTS5, with reciprocal-rank fusion.
+3. **LLM-assisted extraction** as a second pass for fields the rules leave empty, always with a citation.
+4. **Agent packs and scheduled agents.** Weekly deadline scans and NDA triage against a playbook.
+5. **Firm Server mode.** A shared vault over the local network.
+6. **Release.** Signed builds and an update feed, a browser extension for browser control, and translations for the new Matters screens.
 
 ## License
 

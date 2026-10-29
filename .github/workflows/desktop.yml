@@ -1,0 +1,109 @@
+name: Desktop app
+
+on:
+  pull_request:
+    paths:
+      - "apps/desktop/**"
+      - ".github/workflows/desktop.yml"
+  push:
+    branches: [main]
+    paths:
+      - "apps/desktop/**"
+      - ".github/workflows/desktop.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: desktop-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  CARGO_TERM_COLOR: always
+  CARGO_INCREMENTAL: "0"
+  # Debug info is most of a debug build's size; the full test build does not
+  # fit a hosted runner's disk with it.
+  CARGO_PROFILE_DEV_DEBUG: "0"
+  CARGO_PROFILE_TEST_DEBUG: "0"
+
+defaults:
+  run:
+    working-directory: apps/desktop
+
+jobs:
+  web:
+    name: Web app (lint, types, tests)
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: corepack enable
+      - run: yarn install --immutable
+      - run: yarn build:tauri:plugin:api && yarn build:core && yarn build:extensions
+      - run: yarn lint
+      - name: Type check
+        run: yarn exec tsc -b
+        working-directory: apps/desktop/web-app
+      - run: yarn test:all
+
+  rust:
+    name: Rust (${{ matrix.name }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      # Plugin-install tests commit to scratch git repos.
+      GIT_AUTHOR_NAME: ALIV CI
+      GIT_AUTHOR_EMAIL: ci@aliv.invalid
+      GIT_COMMITTER_NAME: ALIV CI
+      GIT_COMMITTER_EMAIL: ci@aliv.invalid
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: desktop
+            dir: src-tauri
+            test: cargo test --lib
+          - name: cli
+            dir: src-tauri
+            test: >-
+              cargo test --no-default-features --features cli --lib &&
+              (cd aliv-cli && cargo test --features cli)
+          - name: vault plugin
+            dir: src-tauri/plugins/tauri-plugin-aliv-vault
+            test: cargo test --target-dir target
+    steps:
+      - uses: actions/checkout@v4
+      - name: Free disk space
+        working-directory: /
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+          df -h /
+      - name: Install system libraries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev
+          # OCR for the vault's scan tests.
+          sudo apt-get install -y tesseract-ocr poppler-utils
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Rust toolchain
+        run: rustup toolchain install && rustc -V
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: |
+            apps/desktop/src-tauri
+            apps/desktop/src-tauri/plugins/tauri-plugin-aliv-vault -> target
+          key: ${{ matrix.name }}
+      - name: Stub bundled resources
+        run: node scripts/stub-tauri-resources.mjs
+      - name: Test
+        working-directory: apps/desktop/${{ matrix.dir }}
+        run: ${{ matrix.test }}

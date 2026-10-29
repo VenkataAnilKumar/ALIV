@@ -6,24 +6,34 @@ use crate::chunk::{chunk_for_offset, chunk_text};
 use crate::error::{Result, VaultError};
 use crate::extract;
 use crate::model::*;
+use crate::ocr::{self, OcrEngine};
 use crate::store::{now, Store};
 use sha2::{Digest, Sha256};
 use std::collections::HashSet;
 use std::path::{Path, PathBuf};
 
-/// Extensions ingested as documents. Images are listed so they are reported
-/// as skipped (OCR is not wired up yet) instead of silently ignored.
+/// Extensions ingested as documents. Images are read by OCR, as are PDFs
+/// with no text layer.
 const DOC_EXTS: &[&str] = &["pdf", "docx", "txt", "md", "eml", "html", "htm", "csv", "xlsx", "xls", "pptx", "rtf"];
 const IMAGE_EXTS: &[&str] = &["png", "jpg", "jpeg", "tif", "tiff", "heic"];
+/// Below this many characters a parse is treated as "no text": a scanned PDF
+/// often carries a stray page number or producer string.
+const MIN_TEXT_CHARS: usize = 20;
 const MAX_FILES_PER_RUN: usize = 5000;
 
 pub struct Vault {
     pub store: Store,
+    ocr: Option<Box<dyn OcrEngine>>,
 }
 
 impl Vault {
+    /// A vault that reads scans with Tesseract when it is installed.
     pub fn new(store: Store) -> Self {
-        Self { store }
+        Self::with_ocr(store, ocr::Tesseract::detect().map(|t| Box::new(t) as Box<dyn OcrEngine>))
+    }
+
+    pub fn with_ocr(store: Store, ocr: Option<Box<dyn OcrEngine>>) -> Self {
+        Self { store, ocr }
     }
 
     // ---------------------------------------------------------- ingestion
@@ -61,7 +71,10 @@ impl Vault {
             }
             report.scanned += 1;
             match self.ingest_file(matter_id, &file, &ext) {
-                Ok(Outcome::Indexed) => report.indexed += 1,
+                Ok(Outcome::Indexed { ocr }) => {
+                    report.indexed += 1;
+                    report.ocr += usize::from(ocr);
+                }
                 Ok(Outcome::Unchanged) => report.unchanged += 1,
                 Ok(Outcome::Skipped(reason)) => {
                     report.skipped += 1;
@@ -108,26 +121,48 @@ impl Vault {
             char_count: 0,
             chunk_count: 0,
             ingested_at: now(),
+            ocr_confidence: None,
         };
 
-        let parsed = if IMAGE_EXTS.contains(&ext) {
-            Err("scanned image: OCR not available yet".to_string())
+        let has_text = |t: &str| t.trim().chars().count() >= MIN_TEXT_CHARS;
+        let text = if IMAGE_EXTS.contains(&ext) {
+            None
         } else {
-            parse(file, ext)
+            match parse(file, ext) {
+                Ok(t) if has_text(&t) => Some(t),
+                Ok(_) if ext != "pdf" => return self.record_skipped(doc, &sha, "no extractable text".into()),
+                Err(reason) if ext != "pdf" => return self.record_skipped(doc, &sha, reason),
+                // A PDF with no text layer is a scan. The parser reports some
+                // as empty and refuses others, so both go to OCR.
+                Ok(_) => None,
+                Err(reason) => {
+                    log::debug!("{}: no text layer ({reason}); trying OCR", file.display());
+                    None
+                }
+            }
         };
-        let text = match parsed {
-            Ok(t) if t.trim().chars().count() >= 20 => t,
-            Ok(_) => return self.record_skipped(doc, &sha, "no extractable text".into()),
-            Err(reason) => return self.record_skipped(doc, &sha, reason),
+        let text = match text {
+            Some(t) => t,
+            None => match self.read_scan(file, ext) {
+                Ok(scan) if has_text(&scan.text) => {
+                    doc.ocr_confidence = Some(scan.confidence);
+                    scan.text
+                }
+                Ok(_) => return self.record_skipped(doc, &sha, "scanned document: OCR found no readable text".into()),
+                Err(reason) => return self.record_skipped(doc, &sha, reason),
+            },
         };
 
         let chunks = chunk_text(&text);
+        // A value read from a scan is only as sure as the OCR that read it, so
+        // a poor scan lands its fields in "needs review".
+        let ocr_factor = doc.ocr_confidence.unwrap_or(1.0);
         let fields: Vec<Field> = extract::extract_all(&text)
             .into_iter()
             .map(|e| Field {
                 key: e.key.to_string(),
                 value: e.value,
-                confidence: e.confidence,
+                confidence: e.confidence * ocr_factor,
                 chunk_ordinal: chunk_for_offset(&chunks, e.offset).map(|o| o as i64),
                 snippet: e.snippet,
             })
@@ -136,7 +171,14 @@ impl Vault {
         doc.char_count = text.chars().count() as i64;
         let texts: Vec<String> = chunks.into_iter().map(|c| c.text).collect();
         self.store.upsert_document(&doc, &sha, &texts, &fields)?;
-        Ok(Outcome::Indexed)
+        Ok(Outcome::Indexed { ocr: doc.ocr_confidence.is_some() })
+    }
+
+    fn read_scan(&self, file: &Path, ext: &str) -> std::result::Result<ocr::OcrText, String> {
+        match &self.ocr {
+            Some(engine) => engine.recognize(file, ext),
+            None => Err(ocr::NOT_INSTALLED.to_string()),
+        }
     }
 
     /// Keeps an unreadable file visible in the matter, with its reason.
@@ -367,7 +409,7 @@ impl Vault {
 }
 
 enum Outcome {
-    Indexed,
+    Indexed { ocr: bool },
     Unchanged,
     Skipped(String),
 }
@@ -457,9 +499,111 @@ mod tests {
         fs::write(dir.path().join("doc 2.txt"), NDA).unwrap();
         fs::write(dir.path().join("photo.png"), [0u8; 10]).unwrap();
         fs::write(dir.path().join("notes.bin"), [1u8; 10]).unwrap();
-        let v = Vault::new(Store::open_in_memory().unwrap());
+        // No OCR engine, so the run does not depend on what is installed.
+        let v = Vault::with_ocr(Store::open_in_memory().unwrap(), None);
         let m = v.store.create_matter(&MatterInput { name: "Redstone".into(), ..Default::default() }).unwrap();
         (v, m.id, dir)
+    }
+
+    /// Stands in for Tesseract: "reads" every scan as `text`.
+    struct FakeOcr {
+        text: &'static str,
+        confidence: f64,
+    }
+
+    impl OcrEngine for FakeOcr {
+        fn recognize(&self, _file: &Path, _ext: &str) -> std::result::Result<ocr::OcrText, String> {
+            Ok(ocr::OcrText { text: self.text.to_string(), confidence: self.confidence, pages: 1 })
+        }
+    }
+
+    fn ocr_vault(text: &'static str, confidence: f64) -> (Vault, String) {
+        let v = Vault::with_ocr(Store::open_in_memory().unwrap(), Some(Box::new(FakeOcr { text, confidence })));
+        let m = v.store.create_matter(&MatterInput { name: "Scans".into(), ..Default::default() }).unwrap();
+        (v, m.id)
+    }
+
+    /// A scanned image is read, indexed and extracted like any document, and
+    /// its fields carry the OCR confidence so a poor scan needs review.
+    #[test]
+    fn a_scanned_image_is_read_by_ocr() {
+        let dir = tempfile::tempdir().unwrap();
+        fs::write(dir.path().join("signed lease.png"), [0u8; 10]).unwrap();
+        let (v, m) = ocr_vault(LEASE, 0.8);
+        let r = v.ingest_paths(&m, &[dir.path().to_string_lossy().to_string()]).unwrap();
+        assert_eq!((r.indexed, r.ocr, r.skipped), (1, 1, 0), "{r:?}");
+
+        let row = v.store.review_grid(&m).unwrap().remove(0);
+        assert_eq!(row.document.status, "indexed");
+        assert_eq!(row.document.ocr_confidence, Some(0.8));
+        let expiry = row.fields.iter().find(|f| f.key == extract::EXPIRY_DATE).unwrap();
+        assert_eq!(expiry.value, "2026-03-01");
+        assert!(expiry.confidence <= 0.8, "scaled by the OCR confidence: {}", expiry.confidence);
+        assert_eq!(v.store.search(&m, "holdover penalty", 5).unwrap().len(), 1, "OCR text is searchable");
+    }
+
+    /// A PDF with no text layer is a scan, so it goes to OCR; a PDF with text
+    /// never does.
+    #[test]
+    fn a_pdf_without_a_text_layer_falls_back_to_ocr() {
+        let dir = tempfile::tempdir().unwrap();
+        fs::write(dir.path().join("scanned.pdf"), blank_pdf()).unwrap();
+        let (v, m) = ocr_vault(NDA, 0.9);
+        let r = v.ingest_paths(&m, &[dir.path().to_string_lossy().to_string()]).unwrap();
+        assert_eq!((r.indexed, r.ocr), (1, 1), "{r:?}");
+        assert_eq!(v.store.list_documents(&m).unwrap()[0].ocr_confidence, Some(0.9));
+    }
+
+    #[test]
+    fn a_scan_ocr_cannot_read_stays_listed_with_the_reason() {
+        let dir = tempfile::tempdir().unwrap();
+        fs::write(dir.path().join("blank.jpg"), [0u8; 10]).unwrap();
+        let (v, m) = ocr_vault("  \n ", 0.1);
+        let r = v.ingest_paths(&m, &[dir.path().to_string_lossy().to_string()]).unwrap();
+        assert_eq!((r.indexed, r.skipped), (0, 1), "{r:?}");
+        let doc = &v.store.list_documents(&m).unwrap()[0];
+        assert_eq!(doc.status, "skipped");
+        assert!(doc.error.as_deref().unwrap().contains("no readable text"));
+    }
+
+    /// The real engine on a real scan from the benchmark corpus. Runs where
+    /// Tesseract is installed (CI installs it).
+    #[test]
+    fn tesseract_reads_a_benchmark_scan() {
+        let Some(engine) = ocr::Tesseract::detect() else {
+            eprintln!("tesseract not installed; skipping");
+            return;
+        };
+        let scan = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../../../../benchmarks/corpus/scan_161.png");
+        let out = engine.recognize(&scan, "png").unwrap();
+        assert!(out.confidence > 0.5, "{}", out.confidence);
+        let fields = extract::extract_all(&out.text);
+        let get = |k: &str| fields.iter().find(|f| f.key == k).map(|f| f.value.clone());
+        assert_eq!(get(extract::EFFECTIVE_DATE).as_deref(), Some("2025-03-14"), "{}", out.text);
+        assert_eq!(get(extract::EXPIRY_DATE).as_deref(), Some("2026-11-27"), "{}", out.text);
+        assert!(get(extract::PARTIES).unwrap_or_default().contains("Summit Audit Partners"), "{}", out.text);
+    }
+
+    /// A one-page PDF with an empty page: valid, but no text layer.
+    fn blank_pdf() -> Vec<u8> {
+        let objects = [
+            "<< /Type /Catalog /Pages 2 0 R >>",
+            "<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
+            "<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << >> >>",
+        ];
+        let mut pdf = b"%PDF-1.4\n".to_vec();
+        let mut offsets = Vec::new();
+        for (i, body) in objects.iter().enumerate() {
+            offsets.push(pdf.len());
+            pdf.extend(format!("{} 0 obj\n{body}\nendobj\n", i + 1).bytes());
+        }
+        let xref = pdf.len();
+        pdf.extend(format!("xref\n0 {}\n0000000000 65535 f \n", objects.len() + 1).bytes());
+        for off in offsets {
+            pdf.extend(format!("{off:010} 00000 n \n").bytes());
+        }
+        pdf.extend(format!("trailer\n<< /Size {} /Root 1 0 R >>\nstartxref\n{xref}\n%%EOF\n", objects.len() + 1).bytes());
+        pdf
     }
 
     #[test]

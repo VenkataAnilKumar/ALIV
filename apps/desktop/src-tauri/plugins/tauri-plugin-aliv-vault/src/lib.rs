@@ -11,6 +11,7 @@ mod commands;
 pub mod error;
 pub mod extract;
 pub mod model;
+pub mod ocr;
 pub mod store;
 pub mod vault;
 

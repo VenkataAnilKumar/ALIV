@@ -31,7 +31,7 @@ export function DocumentsPanel({ documents, onAddDocuments }: { documents: Vault
         <EmptyState
           icon={<FileText className="size-6" />}
           title="No documents yet"
-          body="Supported: PDF (text), Word, Excel, PowerPoint, HTML, plain text and .eml emails. Scanned images are listed but need OCR, which is not available yet."
+          body="Supported: PDF (text), Word, Excel, PowerPoint, HTML, plain text and .eml emails. Scanned PDFs and images are read with OCR when Tesseract is installed."
           action={
             <Button onClick={onAddDocuments}>
               <FolderPlus className="size-4" /> Add folder
@@ -77,7 +77,17 @@ export function DocumentsPanel({ documents, onAddDocuments }: { documents: Vault
                 <td className="px-3 py-2 whitespace-nowrap">{d.docType ?? <span className="text-muted-foreground">—</span>}</td>
                 <td className="px-3 py-2">
                   {d.status === 'indexed' ? (
-                    <Pill tone="success">indexed</Pill>
+                    <span className="inline-flex items-center gap-1">
+                      <Pill tone="success">indexed</Pill>
+                      {d.ocrConfidence !== null && (
+                        <Pill
+                          tone={d.ocrConfidence < 0.75 ? 'warning' : 'info'}
+                          title="Read from a scan by OCR. Values extracted from this file carry the OCR confidence, so a poor scan lands them in Needs review."
+                        >
+                          OCR {Math.round(d.ocrConfidence * 100)}%
+                        </Pill>
+                      )}
+                    </span>
                   ) : (
                     <Pill tone="warning" title={d.error ?? undefined}>
                       {d.error ?? d.status}

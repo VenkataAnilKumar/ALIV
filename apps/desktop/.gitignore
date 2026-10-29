@@ -5,6 +5,9 @@ error.log
 node_modules
 *.tgz
 dist
+# Vendored packages that ship only their published build (see their README).
+!packages/streamdown/dist/
+!packages/remend/dist/
 build
 .DS_Store
 package-lock.json

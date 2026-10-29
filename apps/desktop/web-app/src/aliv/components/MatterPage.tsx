@@ -61,7 +61,7 @@ export function MatterPage({ matterId }: { matterId: string }) {
     const id = toast.loading('Indexing documents on this computer…')
     try {
       const r = await vault.ingestPaths(matterId, paths)
-      const parts = [`${r.indexed} indexed`]
+      const parts = [r.ocr ? `${r.indexed} indexed (${r.ocr} read by OCR)` : `${r.indexed} indexed`]
       if (r.unchanged) parts.push(`${r.unchanged} unchanged`)
       if (r.skipped) parts.push(`${r.skipped} skipped`)
       if (r.failed) parts.push(`${r.failed} failed`)

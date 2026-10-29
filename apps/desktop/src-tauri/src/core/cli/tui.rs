@@ -44057,6 +44057,10 @@ mod tests {
     #[test]
     fn slash_bare_lists_all_commands() {
         let mut app = test_app();
+        // Only built-ins are under test. The catalog also scans the shared
+        // test home's user skills, which tests running in parallel create and
+        // remove (`skills_command_lists_scopes_and_marks_shadowing`).
+        app.slash_catalog.skills.retain(|s| s.name == "aliv" || s.plugin.is_some());
         app.input = "/".into();
         // All built-ins plus the always-advertised built-in aliv skill.
         assert_eq!(
