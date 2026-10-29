@@ -57,7 +57,7 @@ ALIV brings that kind of work to the firm's own hardware:
 
 ### Coming next
 
-Model gateway and redaction · review tables · workflows · playbooks with redlines · agent builder · monitors · Firm Server. See the [roadmap](#roadmap).
+Model gateway and redaction · matter workspace · skills · review tables · workflows · playbooks with redlines · artifacts · connectors · MCP · automation · agent builder · Firm Server. See the [roadmap](#roadmap).
 
 ## How it works
 
@@ -98,10 +98,10 @@ Platform prerequisites, tests and release notes are in the [app guide](apps/desk
 | Release | Theme | Highlights | Status |
 |---|---|---|---|
 | **R0** | Private matter vault | Matters, ingestion with OCR, hybrid search, cited Ask, register, approvals, audit log | ✅ Shipped |
-| **R1** | Hybrid foundation | One audited Rust gateway for every model call, redaction before cloud, per-step routing | Next |
-| **R2** | Harvey-class work product | Review tables, workflows, playbooks and redlines, drafting, compare | Planned |
-| **R3** | Agents | Agent builder, monitors, knowledge bases, finance pack | Planned |
-| **R4** | Scale and reach | Firm Server with SSO and ethical walls, Word add-in, research connectors | Planned |
+| **R1** | Hybrid foundation | One audited Rust gateway for every model call, redaction before cloud, per-step routing; matter workspace; web search, MCP and skills under matter policy | Next |
+| **R2** | Harvey-class work product | Review tables, workflows, playbooks and redlines, drafting, compare, artifacts, global search, skill packs | Planned |
+| **R3** | Agents | Agent builder, automation, connectors, MCP tools in agents, knowledge bases, skill library, finance pack | Planned |
+| **R4** | Scale and reach | Firm Server with SSO and ethical walls, Word add-in, research connectors, ALIV as an MCP server | Planned |
 
 Details: [Implementation Phases](docs/07-implementation/ALIV_Implementation-Phases.md) · [Sprint Plan](docs/07-implementation/ALIV_Sprint-Plan.md).
 

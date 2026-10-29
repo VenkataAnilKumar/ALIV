@@ -31,7 +31,10 @@ Harvey, Legora and CoCounsel have shown what AI can do for legal work: bulk revi
 | Cited answers (Ask) | **Review tables**: one question per column, cited cells, 10k rows | **Finance pack**: invoices, covenants |
 | Contract register and deadlines | **Workflows**: chronology, DD issues list, memo, compare | **Firm Server**, SSO, ethical walls |
 | Approvals for file changes, with undo | **Playbooks** with DOCX redlines | **Word add-in**, research connectors |
-| Hash-chained audit log, vault health | Clause library and drafting | |
+| Hash-chained audit log, vault health | Clause library and drafting | **Automation**: triggers that run agents |
+| | **Matter workspace**: chats and instructions inside a matter | **Connectors**: iManage, NetDocuments, SharePoint, Drive, Outlook |
+| | **Artifacts**: versioned, cited deliverables | **MCP** tools in agents; ALIV as an MCP server |
+| | **Skills** under matter policy; legal and finance skill packs | Firm skill library and Skill Builder |
 
 ## Why ALIV
 

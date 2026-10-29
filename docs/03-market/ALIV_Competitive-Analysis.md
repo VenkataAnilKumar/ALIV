@@ -166,6 +166,11 @@ Points worth keeping (mostly vendor marketing):
 | Playbook review & redlines | ◐ | ◐ | ◐ | ✅ | ✅ | — | — | ○ FS-13 |
 | Drafting in Word | ◐ | ◐ | ◐ | ✅ | ✅ | — | — | ○ FS-21 |
 | Licensed legal research | ✅ | ✅ | ✅ (Westlaw) | — | — | — | — | ○ FS-22 (partners) |
+| DMS / SharePoint / email connectors | ✅ | ✅ | ◐ | ✅ | — | — | — | ○ FS-23 |
+| Saved, versioned outputs (artifacts) | ◐ | ◐ | ◐ | ? | — | — | ◐ exports | ○ FS-25 |
+| Firm know-how as reusable skills | ? | ? | ? | ? | ? | ◐ | ◐ base-app skills | ○ FS-28 (governed, per matter) |
+| MCP (tools in, vault out) | ? | ? | ? | ? | ? | ◐ | ◐ base-app MCP client | ○ FS-24 (trust levels, allow-lists) |
+| Event-driven automation | ◐ | ✅ | — | ◐ | — | — | — | ○ FS-26 |
 | Runs fully on the firm's machines | — | — | — | ◐ | — | ✅ | ✅ | ✅ |
 | Per-matter cloud policy | — | — | — | — | — | — | ✅ | ✅ |
 | Per-step model routing + redaction | — | — | — | — | — | — | — | ○ FS-9/10 |
@@ -173,7 +178,7 @@ Points worth keeping (mostly vendor marketing):
 | Approval-gated, undoable file actions | — | — | — | — | — | — | ✅ | ✅ |
 | Self-serve small-firm pricing | — | — | ◐ | — | ✅ | ✅ | ○ | ○ |
 
-"?" means no public evidence either way; enterprise products likely log internally, but don't expose a verifiable chain to the customer.
+Rows for connectors, artifacts, skills, MCP and automation were added without new research; their competitor cells are best-known status and should be re-checked before external use. "?" means no public evidence either way; enterprise products likely log internally, but don't expose a verifiable chain to the customer.
 
 ---
 
@@ -197,6 +202,7 @@ Points worth keeping (mostly vendor marketing):
 |---|---|
 | Harvey or Legora launch a private-deployment edition | Compete on price, desktop simplicity, Windows, and the per-step audit chain; ship R2 quickly |
 | Microsoft adds on-device document Q&A to Windows/Copilot | Generic retrieval becomes a commodity. ALIV's moat is the workflow and governance layer |
+| Competitors adopt open standards (MCP, Agent Skills) | ALIV already ships both in the base app; the difference is governance: trust levels, per-matter allow-lists, redaction and audit on every tool and skill |
 | Local models stay too weak for complex reasoning | Hybrid routing with redaction; hardware tiers; citations expose errors |
 | Licensed content locks users into CoCounsel/Westlaw | Partner and connect (FS-22); focus ALIV on the firm's own documents, where licensed content doesn't help |
 | A new local-first legal startup (e.g. LocalApps) wins small firms first | Speed on R1–R2, an open data format, and finance coverage as a second wedge |
