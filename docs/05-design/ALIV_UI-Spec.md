@@ -145,6 +145,34 @@ Entries: time, kind, summary, expandable detail. Verify integrity → success or
 
 ---
 
+## 5b. Admin interface
+
+Admins set policy and see metadata (counts, routes, costs, audit entries), **never document text**.
+
+### Desktop: Settings › Admin (R1) · [mockup](../assets/mockups/admin-desktop.png) · W-13
+
+| Page | Contents | Feature IDs |
+|---|---|---|
+| AI policy | Defaults for new matters (policy, redaction level), allowed cloud providers, routing by step type, hardware tier and local model | MAT-02, RED-04, RTR-02/03/05 |
+| Spend | Firm and per-matter monthly cloud limits; usage by matter; calls refused at a limit | GW-06 |
+| Audit | Verify all matters; export a matter's trail | AUD-02/05 |
+| Health | Vault health, OCR tools, model status, copy report | AUD-03 |
+
+Settings pushed by the firm's policy file (MDM) are greyed out and labelled "locked by firm". A matter can be stricter than the defaults, never looser.
+
+### Firm Server: Admin Console (R4) · [mockup](../assets/mockups/admin-console.png) · W-14
+
+| Page | Contents | Feature IDs |
+|---|---|---|
+| Dashboard | Active users, matters by policy, model calls by route, refusals, spend, recent policy events, GPU server, backups | SRV-04 |
+| Users & groups | Invite, remove, roles (admin, member, viewer), SSO group mapping | SRV-02/03 |
+| Matters & walls | Access lists per matter (ethical walls), ownership, retention dates | MAT-06/07 |
+| AI policy · Providers · Spend | As on the desktop, applied firm-wide; server GPU models | RTR-03, SRV-05, GW-06 |
+| Audit | Search across matters, export a matter's trail, chain status | SRV-04, AUD-05 |
+| Health & backups · Updates · SSO | Backup schedule and restore, release channel and mirror, identity provider | SRV-06, SRV-03 |
+
+---
+
 ## 6. Agent Builder (R3)
 
 **Layout:**
@@ -155,7 +183,7 @@ Entries: time, kind, summary, expandable detail. Verify integrity → success or
 **Validation:**
 - every step has a type and an output;
 - tools that change things are shown as "proposes only";
-- the run is blocked if a step would need cloud in a Local only test matter (the reason is shown).
+- in a Local only test matter, cloud steps run on this computer instead, and a notice says so (the router never sends a Local only matter to the cloud); a run is blocked only if a step is pinned to a cloud model, with the reason shown.
 
 **Publish** creates a version and requires a change note.
 
