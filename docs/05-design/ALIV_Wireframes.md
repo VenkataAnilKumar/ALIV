@@ -5,6 +5,19 @@
 
 Low-fidelity layouts for the [UI Spec](ALIV_UI-Spec.md). ✅ marks shipped screens (see the screenshots in `docs/assets/`). The others are planned.
 
+## High-fidelity mockups
+
+Rendered with the app's design tokens ([Design System](ALIV_Design-System.md)). These are **mockups of planned screens**, not screenshots; the data is fictional.
+
+| Screen | Release | Image |
+|---|---|---|
+| Review table with source drawer (W-5) | R2 | ![Review table](../assets/mockups/review-table.png) |
+| Workflow run with redaction preview (W-7, W-8) | R1–R2 | ![Workflow run](../assets/mockups/workflow-run.png) |
+| Agent Builder (W-10) | R3 | ![Agent Builder](../assets/mockups/agent-builder.png) |
+| Inbox (W-11) | R3 | ![Inbox](../assets/mockups/inbox.png) |
+| Admin settings on the desktop (W-13) | R1 | ![Desktop admin](../assets/mockups/admin-desktop.png) |
+| Firm Server Admin Console (W-14) | R4 | ![Admin Console](../assets/mockups/admin-console.png) |
+
 ---
 
 ## W-1 Matters home ✅
@@ -180,3 +193,11 @@ Low-fidelity layouts for the [UI Spec](ALIV_UI-Spec.md). ✅ marks shipped scree
 │                                        [Cancel][Save] │
 └───────────────────────────────────────────────────────┘
 ```
+
+## W-13 Desktop admin: AI policy (R1)
+
+Settings › Admin for whoever manages the firm's install. Defaults for new matters (policy, redaction, allowed providers), routing by step type, hardware tier and local model, and cloud spend. Settings pushed by the firm's policy file (MDM) show as "locked by firm". A matter can be stricter than these defaults, never looser. See the [mockup](../assets/mockups/admin-desktop.png).
+
+## W-14 Firm Server Admin Console (R4)
+
+A browser console: Dashboard, Users & groups, Matters & walls, AI policy, Providers, Spend, Audit, Health & backups, Updates, SSO. The dashboard shows users, matters by policy, model calls by route, calls refused by policy, cloud spend, recent policy events, GPU model server and backups. **Admins see metadata only** (counts, routes, costs, audit entries), never document text. See the [mockup](../assets/mockups/admin-console.png).
