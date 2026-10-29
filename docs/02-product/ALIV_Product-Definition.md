@@ -1,5 +1,5 @@
 # Product Definition Document
-## ALIV: the hybrid intelligent agent platform for legal and finance
+## ALIV: the hybrid intelligent agent platform for legal teams, and the finance work in their contracts
 
 **Version:** 1.0 | **Date:** October 29, 2026 | **Status:** Active
 
@@ -25,15 +25,15 @@
 
 ## 1. Executive Summary
 
-**ALIV** gives legal and finance teams the capabilities of enterprise legal AI: cited answers over a document set, review tables, one-click workflows, playbook redlines and custom agents. It does this without requiring them to hand their clients' documents to a vendor's cloud.
+**ALIV** gives legal teams, and the finance teams who work from the same contracts, the capabilities of enterprise legal AI: cited answers over a document set, review tables, one-click workflows, playbook redlines and custom agents. It does this without requiring them to hand their clients' documents to a vendor's cloud.
 
 Every **matter** is a private vault and workspace on the firm's own machines: documents, chats, instructions, skills, artifacts and automations in one place. A **hybrid model router** decides, per matter and per step, whether a model runs locally (llama.cpp, MLX) or in the cloud (OpenAI, Anthropic and others). When the cloud is allowed, only the minimum text is sent, after **redaction**, through one **audited gateway**. Every answer is **cited** to the passage it came from. The firm's know-how runs as **skills**, its systems connect through **connectors** and **MCP**, and **automations** keep work moving. Web search, MCP tools and skill scripts pass the same policy check, redaction and audit as model calls.
 
 | | |
 |---|---|
-| **Category** | Legal & finance AI: agent platform with document vault |
+| **Category** | Legal AI with contract finance: agent platform with document vault |
 | **Deployment** | Desktop (macOS, Windows, Linux) → Firm Server (planned) → private cloud (planned) |
-| **Primary buyers** | Small and mid-size law firms, in-house legal, accounting and tax firms, regulated finance teams |
+| **Primary buyers** | Small and mid-size law firms, in-house legal; then finance ops, accounting and audit firms for contract finance |
 | **Core promise** | *Harvey-class work product. Your client data stays yours. Every step on the record.* |
 | **Today** | Matters, ingestion with OCR, hybrid search, extraction register, cited Ask, approvals with undo, audit log, vault health |
 | **Next** | Gateway, redaction, router and matter workspace, with web search, MCP and skills under policy → Review Tables, Workflows, Playbooks, Artifacts → Agent Builder, Automation, Connectors → Firm Server |
@@ -65,7 +65,20 @@ Every **matter** is a private vault and workspace on the firm's own machines: do
 ### Beachhead
 - **Small and mid-size law firms**, 2–50 lawyers: corporate, commercial, real estate, employment.
 - **In-house legal teams** at regulated companies: financial services, healthcare, government contractors.
-- **Accounting and tax firms**, and **finance teams** that review contracts, invoices and filings.
+- **Second wedge, contract finance:** finance ops, accounting and audit firms whose work depends on contracts (invoices against contract terms, loan covenants, payment terms, audit evidence).
+
+### Scope: legal first, plus contract finance
+
+| ✅ In scope | ❌ Out of scope |
+|---|---|
+| Legal work: review, drafting, playbooks, research, litigation | Financial modelling and forecasting |
+| Invoices checked against contract terms (AP compliance) | Market data, equity research, earnings analysis |
+| Loan and facility covenants, test dates | Bookkeeping and accounting (stays in the ERP) |
+| Payment terms, price escalations, late fees, penalties | Trading, portfolio and treasury systems |
+| Deal finance: DD of financial terms, change-of-control costs | Tax computation and filing |
+| Audit evidence: which contract supports which payment; KYC file review | General spreadsheet analysis |
+
+ALIV competes with legal AI (Harvey, Legora, CoCounsel). It does not compete with finance research platforms (Hebbia, AlphaSense).
 
 ### Personas
 
@@ -75,6 +88,7 @@ Every **matter** is a private vault and workspace on the firm's own machines: do
 | **Daniel, in-house counsel** | Sole counsel at a fintech | Track renewals and obligations; answer business questions fast | Contracts scattered across drives; can't use cloud AI under the bank partner's terms | Register with deadline alerts; Local only matters; NDA triage agent |
 | **Maria, litigation partner** | Partner, 8-lawyer boutique | Build chronologies, find key facts in productions | Thousands of emails and scans; paralegal time is expensive | OCR, *Chronology* workflow, cited Ask across a production |
 | **Sam, finance controller** | Controller, mid-market company | Reconcile invoices to contracts; monitor covenants | Spreadsheet matching, missed price escalations | Finance pack: invoice-to-contract checks, covenant tracker |
+| **Omar, audit manager** | Manager at a 60-person audit and advisory firm | Tie client payments and accruals to the contracts behind them; keep evidence | Sampling by hand, evidence in emails and folders, client confidentiality rules | Contract-finance tables, cited evidence per payment, Local only matters, audit export |
 | **Lena, legal ops / IT** | Runs tools and risk for a 40-lawyer firm | Adopt AI without a confidentiality incident | Vendor questionnaires, no audit evidence | Per-matter policy, gateway with audit log, health report, self-hosted Firm Server |
 
 ---
@@ -149,7 +163,7 @@ Feature IDs refer to the [Feature Spec](../04-specs/ALIV_Feature-Spec.md). The p
 ```
 
 - **Against Harvey, Legora and Luminance:** comparable workflows, but deployable inside the firm, with per-step cloud control and an audit chain, at small-firm prices.
-- **Against generic local tools:** legal and finance workflows, extraction, playbooks, approvals and an audit trail, not just chat.
+- **Against generic local tools:** legal and contract-finance workflows, extraction, playbooks, approvals and an audit trail, not just chat.
 - **Positioning line:** *The legal AI you can run inside your firm.*
 
 ---
