@@ -43,7 +43,7 @@ ALIV brings that kind of work to the firm's own hardware:
 | | |
 |---|---|
 | 🗂️ **Matters** | One private vault per client engagement (Legal or Finance), each with a *Local only* or *Hybrid* model policy |
-| 📥 **Ingestion** | PDF, DOCX, XLSX, PPTX, HTML, TXT/MD and EML, parsed on the device. Scans and images are read with OCR (Tesseract). Unchanged files are skipped on re-import |
+| 📥 **Ingestion** | PDF, DOCX, XLSX/XLS, PPTX, HTML, TXT/MD, CSV, RTF and EML, parsed on the device. Scans and images are read with OCR (Tesseract). Unchanged files are skipped on re-import |
 | 🔎 **Hybrid search** | Keyword (SQLite FTS5) and meaning (local embeddings), fused, so "can we exit early?" finds a termination-for-convenience clause |
 | 💬 **Ask** | Answers with numbered citations you can open. Large matters are trimmed to what fits the model, and the answer says how much was left out. Deadline questions are answered from the register, with no model |
 | 📋 **Register** | Parties, dates, renewal-notice deadlines, amounts, notice periods, governing law and penalties, each with a confidence score and its source passage. CSV export is safe against spreadsheet formulas |

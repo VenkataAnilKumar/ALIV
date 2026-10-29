@@ -42,7 +42,7 @@
 
 | # | Work | Feature IDs | Exit criteria |
 |---|---|---|---|
-| 1.1 | **Gateway core:** `ModelRequest`, provider adapters (llama.cpp, OpenAI-compatible, Anthropic), streaming over IPC, keys in the OS keychain | GW-01/03/04 | Ask runs end to end through the gateway; no provider call or key left in the web layer (CI check) |
+| 1.1 | **Gateway core:** `ModelRequest`, provider adapters (llama.cpp, OpenAI-compatible, Anthropic), streaming over IPC, reusing the core's provider proxy and keychain storage | GW-01/03/04 | Ask runs end to end through the gateway; no provider call or key left in the web layer (CI check) |
 | 1.2 | **Policy and audit in the gateway:** refusal, `model_calls` table, audit entry per call | GW-02/05, AUD-06 | Policy-matrix test passes for every step type |
 | 1.3 | **Router:** step types, default routing, matter overrides, route shown in Ask | RTR-01/02/04 | Local only never routes to cloud; Hybrid routes per the table in the Hybrid AI Architecture |
 | 1.4 | **Redaction:** entity store from the register, local NER, placeholders, restore, preview | RED-01/02/03/05 | ≥ 98% recall for parties and people on the labelled set; preview matches what is sent |

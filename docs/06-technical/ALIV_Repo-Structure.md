@@ -87,7 +87,7 @@ docs/
 
 | Feature | Rust | Web |
 |---|---|---|
-| Model gateway, router, redaction (R1) | new crate `src-tauri/crates/aliv-gateway` (registered as a plugin or core module) | `web-app/src/aliv/gateway.ts` (thin client); RoutePill, RedactionPreview in `aliv/components/` |
+| Model gateway, router, redaction (R1) | `src-tauri/src/core/gateway/`, building on the existing `core/server/proxy.rs` and `provider_secrets.rs`; split into a crate once the Firm Server needs it | `web-app/src/aliv/gateway.ts` (thin client); RoutePill, RedactionPreview in `aliv/components/` |
 | Agent runtime, tables, workflows (R2) | `src-tauri/crates/aliv-agents` using the vault crate | `aliv/tables/`, `aliv/workflows/`, `aliv/library/` |
 | Document writers (R2) | `src-tauri/crates/aliv-docgen` (DOCX, XLSX, PDF) | — |
 | Monitors (R3) | `aliv-agents::scheduler` | `aliv/inbox/` |

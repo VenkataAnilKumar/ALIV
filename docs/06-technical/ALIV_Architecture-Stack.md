@@ -22,7 +22,7 @@
 | Local models | **llama.cpp** (all platforms), **MLX** (Apple silicon) | via plugins/extensions | ✅ |
 | Embeddings | Local GGUF embedding model via llama.cpp (`@aliv/core` `embedTexts`) | — | ✅ |
 | Cloud models | OpenAI-compatible and Anthropic adapters | — | R1 (gateway) |
-| Secrets | OS keychain (Keychain, Credential Manager, Secret Service) | — | R1 |
+| Secrets | OS keychain (Keychain, Credential Manager, Secret Service), AES-256-GCM file fallback on headless Linux (`provider_secrets.rs`) | — | ✅ storage; R1 makes the gateway their only user |
 | Documents out | DOCX (tracked changes), XLSX, PDF writers in Rust | — | R2 |
 | Email archives | PST/MBOX readers | — | R2 |
 | Server | Rust (axum) + PostgreSQL or SQLite, OIDC/SAML | — | R4 |

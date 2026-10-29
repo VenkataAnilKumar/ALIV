@@ -30,7 +30,7 @@ Stories are grouped by epic, which maps to the [Feature Spec](ALIV_Feature-Spec.
 **US-101 · Create a private matter** (R0, P0) ✅
 *As a lawyer, I want each client engagement in its own matter, so that documents and answers never mix across clients.*
 - Given I create a matter, when I add documents and ask questions, then search and answers use only that matter's documents.
-- Given I delete a matter, then its index and history are removed and my files on disk are untouched.
+- Given I delete a matter, then its index is removed, my files on disk are untouched, and the audit log keeps a record of the deletion.
 
 **US-102 · Local only by default** (R0, P0) ✅
 *As a risk-conscious firm, I want new matters to keep data on this computer, so that no one sends client data to the cloud by accident.*

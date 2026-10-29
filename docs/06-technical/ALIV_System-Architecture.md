@@ -80,7 +80,7 @@
 |---|---|
 | **Privacy** | Documents are never copied or uploaded on import. Embeddings are always local. Local only matters make zero cloud calls (tested) |
 | **Integrity** | Audit is an append-only SHA-256 chain; `verify_audit` names the first broken entry |
-| **Performance** | Ingest ≥ 20 text pages/s on a 2023 laptop (OCR slower); search < 300 ms on 10k documents; first local token < 3 s (7–8B model) |
+| **Performance** (targets, not yet benchmarked) | Ingest ≥ 20 text pages/s on a 2023 laptop (OCR slower); search < 300 ms on 10k documents; first local token < 3 s (7–8B model) |
 | **Scale** | Desktop: 10k documents / 1M passages per vault. Firm Server: 20+ concurrent users (R4) |
 | **Reliability** | Long jobs (ingestion, tables, agent runs) are resumable after a crash or restart |
 | **Portability** | macOS (Apple silicon, Intel), Windows 10+, Linux (x86_64) |
